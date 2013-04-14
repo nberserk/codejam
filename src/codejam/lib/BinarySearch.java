@@ -1,6 +1,5 @@
 package codejam.lib;
 
-import java.util.Arrays;
 
 public class BinarySearch {
 	
@@ -22,9 +21,42 @@ public class BinarySearch {
 			}else{
 				return mid;
 			}
-		}
+		}		
+		
 		//Arrays.binarySearch(a, key);
 		return -1;
+	}
+	
+	/*
+	 * ideas comes from python bisect module
+	 * gets insertion index of array a, to make a ascending list
+	 */
+	public static int bisect_left(int lo, int hi, int[] a, int key){
+		while (lo<hi) {
+			int mid = (lo+hi)/2;
+			if (a[mid] < key) {
+				lo = mid+1; 
+			}else{
+				hi = mid;
+			}
+		}
+		return lo;
+	}
+	
+	/*
+	 * only difference between bisect_left is, when equal lo = mid +1
+	 */
+	public static int bisect_right(int lo, int hi, int[] a, int key){
+		while (lo<hi) {
+			int mid = (lo+hi)/2;
+			
+			if (a[mid] <= key) {
+				lo = mid+1; 
+			}else{
+				hi = mid;
+			}
+		}
+		return lo;
 	}
 	
 	
@@ -91,6 +123,15 @@ public class BinarySearch {
 			}
 		});
 		
+		result = bisect_left(0, a.length-1, a, 100);
+		assert result == 5;
+		
+		result = bisect_left(0, a.length-1, a, 101);
+		assert result == 5;
+		
+		result = bisect_right(0, a.length-1, a, 101);
+		assert result == 6;
+			
 		result = BinarySearch.binarySearchBiggestSatisfyingCondition(0, a.length-1, new IValidator() {			
 			@Override
 			public boolean validate(int index) {
@@ -105,7 +146,6 @@ public class BinarySearch {
 		
 		System.out.println(result);
 		System.out.println("\n");
-	}
-	
+	}	
 
 }

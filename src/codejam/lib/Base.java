@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public abstract class Base {	
+public class Base {	
 	BufferedWriter mWriter;
 	int	mCurrentProblem;
 	
@@ -50,6 +50,7 @@ public abstract class Base {
 
 	public void writeSolution(String s){
 		String outStr = "Case #"+ mCurrentProblem+": " +s + "\n";
+		print(outStr);
 		try {
 			mWriter.write(outStr);
 		} catch (IOException e) {		
@@ -61,5 +62,7 @@ public abstract class Base {
 		System.out.println(str);
 	}
 	
-	public abstract void parseAProblem(BufferedReader mReader);
+	public void parseAProblem(BufferedReader reader){
+		
+	}
 }
