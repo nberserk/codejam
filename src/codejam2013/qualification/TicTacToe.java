@@ -3,10 +3,10 @@ package codejam2013.qualification;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import codejam.lib.Base;
+import codejam.lib.CodejamBase;
 import codejam2013.OceanView;
 
-public class TicTacToe extends Base {
+public class TicTacToe extends CodejamBase {
 
 	@Override
 	public void parseAProblem(BufferedReader reader) {

@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Base {	
+public class CodejamBase {	
 	BufferedWriter mWriter;
 	int	mCurrentProblem;
 	
@@ -63,6 +63,6 @@ public class Base {
 	}
 	
 	public void parseAProblem(BufferedReader reader){
-		
+		// empty
 	}
 }

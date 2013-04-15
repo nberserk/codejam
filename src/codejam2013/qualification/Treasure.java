@@ -9,9 +9,9 @@ import java.util.Stack;
 
 import javax.management.openmbean.OpenDataException;
 
-import codejam.lib.Base;
+import codejam.lib.CodejamBase;
 
-public class Treasure extends Base {
+public class Treasure extends CodejamBase {
 	class Chest{
 		int requiredKey;
 		int[] keys;

@@ -6,24 +6,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-import codejam.lib.Base;
 import codejam.lib.BinarySearch;
 import codejam.lib.BinarySearch.IValidator;
+import codejam.lib.CodejamBase;
 
-public class OceanView extends Base{
+/*
+ * longest increasing subsequence
+ * https://code.google.com/codejam/contest/2334486/dashboard#s=p2
+ */
+public class OceanView extends CodejamBase{
 	
-		
 	public static void main(String[] args) {
-		
-		
-		
-		
-		
-		
-		
 		OceanView ocean = new OceanView();		
-		ocean.solve("./src/codejam2013/data/C-large-practice.in", "./src/codejam2013/data/C-large.out");
-//		ocean.solve("./src/codejam2013/data/C-small-practice.in", "./src/codejam2013/data/C-small.out");
+		ocean.solve("./src/codejam2013/C-large-practice.in", "./src/codejam2013/C-large.out");
+		// ocean.solve("./src/codejam2013/C-small-practice.in",
+		// "./src/codejam2013/C-small.out");
 	}
 
 	@Override
@@ -51,8 +48,7 @@ public class OceanView extends Base{
 	}
 	
 	
-	private int doSolve(final int[] x) {		
-				
+	private int doSolve(final int[] x) {
 		final int[] m = new int[x.length+1];
 		int[] prev = new int[x.length];
 		m[0] = 0;

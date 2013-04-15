@@ -3,9 +3,9 @@ package codejam2013;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import codejam.lib.Base;
+import codejam.lib.CodejamBase;
 
-public class Hedgemony extends Base {
+public class Hedgemony extends CodejamBase {
 
 	
 	private void doSolve(double[] heights) {
