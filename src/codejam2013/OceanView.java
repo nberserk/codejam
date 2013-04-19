@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 import codejam.lib.BinarySearch;
 import codejam.lib.BinarySearch.IValidator;
@@ -18,7 +19,8 @@ public class OceanView extends CodejamBase{
 	
 	public static void main(String[] args) {
 		OceanView ocean = new OceanView();		
-		ocean.solve("./src/codejam2013/C-large-practice.in", "./src/codejam2013/C-large.out");
+		String dir = "./input/codejam2013/";
+		ocean.solve(dir + "C-large-practice.in", dir + "C-large.out");
 		// ocean.solve("./src/codejam2013/C-small-practice.in",
 		// "./src/codejam2013/C-small.out");
 	}
@@ -34,11 +36,16 @@ public class OceanView extends CodejamBase{
 			for (int i = 0; i < N; i++) {				
 				heights[i] = Integer.parseInt(values[i]);				
 			}
-			
-			int step = doSolve(heights);
-//			int step = doSolve( new int[] {2, 6, 3, 4, 1, 2, 9, 5, 8});
-			
-			writeSolution(String.format("%d", step));
+
+			// int step = doSolve(heights);
+			// Integer[] result = longestIncreasingSubsequence(new int[] { 2, 6,
+			// 3, 4, 1, 2, 9, 5, 8 });
+			Integer[] result = longestIncreasingSubsequence(heights);
+
+			int removeCount = heights.length - result.length;
+			StringBuilder sb = new StringBuilder();
+			// print(result.toString());
+			writeSolution(String.format("%d", removeCount));
 //			doSolve(new State(new int[]{4, 3, 2, 1}));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
@@ -47,6 +54,52 @@ public class OceanView extends CodejamBase{
 		}
 	}
 	
+	/*
+	 * the key is make increasing list head
+	 */
+	public static Integer[] longestIncreasingSubsequence(int[] a) {
+		/*
+		 * head will be sorted
+		 */
+		int[] head = new int[a.length];
+		int headLength = 0;
+		
+		// conatain previous index
+		HashMap<Integer, Integer> prevMap = new HashMap<Integer, Integer>(a.length);
+		
+		for (int i = 0; i < a.length; i++) {
+			int indexTarget = BinarySearch.bisect_left(0, headLength, head, a[i]);
+			
+			if (indexTarget >= headLength) {	// insert the end of head
+			
+				head[indexTarget] = a[i];
+				headLength++;
+				if (indexTarget > 0) { // ignore first
+					prevMap.put(a[i], head[indexTarget-1]);					
+				}
+				
+			} else if (head[indexTarget] > a[i]) {
+				head[indexTarget] = a[i];
+				if (indexTarget > 0) { // when indexTarget==0, parent not exist
+					prevMap.put(a[i], head[indexTarget-1]);
+				}
+			}
+		}
+
+		ArrayList<Integer> output = new ArrayList<Integer>();
+		Integer current = head[headLength - 1];
+
+		while (true) {
+			output.add(current);
+			current = prevMap.get(current);
+			if (current == null) {
+				break;
+			}
+		}
+
+		Collections.reverse(output);
+		return output.toArray(new Integer[output.size()]);
+	}
 	
 	private int doSolve(final int[] x) {
 		final int[] m = new int[x.length+1];
