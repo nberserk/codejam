@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Stack;
+import java.util.TreeSet;
 
 import javax.management.openmbean.OpenDataException;
 
@@ -22,8 +24,9 @@ public class Treasure extends CodejamBase {
 	}
 	Chest[] mChest;
 	
-	class State{
+	class State implements Comparable<State>{
 		int index ;
+		int depth ;
 		boolean[] chestOpened;
 		int[] keys ;
 		State mParent;
@@ -42,6 +45,7 @@ public class Treasure extends CodejamBase {
 			int size = parent.keys.length -1 + openingChest.keys.length;
 			keys = new int[size];
 			index = chest+1;
+			depth = parent.depth +1;
 			
 			for (int i = 0; i < parent.keys.length; i++) {
 				if (i<usedKeyIndex) {
@@ -54,7 +58,7 @@ public class Treasure extends CodejamBase {
 				keys[parent.keys.length-1+i] = openingChest.keys[i];				
 			}
 			
-			print();			
+			
 		}
 		
 		public boolean isComplete(){
@@ -73,14 +77,33 @@ public class Treasure extends CodejamBase {
 			for (int i = 0; i < chestOpened.length; i++) {
 				chestOpened[i] = false;
 			}
+			depth = 0;
 		}
 		@Override
 		public String toString() {			
-			return String.format("keys: %s, chest: %s ", Arrays.toString(keys), Arrays.toString(chestOpened));
+			StringBuilder builder =new StringBuilder();
+			builder.append(String.format("depth=%d, keys: %s", depth, Arrays.toString(keys)));
+			builder.append(", opened(");
+			for (int i = 0; i < chestOpened.length; i++) {
+				if (chestOpened[i]) {
+					builder.append(i +",");
+				}
+			}
+			return builder.toString();
 		}
 
 		public void print(){
 			System.out.println(toString());			
+		}
+
+		@Override
+		public int compareTo(State o) {
+			if (this.index > o.index)
+				return -1;
+			else if (this.index < o.index)
+				return 1;
+			
+			return 0;
 		}
 	}
 
@@ -113,16 +136,22 @@ public class Treasure extends CodejamBase {
 				}
 			
 				mChest[i] = chest;
+				mChest[i].print();				
 			}
+			print("keys" + Arrays.toString(currentKeys));
 			
-			ArrayList<State> opened = new ArrayList<State>(); 
+			TreeSet<State> opened = new TreeSet<State>(); 
 			opened.add(new State(currentKeys));
 			State currentState = null;
 			State sol=null;
 			while(!opened.isEmpty()){
 				
-				currentState = opened.get(0);
-				opened.remove(0);
+								
+				currentState = opened.pollFirst();
+//				for (State state : opened) {
+//					state.print();
+//				}
+				
 				if (currentState.isComplete()) {
 					sol = currentState;
 					break;
@@ -132,16 +161,23 @@ public class Treasure extends CodejamBase {
 							continue;
 						}
 						
+						HashSet<Integer> processedKey = new HashSet<Integer>();
 						for (int j = 0; j < currentState.keys.length; j++) {
+							if (processedKey.contains(currentState.keys[j])) {
+								continue;
+							}
+							
 							if (currentState.keys[j] == mChest[i].requiredKey) {
 								State newState = new State(currentState, i, j);
 								if (newState.keys.length==0 && newState.isComplete()==false) {									
 								}else{
-									opened.add(newState);
+									//newState.print();			
+									opened.add(newState); 							
 								}
 								
 								
 							}
+							processedKey.add(currentState.keys[j]);
 						}
 						
 					}		
@@ -191,7 +227,7 @@ public class Treasure extends CodejamBase {
 //		String sol = tic.doSolve(new char[][] {{'X', 'X', 'X', 'O'}, {'.', '.', 'O', '.'}, {'.', 'O', '.', '.'}, {'T', '.', '.', '.'} });
 //		print(sol);
 //		tic.solve("./src/codejam2013/qualification/A-small-attempt3.in", "./src/codejam2013/qualification/A-small.out");
-		treasure.solve("./src/codejam2013/qualification/D-small-attempt0.in", "./src/codejam2013/qualification/D-small-attempt0.out");
+		treasure.solve("./src/codejam2013/qualification/D-small-practice.in", "./src/codejam2013/qualification/D-small-practice.out");
 	}
 
 }
