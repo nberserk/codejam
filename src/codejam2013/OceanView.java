@@ -2,10 +2,7 @@ package codejam2013;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 
 import codejam.lib.BinarySearch;
 import codejam.lib.BinarySearch.IValidator;
@@ -21,8 +18,7 @@ public class OceanView extends CodejamBase{
 		OceanView ocean = new OceanView();		
 		String dir = "./input/codejam2013/";
 		ocean.solve(dir + "C-large-practice.in", dir + "C-large.out");
-		// ocean.solve("./src/codejam2013/C-small-practice.in",
-		// "./src/codejam2013/C-small.out");
+		// ocean.solve(dir + "/C-small-practice.in", dir + "C-small.out");
 	}
 
 	@Override
@@ -40,11 +36,11 @@ public class OceanView extends CodejamBase{
 			// int step = doSolve(heights);
 			// Integer[] result = longestIncreasingSubsequence(new int[] { 2, 6,
 			// 3, 4, 1, 2, 9, 5, 8 });
-			Integer[] result = longestIncreasingSubsequence(heights);
+			int[] result = longestIncreasingSubsequence(heights);
 
 			int removeCount = heights.length - result.length;
-			StringBuilder sb = new StringBuilder();
-			// print(result.toString());
+			print(Arrays.toString(result));
+
 			writeSolution(String.format("%d", removeCount));
 //			doSolve(new State(new int[]{4, 3, 2, 1}));
 		} catch (NumberFormatException e) {
@@ -54,54 +50,7 @@ public class OceanView extends CodejamBase{
 		}
 	}
 	
-	/*
-	 * the key is make increasing list head
-	 */
-	public static Integer[] longestIncreasingSubsequence(int[] a) {
-		/*
-		 * head will be sorted
-		 */
-		int[] head = new int[a.length];
-		int headLength = 0;
-		
-		// conatain previous index
-		HashMap<Integer, Integer> prevMap = new HashMap<Integer, Integer>(a.length);
-		
-		for (int i = 0; i < a.length; i++) {
-			int indexTarget = BinarySearch.bisect_left(0, headLength, head, a[i]);
-			
-			if (indexTarget >= headLength) {	// insert the end of head
-			
-				head[indexTarget] = a[i];
-				headLength++;
-				if (indexTarget > 0) { // ignore first
-					prevMap.put(a[i], head[indexTarget-1]);					
-				}
-				
-			} else if (head[indexTarget] > a[i]) {
-				head[indexTarget] = a[i];
-				if (indexTarget > 0) { // when indexTarget==0, parent not exist
-					prevMap.put(a[i], head[indexTarget-1]);
-				}
-			}
-		}
-
-		ArrayList<Integer> output = new ArrayList<Integer>();
-		Integer current = head[headLength - 1];
-
-		while (true) {
-			output.add(current);
-			current = prevMap.get(current);
-			if (current == null) {
-				break;
-			}
-		}
-
-		Collections.reverse(output);
-		return output.toArray(new Integer[output.size()]);
-	}
-	
-	private int doSolve(final int[] x) {
+	private int[] longestIncreasingSubsequence(final int[] x) {
 		final int[] m = new int[x.length+1];
 		int[] prev = new int[x.length];
 		m[0] = 0;
@@ -155,17 +104,22 @@ public class OceanView extends CodejamBase{
 		}		
 		
 		//print(Arrays.toString(p));
-		print("solution");		
-		ArrayList<Integer> sol = new ArrayList<Integer>(x.length);
-		int index = m[L];		
-		for (int i = 0; i < L ; i++) {			
-			sol.add(x[index]);
+		print("solution");
+		int[] sol = new int[L];
+		int index = m[L];
+		for (int i = L - 1; i >= 0; i--) {
+			sol[i] = x[index];
 			index = prev[index];
 		}
-		
-		Collections.reverse(sol);		
-		print(sol.toString());
-		return x.length - L;
+		// ArrayList<Integer> sol = new ArrayList<Integer>(x.length);
+		// int index = m[L];
+		// for (int i = 0; i < L ; i++) {
+		// sol.add(x[index]);
+		// index = prev[index];
+		// }
+		// Collections.reverse(sol);
+		// print(sol.toString());
+		return sol;
 	}
 
 }
