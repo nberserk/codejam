@@ -1,4 +1,4 @@
-package codejam2013;
+package topcoder.graph.bfs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
