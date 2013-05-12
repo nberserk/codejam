@@ -1,4 +1,4 @@
-package codejam2013.r1a;
+package codejam2013.r1b;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -66,6 +66,15 @@ public class CodejamBaseTemplateV2 {
 
 	public static void print(String str){
 		System.out.println(str);
+	}
+
+	public static void main(String[] args) {
+		CodejamBaseTemplateV2 b = new CodejamBaseTemplateV2();
+		String dir = "./src/codejam2013/r1a/";
+		String fn = "B-small-practice.in";
+		// long r = b.solveAProblem(5, 2, new int[] { 1, 2 });
+		// System.out.println(r);
+		b.solve(dir + fn, dir + fn.replace(".in", ".out"));
 	}
 
 }
