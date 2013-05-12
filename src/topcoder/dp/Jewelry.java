@@ -1,7 +1,6 @@
 package topcoder.dp;
 
 import java.util.Arrays;
-import java.util.HashSet;
 
 public class Jewelry {
 
@@ -26,7 +25,7 @@ public class Jewelry {
 			c += t;
 		}
 
-		HashSet<Integer, int[]> a = new HashSet<Integer, int[]>();
+		// HashSet<Integer, int[]> a = new HashSet<Integer, int[]>();
 
 		return c;
 	}
