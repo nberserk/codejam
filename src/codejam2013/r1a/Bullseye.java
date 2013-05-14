@@ -61,36 +61,36 @@ public class Bullseye {
 
 	private long solveLargeProblem(long r, long t) {
 
-		long s = 0;
-		long hi = 1;
-		do {
-			hi *= 2;
-		} while (hi * (2 * r + 2 * hi - 1) < t);
 
-		long lo = 1;
+		long lo = 1, hi = 2;
+		while (isValid(r, t, hi)) {
+			lo = hi;
+			hi *= 2;
+		}
 
 		while (lo < hi) {
 			if (hi - lo == 1) {
 				break;
 			}
 			long mid = (hi + lo) / 2;
-			s = mid * (2 * r + 2 * mid - 1);
-			if (s < t) {
-				lo = mid + 1;
-			} else if (s > t) {
-				hi = mid - 1;
+			if (isValid(r, t, mid)) {
+				lo = mid;
+				// lo = mid + 1;
 			} else {
-				return mid;
+				hi = mid - 1;
 			}
 		}
 
 		long out = lo;
-		s = hi * (2 * r + 2 * hi - 1);
-		if (s <= t) {
+		if (isValid(r, t, hi)) {
 			out = hi;
 		}
 
 		return out;
+	}
+
+	private boolean isValid(long r, long t, long mid) {
+		return mid * (2 * r + 2 * mid - 1) <= t;
 	}
 
 	private void solveSmallProblem() {
@@ -119,9 +119,9 @@ public class Bullseye {
 
 		Bullseye b = new Bullseye();
 		String dir = "./src/codejam2013/r1a/";
+		// String fn = "A-small-practice.in";
 		String fn = "A-large-practice.in";
-		// long r = b.solveAProblem(5, 2, new int[] { 1, 2 });
-		// System.out.println(r);
+
 		b.solve(dir + fn, dir + fn.replace(".in", ".out"));
 	}
 
