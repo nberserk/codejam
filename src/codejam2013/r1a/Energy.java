@@ -34,7 +34,7 @@ public class Energy {
 				}
 
 				// parse a problem
-				long r = solveAProblem(E, R, n);
+				long r = solveSmallProblem(E, R, n);
 				String o = String.format("(%d,%d)-%s", E, R, Arrays.toString(n));
 				print(o);
 				writeSolution(String.format("%d", r));
@@ -64,7 +64,8 @@ public class Energy {
 		System.out.println("elapsed time(sec) :"+ elapsedTimeSec);
 	}
 
-	private long solveAProblem(int e, int r, int[] n) {
+	private long solveSmallProblem(int e, int r, int[] n) {
+
 		long gain = 0;
 		int max = Integer.MIN_VALUE;
 		int delta = 0;
