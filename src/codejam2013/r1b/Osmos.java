@@ -1,4 +1,4 @@
-package codejam2013.r1c;
+package codejam2013.r1b;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -64,37 +64,36 @@ public class Osmos {
 		System.out.println("elapsed time(sec) :"+ elapsedTimeSec);
 	}
 
-	private int solveAProblem(int s, int[] num) {
-		int count = 0;
+	private int solveAProblem(long s, int[] n) {
+		int c = 0;
+		if (s == 1) {
+			return n.length;
+		}
 
-		print(s + "-" + Arrays.toString(num));
-		for (int i = 0; i < num.length; i++) {
+		Arrays.sort(n);
+		System.out.println("S" + s + "-" + Arrays.toString(n));
 
-			int n = num[i];
-			if (s > n) {
-				s += n;
+		for (int i = 0; i < n.length; i++) {
+			if (s > n[i]) {
+				s += n[i];
 			} else {
-				if (s == 1) {
-					count++;
-					continue;
+				int ac = 0; // add count
+				long tempS = s;
+				while (tempS <= n[i]) {
+					tempS += tempS - 1;
+					ac++;
 				}
-				int add = 0;
-				int t = s;
-				while (t <= n) {
-					t += t - 1;
-					add++;
-				}
-				int remove = num.length - (i);
-				if (add > remove) {
-					count += remove;
+				int rc = n.length - i;
+				if (rc <= ac) {
+					return c + rc;
 				} else {
-					count += add;
-					s = t;
+					c += ac;
+					s = tempS;
 				}
 			}
 		}
 
-		return count;
+		return c;
 	}
 
 	public void writeSolution(String s){
@@ -113,9 +112,10 @@ public class Osmos {
 
 	public static void main(String[] args) {
 		Osmos o = new Osmos();
-		String dir = "./src/codejam2013/r1a/";
-		// o.solve(dir + "A-ex.in", dir + "A-ex.out");
-		o.solve(dir + "A-small-attempt2.in", dir + "A-small-attempt2.out");
+		String dir = "./src/codejam2013/r1b/";
+		String fn = "A-small-practice.in";
+
+		o.solve(dir + fn, dir + fn.replace(".in", ".out"));
 
 	}
 
