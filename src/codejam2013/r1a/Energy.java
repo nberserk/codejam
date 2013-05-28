@@ -10,6 +10,9 @@ import java.util.Arrays;
 public class Energy {	
 	BufferedWriter mWriter;
 	int	mCurrentProblem;
+	private int mE;
+	private int mR;
+	private int[] mActivivites;
 	
 	public void solve(String inFile, String outFile){	
 		BufferedReader mReader = null;		
@@ -34,7 +37,10 @@ public class Energy {
 				}
 
 				// parse a problem
-				long r = solveSmallProblem(E, R, n);
+				mE = E;
+				mR = R;
+				mActivivites = n;
+				long r = solveSmallProblem(0, n.length - 1, E, 0);
 				String o = String.format("(%d,%d)-%s", E, R, Arrays.toString(n));
 				print(o);
 				writeSolution(String.format("%d", r));
@@ -64,30 +70,57 @@ public class Energy {
 		System.out.println("elapsed time(sec) :"+ elapsedTimeSec);
 	}
 
-	private long solveSmallProblem(int e, int r, int[] n) {
+	/*
+	 * se : start energy after recovered, ee : end energy after recovery
+	 */
+	private long solveSmallProblem(int s, int e, int se, int ee) {
 
-		long gain = 0;
-		int max = Integer.MIN_VALUE;
-		int delta = 0;
-		for (int i = 0; i < n.length; i++) {
-			if (r >= e) {
-				gain += e * n[i];
-			} else {
-				int g = n[i] * r;
-				int gmax = n[i] * e;
-				if (gmax > max) {
-					max = gmax;
-					gain += gmax - delta;
-					delta = gmax - g;
-				} else {
-					gain += g;
-				}
+		if (s==e) {
+			int canMake = se + mR;
+			long r = 0;
+			if (canMake >= ee) {
+				r = (canMake - ee) * mActivivites[s];
 			}
-
+			print(String.format("%d-%d(%d-%d):%d", s, e, se, ee, r));
+			return r;
 		}
 
-		return gain;
+		// find max
+		int max = Integer.MIN_VALUE;
+		int maxi = -1;
+		for (int i = s; i <= e; i++) {
+			if (mActivivites[i] > max) {
+				max = mActivivites[i];
+				maxi = i;
+			}
+		}
+		
+		//
+		int required = ee - se;
+		int step = maxi - s;
+
+		if (required <= step * mR) {
+			// maxE=mE;
+			long r = mE * mActivivites[maxi];
+			if (maxi != s) {
+				r += solveSmallProblem(s, maxi - 1, se, mE);
+			}
+			if (maxi != e) {
+				r += solveSmallProblem(maxi + 1, e, mR, ee);
+			}
+			print(String.format("%d-%d(%d-%d):%d", s, e, se, ee, r));
+			return r;
+		}else{
+			long r = (se + step * mR) * mActivivites[maxi];
+			if (maxi != e) {
+				r += solveSmallProblem(maxi + 1, e, mR, ee);
+			}
+			print(String.format("%d-%d(%d-%d):%d", s, e, se, ee, r));
+			return r;
+		}
 	}
+
+
 
 	public void writeSolution(String s){
 		String outStr = "Case #"+ mCurrentProblem+": " +s + "\n";
