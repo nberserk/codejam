@@ -77,10 +77,13 @@ public class CodejamTemplate {
 	public static void main(String[] args) {
 		CodejamTemplate b = new CodejamTemplate();
 		String dir = "./src/codejam2013/r1c/";
-		String fn = "B-small-practice.in";
+		String small = "B-small-practice.in";
+		String large = "B-large-practice.in";
+
 		// long r = b.solveAProblem(5, 2, new int[] { 1, 2 });
 		// System.out.println(r);
-		b.solve(dir + fn, dir + fn.replace(".in", ".out"));
+		b.solve(dir + small, dir + small.replace(".in", ".out"));
+		b.solve(dir + large, dir + large.replace(".in", ".out"));
 	}
 
 }
