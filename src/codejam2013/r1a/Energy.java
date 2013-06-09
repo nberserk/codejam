@@ -45,9 +45,12 @@ public class Energy {
 				mActivivites = n;
 				String o = String.format("(%d,%d)-%s", E, R, Arrays.toString(n));
 				print(o);
-				long r = solveSmallProblem(0, n.length - 1, E, R);
+				long r = solveLargeProblem(0, n.length, E, 0);
+				// System.out.println("-----");
+				// long r2 = solveSmallProblem(0, n.length - 1, E, 0);
 
 				writeSolution(String.format("%d", r));
+				// System.in.read();
 			}
 						
 			
@@ -73,13 +76,45 @@ public class Energy {
 		System.out.println("elapsed time(sec) :"+ elapsedTimeSec);
 	}
 
+	private long solveLargeProblem(int left, int right, long startEnergy,
+			long endEnergy) {
+		print(String.format("%d-%d(%d-%d):", left, right, startEnergy,
+				endEnergy));
+		if (left >= right) {
+			if (startEnergy < endEnergy) {
+				System.err.println("strange");
+			}
+			return 0l;
+		}
+		// find max
+		long max = Integer.MIN_VALUE;
+		int maxi = -1;
+		for (int i = left; i < right; i++) {
+			if (mActivivites[i] > max) {
+				max = mActivivites[i];
+				maxi = i;
+			}
+		}
+
+		long nStart = Math.min(mE, startEnergy + (maxi - left) * mR);
+		long nEnd = Math.max(0, endEnergy - (right - maxi) * mR);
+		long curE = nStart - nEnd;
+
+		long gain = solveLargeProblem(left, maxi, startEnergy, nStart)
+				+ curE * mActivivites[maxi]
+				+ solveLargeProblem(maxi + 1, right, nEnd + mR, endEnergy);
+		print(String.format("%d-%d(%d-%d):%d", left, right, startEnergy,
+				endEnergy, gain));
+		return gain;
+	}
+
 	/*
 	 * se : start energy after recovered, ee : end energy after recovery
 	 */
 	private long solveSmallProblem(int s, int e, long se, long ee) {
 
 		if (s==e) {
-			long r = (se + mR - ee) * mActivivites[s];
+			long r = (se + mR - (ee)) * mActivivites[s];
 			print(String.format("%d-%d(%d-%d):%d", s, e, se, ee, r));
 			return r;
 		}
@@ -96,7 +131,6 @@ public class Energy {
 		
 		
 		//
-		
 		long preStep = maxi - s;
 		long postStep = e - maxi;
 		
@@ -107,11 +141,11 @@ public class Energy {
 		}
 		
 		long newee = ee - (postStep * mR);
-		if (newee < mR) {
-			newee = mR;
+		if (newee < 0) {
+			newee = 0;
 		}
 
-		long gain = (newse + mR - newee) * (long) mActivivites[maxi];
+		long gain = (newse - (newee)) * (long) mActivivites[maxi];
 		if (newse < 0 || newee < 0 || gain < 0) {
 			System.out.println("ddd");
 		}
@@ -120,7 +154,7 @@ public class Energy {
 			gain += solveSmallProblem(s, maxi-1, se, newse);			
 		}
 		if (postStep!=0) {
-			gain += solveSmallProblem(maxi+1, e, newee, ee);
+			gain += solveSmallProblem(maxi + 1, e, newee + mR, ee);
 		}
 		
 		// post
