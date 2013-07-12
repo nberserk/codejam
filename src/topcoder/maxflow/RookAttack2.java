@@ -9,7 +9,7 @@ import java.util.Arrays;
  * http://community.topcoder.com/stat?c=problem_statement&pm=1931&rd=4709
  */
 
-public class RookAttack {
+public class RookAttack2 {
 	
 	class Node{
 		public Node(int c) {
@@ -28,105 +28,88 @@ public class RookAttack {
 	public int howMany(int rows, int cols, String[] cutouts) {
 		System.out.println("-------");
 		
+		int[] matchRow = new int[rows];
+		int[] matchCol = new int[cols];
+		Arrays.fill(matchRow, -1);
+		Arrays.fill(matchCol, -1);
 		
-		int size = cols + rows + 1;
-		int [][] m = new int[size][size];
-		for (int i = 0; i < m.length; i++) {
-			Arrays.fill(m[i], 0);
-		}
-		// row -> cols
-		for (int j = 0; j < rows; j++) {
-			for (int k = rows; k < size - 1; k++) {
-				m[j][k] = 1;
-			}
-		}
 
-		// cols -> super-sink
-		for (int j = rows; j < size - 1; j++) {
-			m[j][size - 1] = 1;
-		}
-		//int[][] cuts = new int[cutouts.length][2];
+		int[][] cuts = new int[cutouts.length][2];
 		for (int i = 0; i < cutouts.length; i++) {
 			String[] temp2 = cutouts[i].split(",");
 			for (String string : temp2) {
 				String[] temp = string.split(" ");
 				int r = Integer.parseInt(temp[0]);
 				int c = Integer.parseInt(temp[1]);
-				m[r][c + rows] = 0;
+				cuts[i][0] = r;
+				cuts[i][1] = c;
 			}
 		}
+
 
 		// search
 		int totalFlow = 0;
-
-		int[][] org_m = new int[size][size];
-		for (int i = 0; i < org_m.length; i++) {
-			for (int j = 0; j < org_m[i].length; j++) {
-				org_m[i][j] = m[i][j];
+		for (int i = 0; i < rows; i++) {
+			if (bfs(matchRow, matchCol, cuts, i)) {
+				totalFlow += 1;
 			}
 		}
 
-		for (int i = 0; i < rows; i++) {
-			int flow = bfs(m, size, i);
-			if (flow > 0) {
-				totalFlow += flow;
-			}
-		}
-
-		// print actual pair
-		for (int i = 0; i < rows; i++) {
-			for (int k = rows; k < size - 1; k++) {
-				if (org_m[i][k] != m[i][k]) {
-					System.out.println(i + "->" + k);
-				}
+		// print pair
+		for (int i = 0; i < matchRow.length; i++) {
+			if (matchRow[i] != -1) {
+				System.out.println(i + "-->" + matchRow[i]);
 			}
 		}
 
 		return totalFlow;
 	}
 
-	private int bfs(int[][] m, int size, int startRow) {
-		ArrayList<Node> nodes = new ArrayList<Node>();
-		nodes.add(new Node(startRow));
+
+	private boolean bfs(int[] matchRow, int[] matchCol, int[][] cuts, int row) {
 		
-		boolean[] v = new boolean[size];
-		Arrays.fill(v, false);
+		ArrayList<Node> nodes = new ArrayList<Node>();
 
-		// for (int i = 0; i < m.length; i++) {
-		// System.out.println(Arrays.toString(m[i]));
-		// }
-		// System.out.println("");
-
+		nodes.add(new Node(row));
+		
 		while (nodes.isEmpty() == false) {
-			Node current = nodes.get(0);
-			v[current.node] = true;
+			Node cur = nodes.get(0);
 			nodes.remove(0);
-
-			if (current.node == size - 1) {
-				// path found
-				Node c = current;
-				while (c.parent != null) {
-					Node prevNode = c.parent;
-					int prev = prevNode.node;
-					m[prev][c.node] -= 1;
-					m[c.node][prev] += 1;
-					c = prevNode;
+			for (int i = 0; i < matchCol.length; i++) {
+				boolean blocked = false;
+				for (int j = 0; j < cuts.length; j++) {
+					if (cur.node == cuts[j][0] && i == cuts[j][1]) {
+						blocked = true;
+						break;
+					}
 				}
-				return 1;
-			}
+				if (blocked) {
+					continue;
+				}
 
-			for (int i = 0; i < size; i++) {
-				if (m[current.node][i] > 0 && v[i] == false) {
-					nodes.add(new Node(i, current));
+				//
+				if (matchCol[i] == -1) {
+					do {
+						matchRow[cur.node] = i;
+						matchCol[i] = cur.node;
+					} while (cur.parent != null);
+					return true;
+				} else {
+					nodes.add(new Node(matchCol[i], cur));
 				}
 			}
 		}
 
-		return 0;
+		return false;
 	}
 
+
+
+
+
+
 	public static void main(String[] args) {
-		RookAttack r = new RookAttack();
+		RookAttack2 r = new RookAttack2();
 		int flow;
 		flow = r.howMany(8, 8, new String[] {});
 		System.out.println(flow);
