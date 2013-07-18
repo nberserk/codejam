@@ -67,7 +67,7 @@ public class RookAttack {
 		}
 
 		for (int i = 0; i < rows; i++) {
-			int flow = bfs(m, size, i);
+			int flow = bfs2(m, size, i);
 			if (flow > 0) {
 				totalFlow += flow;
 			}
@@ -125,23 +125,85 @@ public class RookAttack {
 		return 0;
 	}
 
+	/*
+	 * enhanced bfs version. use parent array instead of Node structure
+	 */
+	private int bfs2(int[][] m, int size, int startRow) {
+		ArrayList<Integer> nodes = new ArrayList<Integer>();
+		nodes.add(startRow);
+
+		boolean[] v = new boolean[size];
+		Arrays.fill(v, false);
+
+		int[] parent = new int[size + 1];
+		Arrays.fill(parent, -1);
+		parent[startRow] = startRow;
+		// for (int i = 0; i < m.length; i++) {
+		// System.out.println(Arrays.toString(m[i]));
+		// }
+		// System.out.println("");
+
+		while (nodes.isEmpty() == false) {
+			int current = nodes.get(0);
+			v[current] = true;
+			nodes.remove(0);
+
+			if (current == size - 1) {
+				// path found
+
+				while (parent[current] != current) {
+
+					int prev = parent[current];
+					m[prev][current] -= 1;
+					m[current][prev] += 1;
+					current = prev;
+				}
+				return 1;
+			}
+
+			for (int i = 0; i < size; i++) {
+				if (m[current][i] > 0 && v[i] == false) {
+					nodes.add(i);
+					parent[i] = current;
+				}
+			}
+		}
+
+		return 0;
+	}
+
 	public static void main(String[] args) {
 		RookAttack r = new RookAttack();
 		int flow;
 		flow = r.howMany(8, 8, new String[] {});
 		System.out.println(flow);
+		if (flow != 8) {
+			System.out.println("incorrent answer");
+		}
 
 		flow = r.howMany(2, 2, new String[] { "0 0", "0 1", "1 1", "1 0" });
 		System.out.println(flow);
+		if (flow != 0) {
+			System.out.println("incorrent answer");
+		}
 
 		flow = r.howMany(3, 3, new String[] { "0 0", "1 0", "1 1", "2 0", "2 1", "2 2" });
 		System.out.println(flow);
+		if (flow != 2) {
+			System.out.println("incorrent answer");
+		}
 
 		flow = r.howMany(3, 3, new String[] { "0 0", "1 2", "2 2" });
 		System.out.println(flow);
+		if (flow != 3) {
+			System.out.println("incorrent answer");
+		}
 
 		flow = r.howMany(200, 200, new String[] {});
 		System.out.println(flow);
+		if (flow != 200) {
+			System.out.println("incorrent answer");
+		}
 
 		flow = r.howMany(300, 300, new String[] { "149 149", "149 151", "151 149", "151 151", "148 148", "148 152",
 				"152 148", "152 152", "147 147", "147 153", "153 147", "153 153", "146 146", "146 154", "154 146",
@@ -150,10 +212,16 @@ public class RookAttack {
 				"141 159", "159 141", "159 159", "140 140", "140 160", "160 140", "160 160", "139 139", "139 161",
 				"161 139", "161 161", "138 138", "138 162", "162 138", "162 162", "137 137", "137 163" });
 		System.out.println(flow);
+		if (flow != 300) {
+			System.out.println("incorrent answer");
+		}
 
 		flow = r.howMany(6, 6, new String[] { "0 0", "0 2", "0 4", "1 1", "1 3", "1 5", "2 0", "2 2", "2 4", "3 1",
 				"3 3", "3 5", "4 0", "4 2", "4 4", "5 1", "5 3", "5 5", "2 0", "2 2", "2 4" });
 		System.out.println(flow);
+		if (flow != 6) {
+			System.out.println("incorrent answer");
+		}
 		
 	
 		flow = r.howMany(15, 25, new String[] { "11 23,6 4,10 2,12 15,13 0,1 3,1 17,13 17,8 4,7 13",
@@ -191,6 +259,9 @@ public class RookAttack {
 				"1 10,2 22,0 6,7 19,14 16,9 12,4 23,7 10,9 13,0 24", "11 0,5 5,0 9,5 15,5 11,8 14,13 6,12 17,2 21,7 2",
 				"6 19,1 24,1 12,1 13,1 4,6 20,0 21,9 24,6 21,5 12" });
 		System.out.println(flow);
+		if (flow != 14) {
+			System.out.println("incorrent answer");
+		}
 
 	}
 

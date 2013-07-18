@@ -10,24 +10,14 @@ import java.util.Arrays;
  */
 
 public class RookAttack2 {
-	
-	class Node{
-		public Node(int c) {
-			node = c;
-		}
 
-		public Node(int i, Node parent) {
-			node = i;
-			this.parent = parent;
-		}
-
-		int node;
-		Node parent;
-	}
+	boolean[] mVisited;
 
 	public int howMany(int rows, int cols, String[] cutouts) {
 		System.out.println("-------");
 		
+		mVisited = new boolean[300];
+		Arrays.fill(mVisited, false);
 		int[] matchRow = new int[rows];
 		int[] matchCol = new int[cols];
 		Arrays.fill(matchRow, -1);
@@ -50,35 +40,127 @@ public class RookAttack2 {
 		// search
 		int totalFlow = 0;
 		for (int i = 0; i < rows; i++) {
-			if (bfs(matchRow, matchCol, cuts, i)) {
+			// if (bfs(matchRow, matchCol, cuts, i)) {
+			// if (find_match(i, cuts, matchRow, matchCol)) {
+			if (find_match_dfs(i, cuts, matchCol)) {
 				totalFlow += 1;
 			}
 		}
 
 		// print pair
-		for (int i = 0; i < matchRow.length; i++) {
-			if (matchRow[i] != -1) {
-				System.out.println(i + "-->" + matchRow[i]);
+		for (int i = 0; i < matchCol.length; i++) {
+			if (matchCol[i] != -1) {
+				System.out.println(matchCol[i] + "-->" + i);
 			}
 		}
 
 		return totalFlow;
 	}
 
+	boolean find_match_dfs(int source, int[][] cuts, int[] matchCol) {
+		if (source == -1) {
+			return true;
+		}
 
-	private boolean bfs(int[] matchRow, int[] matchCol, int[][] cuts, int row) {
-		
-		ArrayList<Node> nodes = new ArrayList<Node>();
+		for (int col = 0; col < matchCol.length; col++) {
+			if (mVisited[col] == false) {
+				mVisited[col] = true;
 
-		nodes.add(new Node(row));
-		
-		while (nodes.isEmpty() == false) {
-			Node cur = nodes.get(0);
-			nodes.remove(0);
+				if (find_match_dfs(matchCol[col], cuts, matchCol)) {
+					matchCol[col] = source;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	boolean find_match(int source, int[][] cuts, int[] matchRow, int[] matchCol) {
+		// from[x] = the row-vertex that precedes x in the path
+		int where = 0, match = 0;
+		int[] from = new int[300];
+		Arrays.fill(from, -1);
+
+		from[source] = source;
+		ArrayList<Integer> q = new ArrayList<Integer>();
+		q.add(new Integer(source));
+
+		boolean found_path = false;
+		while (!found_path && !q.isEmpty()) {
+			// where = current row-vertex we are in
+			where = q.get(0);
+			q.remove(0);
+
+
+			// we take every uncut square in the current row
 			for (int i = 0; i < matchCol.length; i++) {
 				boolean blocked = false;
 				for (int j = 0; j < cuts.length; j++) {
-					if (cur.node == cuts[j][0] && i == cuts[j][1]) {
+					if (where == cuts[j][0] && i == cuts[j][1]) {
+						blocked = true;
+						break;
+					}
+				}
+				if (blocked) {
+					continue;
+				}
+
+				match = i;
+
+				// next = the row matched with column match
+				int next = matchCol[match];
+				if (where != next) {
+					// no row matched with column match thus we found an
+					// augmenting path
+					if (next == -1) {
+						found_path = true;
+						break;
+					}
+					// a check whether we already visited the row-vertex next
+					if (from[next] == -1) {
+						q.add(next);
+						from[next] = where;
+					}
+				}
+			}
+		}
+		if (!found_path)
+			return false;
+
+		while (from[where] != where) {
+			// we de-match where from its current match (aux) and match it with
+			// match
+			int aux = matchRow[where];
+			matchRow[where] = match;
+			matchCol[match] = where;
+			where = from[where];
+			match = aux;
+		}
+		// at this point where = source
+		matchRow[where] = match;
+		matchCol[match] = where;
+		return true;
+	}
+
+	private boolean bfs(int[] matchRow, int[] matchCol, int[][] cuts, int source) {
+		
+		ArrayList<Integer> nodes = new ArrayList<Integer>();
+
+		nodes.add(source);
+		
+		// to store path & visited
+		// only store row history
+		int[] parent = new int[matchRow.length + 1];
+		Arrays.fill(parent, -1);
+		parent[source] = source;
+		while (nodes.isEmpty() == false) {
+			int row = nodes.get(0);
+			nodes.remove(0);
+			
+			for (int col = 0; col < matchCol.length; col++) {
+				boolean blocked = false;
+				for (int j = 0; j < cuts.length; j++) {
+					if (row == cuts[j][0] && col == cuts[j][1]) {
 						blocked = true;
 						break;
 					}
@@ -88,14 +170,25 @@ public class RookAttack2 {
 				}
 
 				//
-				if (matchCol[i] == -1) {
-					do {
-						matchRow[cur.node] = i;
-						matchCol[i] = cur.node;
-					} while (cur.parent != null);
+				int nextRow = matchCol[col];
+				if (nextRow == -1) {
+					while (parent[row] != row) {
+						int prev = parent[row];
+						int prevCol = matchRow[row];
+
+						matchCol[col] = row;
+						matchRow[row] = col;
+						row = prev;
+						col = prevCol;
+					}
+					matchRow[row] = col;
+					matchCol[col] = row;
 					return true;
 				} else {
-					nodes.add(new Node(matchCol[i], cur));
+					if (parent[nextRow] == -1) {
+						nodes.add(nextRow);
+						parent[nextRow] = row;
+					}
 				}
 			}
 		}
@@ -103,22 +196,18 @@ public class RookAttack2 {
 		return false;
 	}
 
-
-
-
-
-
 	public static void main(String[] args) {
 		RookAttack2 r = new RookAttack2();
 		int flow;
-		flow = r.howMany(8, 8, new String[] {});
-		System.out.println(flow);
-
-		flow = r.howMany(2, 2, new String[] { "0 0", "0 1", "1 1", "1 0" });
-		System.out.println(flow);
-
-		flow = r.howMany(3, 3, new String[] { "0 0", "1 0", "1 1", "2 0", "2 1", "2 2" });
-		System.out.println(flow);
+		// flow = r.howMany(8, 8, new String[] {});
+		// System.out.println(flow);
+		//
+		// flow = r.howMany(2, 2, new String[] { "0 0", "0 1", "1 1", "1 0" });
+		// System.out.println(flow);
+		//
+		// flow = r.howMany(3, 3, new String[] { "0 0", "1 0", "1 1", "2 0",
+		// "2 1", "2 2" });
+		// System.out.println(flow);
 
 		flow = r.howMany(3, 3, new String[] { "0 0", "1 2", "2 2" });
 		System.out.println(flow);
@@ -138,7 +227,7 @@ public class RookAttack2 {
 				"3 3", "3 5", "4 0", "4 2", "4 4", "5 1", "5 3", "5 5", "2 0", "2 2", "2 4" });
 		System.out.println(flow);
 		
-	
+
 		flow = r.howMany(15, 25, new String[] { "11 23,6 4,10 2,12 15,13 0,1 3,1 17,13 17,8 4,7 13",
 				"3 11,12 6,9 19,0 16,7 8,5 21,1 6,12 3,13 9,11 15", "9 14,11 0,14 14,14 0,3 2,6 11,4 6,7 18,8 21,4 23",
 				"10 15,7 21,4 7,13 0,13 16,0 5,9 14,2 23,1 4,13 17",
@@ -173,6 +262,7 @@ public class RookAttack2 {
 				"1 3,5 7,3 20,12 23,12 12,5 24,3 15,3 23,10 24,2 9",
 				"1 10,2 22,0 6,7 19,14 16,9 12,4 23,7 10,9 13,0 24", "11 0,5 5,0 9,5 15,5 11,8 14,13 6,12 17,2 21,7 2",
 				"6 19,1 24,1 12,1 13,1 4,6 20,0 21,9 24,6 21,5 12" });
+
 		System.out.println(flow);
 
 	}
