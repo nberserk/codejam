@@ -37,6 +37,9 @@ public class Osmos {
 				Arrays.sort(num);
 
 				int c = solveAProblem(s, num);
+				if (c>num.length) {
+					c=num.length;
+				}
 				String out = String.format("%d", c);
 				writeSolution(out);
 			}
@@ -88,7 +91,7 @@ public class Osmos {
 					return c + rc;
 				} else {
 					c += ac;
-					s = tempS;
+					s = tempS+n[i];
 				}
 			}
 		}
@@ -113,9 +116,13 @@ public class Osmos {
 	public static void main(String[] args) {
 		Osmos o = new Osmos();
 		String dir = "./src/codejam2013/r1b/";
-		String fn = "A-small-practice.in";
+		String small = "A-small-practice.in";
+		String large = "A-large-practice.in";
+		
+		//o.solveAProblem(3, new int[]{9,27,81,243,729});
 
-		o.solve(dir + fn, dir + fn.replace(".in", ".out"));
+//		o.solve(dir + small, dir + small.replace(".in", ".out"));
+		o.solve(dir + large, dir + large.replace(".in", ".out"));
 
 	}
 

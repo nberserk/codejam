@@ -178,31 +178,31 @@ public class RookAttack {
 		flow = r.howMany(8, 8, new String[] {});
 		System.out.println(flow);
 		if (flow != 8) {
-			System.out.println("incorrent answer");
+			System.out.println("incorrect answer");
 		}
 
 		flow = r.howMany(2, 2, new String[] { "0 0", "0 1", "1 1", "1 0" });
 		System.out.println(flow);
 		if (flow != 0) {
-			System.out.println("incorrent answer");
+			System.out.println("incorrect answer");
 		}
 
 		flow = r.howMany(3, 3, new String[] { "0 0", "1 0", "1 1", "2 0", "2 1", "2 2" });
 		System.out.println(flow);
 		if (flow != 2) {
-			System.out.println("incorrent answer");
+			System.out.println("incorrect answer");
 		}
 
 		flow = r.howMany(3, 3, new String[] { "0 0", "1 2", "2 2" });
 		System.out.println(flow);
 		if (flow != 3) {
-			System.out.println("incorrent answer");
+			System.out.println("incorrect answer");
 		}
 
 		flow = r.howMany(200, 200, new String[] {});
 		System.out.println(flow);
 		if (flow != 200) {
-			System.out.println("incorrent answer");
+			System.out.println("incorrect answer");
 		}
 
 		flow = r.howMany(300, 300, new String[] { "149 149", "149 151", "151 149", "151 151", "148 148", "148 152",
@@ -213,14 +213,14 @@ public class RookAttack {
 				"161 139", "161 161", "138 138", "138 162", "162 138", "162 162", "137 137", "137 163" });
 		System.out.println(flow);
 		if (flow != 300) {
-			System.out.println("incorrent answer");
+			System.out.println("incorrect answer");
 		}
 
 		flow = r.howMany(6, 6, new String[] { "0 0", "0 2", "0 4", "1 1", "1 3", "1 5", "2 0", "2 2", "2 4", "3 1",
 				"3 3", "3 5", "4 0", "4 2", "4 4", "5 1", "5 3", "5 5", "2 0", "2 2", "2 4" });
 		System.out.println(flow);
 		if (flow != 6) {
-			System.out.println("incorrent answer");
+			System.out.println("incorrect answer");
 		}
 		
 	
@@ -260,7 +260,7 @@ public class RookAttack {
 				"6 19,1 24,1 12,1 13,1 4,6 20,0 21,9 24,6 21,5 12" });
 		System.out.println(flow);
 		if (flow != 14) {
-			System.out.println("incorrent answer");
+			System.out.println("incorret answer");
 		}
 
 	}
