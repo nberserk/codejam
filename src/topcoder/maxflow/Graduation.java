@@ -2,6 +2,7 @@ package topcoder.maxflow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,6 +16,7 @@ public class Graduation {
 	private int[] matchRow;
 	private int[] matchCol;
 	private boolean[] visited;
+	private HashMap<Integer, Integer> rowToReq;
 
 	public String moreClasses(String classesTaken, String[] requirements) {
 		System.out.println("----------");
@@ -50,6 +52,7 @@ public class Graduation {
 			}
 		}
 
+
 		int rowCount = 0;
 		for (int i = 0; i < r.length; i++) {
 			rowCount += r[i];
@@ -62,11 +65,14 @@ public class Graduation {
 		Arrays.fill(matchRow, -1);
 		Arrays.fill(matchCol, -1);
 
+		rowToReq = new HashMap<Integer, Integer>();
 		int index = 0;
 		for (int i = 0; i < r.length; i++) {
 			for (int j = 0; j < r[i]; j++) {
 				Arrays.fill(visited, false);
-				if (dfs(index++, requirements[i]) == false) {
+				rowToReq.put(index, i);
+				// if (bfs(index++, requirements) == false) {
+				if (dfs(index++, requirements) == false) {
 					System.out.println("0");
 					return "0";
 				}
@@ -89,12 +95,15 @@ public class Graduation {
 		return result;
 	}
 
-	private boolean dfs(int source, String req) {
+	private boolean dfs(int source, String[] reqs) {
 		if (visited[source]) {
 			return false;
 		}
 		visited[source] = true;
 
+		// to match real requirement string
+		int reqIndex = rowToReq.get(source);
+		String req = reqs[reqIndex];
 		for (int col = 0; col < classes.length; col++) {
 			int idx = req.indexOf(classes[col]);
 			if (idx == -1) {
@@ -102,7 +111,7 @@ public class Graduation {
 			}
 
 			int nextRow = matchCol[col];
-			if (nextRow == -1 || dfs(nextRow, req)) {
+			if (nextRow == -1 || dfs(nextRow, reqs)) {
 				matchRow[source] = col;
 				matchCol[col] = source;
 				return true;
@@ -114,7 +123,7 @@ public class Graduation {
 	}
 
 
-	private boolean bfs(int source, String req) {
+	private boolean bfs(int source, String[] reqs) {
 		ArrayList<Integer> q = new ArrayList<Integer>();
 		int[] parent = new int[500];
 		Arrays.fill(parent, -1);
@@ -125,6 +134,9 @@ public class Graduation {
 			int cur = q.get(0);
 			q.remove(0);
 
+			// to match real requirement string
+			int reqIndex = rowToReq.get(cur);
+			String req = reqs[reqIndex];
 			for (int col = 0; col < classes.length; col++) {
 				int idx = req.indexOf(classes[col]);
 				if (idx == -1) {
@@ -145,7 +157,7 @@ public class Graduation {
 					matchCol[col] = cur;
 					return true;
 				} else {
-					if (parent[cur] == -1) {
+					if (parent[nextRow] == -1) {
 						q.add(nextRow);
 						parent[nextRow] = cur;
 					}
@@ -162,6 +174,11 @@ public class Graduation {
 
 		Graduation g = new Graduation();
 		String r = null;
+
+		r = g.moreClasses("A", new String[] { "2ABC", "3BDE" });
+		if (!r.equals("BCDE")) {
+			System.out.println("incorrect");
+		}
 
 		r = g.moreClasses("A", new String[] { "2ABC", "2CDE" });
 		if (!r.equals("BCD")) {
