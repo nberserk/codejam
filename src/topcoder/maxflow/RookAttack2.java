@@ -42,8 +42,8 @@ public class RookAttack2 {
 		// search
 		int totalFlow = 0;
 		for (int i = 0; i < rows; i++) {
-			// if (bfs(matchRow, matchCol, cuts, i)) {
-			 if (find_match(i, cuts, matchRow, matchCol)) {
+			if (bfs(matchRow, matchCol, cuts, i)) {
+				// if (find_match(i, cuts, matchRow, matchCol)) {
 //			if (find_match_dfs(i, cuts)) {
 				totalFlow += 1;
 			}
@@ -195,6 +195,9 @@ public class RookAttack2 {
 				//
 				int nextRow = matchCol[col];
 				if (nextRow == -1) {
+					System.out.println("before");
+					System.out.println(Arrays.toString(matchRow));
+					System.out.println(Arrays.toString(matchCol));
 					while (parent[row] != row) {
 						int prev = parent[row];
 						int prevCol = matchRow[row];
@@ -206,6 +209,9 @@ public class RookAttack2 {
 					}
 					matchRow[row] = col;
 					matchCol[col] = row;
+					System.out.println("after");
+					System.out.println(Arrays.toString(matchRow));
+					System.out.println(Arrays.toString(matchCol));
 					return true;
 				} else {
 					if (parent[nextRow] == -1) {
