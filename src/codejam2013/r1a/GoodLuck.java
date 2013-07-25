@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 
 public class GoodLuck {	
 	BufferedWriter mWriter;
@@ -25,12 +24,14 @@ public class GoodLuck {
 			mWriter = new BufferedWriter(new FileWriter(outFile));
 			
 			String str = reader.readLine();
-			reader.readLine(); // read 1
+
 			String[] v = reader.readLine().split(" ");
 			int R = Integer.parseInt(v[0]);
 			N = Integer.parseInt(v[1]);
 			M = Integer.parseInt(v[2]);
 			K = Integer.parseInt(v[3]);
+
+			writeSolution("Case #1:");
 			for (int i = 1; i <= R; i++) {			
 				mCurrentProblem = i;
 				
@@ -41,7 +42,15 @@ public class GoodLuck {
 				}				
 
 				// parse a problem
-				solveSmallProblem(n);
+				int[] so = solveSmallProblem(n);
+				for (int j = 0; j < so.length; j++) {
+					if (so[j] == -1) {
+						so[j] = 2;
+					}
+				}
+				String out = String.format("%d%d%d", so[0], so[1], so[2]);
+				// print(out);
+				writeSolution(out);
 				// solveLargeProblem();
 			}
 						
@@ -73,35 +82,51 @@ public class GoodLuck {
 
 	}
 
-	private void solveSmallProblem(int[] n) {
+	private int[] solveSmallProblem(int[] n) {
 		Arrays.sort(n);
 		int[] r= new int[N];
 		Arrays.fill(r, -1);
 		
-		HashSet<Integer> candidates = new HashSet<Integer>();
+			
+		ArrayList<Integer> result = new ArrayList<Integer>();
 		
-		for (int i = 0; i < n.length; i++) {
+		for (int i = n.length - 1; i >= 0; i--) {
 			if (n[i]==1) {
 				continue;
 			}
-			for (int j = 2; j < M; j++) {
-				if (n[i]%j == 0 ) {
-					candidates.add(j);					
+
+			int temp = n[i];
+
+			for (Integer integer : result) {
+				if (temp % integer == 0) {
+					temp = temp / integer;
+				}
+			}
+
+			System.out.println(temp);
+			while (temp > 1) {
+				for (int j = M; j >= 2; j--) {
+					if (temp % j == 0) {
+						temp = temp / j;
+						if (result.size() == N) {
+							System.out.println("dddd");
+						}
+						result.add(j);
+						break;
+					}
 				}
 			}
 		}
 		
-		
-				
-		for (int i = 0; i < n.length; i++) {
-			if (n[i]==-1) {
-				continue;				
-			}
-		
-			
-			
+		// if (result.size() < 3) {
+		// System.out.println("ddd");
+		// }
+		int[] out = new int[N];
+		Arrays.fill(out, 2);
+		for (int i = 0; i < result.size(); i++) {
+			out[i] = result.get(i);
 		}
-
+		return out;
 	}
 
 	public void writeSolution(String s){
@@ -120,13 +145,13 @@ public class GoodLuck {
 
 	public static void main(String[] args) {
 		GoodLuck b = new GoodLuck();
-		String dir = "./src/codejam2013/r1c/";
-		String small = "B-small-practice.in";
-		String large = "B-large-practice.in";
+		String dir = "./src/codejam2013/r1a/";
+		String small = "C-small-practice-1.in";
+		String large = "C-small-practice-2.in";
 
 		// long r = b.solveAProblem(5, 2, new int[] { 1, 2 });
 		// System.out.println(r);
-		b.solve(dir + small, dir + small.replace(".in", ".out"));
+		// b.solve(dir + small, dir + small.replace(".in", ".out"));
 		b.solve(dir + large, dir + large.replace(".in", ".out"));
 	}
 
