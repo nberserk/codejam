@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class GoodLuck {	
 	BufferedWriter mWriter;
@@ -36,19 +37,22 @@ public class GoodLuck {
 				mCurrentProblem = i;
 				
 				v = reader.readLine().split(" ");
-				int[] n = new int[K];
+				long[] n = new long[K];
 				for (int j = 0; j < n.length; j++) {
-					n[j] = Integer.parseInt(v[j]);
+					n[j] = Long.parseLong(v[j]);
 				}				
 
 				// parse a problem
-				int[] so = solveSmallProblem(n);
+				//int[] so = solveSmallProblem(n);
+				int[] so = solveLargeProblem(n);
+			
+				Arrays.sort(so);
+				StringBuilder sb = new StringBuilder();
 				for (int j = 0; j < so.length; j++) {
-					if (so[j] == -1) {
-						so[j] = 2;
-					}
+					sb.append(so[j]);
 				}
-				String out = String.format("%d%d%d", so[0], so[1], so[2]);
+				//sb.append("\n");
+				String out = sb.toString();
 				// print(out);
 				writeSolution(out);
 				// solveLargeProblem();
@@ -77,56 +81,146 @@ public class GoodLuck {
 		// System.out.println("elapsed time(sec) :"+ elapsedTimeSec);
 	}
 
-	private void solveLargeProblem() {
+	private int[] solveLargeProblem(long[] n) {
+		Arrays.sort(n);
 		
+		ArrayList<Integer> r = new ArrayList<Integer>();
+		
+				
+		Node[] nodes = new Node[N];
 
+		// big number first
+		for (int i = n.length - 1; i >= 0; i--) {
+			Node node = new Node();
+			nodes[i] = node;
+			node.n = n[i];
+			if (n[i]==1) {
+				continue;
+			}
+
+			long temp = n[i];
+			System.out.println(temp + ":");
+
+			// divice by r
+			for (int j = r.size()-1; j >= 0; j--) {
+				int cur = r.get(j);
+				if (temp%cur==0) {
+					temp /= cur;
+					node.mCandidates.add(cur);					
+				}
+				if (temp==1) {
+					break;
+				}			
+			}
+						
+			if (temp==1) {
+				continue;
+			}
+			
+			// 
+			while (temp>1) {
+				for (int j = M; j >= 2; j--) {
+					if (temp % j == 0) {
+						temp = temp / j;
+						node.mCandidates.add(j);
+						if (r.size()<N) {
+							
+							r.add(j);
+							Collections.sort(r);
+						}else{
+							// 
+							System.out.println(r.toString());
+						}	
+						break;
+					}
+				}//for						
+			}//while
+			
+			System.out.println(node);
+
+		}
+
+		
+		int[] out = new int[N];
+		Arrays.fill(out, 2);
+		for (int i = 0; i < r.size(); i++) {
+			out[i] = r.get(i);
+		}
+		return out;
 	}
 
-	private int[] solveSmallProblem(int[] n) {
-		Arrays.sort(n);
-		int[] r= new int[N];
-		Arrays.fill(r, -1);
+	private int[] solveSmallProblem(long[] n) {
+		Arrays.sort(n);		
 		
-			
-		ArrayList<Integer> result = new ArrayList<Integer>();
+		int[] out = new int[N];
+		Arrays.fill(out, 10);
+		int index = 0;
 		
+		// big number first
 		for (int i = n.length - 1; i >= 0; i--) {
 			if (n[i]==1) {
 				continue;
 			}
 
-			int temp = n[i];
+			long temp = n[i];
+			System.out.println(temp + ":");
 
-			for (Integer integer : result) {
-				if (temp % integer == 0) {
-					temp = temp / integer;
+			//
+			for (int j = N-1; j >=0 ; j--) {
+				if (out[j]==10) {
+					continue;
 				}
-			}
-
-			System.out.println(temp);
-			while (temp > 1) {
-				for (int j = M; j >= 2; j--) {
-					if (temp % j == 0) {
-						temp = temp / j;
-						if (result.size() == N) {
-							System.out.println("dddd");
-						}
-						result.add(j);
+				if (temp % out[j] == 0) {
+					temp = temp / out[j];
+					if (temp==1) {
 						break;
 					}
 				}
 			}
+			
+			if (temp==1) {
+				continue;
+			}
+
+			System.out.print(temp + "->");
+			while (temp > 1) {
+				for (int j = M; j >= 2; j--) {
+					if (temp % j == 0) {
+						temp = temp / j;
+						
+						if (index >= out.length) {
+							check();
+						}else{
+							out[index++] = j;
+							Arrays.sort(out);	
+						}
+						break;
+					}
+				}
+				if (temp==1) {
+					break;
+				}
+			}
+			System.out.println(temp);
+			System.out.println(Arrays.toString(out));
 		}
 		
 		// if (result.size() < 3) {
 		// System.out.println("ddd");
 		// }
-		int[] out = new int[N];
-		Arrays.fill(out, 2);
-		for (int i = 0; i < result.size(); i++) {
-			out[i] = result.get(i);
+		
+		// fill 2 at empty slot
+		for (int i = 0; i < out.length;i++) {
+			if (out[i]==10) {
+				out[i] = 2;
+			}			
 		}
 		return out;
+	}
+
+	private void check() {
+		System.out.println("check");
+		
 	}
 
 	public void writeSolution(String s){
@@ -151,8 +245,16 @@ public class GoodLuck {
 
 		// long r = b.solveAProblem(5, 2, new int[] { 1, 2 });
 		// System.out.println(r);
-		// b.solve(dir + small, dir + small.replace(".in", ".out"));
+//		 b.solve(dir + small, dir + small.replace(".in", ".out"));
 		b.solve(dir + large, dir + large.replace(".in", ".out"));
 	}
 
+	static class Node{	
+		public long n;
+		public ArrayList<Integer> mCandidates = new ArrayList<Integer>();
+		@Override
+		public String toString() {
+			return n+ ":" + mCandidates.toString();
+		}
+	}
 }
