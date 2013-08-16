@@ -15,6 +15,7 @@ public class GoodLuck {
 	private int N;
 	private int M;
 	private int K;
+	private int mTarget;
 	
 	public void solve(String inFile, String outFile){	
 		BufferedReader reader = null;		
@@ -99,14 +100,14 @@ public class GoodLuck {
 			}
 
 			long temp = n[i];
-			System.out.println(temp + ":");
+			// System.out.println(temp + ":");
 
-			// divice by r
+			// divide by r
 			for (int j = r.size()-1; j >= 0; j--) {
 				int cur = r.get(j);
 				if (temp%cur==0) {
 					temp /= cur;
-					node.mCandidates.add(cur);					
+					node.add(cur);
 				}
 				if (temp==1) {
 					break;
@@ -122,24 +123,39 @@ public class GoodLuck {
 				for (int j = M; j >= 2; j--) {
 					if (temp % j == 0) {
 						temp = temp / j;
-						node.mCandidates.add(j);
-						if (r.size()<N) {
-							
+						node.add(j);
+						if (r.size() < N) {
 							r.add(j);
 							Collections.sort(r);
 						}else{
-							// 
-							System.out.println(r.toString());
+							//
+							node.mExtras.add(j);
+							// System.out.println(r.toString());
 						}	
 						break;
 					}
 				}//for						
 			}//while
-			
-			System.out.println(node);
 
+			System.out.println(node);
 		}
 
+		print(nodes, r);
+		ArrayList<Integer> processedExtras= new ArrayList<Integer>();
+		while (hasExtra(nodes)) {
+			for (Node node : nodes) {
+				if (node.mExtras.size() == 0) {
+					continue;
+				}
+
+				int e= node.mExtras.get(0);
+				if (tryResolve(nodes, r, e)) {
+					break;
+				} else {
+					System.out.println("oops");
+				}
+			}// for node
+		}
 		
 		int[] out = new int[N];
 		Arrays.fill(out, 2);
@@ -147,6 +163,85 @@ public class GoodLuck {
 			out[i] = r.get(i);
 		}
 		return out;
+	}
+
+	private boolean hasExtra(Node[] nodes) {
+		for (Node node : nodes) {
+			if (node.mExtras.size() > 0)
+				return true;
+		}
+		return false;
+	}
+
+	private boolean tryResolve(Node[] nodes, ArrayList<Integer> r, int e) {
+
+		// try split
+		for (int r2 : r) {
+			// can replace r2 with e, r2/e
+			if (r2 % e == 0 && r.contains(r2 / e)) {
+				// check validity for each node
+				boolean valid= true;
+				for (Node node : nodes) {
+					if (node.mCandidates.contains(r2)) {
+						if (node.mCandidates.size() >= N) {
+							valid= false;
+							break;
+						}
+					}
+				}// for
+
+				if (valid) {
+					int idx= r.indexOf(r2);
+					r.remove(idx);
+					r.add(e);
+					
+					
+					for (Node node : nodes) {
+						if (node.mCandidates.contains(r2)) {
+							node.del(r2);
+
+							node.add(e);
+							node.add(r2 / e);
+						}
+						if (node.mExtras.contains(e)) {
+							node.mExtras.remove(node.mExtras.indexOf(e));
+						}
+					}
+					print(nodes, r);
+					return true;
+				}
+
+			}
+		}
+
+		// try merge
+		for (int i= 2; i <= M; i++) {
+			int n= i * e;
+			if (n > M) {
+				break;
+			}
+
+			if (!r.contains(n)) {
+				continue;
+			}
+
+			int nCount= 0; //
+			int eCount= 0; //
+
+			r.remove(r.indexOf(e));
+			r.add(i);
+
+		}
+
+		return false;
+	}
+
+	private void print(Node[] nodes, ArrayList<Integer> r) {
+		System.out.println("--");
+		for (Node node : nodes) {
+			System.out.println(node);
+		}
+		System.out.println(r);
 	}
 
 	private int[] solveSmallProblem(long[] n) {
@@ -252,9 +347,23 @@ public class GoodLuck {
 	static class Node{	
 		public long n;
 		public ArrayList<Integer> mCandidates = new ArrayList<Integer>();
+		public ArrayList<Integer> mExtras = new ArrayList<Integer>();
+		public int[] mFrequency= new int[10];
 		@Override
 		public String toString() {
-			return n+ ":" + mCandidates.toString();
+			return "" + mCandidates.toString() + ", extras: "
+					+ mExtras.toString();
 		}
+
+		public void add(int cur) {
+			mCandidates.add(cur);
+			mFrequency[cur]++;
+		}
+
+		public void del(int cur) {
+			mCandidates.remove(mCandidates.indexOf(cur));
+			mFrequency[cur]--;
+		}
+
 	}
 }
