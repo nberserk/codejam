@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+/*
+ * Small ok, Large not ok
+ */
 public class GoodLuck {	
 	BufferedWriter mWriter;
 	int	mCurrentProblem;
