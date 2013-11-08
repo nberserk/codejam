@@ -141,7 +141,8 @@ public class ShortestUniquePattern {
 		ShortestUniquePattern a = new ShortestUniquePattern();
 		try {
 			// a.solution("d:/flag_1.in", "d:/flag_1.out");
-			a.solution("./src/july2013/string.in", "./src/july2013/string.out");
+			a.solution("./src/stop/july13/string.in",
+					"./src/stop/july13/string.out");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
