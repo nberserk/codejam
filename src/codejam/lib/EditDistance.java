@@ -1,5 +1,6 @@
 package codejam.lib;
 
+import java.awt.Point;
 import java.util.Arrays;
 
 
@@ -30,8 +31,10 @@ public class EditDistance {
 		// System.out.println(from + "->" + to + ":"
 		// + editDistanceRecursive(from, to, 0, 0));
 
-		from= "hieroglyphology";
-		to= "michaelangelo";
+		from = "hieroglyphology";
+		to = "michaelangelo";
+		// from = "sunday";
+		// to = "saturday";
 		long time= System.currentTimeMillis();
 		int distance= editDistance(from, to);
 		String log= String.format("%s->%s:%d (%dms)", from, to, distance,
@@ -110,32 +113,72 @@ public class EditDistance {
 		int n= to.length();
 
 		int[][] t= new int[m][n];
+		Point[][] p= new Point[m][n];
+		char[][] p2 = new char[m][n];
 		for (int i= m - 1; i >= 0; i--) {
 			for (int j= n - 1; j >= 0; j--) {
 
 				boolean matched= from.charAt(i) == to.charAt(j) ? true : false;
 
 				if (i == m - 1 && j == n - 1) {
-					t[i][j]= matched ? 0 : sCostReplace;
+					if (matched) {
+						p2[i][j] = ' ';
+						t[i][j] = 0;
+					} else {
+						p2[i][j] = 'r';
+						t[i][j] = sCostReplace;
+					}
+					p[i][j] = null;
 					continue;
 				}
 
 				int d= sCostDelete;
 				int in= sCostInsert;
 				int r= sCostReplace;
+
 				if (from.charAt(i) == to.charAt(j)) {
 					d= in= r= 0;
+
 				}
 
 				int min= Integer.MAX_VALUE;
 				if (i + 1 < m) {
-					min= Math.min(min, t[i + 1][j] + d);
+					d += t[i+1][j];
+					
+					if (d < min) {
+						min = d;
+						p[i][j] = new Point(i + 1, j);
+
+					}					
 				}
 				if (j + 1 < n) {
-					min= Math.min(min, t[i][j + 1] + in);
+					in += t[i][j+1];
+					if (in < min) {
+						min = in;
+						p[i][j] = new Point(i, j + 1);
+
+					}					
 				}
 				if (j + 1 < n && i + 1 < m) {
-					min= Math.min(min, t[i + 1][j + 1] + r);
+					r += t[i + 1][j + 1] ;
+					if (r < min) {
+						min = r;
+						p[i][j] = new Point(i + 1, j + 1);
+					}
+				}
+
+				if (matched) {
+					p2[i][j] = ' ';
+				} else {
+					if (min == d) {
+						p2[i][j] = 'd';
+					} else if (min == in) {
+						p2[i][j] = 'i';
+					} else if (min == r) {
+						p2[i][j] = 'r';
+					} else {
+						System.out.println("strnage");
+					}
 				}
 
 				t[i][j]= min;
@@ -143,6 +186,18 @@ public class EditDistance {
 			}
 		}
 		
+
+		Point cur = new Point(0, 0);
+		while (true) {
+			if (cur.x == m - 1 && cur.y == n - 1) {
+				break;
+			}
+
+			char op = p2[cur.x][cur.y];
+			cur = p[cur.x][cur.y];
+			System.out.println(String.format("%c %s", op, cur));
+		}
+
 		return t[0][0];
 	}
 
