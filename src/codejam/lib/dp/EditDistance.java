@@ -1,4 +1,4 @@
-package codejam.lib;
+package codejam.lib.dp;
 
 import java.awt.Point;
 import java.util.Arrays;
