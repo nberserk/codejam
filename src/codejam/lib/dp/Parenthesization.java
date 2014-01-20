@@ -5,10 +5,14 @@ public class Parenthesization {
 	public static void main(String[] args) {
 		Parenthesization p = new Parenthesization();
 		Matrix[] m = new Matrix[] { new Matrix(2, 3), new Matrix(3, 4),
-				new Matrix(4, 5) };
+				new Matrix(4, 5), new Matrix(5, 6) };
 
 		p.solve(m);
 
+	}
+
+	private void print(String s) {
+		System.out.println(s);
 	}
 
 	private void solve(Matrix[] m) {
@@ -29,14 +33,15 @@ public class Parenthesization {
 		}
 		
 		int min = Integer.MAX_VALUE;
-		for (int i = start + 1; i <= end; i++) {
+		for (int i = start; i < end; i++) {
 			int cur = findMin(m, start, i);
-			cur += m[start].row * m[i].col * m[start].col;
-			cur += findMin(m, i, end);
+			cur += m[start].row * m[i].col * m[end].col;
+			cur += findMin(m, i + 1, end);
 			if (cur < min) {
 				min = cur;
 			}
 		}
+		print(start + "-" + end + ":" + min);
 		return min;
 	}
 
