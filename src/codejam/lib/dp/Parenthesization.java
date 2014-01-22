@@ -1,11 +1,12 @@
 package codejam.lib.dp;
 
 public class Parenthesization {
+    private int[][] mCache;
 
 	public static void main(String[] args) {
 		Parenthesization p = new Parenthesization();
 		Matrix[] m = new Matrix[] { new Matrix(2, 3), new Matrix(3, 4),
-				new Matrix(4, 5), new Matrix(5, 6) };
+                new Matrix(4, 5), new Matrix(5, 6), new Matrix(6, 3) };
 
 		p.solve(m);
 
@@ -16,8 +17,9 @@ public class Parenthesization {
 	}
 
 	private void solve(Matrix[] m) {
-
+        mCache = new int[m.length][m.length];
 		int result = findMin(m, 0, m.length-1);
+
 		System.out.println(result);
 	}
 
@@ -32,6 +34,11 @@ public class Parenthesization {
 			return m[start].row*m[end].col*m[start].col; 
 		}
 		
+        if (mCache[start][end] != 0) {
+            print("hit cache " + start + "," + end);
+            return mCache[start][end];
+        }
+
 		int min = Integer.MAX_VALUE;
 		for (int i = start; i < end; i++) {
 			int cur = findMin(m, start, i);
@@ -42,6 +49,7 @@ public class Parenthesization {
 			}
 		}
 		print(start + "-" + end + ":" + min);
+        mCache[start][end] = min;
 		return min;
 	}
 
