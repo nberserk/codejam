@@ -217,7 +217,7 @@ int main(void)
 	   You may remove the comment symbols(//) in the below statement and use it.
 	   But before submission, you must remove the freopen function or rewrite comment symbols(//).
 	 */
-	 freopen("cloestpair.txt", "r", stdin);
+	 freopen("closestpair.txt", "r", stdin);
 
 	/*
 	   If you remove the statement below, your program's output may not be rocorded
@@ -228,6 +228,8 @@ int main(void)
 
 	int problemCount;
 	scanf("%d", &problemCount);
+	if(debug)
+	  printf("%d\n", problemCount);
 	for(test_case = 0; test_case < problemCount; test_case++)
 	{		
 		/*
