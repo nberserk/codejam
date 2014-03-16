@@ -206,7 +206,7 @@ Result findMin(int start, int end){
 }
 
 
-int main(void)
+int closestpair_main(void)
 {
 	int test_case;
 	/*
