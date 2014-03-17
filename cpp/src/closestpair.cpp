@@ -208,23 +208,9 @@ Result findMin(int start, int end){
 
 int closestpair_main(void)
 {
-	int test_case;
-	/*
-	   The freopen function below opens input.txt file in read only mode, and afterward,
-	   the program will read from input.txt file instead of standard(keyboard) input.
-	   To test your program, you may save input data in input.txt file,
-	   and use freopen function to read from the file when using scanf function.
-	   You may remove the comment symbols(//) in the below statement and use it.
-	   But before submission, you must remove the freopen function or rewrite comment symbols(//).
-	 */
-	 freopen("closestpair.txt", "r", stdin);
-
-	/*
-	   If you remove the statement below, your program's output may not be rocorded
-	   when your program is terminated after the time limit.
-	   For safety, please use setbuf(stdout, NULL); statement.
-	 */
-	setbuf(stdout, NULL);
+    int test_case;
+    freopen("closestpair.txt", "r", stdin);
+    setbuf(stdout, NULL);
 
 	int problemCount;
 	scanf("%d", &problemCount);
