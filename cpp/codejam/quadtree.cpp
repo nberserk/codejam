@@ -19,10 +19,12 @@ class Node{
 public:
     Node(){
         v=0;
-        c.reserve(4);
+        //c.reserve(4);
     }
     char v;
-    vector<Node*> c;
+    //vector<Node*> c;
+    Node* c[4];
+
     
     void print(){
         if (v!=0) {
