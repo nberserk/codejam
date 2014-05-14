@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950C36E91923126200A4DB7E /* jumpgame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950C36E71923126200A4DB7E /* jumpgame.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95AB33D6191FA92C00AED8FF /* fanmeeting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95AB33D4191FA92C00AED8FF /* fanmeeting.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		950C36E71923126200A4DB7E /* jumpgame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jumpgame.cpp; sourceTree = "<group>"; };
+		950C36E81923126200A4DB7E /* jumpgame.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jumpgame.in; sourceTree = "<group>"; };
 		954767D419054D490021B178 /* codejam */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = codejam; sourceTree = BUILT_PRODUCTS_DIR; };
 		954767D719054D490021B178 /* picnic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picnic.cpp; sourceTree = "<group>"; };
 		954767D919054D490021B178 /* codejam.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = codejam.1; sourceTree = "<group>"; };
@@ -71,6 +73,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				950C36E71923126200A4DB7E /* jumpgame.cpp */,
+				950C36E81923126200A4DB7E /* jumpgame.in */,
 				95AB33D4191FA92C00AED8FF /* fanmeeting.cpp */,
 				95AB33D5191FA92C00AED8FF /* fanmeeting.in */,
 				95ABB4C5191D0A020074AD44 /* fence.cpp */,
@@ -145,7 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95AB33D6191FA92C00AED8FF /* fanmeeting.cpp in Sources */,
+				950C36E91923126200A4DB7E /* jumpgame.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
