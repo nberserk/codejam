@@ -8,7 +8,7 @@
 #include <vector>
 
 using namespace std;
-bool gDebug = true;
+bool gDebug ;
 
 int solve(){
   int ret;
@@ -27,9 +27,14 @@ void endMark(){
 }
 
 int main(){
+  char fn[] = ".in";
+  if (access(fn, F_OK)!=-1) {
+	gDebug = true;
+  }
+  
     FILE *fp;
     if (gDebug) {
-        fp = freopen(, "r", stdin);
+        fp = freopen(fn, "r", stdin);
     }
     
     int count, p,j;
