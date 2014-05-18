@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		950C3C0D192836640001C8BC /* lis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950C3C0B192836640001C8BC /* lis.cpp */; };
+		950C3C101928CECB0001C8BC /* jlis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950C3C0E1928CECB0001C8BC /* jlis.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +31,8 @@
 		950C3C05192763360001C8BC /* trianglepath.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = trianglepath.in; sourceTree = "<group>"; };
 		950C3C0B192836640001C8BC /* lis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lis.cpp; sourceTree = "<group>"; };
 		950C3C0C192836640001C8BC /* lis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lis.in; sourceTree = "<group>"; };
+		950C3C0E1928CECB0001C8BC /* jlis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jlis.cpp; sourceTree = "<group>"; };
+		950C3C0F1928CECB0001C8BC /* jlis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jlis.in; sourceTree = "<group>"; };
 		954767D419054D490021B178 /* codejam */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = codejam; sourceTree = BUILT_PRODUCTS_DIR; };
 		954767D719054D490021B178 /* picnic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picnic.cpp; sourceTree = "<group>"; };
 		954767D919054D490021B178 /* codejam.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = codejam.1; sourceTree = "<group>"; };
@@ -79,6 +81,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				950C3C0E1928CECB0001C8BC /* jlis.cpp */,
+				950C3C0F1928CECB0001C8BC /* jlis.in */,
 				950C3C0B192836640001C8BC /* lis.cpp */,
 				950C3C0C192836640001C8BC /* lis.in */,
 				950C3C04192763360001C8BC /* trianglepath.cpp */,
@@ -161,7 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950C3C0D192836640001C8BC /* lis.cpp in Sources */,
+				950C3C101928CECB0001C8BC /* jlis.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
