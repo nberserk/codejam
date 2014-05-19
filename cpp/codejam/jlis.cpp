@@ -15,51 +15,41 @@ int N,M;
 int A[100], B[100];
 int cache[101][101];
 
+
 // from -1 to the end , find jlis of two set
 int jlis(int idxA, int idxB, int curMax){
-    // move A
-    while (curMax!=-1 && idxA < N-1 && curMax>A[idxA+1]) {
+    // find A greater than curMax
+    while (idxA==-1 || (idxA < N && A[idxA]<=curMax) ) {
         idxA++;
     }
     
-    // move B
-    while (curMax!=-1 && idxB < N-1 && curMax>B[idxB+1]) {
+    // move B greater than curMax
+    while (idxB==-1 || (idxB < M && B[idxB]<=curMax)) {
         idxB++;
     }
     
-    if (idxA==N && idxB==M) {
+    if (idxA>=N && idxB>=M) {
         return 0;
     }
     
     int& ret = cache[idxA+1][idxB+1];
     if (ret!=-1) {
+        //printf("hit cache;%d-%d=%d(%d)\n", idxA, idxB,ret, curMax);
         return ret;
     }
     
-    if (idxB==M )
-        // take A
-        ret =  max(1+jlis(idxA+1, idxB, A[idxA+1]), jlis(idxA+1, idxB, curMax));
-    }else if (idxA==M){
-        ret = max (1 + jlis(idxA, idxB+1, B[idxB+1]), jlis(idxA, idxB+1,curMax));
-    }else if( A[idxA+1] > B[idxB+1]){
-        ret = 1 + jlis(idxA, idxB+1, B[idxB+1]);
-    }else if (A[idxA+1] < B[idxB+1]) {
-    }else if (A[idxA+1] == B[idxB+1]){
-        ret = 1 + jlis(idxA+1, idxB+1, A[idxA+1]);
+    ret =-1;
+    if (idxA!=N ){
+        ret =  max(ret, 1+jlis(idxA+1, idxB, A[idxA])); // take a
+        ret = max (ret, jlis(idxA+1, idxB, curMax)); // skip a
+    }
+    if (idxB!=M){
+        ret = max (ret, 1 + jlis(idxA, idxB+1, B[idxB])); // take b
+        ret = max(ret, jlis(idxA, idxB+1, curMax)); //skip b
     }
     
+    //printf("%d-%d=%d(%d)\n", idxA, idxB,ret, curMax);
     return ret ;
-}
-
-clock_t gMarkTime;
-void mark(){
-    gMarkTime = clock();
-}
-
-void endMark(){
-    gMarkTime = clock() - gMarkTime;
-    int ms = double(gMarkTime) / CLOCKS_PER_SEC * 1000;
-    printf("elapsed time : %d\n",  ms);
 }
 
 int main(){
