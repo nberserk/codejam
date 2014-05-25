@@ -8,6 +8,7 @@
 #include <vector>
 #include <time.h>
 #include <string.h>
+#include <limits>
 
 using namespace std;
 bool gDebug;
@@ -15,41 +16,36 @@ int N,M;
 int A[100], B[100];
 int cache[101][101];
 
+typedef long long ll;
+const ll NEGINF = numeric_limits<long long>::min();
 
-// from -1 to the end , find jlis of two set
-int jlis(int idxA, int idxB, int curMax){
-    // find A greater than curMax
-    while (idxA==-1 || (idxA < N && A[idxA]<=curMax) ) {
-        idxA++;
-    }
-    
-    // move B greater than curMax
-    while (idxB==-1 || (idxB < M && B[idxB]<=curMax)) {
-        idxB++;
-    }
-    
-    if (idxA>=N && idxB>=M) {
-        return 0;
-    }
-    
-    int& ret = cache[idxA+1][idxB+1];
-    if (ret!=-1) {
-        //printf("hit cache;%d-%d=%d(%d)\n", idxA, idxB,ret, curMax);
+int jlis2(int a, int b){
+
+    int& ret = cache[a+1][b+1];
+    if(ret!=-1){
         return ret;
     }
     
-    ret =-1;
-    if (idxA!=N ){
-        ret =  max(ret, 1+jlis(idxA+1, idxB, A[idxA])); // take a
-        ret = max (ret, jlis(idxA+1, idxB, curMax)); // skip a
+    ll sa = a ==-1 ? NEGINF : A[a] ;
+    ll sb = b==-1? NEGINF : B[b];
+    ll maxV = max(sa,sb);
+
+    ret =2;
+//    if(sa==sb)
+//        ret = 1;
+
+    int i;
+    for(i=a+1;i<N;i++){
+        if(maxV < A[i])
+            ret = max(ret, 1+jlis2(i, b));
     }
-    if (idxB!=M){
-        ret = max (ret, 1 + jlis(idxA, idxB+1, B[idxB])); // take b
-        ret = max(ret, jlis(idxA, idxB+1, curMax)); //skip b
+
+    for(i=b+1;i<M;i++){
+        if(maxV < B[i])
+            ret = max(ret, 1+jlis2(a, i));
     }
-    
-    //printf("%d-%d=%d(%d)\n", idxA, idxB,ret, curMax);
-    return ret ;
+    //printf("%d-%d=%d\n", a, b,ret);
+    return ret;
 }
 
 int main(){
@@ -78,9 +74,9 @@ int main(){
 
         memset(cache,-1, sizeof(cache));
         //mark();
-        int maxLis = jlis(-1, -1, -1);
+        int maxLis = jlis2(-1,-1);
         //endMark();
-        printf("%d\n", maxLis);
+        printf("%d\n", maxLis-2);
     }
     
     if (gDebug) {
