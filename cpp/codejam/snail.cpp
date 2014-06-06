@@ -1,5 +1,5 @@
 // algospot
-// http://algospot.com/judge/problem/read/TRIPATHCNT
+// http://algospot.com/judge/problem/read/SNAIL
 
 #include <algorithm>
 #include <unistd.h>
@@ -41,27 +41,6 @@ int doSolve(int x, int y){
     return ret;
 }
 
-int countPath2(int x, int y){
-    if(x>y)
-        return 0; // need this ?
-    if(y==gN-1) return 1;
-
-    int& ret = gCachePath[x][y];
-    if(ret!=-1) return ret;
-
-    int bot = gCache[x][y+1];
-    int botr = gCache[x+1][y+1];
-    if(bot>botr){
-        ret = countPath2(x, y+1);
-    }else if(bot < botr){
-        ret = countPath2(x+1,y+1);
-    }else{
-        ret = countPath2(x,y+1) + countPath2(x+1,y+1);
-    }
-
-    return ret;
-}
-
 int countPath(int x, int y, int remainSum){
     if(x>y ) return 0;
 
@@ -90,7 +69,7 @@ int solve(){
     memset(gCachePath, -1, sizeof(gCachePath));
     gMax = doSolve(0,0);
     
-    return countPath2(0,0);
+    return countPath(0,0,gMax);
 }
 
 void check(bool ret){
