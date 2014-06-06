@@ -19,7 +19,8 @@ using namespace std;
 bool gDebug;
 int gN;
 int gM[100][100];
-int gCache[100][100];
+int gCache[100][100]; // max sum from y,x to the end
+int gCachePath[100][100];
 int gMax;
 
 typedef long long ll;
@@ -40,11 +41,35 @@ int doSolve(int x, int y){
     return ret;
 }
 
+int countPath(int x, int y, int remainSum){
+    if(x>y ) return 0;
+
+    if(y==gN-1){
+        if(remainSum==gM[y][x]) return 1;
+        else return 0;
+    }
+    
+    int ret = gCache[x][y];
+    if(ret!=-1 && remainSum-ret !=0 ) return 0;    // not max sum path
+    
+    int& ret2 = gCachePath[x][y];
+    if (ret2!=-1) {
+        return ret2;
+    }
+    
+    remainSum-= gM[y][x];
+
+    ret2 =countPath(x, y+1, remainSum) + countPath(x+1,y+1,remainSum);
+    //printf("countPath, %d,%d=%d\n",x,y,ret2);
+    return ret2;
+}
+
 int solve(){
     memset(gCache, -1, sizeof(gCache));
+    memset(gCachePath, -1, sizeof(gCachePath));
     gMax = doSolve(0,0);
-
-    countPath();
+    
+    return countPath(0,0,gMax);
 }
 
 void check(bool ret){
@@ -53,8 +78,28 @@ void check(bool ret){
     }
 }
 
+void check(int expected, int actual){
+    if (expected!=actual) {
+        printf("failed expected=%d, actual=%d\n", expected, actual);
+    }
+}
 
-void test(){    
+
+void test(){
+    gN = 4;
+    gM[0][0] = 1;
+    gM[1][0] = gM[1][1] = 1;
+    gM[2][0] = gM[2][1] = gM[2][2] = 1;
+    gM[3][0] = gM[3][1] = gM[3][2] = gM[3][3] = 1;
+
+    solve();
+    check(gMax==4);
+    check(2, countPath(0,2,2));
+    check(4, countPath(0, 1, 3));
+    check(8, countPath(0,0,gMax));
+
+    //    
+    
 }
 
 
@@ -68,6 +113,8 @@ int main(){
     if (gDebug) {
         fp = freopen(fn, "r", stdin);
     }
+    
+    //test();
     
     int count, p,j,k;
     scanf("%d", & count);
