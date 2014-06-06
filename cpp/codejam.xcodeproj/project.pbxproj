@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95ADF112193F1518000B15EF /* tripathcnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95ADF110193F1518000B15EF /* tripathcnt.cpp */; };
+		9567403119419677002D426F /* snail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9567402F19419677002D426F /* snail.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +36,8 @@
 		954767D419054D490021B178 /* codejam */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = codejam; sourceTree = BUILT_PRODUCTS_DIR; };
 		954767D719054D490021B178 /* picnic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picnic.cpp; sourceTree = "<group>"; };
 		954767D919054D490021B178 /* codejam.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = codejam.1; sourceTree = "<group>"; };
+		9567402F19419677002D426F /* snail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = snail.cpp; sourceTree = "<group>"; };
+		9567403019419677002D426F /* snail.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = snail.in; sourceTree = "<group>"; };
 		95778A84191BA8990074651E /* quadtree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = quadtree.cpp; path = codejam/quadtree.cpp; sourceTree = "<group>"; };
 		95778A85191BA8990074651E /* quadtree.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = quadtree.in; path = codejam/quadtree.in; sourceTree = "<group>"; };
 		958536BA1916228B007D7BD1 /* clocksync.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = clocksync.cpp; path = codejam/clocksync.cpp; sourceTree = "<group>"; };
@@ -50,8 +52,8 @@
 		95ACEFD219303ED900B31DA8 /* pi.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pi.in; path = codejam/pi.in; sourceTree = "<group>"; };
 		95ADF10D193EDB7B000B15EF /* tiling2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tiling2.cpp; path = codejam/tiling2.cpp; sourceTree = "<group>"; };
 		95ADF10E193EDB7B000B15EF /* tiling2.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tiling2.in; path = codejam/tiling2.in; sourceTree = "<group>"; };
-		95ADF110193F1518000B15EF /* tripathcnt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tripathcnt.cpp; sourceTree = "<group>"; };
-		95ADF111193F1518000B15EF /* tripathcnt.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tripathcnt.in; sourceTree = "<group>"; };
+		95ADF110193F1518000B15EF /* tripathcnt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tripathcnt.cpp; path = codejam/tripathcnt.cpp; sourceTree = "<group>"; };
+		95ADF111193F1518000B15EF /* tripathcnt.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tripathcnt.in; path = codejam/tripathcnt.in; sourceTree = "<group>"; };
 		95B060F819262EF800E85D54 /* wildcard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = wildcard.cpp; path = codejam/wildcard.cpp; sourceTree = "<group>"; };
 		95B060F919262EF800E85D54 /* wildcard.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wildcard.in; path = codejam/wildcard.in; sourceTree = "<group>"; };
 		95C628C0193625270046B9B0 /* quantize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quantize.cpp; sourceTree = "<group>"; };
@@ -89,8 +91,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95ADF110193F1518000B15EF /* tripathcnt.cpp */,
-				95ADF111193F1518000B15EF /* tripathcnt.in */,
+				9567402F19419677002D426F /* snail.cpp */,
+				9567403019419677002D426F /* snail.in */,
 				95C628C0193625270046B9B0 /* quantize.cpp */,
 				95C628C1193625270046B9B0 /* quantize.in */,
 				950C3C0E1928CECB0001C8BC /* jlis.cpp */,
@@ -106,6 +108,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				95ADF110193F1518000B15EF /* tripathcnt.cpp */,
+				95ADF111193F1518000B15EF /* tripathcnt.in */,
 				95AA578A19094F0100E0E5B9 /* boardcover.cpp */,
 				95AA57901909598B00E0E5B9 /* boardcover.in */,
 				958536BA1916228B007D7BD1 /* clocksync.cpp */,
@@ -181,7 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95ADF112193F1518000B15EF /* tripathcnt.cpp in Sources */,
+				9567403119419677002D426F /* snail.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
