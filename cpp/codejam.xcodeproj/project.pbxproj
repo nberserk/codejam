@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9509F1E7194814C100C623F8 /* poly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9509F1E5194814C100C623F8 /* poly.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		956740341941A328002D426F /* asymtiling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 956740321941A328002D426F /* asymtiling.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9509F1E5194814C100C623F8 /* poly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = poly.cpp; sourceTree = "<group>"; };
+		9509F1E6194814C100C623F8 /* poly.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = poly.in; sourceTree = "<group>"; };
 		950C36E71923126200A4DB7E /* jumpgame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = jumpgame.cpp; path = codejam/jumpgame.cpp; sourceTree = "<group>"; };
 		950C36E81923126200A4DB7E /* jumpgame.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = jumpgame.in; path = codejam/jumpgame.in; sourceTree = "<group>"; };
 		950C3C04192763360001C8BC /* trianglepath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = trianglepath.cpp; path = codejam/trianglepath.cpp; sourceTree = "<group>"; };
@@ -38,8 +40,8 @@
 		954767D919054D490021B178 /* codejam.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = codejam.1; sourceTree = "<group>"; };
 		9567402F19419677002D426F /* snail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = snail.cpp; path = codejam/snail.cpp; sourceTree = "<group>"; };
 		9567403019419677002D426F /* snail.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = snail.in; path = codejam/snail.in; sourceTree = "<group>"; };
-		956740321941A328002D426F /* asymtiling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = asymtiling.cpp; sourceTree = "<group>"; };
-		956740331941A328002D426F /* asymtiling.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = asymtiling.in; sourceTree = "<group>"; };
+		956740321941A328002D426F /* asymtiling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = asymtiling.cpp; path = codejam/asymtiling.cpp; sourceTree = "<group>"; };
+		956740331941A328002D426F /* asymtiling.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = asymtiling.in; path = codejam/asymtiling.in; sourceTree = "<group>"; };
 		95778A84191BA8990074651E /* quadtree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = quadtree.cpp; path = codejam/quadtree.cpp; sourceTree = "<group>"; };
 		95778A85191BA8990074651E /* quadtree.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = quadtree.in; path = codejam/quadtree.in; sourceTree = "<group>"; };
 		958536BA1916228B007D7BD1 /* clocksync.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = clocksync.cpp; path = codejam/clocksync.cpp; sourceTree = "<group>"; };
@@ -93,8 +95,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				956740321941A328002D426F /* asymtiling.cpp */,
-				956740331941A328002D426F /* asymtiling.in */,
+				9509F1E5194814C100C623F8 /* poly.cpp */,
+				9509F1E6194814C100C623F8 /* poly.in */,
 				95C628C0193625270046B9B0 /* quantize.cpp */,
 				95C628C1193625270046B9B0 /* quantize.in */,
 				950C3C0E1928CECB0001C8BC /* jlis.cpp */,
@@ -110,6 +112,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				956740321941A328002D426F /* asymtiling.cpp */,
+				956740331941A328002D426F /* asymtiling.in */,
 				95AA578A19094F0100E0E5B9 /* boardcover.cpp */,
 				95AA57901909598B00E0E5B9 /* boardcover.in */,
 				958536BA1916228B007D7BD1 /* clocksync.cpp */,
@@ -189,7 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				956740341941A328002D426F /* asymtiling.cpp in Sources */,
+				9509F1E7194814C100C623F8 /* poly.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
