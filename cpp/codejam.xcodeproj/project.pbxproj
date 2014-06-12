@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		95059F881949218B00A8DF9E /* fixparen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95059F861949218B00A8DF9E /* fixparen.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
 /* End PBXBuildFile section */
 
@@ -25,8 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		95059F861949218B00A8DF9E /* fixparen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fixparen.cpp; sourceTree = "<group>"; };
-		95059F871949218B00A8DF9E /* fixparen.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixparen.in; sourceTree = "<group>"; };
+		95059F861949218B00A8DF9E /* fixparen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fixparen.cpp; path = codejam/fixparen.cpp; sourceTree = "<group>"; };
+		95059F871949218B00A8DF9E /* fixparen.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fixparen.in; path = codejam/fixparen.in; sourceTree = "<group>"; };
 		9509F1E5194814C100C623F8 /* poly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = poly.cpp; path = codejam/poly.cpp; sourceTree = "<group>"; };
 		9509F1E6194814C100C623F8 /* poly.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = poly.in; path = codejam/poly.in; sourceTree = "<group>"; };
 		950C36E71923126200A4DB7E /* jumpgame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = jumpgame.cpp; path = codejam/jumpgame.cpp; sourceTree = "<group>"; };
@@ -97,8 +96,6 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95059F861949218B00A8DF9E /* fixparen.cpp */,
-				95059F871949218B00A8DF9E /* fixparen.in */,
 				95C628C0193625270046B9B0 /* quantize.cpp */,
 				95C628C1193625270046B9B0 /* quantize.in */,
 				950C3C0E1928CECB0001C8BC /* jlis.cpp */,
@@ -114,6 +111,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				95059F861949218B00A8DF9E /* fixparen.cpp */,
+				95059F871949218B00A8DF9E /* fixparen.in */,
 				9509F1E5194814C100C623F8 /* poly.cpp */,
 				9509F1E6194814C100C623F8 /* poly.in */,
 				956740321941A328002D426F /* asymtiling.cpp */,
@@ -197,7 +196,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95059F881949218B00A8DF9E /* fixparen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
