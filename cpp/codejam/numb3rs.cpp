@@ -21,49 +21,58 @@ typedef long long ll;
 void check(bool ret);
 
 bool gDebug;
-char gN, gD, gT[50];
+int gN, gDay, gTargetCount ,gTarget[50], gStart, gM[50][50];
+double gP[50][50];
 char gPriority[5];
-int gCache[100][101];
+double gCache[101][51];
 
 
 void initCache(){
 //    memset(gCache, -1, sizeof(gCache));
 }
 
+double doSolve(int day, int dest){
+    if(day==0)
+        return gP[gStart][dest];
+    double& ret = gCache[day][dest] ;
+    if(ret >=0)
+        return ret;
 
-double solve(){
-    
-    int n = strlen(gS);
-    stack<int> s;
-    char c,p;
-    for(int i=0;i<n;i++){
-        c = gS[i];
-        if(c=='{' || c=='<' || c=='(' || c=='['){
-            s.push(i);
-        }else{
-            int idxOpen  = s.top();            s.pop();
-            p = gS[idxOpen];
-            if(p=='{' && c=='}'){
-            }else if(p=='<' && c=='>'){
-            }else if(p=='(' && c==')'){
-            }else if(p=='[' && c==']'){
-            }else{
-                // fix
-                int pOpen = getPriority(p);
-                char pairCurrent = getPairOf(c);
-                int pClose = getPriority(pairCurrent);
-                if(pOpen<pClose){
-                    gS[i] = getPairOf(p);
-                }else{
-                    gS[idxOpen] = getPairOf(c);
-                }
-            }
-            
-        }
+    ret =0;
+    for(int i=0;i<gN;i++){
+        ret += gP[i][dest]*doSolve(day-1,i);
     }
 
-    if(s.size()>0)
-        printf("strange\n");
+    //printf("%d,%d=%f", day,dest,ret);
+    return ret;
+}
+
+void solve(){
+
+    // calc g
+    int i,j,k;
+    for (i=0;i<gN;i++){
+        int n=0;
+        for (j=0;j<gN;j++){
+            if (gM[i][j]==1)
+                n++;
+        }
+        for (j=0;j<gN;j++){
+            gP[i][j] = gM[i][j]==1? 1/(double)n : 0;
+        }
+    }
+    
+    // init cache
+    for (i=0; i<gDay; i++) {
+        for (j=0;j<gN;j++)
+            gCache[i][j] = -1;
+    }
+
+    for (i=0;i<gTargetCount;i++){
+        double v = doSolve(gDay-1, gTarget[i]);
+        printf("%.10f ", v);
+    }
+    printf("\n");
 }
 
 void check(bool ret){
@@ -102,21 +111,19 @@ int main(){
     scanf("%d", & count);
 
     for (p=0; p<count; p++) {
-        scanf("%d %d %d", gN, gD, gStartIndex);
-        for(j=0;i<gN;j++){
+        scanf("%d %d %d", &gN, &gDay, &gStart);
+        for(j=0;j<gN;j++){
             for(k=0;k<gN;k++){
                 scanf("%d", &gM[j][k] );                
             }
         }
 
-        int t;
-        scanf("%d", &t);
-        for(j=0;i<gN;j++){
-            scanf("%d", gT+j);
+        scanf("%d", &gTargetCount);
+        for(j=0;j<gTargetCount;j++){
+            scanf("%d", gTarget+j);
         }
                 
         solve();
-        printf("%s\n", gS);
     }
     
     if (gDebug) {
