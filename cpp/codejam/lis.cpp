@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <vector>
+#include <string>
 #include <time.h>
 #include <string.h>
 
@@ -15,6 +16,7 @@ int N;
 int s[500];
 int cache2[501];
 int cache[500][500];
+int gParent[501];
 
 int lis(int idxMax, int pos){
     while (idxMax!=-1 &&  pos<N && s[idxMax]>=s[pos]) {
@@ -49,12 +51,17 @@ int lis2(int start){
     }
     
     ret  = 1;
+    int cur;
     for (int i=start+1; i<N; i++) {
         if (start==-1 ||s[start]< s[i]) {
-            ret = max(ret, 1+lis2(i));
+            cur = 1+lis2(i);
+            if(ret < cur){
+                gParent[start+1] = i;
+                ret = cur;
+            }            
         }
     }
-    //printf("%d=%d\n", start, ret);
+    printf("%d=%d, %d\n", start, ret, gParent[start+1]);
     return ret;
 }
 
@@ -89,17 +96,30 @@ int main(){
             scanf("%d", &s[j]);
         }
 
-        memset(cache,-1, sizeof(cache));
+        //memset(cache,-1, sizeof(cache));
         memset(cache2,-1, sizeof(cache2));
+        memset(gParent, -1, sizeof(gParent));
         //mark();
-        int maxLis = lis(-1, 0);
+        //int maxLis = lis(-1, 0);
         int maxLis2 = lis2(-1);
-        maxLis2 --;
-        if (maxLis != maxLis2) {
-            printf("strange");
+
+        // reconstruct
+        vector<int>  result;
+        int cur=gParent[0];
+        while(cur!=-1){
+            result.push_back(s[cur]);
+            cur = gParent[cur+1];
         }
+        
+        maxLis2 --;
+//        if (maxLis != maxLis2) {
+//            printf("strange");
+//        }
         //endMark();
-        printf("%d\n", maxLis2);
+        for(j=0;j<result.size(); j++){
+            printf("%d, ", result[j]);
+        }
+        printf(" --> %d \n", maxLis2);
     }
     
     if (gDebug) {
