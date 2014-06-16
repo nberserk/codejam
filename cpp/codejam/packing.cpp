@@ -6,6 +6,7 @@
 #include <math.h>
 #include <vector>
 #include <time.h>
+#include <string>
 #include <string.h>
 #include <stack>
 #include <limits>
@@ -22,46 +23,75 @@ void check(bool ret);
 
 bool gDebug;
 int gN, gW, gSize[100], gValue[100];
-char gName[100][20];
+char gName[100][21];
 int gCache[101][1000];
-int gNext[101];
+int gNext[101][1000];
 
 void initCache(){
     memset(gCache, -1, sizeof(gCache));
     memset(gNext, -1, sizeof(gNext));
 }
 
-int doSolve(int idx, int size){
-    if(idx==gN || size <=0)
+int doSolve(int idx, int capacity){
+    if(idx==gN || capacity <=0)
         return 0;
-    int& ret = gCache[idx+1][size] ;
+    
+    int& ret = gCache[idx+1][capacity] ;
     if(ret !=-1)
         return ret;
 
-    int cur;
-    ret =0;
-    
-    for(int i=idx;i<gN;i++){
-        if(idx==-1 || gSize[i] < size){
-            if(idx==-1)
-                cur = doSolve(i+1,size);
-            else
-                cur = gValue[i] + doSolve(i+1,size-gSize[i]);
+    int cur, base=0, size=0;
+    ret = 0;    
+    if(idx!=-1){
+        base = gValue[idx];
+        ret = base;
+        size = gSize[idx];
+    }
+    for(int i=idx+1;i<gN;i++){        
+        if(gSize[i] <= capacity-size){
+            cur =  base + doSolve(i,capacity-size);
             if(cur > ret){
-                gNext[idx+1] = i;
+                gNext[idx+1][capacity] = i;
                 ret = cur;
             }
-        }       
+        }
     }
-    //printf("%d,%d=%f", day,dest,ret);
+    
+    //printf("%d,%d=%d\n", idx,capacity,ret);
+    return ret;
+}
+vector<string> reconstruct(){
+    int count = 0;
+    vector<string> ret;
+    string out;
+    
+    int cap = gW;
+    int i=gNext[0][cap], next;
+    while(i<gN){
+
+        ret.push_back(string(gName[i]));
+                    
+        next = gNext[i+1][cap];
+        cap -= gSize[i];
+        i=next;
+                
+        if(i==-1)
+            break;        
+    }
+
     return ret;
 }
 
 void solve(){
+    initCache();
     int maxValue = doSolve(-1, gW);
-    printf("%d ", maxValue);
-
-    printf("\n");
+    // reconstruct items
+    vector<string> ret = reconstruct();
+    
+    printf("%d %d\n", maxValue, ret.size());
+    for (int i=0; i<ret.size(); i++) {
+        printf("%s\n", ret[i].c_str());
+    }
 }
 
 void check(bool ret){
@@ -78,6 +108,16 @@ void check(int expected, int actual){
 
 
 void test(){
+    gN = 1;
+    gW=10;
+    strcpy(gName[0], "dd");
+    gSize[0] = 10;
+    gValue[0]=10;
+    check(10, doSolve(-1, gW));
+    vector<string> r = reconstruct();
+    check(1, r.size()  );
+    check(r[0].compare("dd")==0);
+    
    
 }
 
@@ -93,8 +133,8 @@ int main(){
         fp = freopen(fn, "r", stdin);
     }
 
-    initCache();
-    //test();
+  
+//    test();
     
     int count, p,j,k;
     scanf("%d", & count);
