@@ -22,10 +22,13 @@ typedef long long ll;
 void check(bool ret);
 
 bool gDebug;
-int gN, gW, gSize[100], gValue[100];
+int gM;
 char gWord[500][11];
-int gCache[101][1000];
-int gNext[101][1000];
+char cInput[100][11];
+double gStart[500];
+double gNext[500][500];
+double gClassifier[500][500];
+
 
 void initCache(){
     memset(gCache, -1, sizeof(gCache));
@@ -141,13 +144,35 @@ int main(){
     for(int i=0;i<gM;i++){
         scanf("%s", gWord+i);
     }
+    
+    for( i=0;i<gM;i++){
+        scanf("%f", gStart+i);
+    }
 
+    for( i=0;i<gM;i++){
+        for(j=0;j<gM;j++){
+            scanf("%f", gNext[i][j]);
+        }        
+    }
+
+    for( i=0;i<gM;i++){
+        for(j=0;j<gM;j++){
+            scanf("%f", gNext[i][j]);
+        }        
+    }
+
+    for( i=0;i<gM;i++){
+        for(j=0;j<gM;j++){
+            scanf("%f", gClassifier[i][j]);
+        }        
+    }
+    
     for (p=0; p<count; p++) {
         scanf("%d", &n);
         for(j=0;j<n;j++){
-            scanf("%s", );
+            scanf("%s", gInput+j);
         }
-                        
+
         solve();
     }
     
