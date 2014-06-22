@@ -16,15 +16,16 @@
 using namespace std;
 #define H_MAX 987654321
 #define H_MIN -987654321
+#define H_EPSILON 0.000001
 #define H_MOD 10000000
 typedef long long ll;
 
 void check(bool ret);
 
 bool gDebug;
-int gM;
+int gM, gN;
 char gWord[500][11];
-char cInput[100][11];
+int gInput[100];
 double gStart[500];
 double gNext[500][500];
 double gClassifier[500][500];
@@ -35,59 +36,37 @@ void initCache(){
     memset(gNext, -1, sizeof(gNext));
 }
 
-int doSolve(int idx, int capacity){
-    if(idx==gN || capacity <=0)
+double doSolve(int idx, int prev){
+    if(idx>=gN)
         return 0;
     
-    int& ret = gCache[idx+1][capacity] ;
-    if(ret !=-1)
+    double& ret = gCache[idx][prev+1] ;
+    if(ret >= 0)
         return ret;
 
-    int cur, base=0, size=0;
-    ret = 0;    
-    if(idx!=-1){
-        base = gValue[idx];
-        ret = base;
-        size = gSize[idx];
-    }
-    for(int i=idx+1;i<gN;i++){        
-        if(gSize[i] <= capacity-size){
-            cur =  base + doSolve(i,capacity-size);
-            if(cur > ret){
-                gNext[idx+1][capacity] = i;
-                ret = cur;
-            }
+    int cur = gInput[idx];
+    int i;
+    ret = 0;
+    for(i=0;i<gM;i++){
+        if(cur==i)continue;
+        if(gClassifier[i][cur]<H_EPSILON) continue;
+        curP = gClassifier[i][cur];
+        if(prev==-1){
+            curP*=gStart[i];
+        }else{
+            curP*= gNext[prev][i];
         }
-    }
+        ret = max(ret, curP*doSolve(idx,i));        
+    }    
     
     //printf("%d,%d=%d\n", idx,capacity,ret);
     return ret;
 }
-vector<string> reconstruct(){
-    int count = 0;
-    vector<string> ret;
-    string out;
-    
-    int cap = gW;
-    int i=gNext[0][cap], next;
-    while(i<gN){
-
-        ret.push_back(string(gName[i]));
-                    
-        next = gNext[i+1][cap];
-        cap -= gSize[i];
-        i=next;
-                
-        if(i==-1)
-            break;        
-    }
-
-    return ret;
-}
 
 void solve(){
-    initCache();
-    int maxValue = doSolve(-1, gW);
+    memset(gCache, -1, sizeof(gCache));
+
+    int maxValue = doSolve(0, -1);
     // reconstruct items
     vector<string> ret = reconstruct();
     
@@ -154,25 +133,25 @@ int main(){
             scanf("%f", gNext[i][j]);
         }        
     }
-
-    for( i=0;i<gM;i++){
-        for(j=0;j<gM;j++){
-            scanf("%f", gNext[i][j]);
-        }        
-    }
-
+    
     for( i=0;i<gM;i++){
         for(j=0;j<gM;j++){
             scanf("%f", gClassifier[i][j]);
         }        
     }
-    
-    for (p=0; p<count; p++) {
-        scanf("%d", &n);
-        for(j=0;j<n;j++){
-            scanf("%s", gInput+j);
-        }
 
+    char in[11];
+    for (p=0; p<count; p++) {
+        scanf("%d", &gN);
+        for(j=0;j<gN;j++){
+            scanf("%s", in);
+            for (int k=0;k<gM;k++){
+                if(strcmp(in, gWord[k])==0){
+                    gInput[j] =k;
+                    break;
+                }
+            }
+        }
         solve();
     }
     
