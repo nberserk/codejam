@@ -35,7 +35,7 @@ int gParent[100][501];
 
 double doSolve(int idx, int prev){
     if(idx>=gN)
-        return 0;
+        return 1;
     
     double& ret = gCache[idx][prev+1] ;
     if(ret > 0)
@@ -54,45 +54,79 @@ double doSolve(int idx, int prev){
         }else{
             curP*= gNext[prev][i];
         }
-        curP += doSolve(idx+1, i);
+        curP *= doSolve(idx+1, i);
         if(curP> ret){
             ret = curP;
             gParent[idx][prev+1] = i;
         }
     }
     
-    printf("%d,%d=%.4f\n", idx,prev,ret);
+    //printf("%d,%d=%.4f\n", idx,prev,ret);
     return ret;
 }
 
+double doSolve2(int idx, int prev){
+    if(idx>=gN)
+        return 0;
+    
+    double& ret = gCache[idx][prev+1] ;
+    if(ret != 1.0)
+        return ret;
+    
+    int cur = gInput[idx];
+    int i;
+    ret = 0;
+    double curP;
+    for(i=0;i<gM;i++){
+        curP = gClassifier[i][cur];
+        if(prev==-1){
+            curP+=gStart[i];
+        }else{
+            curP+= gNext[prev][i];
+        }
+        curP += doSolve2(idx+1, i);
+        if(curP> ret){
+            ret = curP;
+            gParent[idx][prev+1] = i;
+        }
+    }
+    
+    //printf("%d,%d=%.4f\n", idx,prev,ret);
+    return ret;
+}
+
+
 void reconstruct(int idx, int prev, vector<string>& out){
-//    if(idx>= gN) return;
-//    int  maxIdx = -1;
-//    double max = -1;
-//    for(int i=0;i<gM;i++){
-//        if(gCache[idx][prev+1]>max){
-//            max = gCache[idx][i];
-//            maxIdx = i;
-//        }
-//    }
-//    out.push_back(gWord[maxIdx]);
-//    reconstruct(idx+1, out);
+    int next = gParent[idx][prev+1];
+    if (next==-1) {
+        return;
+    }
+
+    out.push_back(gWord[next]);
+    reconstruct(idx+1,next, out);
 }
 
 void solve(){
-    memset(gCache, 0, sizeof(gCache));
+    int i,j;
+    for( i=0;i<gN;i++){
+        for(j=0;j<gM;j++){
+            gCache[i][j] = 1.0;
+        }
+    }
+//    memset(gCache, , sizeof(gCache));
     memset(gParent, -1, sizeof(gParent));
 
-    int maxValue = doSolve(0, -1);
+    int maxValue = doSolve2(0, -1);
     // reconstruct items
     
     vector<string> ret;
     reconstruct(0,-1, ret);
     
-    printf("%d %d\n", maxValue, ret.size());
+    //printf("%d %d\n", maxValue, ret.size());
     for (int i=0; i<ret.size(); i++) {
-        printf("%s\n", ret[i].c_str());
+        printf("%s ", ret[i].c_str());
     }
+    printf("\n");
 }
 
 void check(bool ret){
