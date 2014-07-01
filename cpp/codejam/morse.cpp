@@ -24,29 +24,31 @@ void check(bool ret);
 
 bool gDebug;
 int gM, gN, gK;
-long gCache[100][100];
+ll gCache[101][101];
 int gParent[100][501];
 
 
-long combination(int n, int m){
+ll combination(int n, int m){
+    if(n==0 && m==0)
+        return 0;
     if(n==0 || m==0)
         return 1;
     
-    long& ret = gCache[n][m] ;
+    ll& ret = gCache[n][m] ;
     if(ret != -1)
         return ret;
     
     ret =  combination(n-1, m) + combination(n,m-1);
-    //printf("%d,%d=%d\n", n,m,ret);
+    printf("%d,%d=%lld\n", n,m,ret);
     return ret;
 }
 
 
-void reconstruct(int n, int m,int k, string& ret){
+void reconstruct(int n, int m,ll k, string& ret){
     if(k==0)
         return;
     if(n>0){
-        long half = combination(n-1,m);
+        ll half = combination(n-1,m);
         if(k>half){
             ret += 'o';
             reconstruct(n, m-1, k-half, ret);
@@ -61,11 +63,12 @@ void reconstruct(int n, int m,int k, string& ret){
 }
 
 void solve(){
-    long maxValue = combination(gN, gM);
+    ll maxValue = combination(gN, gM);
+    //printf("%d", maxValue);
     string ret;
     reconstruct(gN, gM, gK, ret);
 
-    printf("%s\n", ret.c_str());
+    printf("%lld-%s\n", maxValue, ret.c_str());
 }
 
 void check(bool ret){
