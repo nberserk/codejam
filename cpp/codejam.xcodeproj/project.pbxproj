@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9525E4E31962563900332F82 /* morse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9525E4E11962563900332F82 /* morse.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95D0F5351958571B00430F8C /* ocr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95D0F5331958571B00430F8C /* ocr.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +37,8 @@
 		950C3C0C192836640001C8BC /* lis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lis.in; path = codejam/lis.in; sourceTree = "<group>"; };
 		950C3C0E1928CECB0001C8BC /* jlis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jlis.cpp; sourceTree = "<group>"; };
 		950C3C0F1928CECB0001C8BC /* jlis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jlis.in; sourceTree = "<group>"; };
+		9525E4E11962563900332F82 /* morse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = morse.cpp; sourceTree = "<group>"; };
+		9525E4E21962563900332F82 /* morse.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = morse.in; sourceTree = "<group>"; };
 		954767D419054D490021B178 /* codejam */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = codejam; sourceTree = BUILT_PRODUCTS_DIR; };
 		954767D719054D490021B178 /* picnic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picnic.cpp; sourceTree = "<group>"; };
 		954767D919054D490021B178 /* codejam.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = codejam.1; sourceTree = "<group>"; };
@@ -103,6 +105,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				9525E4E11962563900332F82 /* morse.cpp */,
+				9525E4E21962563900332F82 /* morse.in */,
 				95D0F5331958571B00430F8C /* ocr.cpp */,
 				95D0F5341958571B00430F8C /* ocr.in */,
 				95C628C0193625270046B9B0 /* quantize.cpp */,
@@ -209,7 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95D0F5351958571B00430F8C /* ocr.cpp in Sources */,
+				9525E4E31962563900332F82 /* morse.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

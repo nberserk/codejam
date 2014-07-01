@@ -28,16 +28,16 @@ long gCache[100][100];
 int gParent[100][501];
 
 
-long doSolve(int n, int m){
-    if(n==0 || n==0)
+long combination(int n, int m){
+    if(n==0 || m==0)
         return 1;
     
     long& ret = gCache[n][m] ;
     if(ret != -1)
         return ret;
     
-    ret =  doSolve(n-1, m) + doSolve(n,m-1);    
-    //printf("%d,%d=%.4f\n", idx,prev,ret);
+    ret =  combination(n-1, m) + combination(n,m-1);
+    //printf("%d,%d=%d\n", n,m,ret);
     return ret;
 }
 
@@ -45,18 +45,23 @@ long doSolve(int n, int m){
 void reconstruct(int n, int m,int k, string& ret){
     if(k==0)
         return;
-    long half = doSolve(n-1,m);
-    if(k>half){
-        ret += 'o';
-        reconstruct(n, m-1, k-half, ret);
+    if(n>0){
+        long half = combination(n-1,m);
+        if(k>half){
+            ret += 'o';
+            reconstruct(n, m-1, k-half, ret);
+        }else{
+            ret += '-';
+            reconstruct(n-1, m, k, ret);
+        }
     }else{
-        ret += '-';
-        reconstruct(n-1, m, k, ret);
-    }
+        for (int i=0;i<m;i++)
+            ret += 'o';
+    }    
 }
 
 void solve(){
-    long maxValue = doSolve(gN, gM);
+    long maxValue = combination(gN, gM);
     string ret;
     reconstruct(gN, gM, gK, ret);
 
@@ -77,7 +82,26 @@ void check(int expected, int actual){
 
 
 void test(){
+    gN=gM=1;
+    gK = 1;
+    check(2, (int)combination(1,1));
+    string t;
+    reconstruct(1,1,1,t);
     
+    check( strcmp(t.c_str(), "-o") ==0);
+    t.clear();
+    reconstruct(1,1,2,t);
+    check( strcmp(t.c_str(), "o-")==0);
+    
+    check(3, combination(1, 2));
+    t.clear();
+    reconstruct(1, 2, 1, t);
+    check(strcmp(t.c_str(),"-oo")==0);
+    
+    t.clear();
+    reconstruct(1, 2, 3, t);
+    check(strcmp(t.c_str(),"oo-")==0);
+
    
 }
 
@@ -93,9 +117,8 @@ int main(){
         fp = freopen(fn, "r", stdin);
     }
   
-//    test();    
-
     memset(gCache, -1 , sizeof(gCache));
+    //test();
     int count, p,j,k,n, i;
     scanf("%d", &count);
     
