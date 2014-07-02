@@ -26,6 +26,7 @@ bool gDebug;
 int gM, gN, gK;
 ll gCache[101][101];
 int gParent[100][501];
+string result;
 
 
 ll combination(int n, int m){
@@ -39,15 +40,22 @@ ll combination(int n, int m){
         return ret;
     
     ret =  combination(n-1, m) + combination(n,m-1);
-    printf("%d,%d=%lld\n", n,m,ret);
+    //printf("%d,%d=%lld\n", n,m,ret);
     return ret;
 }
 
 
-void reconstruct(int n, int m,ll k, string& ret){
-    if(k==0)
+void reconstruct(int n, int m,int k, string& ret){
+    if(n==0 && m==0)
         return;
-    if(n>0){
+    
+    if (n==0){
+        for (int i=0;i<m;i++)
+            ret += 'o';
+    }else if (m==0){
+        for (int i=0;i<n;i++)
+            ret += '-';
+    }else{
         ll half = combination(n-1,m);
         if(k>half){
             ret += 'o';
@@ -56,19 +64,26 @@ void reconstruct(int n, int m,ll k, string& ret){
             ret += '-';
             reconstruct(n-1, m, k, ret);
         }
-    }else{
-        for (int i=0;i<m;i++)
-            ret += 'o';
-    }    
+    }
 }
 
 void solve(){
-    ll maxValue = combination(gN, gM);
+    int i;
+    int lowestN;
+    for ( i=1;i<=gN;i++){
+        ll maxValue = combination(i, gM);
+        if(maxValue>= gK)
+            break;
+    }
+    lowestN = i;
+    
     //printf("%d", maxValue);
-    string ret;
-    reconstruct(gN, gM, gK, ret);
+    result.clear();
+    for( i=0;i<gN-lowestN;i++)
+        result += '-';
+    reconstruct(lowestN, gM, gK, result);
 
-    printf("%lld-%s\n", maxValue, ret.c_str());
+    printf("%s\n", result.c_str());
 }
 
 void check(bool ret){
@@ -87,23 +102,33 @@ void check(int expected, int actual){
 void test(){
     gN=gM=1;
     gK = 1;
-    check(2, (int)combination(1,1));
-    string t;
-    reconstruct(1,1,1,t);
+    solve();
     
-    check( strcmp(t.c_str(), "-o") ==0);
-    t.clear();
-    reconstruct(1,1,2,t);
-    check( strcmp(t.c_str(), "o-")==0);
+    check( strcmp(result.c_str(), "-o") ==0);
+
+    gK =2;
+    solve();
+    check( strcmp(result.c_str(), "o-")==0);
+
+    gM =2; gK=1;
+    solve();
+    check(strcmp(result.c_str(),"-oo")==0);
     
-    check(3, combination(1, 2));
-    t.clear();
-    reconstruct(1, 2, 1, t);
-    check(strcmp(t.c_str(),"-oo")==0);
+    gN=1; gM=2; gK=3;
+    solve();
+    check(strcmp(result.c_str(),"oo-")==0);
     
-    t.clear();
-    reconstruct(1, 2, 3, t);
-    check(strcmp(t.c_str(),"oo-")==0);
+    gN=2; gM=2; gK=1;
+    solve();
+    check(strcmp(result.c_str(),"--oo")==0);
+
+    gK = 2;
+    solve();
+    check(strcmp(result.c_str(),"-o-o")==0);
+
+    gK = 4;
+    solve();
+    check(strcmp(result.c_str(),"o--o")==0);
 
    
 }
