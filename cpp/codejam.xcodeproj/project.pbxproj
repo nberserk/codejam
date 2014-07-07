@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9525E4E31962563900332F82 /* morse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9525E4E11962563900332F82 /* morse.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
+		95AAD19C1967D7F800303393 /* klis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95AAD19A1967D7F800303393 /* klis.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +52,8 @@
 		958536BB1916228B007D7BD1 /* clocksync.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = clocksync.in; path = codejam/clocksync.in; sourceTree = "<group>"; };
 		95AA578A19094F0100E0E5B9 /* boardcover.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = boardcover.cpp; path = codejam/boardcover.cpp; sourceTree = "<group>"; };
 		95AA57901909598B00E0E5B9 /* boardcover.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = boardcover.in; path = codejam/boardcover.in; sourceTree = "<group>"; };
+		95AAD19A1967D7F800303393 /* klis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = klis.cpp; sourceTree = "<group>"; };
+		95AAD19B1967D7F800303393 /* klis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = klis.in; sourceTree = "<group>"; };
 		95AB33D4191FA92C00AED8FF /* fanmeeting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fanmeeting.cpp; sourceTree = "<group>"; };
 		95AB33D5191FA92C00AED8FF /* fanmeeting.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fanmeeting.in; sourceTree = "<group>"; };
 		95ABB4C5191D0A020074AD44 /* fence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fence.cpp; path = codejam/fence.cpp; sourceTree = "<group>"; };
@@ -105,6 +107,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95AAD19A1967D7F800303393 /* klis.cpp */,
+				95AAD19B1967D7F800303393 /* klis.in */,
 				9525E4E11962563900332F82 /* morse.cpp */,
 				9525E4E21962563900332F82 /* morse.in */,
 				95D0F5331958571B00430F8C /* ocr.cpp */,
@@ -213,7 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9525E4E31962563900332F82 /* morse.cpp in Sources */,
+				95AAD19C1967D7F800303393 /* klis.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
