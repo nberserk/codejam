@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <vector>
+#include <map>
 #include <time.h>
 #include <string>
 #include <sstream>
@@ -28,6 +29,8 @@ int gN, gK;
 int gn[500];
 int gCache[501];
 int gCount[501];
+int gLis;
+vector<vector<int>> gFinal;
 
 // 
 int lis(int start){
@@ -54,53 +57,83 @@ int lis(int start){
 
 void resetCache(){
     memset(gCache, -1, sizeof(gCache));
+    memset(gCount, -1, sizeof(gCount));
 }
 
-int recon(int idx, int r){
-    if(r==0)
-        return 1;
-
-    int c = 0;
-    for(int i=idx+1;i<gN;i++){
-        if(gCache[i+1]==r-1 && gn[i] > gn[idx]){
-            c += recon(i+1, r-1);
+int count(int start){
+    int& ret = gCount[start+1];
+    if (ret!=-1) {
+        return ret;
+    }
+    int lis = gCache[start+1];
+    if (lis==1) {
+        ret =1;
+    }else{
+        ret = 0;
+        for (int i=start+1; i<gN; i++) {
+            if(start==-1 || gn[i]>gn[start]){
+                if(lis == gCache[i+1]+1){
+                    // tricky...
+                    ret = min<long long>(2000000000,(long long)ret +  count(i));
+//                    ret %= numeric_limits<int>::max()/2;
+                }
+            }        
         }
     }
 
-    gCount[idx] = c;
-    printf("gCount-%d=%d\n", idx, c);
-    return c;
+    //printf("%d=%d\n", start, ret);
+    return ret;
 }
 
-void reconstruct(int i, string& r){
-    if (i>=gN)
+void reconstruct(int start, int k, vector<int>& v){
+    if (v.size()==gLis-1) {
         return;
+    }
+    int lis = gCache[start+1];
 
-    if(i!=-1){
-        stringstream ss;
-        ss << gn[i] << " ";
-        r += ss.str();
+    map<int,int> map;
+    vector<int> candidates;
+
+    for (int i=start+1; i<gN; i++) {
+        if(start==-1 || gn[i]>gn[start]){
+            if(lis == gCache[i+1]+1){
+                candidates.push_back(gn[i]);
+                map.insert(pair<int,int>(gn[i], i));                
+            }
+        }
     }
     
-    for( int j=i+1;j<gN;j++){
-        if(gCache[j+1] == gCache[i+1]-1){
-            reconstruct(j, r);
+    //
+    sort(candidates.begin(), candidates.end());
+
+    int size = candidates.size();
+    int idx;
+    for(int i=0;i<size;i++){
+        idx = map[candidates[i]];
+        if(gCount[idx+1]>=k){
+            v.push_back(gn[idx]);
+            reconstruct(idx,k,v);
             break;
+        }else{
+            k-= gCount[idx+1];
         }
-    }    
+    }
 }
 
 void solve(){
     resetCache();
-    int v = lis(-1);
+    gLis = lis(-1);
 
-    recon(-1, v);
-
-    string r;
-    reconstruct(-1, r);
+    int maxCount = count(-1);
+    vector<int> v;
+    reconstruct(-1,gK, v);
     
-    printf("%d\n", v-1);
-    printf("%s\n", r.c_str());
+    printf("%d\n", gLis-1);
+    int size = v.size();
+    for(int i=0;i<size;i++){
+        printf("%d ",v[i] );
+    }
+    printf("\n");
 }
 
 void check(bool ret){
