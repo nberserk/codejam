@@ -28,17 +28,51 @@ void check(bool ret);
 bool gDebug;
 int  gM;
 char gE[16];
+vector<int> gOrg;
 int gCache[501];
 int gCount[501];
 int gLength[51];
 
 
-void solve(){
-    char c;
-    for(int i=0;i<gL;i++){
+int num(vector<int>& remaining, vector<int>& added){
+    if (remaining.size()==0) {
+        
+        return 1;
+    }
+    
+    int& ret = gCache[][];
+    if (ret!=-1) {
+        return ret;
+    }
+    
+    
+    int size = remaining.size();
+    ret = 0;
+    int nth = added.size();
+    for (int i=0; i<size; i++) {
+        if ( remaining[i] > gOrg[nth]) {
+            continue;
+        }
+        
+        ret += num(remaining, added);
+    }
+    
+    return ret;
+}
 
-    }    
-    printf("\n");
+void solve(){
+    int size = strlen(gE);
+    int n;
+    for(int i=0;i<size;i++){
+        n = gE[i] - '0';
+        gOrg.push_back(n);
+    }
+    
+    vector<int> copy(gOrg);
+    vector<int> added;
+    n = num(gOrg, added);
+    
+    printf("%d\n", n);
 }
 
 void check(bool ret){

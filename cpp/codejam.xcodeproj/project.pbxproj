@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		9556C14A1972BBB300BB2B6A /* dragon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9556C1481972BBB300BB2B6A /* dragon.cpp */; };
+		95AEFC241976B3EF00CB67EE /* zimbabwe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95AEFC221976B3EF00CB67EE /* zimbabwe.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +66,8 @@
 		95ADF10E193EDB7B000B15EF /* tiling2.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tiling2.in; path = codejam/tiling2.in; sourceTree = "<group>"; };
 		95ADF110193F1518000B15EF /* tripathcnt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tripathcnt.cpp; path = codejam/tripathcnt.cpp; sourceTree = "<group>"; };
 		95ADF111193F1518000B15EF /* tripathcnt.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tripathcnt.in; path = codejam/tripathcnt.in; sourceTree = "<group>"; };
+		95AEFC221976B3EF00CB67EE /* zimbabwe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zimbabwe.cpp; sourceTree = "<group>"; };
+		95AEFC231976B3EF00CB67EE /* zimbabwe.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zimbabwe.in; sourceTree = "<group>"; };
 		95B00EF8194DE29A0043FE90 /* packing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = packing.cpp; path = codejam/packing.cpp; sourceTree = "<group>"; };
 		95B00EF9194DE29A0043FE90 /* packing.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = packing.in; path = codejam/packing.in; sourceTree = "<group>"; };
 		95B060F819262EF800E85D54 /* wildcard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = wildcard.cpp; path = codejam/wildcard.cpp; sourceTree = "<group>"; };
@@ -109,6 +111,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95AEFC221976B3EF00CB67EE /* zimbabwe.cpp */,
+				95AEFC231976B3EF00CB67EE /* zimbabwe.in */,
 				9556C1481972BBB300BB2B6A /* dragon.cpp */,
 				9556C1491972BBB300BB2B6A /* dragon.in */,
 				9525E4E11962563900332F82 /* morse.cpp */,
@@ -221,7 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9556C14A1972BBB300BB2B6A /* dragon.cpp in Sources */,
+				95AEFC241976B3EF00CB67EE /* zimbabwe.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
