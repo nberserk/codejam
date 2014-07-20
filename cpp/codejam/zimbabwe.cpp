@@ -28,11 +28,16 @@ void check(bool ret);
 bool gDebug;
 int  gM;
 char gE[16];
-vector<int> gOrg;
+vector<int> gOrgNumber;
 int gCache[501];
 int gCount[501];
 int gLength[51];
+ll factorial[15];
 
+int getInex(vector<int>& r){
+    
+    return 0;
+}
 
 int num(vector<int>& remaining, vector<int>& added){
     if (remaining.size()==0) {
@@ -40,7 +45,7 @@ int num(vector<int>& remaining, vector<int>& added){
         return 1;
     }
     
-    int& ret = gCache[][];
+    int& ret = gCache[1];
     if (ret!=-1) {
         return ret;
     }
@@ -50,7 +55,7 @@ int num(vector<int>& remaining, vector<int>& added){
     ret = 0;
     int nth = added.size();
     for (int i=0; i<size; i++) {
-        if ( remaining[i] > gOrg[nth]) {
+        if ( remaining[i] > gOrgNumber[nth]) {
             continue;
         }
         
@@ -65,12 +70,13 @@ void solve(){
     int n;
     for(int i=0;i<size;i++){
         n = gE[i] - '0';
-        gOrg.push_back(n);
+        gOrgNumber.push_back(n);
     }
     
-    vector<int> copy(gOrg);
+    
+    vector<int> copy(gOrgNumber);
     vector<int> added;
-    n = num(gOrg, added);
+    n = num(gOrgNumber, added);
     
     printf("%d\n", n);
 }
@@ -93,9 +99,13 @@ void check(char expected, char actual){
     }
 }
 
-void test(){    
+void test(){
+    check(6, factorial[3]);
+    
     
 }
+
+
 
 
 int main(){
@@ -107,7 +117,14 @@ int main(){
     FILE *fp;
     if (gDebug) {
         fp = freopen(fn, "r", stdin);
-    }      
+    }
+
+    // init factorial
+    ll v;
+    factorial[0]= factorial[1]=1;
+    for(int i=2;i<15;i++){
+        factorial[i]=factorial[i-1]*i;
+    }    
     
     test();
 
