@@ -34,32 +34,58 @@ int gCount[501];
 int gLength[51];
 ll factorial[15];
 
-int getInex(vector<int>& r){
+int getIndex(vector<int>& r){
     
     return 0;
 }
 
-int num(vector<int>& remaining, vector<int>& added){
-    if (remaining.size()==0) {
+int num(vector<int>& remaining, int modulus){
         
-        return 1;
-    }
-    
-    int& ret = gCache[1];
-    if (ret!=-1) {
-        return ret;
-    }
-    
+    // int& ret = gCache[1];
+    // if (ret!=-1) {
+    //     return ret;
+    // }
+    int ret=0;
     
     int size = remaining.size();
     ret = 0;
-    int nth = added.size();
+    int nth = gOrgNumber.size()-size;
+    ll temp=size*10;
+    int org, remainCount=0;
+    
     for (int i=0; i<size; i++) {
-        if ( remaining[i] > gOrgNumber[nth]) {
+        if (remaining[i]==-1) {
             continue;
         }
+        remainCount++;
+        // todo: r==0, same number is not allwed
+//        if(size==1){
+//            if ( remaining[i] >= gOrgNumber[nth]) 
+//                continue;            
+//        }else{
+            if ( remaining[i] > gOrgNumber[nth])
+                continue;            
+//        }
+
+        org = remaining[i];
         
-        ret += num(remaining, added);
+        temp *=remaining[i];
+        temp %= gM;
+        temp -= modulus;
+        if (temp<0){
+            temp+=gM;
+        }
+
+        remaining[i]=-1;
+        ret += num(remaining, temp);
+        remaining[i] =org;
+    }
+
+    if (remainCount==0){
+        if (modulus==0){
+            return 1;
+        }else
+            return 0;
     }
     
     return ret;
@@ -68,16 +94,15 @@ int num(vector<int>& remaining, vector<int>& added){
 void solve(){
     int size = strlen(gE);
     int n;
+    gOrgNumber.clear();
     for(int i=0;i<size;i++){
         n = gE[i] - '0';
         gOrgNumber.push_back(n);
     }
     
-    
     vector<int> copy(gOrgNumber);
-    vector<int> added;
-    n = num(gOrgNumber, added);
     
+    n = num(gOrgNumber, 0);    
     printf("%d\n", n);
 }
 
