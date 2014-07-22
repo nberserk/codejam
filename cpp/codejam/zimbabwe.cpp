@@ -29,6 +29,7 @@ bool gDebug;
 int  gM;
 char gE[16];
 vector<int> gOrgNumber;
+ll gOrgNum;
 int gCache[501];
 int gCount[501];
 int gLength[51];
@@ -39,55 +40,42 @@ int getIndex(vector<int>& r){
     return 0;
 }
 
-int num(vector<int>& remaining, int modulus){
+int num(vector<int>& remaining, ll cur){
         
     // int& ret = gCache[1];
     // if (ret!=-1) {
     //     return ret;
     // }
-    int ret=0;
+    
     
     int size = remaining.size();
-    ret = 0;
-    int nth = gOrgNumber.size()-size;
-    ll temp=size*10;
-    int org, remainCount=0;
-    
-    for (int i=0; i<size; i++) {
-        if (remaining[i]==-1) {
-            continue;
-        }
-        remainCount++;
-        // todo: r==0, same number is not allwed
-//        if(size==1){
-//            if ( remaining[i] >= gOrgNumber[nth]) 
-//                continue;            
-//        }else{
-            if ( remaining[i] > gOrgNumber[nth])
-                continue;            
-//        }
-
-        org = remaining[i];
-        
-        temp *=remaining[i];
-        temp %= gM;
-        temp -= modulus;
-        if (temp<0){
-            temp+=gM;
-        }
-
-        remaining[i]=-1;
-        ret += num(remaining, temp);
-        remaining[i] =org;
-    }
-
-    if (remainCount==0){
-        if (modulus==0){
+    if (size==0) {
+        if (cur%gM==0) {
             return 1;
         }else
             return 0;
     }
-    
+    int ret = 0;
+    ll temp;
+    map<int,int> done;
+    for (int i=0; i<size; i++) {
+
+        temp = remaining[i]*pow(10,size-1);
+        if (cur+temp >= gOrgNum)
+            continue;
+        if (done.find(remaining[i]) !=done.end())
+            continue;
+        temp += cur;
+        vector<int> nv(remaining);
+        nv.erase(nv.begin()+i);
+        ret += num(nv, temp);
+        done[remaining[i]] = i;
+    }    
+
+//   for (int i = 0; i < size; i++){
+//       printf("%d,", remaining[i]);        
+//   }
+//    printf("(%lld)=%d\n", cur, ret);
     return ret;
 }
 
@@ -95,14 +83,16 @@ void solve(){
     int size = strlen(gE);
     int n;
     gOrgNumber.clear();
+    gOrgNum=0;
     for(int i=0;i<size;i++){
         n = gE[i] - '0';
         gOrgNumber.push_back(n);
+        gOrgNum += n*pow(10,size-i-1);
     }
     
     vector<int> copy(gOrgNumber);
     
-    n = num(gOrgNumber, 0);    
+    n = num(gOrgNumber, 0);
     printf("%d\n", n);
 }
 
