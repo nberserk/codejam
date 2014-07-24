@@ -30,32 +30,42 @@ int  gM;
 char gE[16];
 vector<int> gOrgNumber;
 ll gOrgNum;
-int gCache[501];
+int gCache[1000000][20];
 int gCount[501];
 int gLength[51];
 ll factorial[15];
 
 int getIndex(vector<int>& r){
+    int ret=0, size = r.size();
+    for (int i = 0; i < size; i++){
+        ret += pow(10, size-i-1)*r[i];
+    }
     
-    return 0;
+    return ret;
 }
 
-int num(vector<int>& remaining, ll cur){
+int num(vector<int>& remaining, ll cur, int modulus){
         
-    // int& ret = gCache[1];
-    // if (ret!=-1) {
-    //     return ret;
-    // }
-    
     
     int size = remaining.size();
-    if (size==0) {
-        if (cur%gM==0) {
+    if (size==1) {
+        if (cur+remaining[0]<gOrgNum && remaining[0]%gM==modulus) {
             return 1;
         }else
             return 0;
     }
-    int ret = 0;
+
+    int idx=-1;
+    if (size<=5){
+        sort(remaining.begin(), remaining.end());
+        idx = getIndex(remaining);
+        int& ret = gCache[idx][modulus];
+        if (ret!=-1) {
+            return ret;
+        }
+    }
+
+    int ret=0;
     ll temp;
     map<int,int> done;
     for (int i=0; i<size; i++) {
@@ -65,25 +75,38 @@ int num(vector<int>& remaining, ll cur){
             continue;
         if (done.find(remaining[i]) !=done.end())
             continue;
+        int nm = (modulus-temp%gM);
+        if (nm<0) {
+            nm+=gM;
+        }
+        
         temp += cur;
         vector<int> nv(remaining);
         nv.erase(nv.begin()+i);
-        ret += num(nv, temp);
+        
+        ret += num(nv, temp, nm);
         done[remaining[i]] = i;
-    }    
+    }
 
 //   for (int i = 0; i < size; i++){
 //       printf("%d,", remaining[i]);        
 //   }
 //    printf("(%lld)=%d\n", cur, ret);
+    if (idx!=-1){
+        gCache[idx][modulus] = ret;
+        printf("(%d,%d)=%d\n", idx, modulus, ret);
+
+    }
     return ret;
 }
+
 
 void solve(){
     int size = strlen(gE);
     int n;
     gOrgNumber.clear();
     gOrgNum=0;
+    memset(gCache, -1, sizeof(gCache));
     for(int i=0;i<size;i++){
         n = gE[i] - '0';
         gOrgNumber.push_back(n);
@@ -92,7 +115,8 @@ void solve(){
     
     vector<int> copy(gOrgNumber);
     
-    n = num(gOrgNumber, 0);
+    sort(copy.begin(), copy.end());
+    n = num(gOrgNumber, 0, 0);
     printf("%d\n", n);
 }
 
@@ -117,7 +141,12 @@ void check(char expected, char actual){
 void test(){
     check(6, factorial[3]);
     
+    vector<int> r;
+    r.push_back(1);
+    r.push_back(2);
+    r.push_back(5);
     
+    check(125, getIndex(r));
 }
 
 
