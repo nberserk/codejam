@@ -26,98 +26,133 @@ typedef long long ll;
 void check(bool ret);
 
 bool gDebug;
-int  gM;
+int  gM, gN;
 char gE[16];
-vector<int> gOrgNumber;
+char gSorted[16];
 ll gOrgNum;
-int gCache[1000000][20];
+int gCache[1<<14][20][2];
 int gCount[501];
 int gLength[51];
-ll factorial[15];
 
-int getIndex(vector<int>& r){
-    int ret=0, size = r.size();
-    for (int i = 0; i < size; i++){
-        ret += pow(10, size-i-1)*r[i];
+int getIndex(bool t[16]){
+    int idx =0;
+    for (int i = 0; i < gN; i++){
+        if (t[i]){
+            idx += (1<<i);
+        }
     }
     
-    return ret;
+    return idx;
 }
 
-int num(vector<int>& remaining, ll cur, int modulus){
-        
-    
-    int size = remaining.size();
-    if (size==1) {
-        if (cur+remaining[0]<gOrgNum && remaining[0]%gM==modulus) {
+int num2(int index, int taken, int mod, int less){
+    if (index == gN) {
+        if (less==1 && mod==0) {
             return 1;
         }else
             return 0;
     }
 
-    int idx=-1;
-    if (size<=5){
-        sort(remaining.begin(), remaining.end());
-        idx = getIndex(remaining);
-        int& ret = gCache[idx][modulus];
-        if (ret!=-1) {
-            return ret;
+    int& ret = gCache[taken][mod][less];
+    if (ret!=-1){
+        return ret;
+    }
+    ret =0;
+    
+//    if (taken==2) {
+//        printf("dd");
+//    }
+
+    char c;
+    map<int,char> done;
+    for (int i = 0; i < gN; i++){
+        if ( ((1<<i) & taken) ==0){ //if not taken
+            c = gSorted[i];
+            if (less==0 && c > gE[index])
+                continue;
+
+            if (done.find((int)c) !=done.end())
+                continue;
+            int nextMod = (mod*10+(c-'0'))%gM;
+            int nextTaken = taken | 1<<i;
+            int nextLess = less || c < gE[index];
+            ret += num2(index+1, nextTaken, nextMod, nextLess);
+            ret %= 1000000007;
+            done[(int)c] = c;
         }
     }
-
-    int ret=0;
-    ll temp;
-    map<int,int> done;
-    for (int i=0; i<size; i++) {
-
-        temp = remaining[i]*pow(10,size-1);
-        if (cur+temp >= gOrgNum)
-            continue;
-        if (done.find(remaining[i]) !=done.end())
-            continue;
-        int nm = (modulus-temp%gM);
-        if (nm<0) {
-            nm+=gM;
-        }
-        
-        temp += cur;
-        vector<int> nv(remaining);
-        nv.erase(nv.begin()+i);
-        
-        ret += num(nv, temp, nm);
-        done[remaining[i]] = i;
-    }
-
-//   for (int i = 0; i < size; i++){
-//       printf("%d,", remaining[i]);        
-//   }
-//    printf("(%lld)=%d\n", cur, ret);
-    if (idx!=-1){
-        gCache[idx][modulus] = ret;
-        printf("(%d,%d)=%d\n", idx, modulus, ret);
-
-    }
+    //printf("%d=%d\n", taken, ret);
     return ret;
 }
 
+int num(string price, bool taken[16], bool less, int mod){
+    int size = price.size();    
+    if (size==gN){
+        if (mod==0 && less){
+            return 1;            
+        }else
+            return 0;        
+    }
+
+    int idx = getIndex(taken);
+    int &ret= gCache[idx][mod][less?1:0];
+    if (ret!=-1){
+        return ret;
+    }
+    ret =0;
+    int nl = less;
+    char c;
+    map<int,char> done;
+    ll temp;
+    
+    for (int i = 0; i < gN; i++){
+        if (taken[i])
+            continue;
+        c = gSorted[i];
+        if (!less){
+            if (c>gE[size])
+                continue;
+            else if(c<gE[size])
+                nl = true;
+            else
+                nl = false;        
+        }
+
+        if (done.find((int)c) !=done.end())
+            continue;
+        
+        temp = (c-'0')*pow(10,gN-size-1);
+        temp %=gM;
+        int nm = mod-temp;
+        if (nm<0) {
+            nm+=gM;
+        }
+
+        taken[i]=true;
+        ret += num(price+c, taken, nl, nm);
+        taken[i]=false;
+        ret %= 1000000007;
+        done[(int)c] = c;
+    }
+
+    //printf("%s,%d=%d\n", price.c_str(), mod, ret);
+    return ret;
+}
 
 void solve(){
-    int size = strlen(gE);
-    int n;
-    gOrgNumber.clear();
-    gOrgNum=0;
+    gN = strlen(gE);
+    strcpy(gSorted, gE);
+    sort(gSorted, gSorted+gN);
+    
+    bool taken[16];
+    memset(taken, 0, sizeof(taken));
     memset(gCache, -1, sizeof(gCache));
-    for(int i=0;i<size;i++){
-        n = gE[i] - '0';
-        gOrgNumber.push_back(n);
-        gOrgNum += n*pow(10,size-i-1);
-    }
+    string s;
+    //int r = num(s, taken, false, 0);
+    int r = num2(0, 0, 0, 0);
+
+    printf("%d\n", r);
     
-    vector<int> copy(gOrgNumber);
-    
-    sort(copy.begin(), copy.end());
-    n = num(gOrgNumber, 0, 0);
-    printf("%d\n", n);
 }
 
 void check(bool ret){
@@ -139,17 +174,16 @@ void check(char expected, char actual){
 }
 
 void test(){
-    check(6, factorial[3]);
-    
-    vector<int> r;
-    r.push_back(1);
-    r.push_back(2);
-    r.push_back(5);
-    
-    check(125, getIndex(r));
+
+    gN=10;
+    bool b[16];
+    memset(b, 0, sizeof(b));
+    check(0, getIndex(b));
+    b[0]=true;   
+    check(1, getIndex(b));
+    b[1] =true;
+    check(3, getIndex(b));
 }
-
-
 
 
 int main(){
@@ -163,20 +197,13 @@ int main(){
         fp = freopen(fn, "r", stdin);
     }
 
-    // init factorial
-    ll v;
-    factorial[0]= factorial[1]=1;
-    for(int i=2;i<15;i++){
-        factorial[i]=factorial[i-1]*i;
-    }    
-    
-    test();
+    //test();
 
     // handling input
     int count, p,j,k,n, i;
     scanf("%d", &count);
     for (p=0; p<count; p++) {
-        scanf("%s %d", gE , &gM);
+        scanf("%s %d", gE , &gM);        
         solve();        
     }
     
