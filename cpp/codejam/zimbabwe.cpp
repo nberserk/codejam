@@ -1,4 +1,5 @@
 // http://algospot.com/judge/problem/read/ZIMBABWE
+// category: dp
 
 #include <algorithm>
 #include <unistd.h>
