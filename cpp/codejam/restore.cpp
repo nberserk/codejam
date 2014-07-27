@@ -29,7 +29,7 @@ void check(bool ret);
 
 bool gDebug;
 int  gK;
-char gStr[15][21];
+char gStr[15][41];
 int gLen[15];
 int gCache [1<<15][15];
 int gParent[1<<15][15];
