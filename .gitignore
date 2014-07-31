@@ -4,3 +4,4 @@ java/bin
 *.jar
 *.war
 *.ear
+.*
