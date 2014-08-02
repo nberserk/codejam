@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		950016BA198C723D00B27870 /* tictactoe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950016B9198C723D00B27870 /* tictactoe.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
+		95AC22DB198CEB3B00987DCE /* meetingroom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95AC22D9198CEB3B00987DCE /* meetingroom.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,7 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		950016B9198C723D00B27870 /* tictactoe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tictactoe.cpp; sourceTree = "<group>"; };
+		950016B9198C723D00B27870 /* tictactoe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tictactoe.cpp; path = codejam/tictactoe.cpp; sourceTree = "<group>"; };
 		95059F861949218B00A8DF9E /* fixparen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fixparen.cpp; path = codejam/fixparen.cpp; sourceTree = "<group>"; };
 		95059F871949218B00A8DF9E /* fixparen.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fixparen.in; path = codejam/fixparen.in; sourceTree = "<group>"; };
 		9509F1E5194814C100C623F8 /* poly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = poly.cpp; path = codejam/poly.cpp; sourceTree = "<group>"; };
@@ -63,6 +63,8 @@
 		95AB33D5191FA92C00AED8FF /* fanmeeting.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fanmeeting.in; sourceTree = "<group>"; };
 		95ABB4C5191D0A020074AD44 /* fence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fence.cpp; path = codejam/fence.cpp; sourceTree = "<group>"; };
 		95ABB4C6191D0A020074AD44 /* fence.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fence.in; path = codejam/fence.in; sourceTree = "<group>"; };
+		95AC22D9198CEB3B00987DCE /* meetingroom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = meetingroom.cpp; sourceTree = "<group>"; };
+		95AC22DA198CEB3B00987DCE /* meetingroom.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meetingroom.in; sourceTree = "<group>"; };
 		95ACEFD119303ED900B31DA8 /* pi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pi.cpp; path = codejam/pi.cpp; sourceTree = "<group>"; };
 		95ACEFD219303ED900B31DA8 /* pi.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pi.in; path = codejam/pi.in; sourceTree = "<group>"; };
 		95ADF10D193EDB7B000B15EF /* tiling2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tiling2.cpp; path = codejam/tiling2.cpp; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		95B00EF9194DE29A0043FE90 /* packing.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = packing.in; path = codejam/packing.in; sourceTree = "<group>"; };
 		95B060F819262EF800E85D54 /* wildcard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = wildcard.cpp; path = codejam/wildcard.cpp; sourceTree = "<group>"; };
 		95B060F919262EF800E85D54 /* wildcard.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wildcard.in; path = codejam/wildcard.in; sourceTree = "<group>"; };
-		95B235B1198CA52100AE9423 /* tictactoe.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tictactoe.in; sourceTree = "<group>"; };
+		95B235B1198CA52100AE9423 /* tictactoe.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tictactoe.in; path = codejam/tictactoe.in; sourceTree = "<group>"; };
 		95C0E916194B37C1000C2AE7 /* numb3rs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = numb3rs.cpp; path = codejam/numb3rs.cpp; sourceTree = "<group>"; };
 		95C0E917194B37C1000C2AE7 /* numb3rs.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = numb3rs.in; path = codejam/numb3rs.in; sourceTree = "<group>"; };
 		95C628C0193625270046B9B0 /* quantize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = quantize.cpp; path = codejam/quantize.cpp; sourceTree = "<group>"; };
@@ -116,8 +118,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95B235B1198CA52100AE9423 /* tictactoe.in */,
-				950016B9198C723D00B27870 /* tictactoe.cpp */,
+				95AC22D9198CEB3B00987DCE /* meetingroom.cpp */,
+				95AC22DA198CEB3B00987DCE /* meetingroom.in */,
 				95AEFC221976B3EF00CB67EE /* zimbabwe.cpp */,
 				95AEFC231976B3EF00CB67EE /* zimbabwe.in */,
 				95AB33D4191FA92C00AED8FF /* fanmeeting.cpp */,
@@ -148,6 +150,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				95B235B1198CA52100AE9423 /* tictactoe.in */,
+				950016B9198C723D00B27870 /* tictactoe.cpp */,
 				9564D2C31984ED7400359258 /* restore.cpp */,
 				9564D2C41984ED7400359258 /* restore.in */,
 				95B00EF8194DE29A0043FE90 /* packing.cpp */,
@@ -241,7 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950016BA198C723D00B27870 /* tictactoe.cpp in Sources */,
+				95AC22DB198CEB3B00987DCE /* meetingroom.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
