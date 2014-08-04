@@ -1,0 +1,19 @@
+
+* c++ specific
+** sort 
+- sort
+
+- sort custom struct
+#+BEGIN_SRC C++
+  struct Meeting{
+      int start, end;
+      int nth;
+  };
+  bool operator < (const Meeting& a, const Meeting& b){
+      if (a.end != b.end) {
+          return a.end < b.end;
+      }    
+      return a.start < a.start;
+  } 
+ #+END_SRC
+
