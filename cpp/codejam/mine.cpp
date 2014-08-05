@@ -23,52 +23,72 @@ using namespace std;
 #define H_MOD 10000000
 typedef long long ll;
 
-struct path{
-    int cost, gain;
-};
-
 void check(bool ret);
+
 
 bool gDebug;
 int gMoney, gN;
-
-int gGain[1000][1000];
-int gCost[1000][1000];
-
-
-ll factorial[15];
+int gMap[1000][1000][2];
 int gMax;
+bool gVisited[1000];
 
-
-struct node {
- int cost;
- int at;
+struct Node {
+    int gain,  at, money;
+    Node *parent;
 };
 
-bool operator<(const node &leftNode, const node &rightNode) {
+// bool operator<(const node &leftNode, const node &rightNode) {
+//     if (leftNode.cost != rightNode.cost) return leftNode.cost < rightNode.cost;
+//     if (leftNode.at != rightNode.at) return leftNode.at < rightNode.at;
+//     return false;
+// }
 
-    if (leftNode.cost != rightNode.cost) return leftNode.cost < rightNode.cost;
-    if (leftNode.at != rightNode.at) return leftNode.at < rightNode.at;
-    return false;
-}
 
+Node* dfs(Node *cur){
 
-int solve(int here, int money){
-    int ret=0;
-    int cur;
-    for (int i =0; i< gN; i++){
-        if (gCost[here][i]==-1 || gCost[here][i] > money){
-            continue;            
+    Node *maxNode=cur;
+    
+    for (int i = 0; i < gN; i++){
+        if (gVisited[i] || gMap[cur->at][i][0]==-1)
+            continue;
+
+        if (gMap[cur->at][i][0] > cur->money){
+            continue;
         }
 
-        cur= gGain[here][i] + solve(i, money-gCost[here][i] );
-        if (cur>ret){
-            ret=cur;            
-        }        
+        Node *next = new Node();
+        next->gain = cur->gain + gMap[cur->at][i][1];
+        next->at=i;
+        next->money = cur->money - gMap[cur->at][i][0];
+        next->parent = cur;
+        gVisited[next->at]=true;
+
+        Node* v = dfs(next);
+        if (v==0) {
+            continue;
+        }
+        if ( v->gain > maxNode->gain){
+            maxNode = v;
+        }                  
     }
 
-    printf("%d,%d=%d\n", here,money,ret);
-    return ret;    
+    printf("%d=%d\n", cur->at, maxNode->gain);
+    return maxNode;    
+}
+
+void solve(){
+    memset(gVisited, false, sizeof(gVisited));
+
+    Node start;
+    start.gain=0;
+    start.at=0;
+    start.money=gMoney;
+    start.parent=0;
+    gVisited[0] =true;
+
+    Node* best= dfs(&start);
+    printf("%d\n", best->gain);    
+    
 }
 
 void check(bool ret){
@@ -90,12 +110,8 @@ void check(char expected, char actual){
 }
 
 void test(){
-    check(6, factorial[3]);
-    
     
 }
-
-
 
 int main(){
     char fn[] = "mine.in";
@@ -116,18 +132,15 @@ int main(){
     for (p=0; p<count; p++) {
         
         scanf("%d %d", &gN , &gMoney);
-        memset(gCost, -1, sizeof(gCost));
-        memset(gGain, -1, sizeof(gGain));
+        memset(gMap, -1, sizeof(gMap));
 
         for (int i = 0; i < gN; ++i){
             scanf("%d %d %d %d", &from, &to, &cost, &gain);
-            gGain[from][to] = gain;
-            gCost[from][to] = cost;
+            gMap[from][to][0] = cost;
+            gMap[from][to][1] = gain;
         }
 
-        gain = solve(0, gMoney);
-        printf("%d\n", gain);
-        
+        solve();
     }
     
     if (gDebug) {
@@ -136,4 +149,22 @@ int main(){
     return 0;
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
