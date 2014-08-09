@@ -1,8 +1,10 @@
 
 * c++ specific
 ** sort 
-- sort
-
+- reverse sort
+#+BEGIN_SRC C++
+  std::sort(begin, end, std::greater<int>())
+#+END_SRC
 - sort custom struct
 #+BEGIN_SRC C++
   struct Meeting{
@@ -15,5 +17,7 @@
       }    
       return a.start < a.start;
   } 
- #+END_SRC
+#+END_SRC
 
+** dp
+** greedy
