@@ -7,6 +7,7 @@
 #include <math.h>
 #include <vector>
 #include <map>
+#include <queue>
 #include <time.h>
 #include <string>
 #include <sstream>
@@ -77,6 +78,26 @@ int solve(){
     return op;
 }
 
+int solve_pq(){
+    priority_queue<int, vector<int>, greater<int>> pq;
+    for (int i=0; i<gN; i++) {
+        pq.push(gLen[i]);
+    }
+    
+    int ret =0;
+    int merge;
+    while (pq.size() > 1) {
+        merge = pq.top();
+        pq.pop();
+        merge += pq.top(); pq.pop();
+        
+        ret += merge;
+        pq.push(merge);
+    }
+    
+    return ret;
+}
+
 void check(bool ret){
     if (ret==false) {
         printf("failed\n");
@@ -120,7 +141,8 @@ int main(){
         for ( j = 0; j < gN; j++){            
             scanf("%d", &gLen[j]);
         }        
-        int r = solve();
+        //int r = solve();
+        int r = solve_pq();
         printf("%d\n", r);
     }
     

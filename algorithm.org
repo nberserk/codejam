@@ -19,5 +19,13 @@
   } 
 #+END_SRC
 
+** priority_queue
+#+BEGIN_SRC c++
+  #include <queue>
+
+  priority_queue<int> pq;
+  priority_queue<int, vector<int>, greater<int>> pq_decreasing;
+#+END_SRC
+* algorithm
 ** dp
 ** greedy
