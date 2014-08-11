@@ -18,7 +18,35 @@
       return a.start < a.start;
   } 
 #+END_SRC
+- quick sort
+#+BEGIN_SRC c++
+void qsort(int* arr, int left, int right){
+    int pivot = arr[(left+right)/2];
+    int i=left, j=right;
+    int tmp;
 
+    while(i<=j){
+        while(arr[i]<pivot)
+            i++;
+        while(arr[j]>pivot)
+            j--;
+        if (i<=j){
+            tmp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=tmp;
+            i++;
+            j--;
+        }
+    }
+
+    if (left<j){
+        qsort(arr, left, j);
+    }
+    if (right>i){
+        qsort(arr, i, right);
+    }
+}
+#+END_SRC
 ** priority_queue
 #+BEGIN_SRC c++
   #include <queue>
