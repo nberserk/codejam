@@ -143,18 +143,18 @@
 		9564D2C21984E82100359258 /* notSolved */ = {
 			isa = PBXGroup;
 			children = (
-				95C628C0193625270046B9B0 /* quantize.cpp */,
-				95C628C1193625270046B9B0 /* quantize.in */,
-				950C3C0E1928CECB0001C8BC /* jlis.cpp */,
-				95A676F81995EE0900A0EF3D /* lunchbox.cpp */,
-				95A676F91995EE0900A0EF3D /* lunchbox.in */,
-				950C3C0F1928CECB0001C8BC /* jlis.in */,
 				9556C1481972BBB300BB2B6A /* dragon.cpp */,
 				9556C1491972BBB300BB2B6A /* dragon.in */,
+				950C3C0E1928CECB0001C8BC /* jlis.cpp */,
+				950C3C0F1928CECB0001C8BC /* jlis.in */,
+				95A676F81995EE0900A0EF3D /* lunchbox.cpp */,
+				95A676F91995EE0900A0EF3D /* lunchbox.in */,
 				9525E4E11962563900332F82 /* morse.cpp */,
 				9525E4E21962563900332F82 /* morse.in */,
 				95D0F5331958571B00430F8C /* ocr.cpp */,
 				95D0F5341958571B00430F8C /* ocr.in */,
+				95C628C0193625270046B9B0 /* quantize.cpp */,
+				95C628C1193625270046B9B0 /* quantize.in */,
 			);
 			name = notSolved;
 			sourceTree = "<group>";
