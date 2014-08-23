@@ -57,3 +57,7 @@ void qsort(int* arr, int left, int right){
 * algorithm
 ** dp
 ** greedy
+* samsung stragegy
+- multiple category : for small N, choose brute force, for large N choose approximation algorithm like greedy.
+  .e.g, category 1, N<10 , category 2 N<100, category 3, N<1000
+- 
