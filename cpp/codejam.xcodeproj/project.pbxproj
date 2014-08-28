@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		95150C5C19A8873900EE3AED /* sort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95150C5B19A8873900EE3AED /* sort.cpp */; };
+		950D29EA19ADA2F700B695D4 /* dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950D29E819ADA2F700B695D4 /* dictionary.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +38,8 @@
 		950C3C0C192836640001C8BC /* lis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lis.in; path = codejam/lis.in; sourceTree = "<group>"; };
 		950C3C0E1928CECB0001C8BC /* jlis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = jlis.cpp; path = codejam/jlis.cpp; sourceTree = "<group>"; };
 		950C3C0F1928CECB0001C8BC /* jlis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = jlis.in; path = codejam/jlis.in; sourceTree = "<group>"; };
+		950D29E819ADA2F700B695D4 /* dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dictionary.cpp; sourceTree = "<group>"; };
+		950D29E919ADA2F700B695D4 /* dictionary.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dictionary.in; sourceTree = "<group>"; };
 		95150C5B19A8873900EE3AED /* sort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sort.cpp; sourceTree = "<group>"; };
 		9525E4E11962563900332F82 /* morse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = morse.cpp; path = codejam/morse.cpp; sourceTree = "<group>"; };
 		9525E4E21962563900332F82 /* morse.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = morse.in; path = codejam/morse.in; sourceTree = "<group>"; };
@@ -127,6 +129,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				950D29E819ADA2F700B695D4 /* dictionary.cpp */,
+				950D29E919ADA2F700B695D4 /* dictionary.in */,
 				95150C5B19A8873900EE3AED /* sort.cpp */,
 				9581988119A01D920080DD5B /* minastirith.cpp */,
 				9581988219A01D920080DD5B /* minastirith.in */,
@@ -263,7 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95150C5C19A8873900EE3AED /* sort.cpp in Sources */,
+				950D29EA19ADA2F700B695D4 /* dictionary.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

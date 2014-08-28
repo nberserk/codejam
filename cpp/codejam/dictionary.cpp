@@ -31,30 +31,87 @@ void check(bool ret);
 
 bool gDebug;
 bool gGraph[26][26];
+bool gVisited[26];
+int gLast;
 
-int dfs(int here){
-    int ret = -1;
 
-    for (int i = 0; i < 26; i++){
-        if
+int dfs(int here, int prev){
+    int cur;
+    gVisited[here] = true;
+    for (int i = 0; i < 26; i++){        
+        if (gGraph[here][i]==false)
+            continue;
+        if (gVisited[i]==true)
+            continue;
+
+        cur = dfs(i, here);
+        if (cur!=-1){
+            return cur;
+        }
     }
-    
+
+    if (prev==-1){
+        return -1;
+    }
+
+    gGraph[prev][here]=false;
+    gLast = prev;
+    return here;
 }
 
-int solve(){
+void solve(){
+
+    bool invalid=false;
+    for (int i = 0; i < 26; i++){
+        for (int j = 0; j < 26; j++){
+            if (gGraph[i][j]==true && gGraph[j][i]==true){
+                printf("INVALID HYPOTHESIS\n");
+                return;                
+            }
+        }
+    }
     
     int leaf;
     vector<int> v;
+    vector<int>::iterator it;
     int idx =0;
-    while(idx<=25)
-        leaf = dfs(i);
+    
+    while(idx<=25){
+        memset(gVisited, false, sizeof(gVisited));
+        leaf = dfs(idx, -1);
         if (leaf!=-1){
+            it = find(v.begin(), v.end(), leaf);
+            if (it != v.end()){
+                invalid=true;
+                break;
+            }                
             v.push_back(leaf);
         }else{
+            v.push_back(gLast);
             idx++;
         }
+    }
+
+    if (invalid){
+        printf("INVALID HYPOTHESIS\n");
+    }else{
+        bool used[26];
+        memset(used, false, sizeof(used));
+        int size = v.size();
+        for (int i = 0; i < size; i++){
+            used[v[i]]=true;
+            printf("%c", v[i]+'a');
+        }
+
+        for (int i = 0; i < 26; i++){
+            if (used[i]==true){
+                continue;
+            }
+            printf("%c", i+'a');
+        }
+        printf("\n");
+    }
     
-    return 0;
 }
 
 
@@ -79,20 +136,18 @@ void check(char expected, char actual){
 void test(){    
 }
 
-bool fillGraph(char* prev, char* buf){
-    int len = strlen(prev);
+void fillGraph(char* prev, char* buf){
+    unsigned long len = strlen(prev);
     int from, to;
     for (int i = 0; i < len; i++){
         if ( *(prev+i) == *(buf+i))
             continue;
         from = *(prev+i)-'a';
-        to = *(buf+i)='a';
-        if (gGraph[to][from]==true)
-            return false; // invalid        
-        gGraph[from][to] = true;
-        return true;
+        to = *(buf+i)-'a';
+        //printf("%d->%d\n", from, to );
+        gGraph[to][from] = true;
+        return;
     }
-    
 }
 
 int main(){
@@ -109,27 +164,21 @@ int main(){
     test();
 
     // handling input
-    int count, p,j,k,n, i;
+    int count, p,j,k,gN, i;
     char buf[30], prev[30];
     scanf("%d", &count);
     for (p=0; p<count; p++) {        
         scanf("%d", &gN);
         scanf("%s", prev);
-        bool valid =true;
-        memset(gGraph, -1, sizeof(gGraph));
+        memset(gGraph, false, sizeof(gGraph));
         for ( j = 0; j < gN-1; j++){            
             scanf("%s", buf);
-            valid = fillGraph(prev, buf);
-            if (valid==true){
-                break;
-            }
+            fillGraph(prev, buf);
+            strcpy(prev, buf);
         }
 
-        if (valid==false){
-            printf("INVALID HYPOTHESIS\n");
-        }else{
-            solve();
-        }        
+        solve();
+        
     }
     
     if (gDebug) {
