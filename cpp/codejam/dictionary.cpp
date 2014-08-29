@@ -41,12 +41,16 @@ int dfs(int here, int prev){
     for (int i = 0; i < 26; i++){        
         if (gGraph[here][i]==false)
             continue;
-        if (gVisited[i]==true)
-            continue;
+        if (gVisited[i]==true){
+            //printf("cycle detected\n");
+            return -2;            
+        }            
 
         cur = dfs(i, here);
         if (cur!=-1){
             return cur;
+        }else{
+            printf("strange\n");
         }
     }
 
@@ -62,14 +66,7 @@ int dfs(int here, int prev){
 void solve(){
 
     bool invalid=false;
-    for (int i = 0; i < 26; i++){
-        for (int j = 0; j < 26; j++){
-            if (gGraph[i][j]==true && gGraph[j][i]==true){
-                printf("INVALID HYPOTHESIS\n");
-                return;                
-            }
-        }
-    }
+    
     
     int leaf;
     vector<int> v;
@@ -78,17 +75,29 @@ void solve(){
     
     while(idx<=25){
         memset(gVisited, false, sizeof(gVisited));
-        leaf = dfs(idx, -1);
-        if (leaf!=-1){
-            it = find(v.begin(), v.end(), leaf);
-            if (it != v.end()){
-                invalid=true;
+        //
+        bool hasEdge =false;
+        for (int i = 0; i < 26; i++){
+            if (gGraph[idx][i]==true){
+                hasEdge = true;
                 break;
-            }                
-            v.push_back(leaf);
-        }else{
-            v.push_back(gLast);
+            }
+        }
+        if (hasEdge==false){
             idx++;
+            continue;
+        }
+
+        //
+        leaf = dfs(idx, -1);
+        if (leaf==-2){
+            invalid=true;
+            break;
+        }else if (leaf==-1){
+            printf("strange\n");
+        }else{
+            v.push_back(leaf);
+            //printf("%c", leaf+'a');
         }
     }
 
@@ -138,6 +147,8 @@ void test(){
 
 void fillGraph(char* prev, char* buf){
     unsigned long len = strlen(prev);
+    unsigned long len2 = strlen(buf);
+    len = len < len2 ? len : len2;
     int from, to;
     for (int i = 0; i < len; i++){
         if ( *(prev+i) == *(buf+i))
