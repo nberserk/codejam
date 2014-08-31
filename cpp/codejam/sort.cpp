@@ -32,7 +32,74 @@ bool gDebug;
 int gN;
 int gLen[100];
 
-void qsort(int* arr, int left, int right){
+void printArray(int *a, int len){
+   for (int i = 0; i < len; i++){
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+
+void maxHeapify(int* a, int len, int i){
+    int l = i*2+1;
+    int r = i*2+2;
+    int largest = i;
+    if (l<len && a[l]>a[i]){
+        largest = l;
+    }
+    if (r<len && a[r]>a[largest]){
+        largest = r;
+    }
+
+    if (i!=largest){
+        swap(a[i], a[largest]);
+        maxHeapify(a, len, largest);
+    }    
+}
+
+void buildMaxHeap(int*a, int len){
+    for (int i = len/2-1; i >=0; i--){
+        maxHeapify(a, len, i);
+        printArray(a, len);
+    }
+}
+
+void heapsort(int*a, int len){    
+    buildMaxHeap(a, len);    
+    int size=len-1;
+    swap(a[0], a[len-1]);
+    for (int i = size; i >=2 ; i--){
+        maxHeapify(a, i, 0);
+        swap(a[0], a[i-1]);
+    }
+    
+    printArray(a, len);
+}
+
+// l, r : inclusive
+int partition(int* a, int l, int r){
+    int p = a[r];
+    int i = l-1;
+    for (int j = l; j <= r-1; j++){
+        if (a[j]<=p){
+            i++;
+            swap(a[j], a[i]);
+        }
+    }
+    swap(a[r], a[i+1]);
+    return i+1;
+}
+
+// l, r : inclusive
+void quicksort(int* a, int l, int r){
+    if (l<r){
+        int i = partition(a, l, r);
+        printArray(a, 10);
+        quicksort(a, l, i-1);
+        quicksort(a, i+1, r);
+    }
+}
+
+void qsort2(int* arr, int left, int right){
     int pivot = arr[(left+right)/2];
     int i=left, j=right;
     int tmp;
@@ -52,10 +119,10 @@ void qsort(int* arr, int left, int right){
     }
 
     if (left<j){
-        qsort(arr, left, j);
+        qsort2(arr, left, j);
     }
     if (right>i){
-        qsort(arr, i, right);
+        qsort2(arr, i, right);
     }
 }
 
@@ -106,6 +173,13 @@ void check(char expected, char actual){
 }
 
 void test(){
+    int aa[] = {4,1,3,2,16,9,10,14,8,7};
+    
+    quicksort(aa, 0, 9);
+    //buildMaxHeap(aa, 10);
+    heapsort(aa, 10);
+
+    
     int a[3] = {3,2,1};
     int b[3];
     mergesort(a, 0, 3, b);

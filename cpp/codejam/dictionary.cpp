@@ -27,101 +27,111 @@ typedef long long ll;
 
 void check(bool ret);
 
-
-
+int gN;
+char gWord[200][30];
 bool gDebug;
-bool gGraph[26][26];
+vector<vector<int>> gGraph;
+int gState[26]; //  1 : temp mark, 2 : visited
 bool gVisited[26];
-int gLast;
+vector<int> gOrder;
 
-
-int dfs(int here, int prev){
-    int cur;
-    gVisited[here] = true;
-    for (int i = 0; i < 26; i++){        
-        if (gGraph[here][i]==false)
-            continue;
-        if (gVisited[i]==true){
-            //printf("cycle detected\n");
-            return -2;            
-        }            
-
-        cur = dfs(i, here);
-        if (cur!=-1){
-            return cur;
-        }else{
-            printf("strange\n");
-        }
-    }
-
-    if (prev==-1){
-        return -1;
-    }
-
-    gGraph[prev][here]=false;
-    gLast = prev;
-    return here;
+void visit(int here){
+    
 }
 
-void solve(){
+void toposort(){
+    memset(gState, 0, sizeof(gState));
+    for (int i=0; i<26; i++) {
+        if (gState[i]==0) {
+            visit(i);
+        }
+    }
+    
+}
 
-    bool invalid=false;
-    
-    
-    int leaf;
-    vector<int> v;
-    vector<int>::iterator it;
-    int idx =0;
-    
-    while(idx<=25){
-        memset(gVisited, false, sizeof(gVisited));
-        //
-        bool hasEdge =false;
-        for (int i = 0; i < 26; i++){
-            if (gGraph[idx][i]==true){
-                hasEdge = true;
+void dfsVisit(int here){
+    gVisited[here] = true;
+    for (int i = 0; i < 26; i++){
+        if (gGraph[here][i] && !gVisited[i])
+            dfsVisit(i);
+    }
+    gOrder.push_back(here);
+}
+
+void printVector(vector<int>& v){
+    for (int i=0; i<v.size(); i++) {
+        printf("%d,", v[i]);
+    }
+    printf("\n");
+}
+
+void fillGraph(){
+    gGraph = vector<vector<int>>(26, vector<int>(26, 0));
+    int i;
+    for (int j=1; j<gN; j++) {
+        i = j-1;
+        int len = min(strlen(gWord[i]), strlen(gWord[j]) );
+        for (int k=0; k<len; k++) {
+            if (gWord[i][k] != gWord[j][k]  ) {
+                int from = gWord[i][k] -'a';
+                int to = gWord[j][k] - 'a';
+                gGraph[from][to] = 1;
+                //printf("G %d,%d=%c,%c\n", from, to, gWord[i][k], gWord[j][k]);
                 break;
             }
         }
-        if (hasEdge==false){
-            idx++;
+    }
+}
+
+void topologicalSort(){
+    fillGraph();
+    
+    gOrder.clear();
+    memset(gVisited, false, sizeof(gVisited));
+
+    for (int i = 0; i < 26; i++){
+        bool hasEdge = false;
+        for (int j=0; j<26; j++) {
+            if (gGraph[i][j]) {
+                hasEdge=true;
+                break;
+            }
+        }
+        if (!hasEdge || gVisited[i]) {
             continue;
         }
-
-        //
-        leaf = dfs(idx, -1);
-        if (leaf==-2){
-            invalid=true;
-            break;
-        }else if (leaf==-1){
-            printf("strange\n");
-        }else{
-            v.push_back(leaf);
-            //printf("%c", leaf+'a');
-        }
+        dfsVisit(i);
+        //printVector(gOrder);
     }
 
-    if (invalid){
-        printf("INVALID HYPOTHESIS\n");
-    }else{
-        bool used[26];
-        memset(used, false, sizeof(used));
-        int size = v.size();
-        for (int i = 0; i < size; i++){
-            used[v[i]]=true;
-            printf("%c", v[i]+'a');
-        }
-
-        for (int i = 0; i < 26; i++){
-            if (used[i]==true){
-                continue;
+    reverse(gOrder.begin(), gOrder.end());
+    
+    // check cycle
+    int size = gOrder.size();
+    for (int i=0; i<size; i++) {
+        for (int j=i+1; j<size; j++) {
+            if (gGraph[gOrder[j]][gOrder[i]]) {
+                printf("INVALID HYPOTHESIS\n");
+                return;
             }
-            printf("%c", i+'a');
         }
-        printf("\n");
     }
     
+    bool used[26];
+    memset(used, false, sizeof(used));
+    for (int i=0; i<gOrder.size(); i++) {
+        printf("%c", gOrder[i]+'a');
+        used[gOrder[i]]=true;
+    }
+    for (int i = 0; i < 26; i++){
+        if (!used[i])
+            printf("%c", i+'a');
+    }
+    printf("\n");
 }
+
+
+
 
 
 void check(bool ret){
@@ -145,22 +155,6 @@ void check(char expected, char actual){
 void test(){    
 }
 
-void fillGraph(char* prev, char* buf){
-    unsigned long len = strlen(prev);
-    unsigned long len2 = strlen(buf);
-    len = len < len2 ? len : len2;
-    int from, to;
-    for (int i = 0; i < len; i++){
-        if ( *(prev+i) == *(buf+i))
-            continue;
-        from = *(prev+i)-'a';
-        to = *(buf+i)-'a';
-        //printf("%d->%d\n", from, to );
-        gGraph[to][from] = true;
-        return;
-    }
-}
-
 int main(){
     char fn[] = "dictionary.in";
     if (access(fn, F_OK)!=-1) {
@@ -175,20 +169,16 @@ int main(){
     test();
 
     // handling input
-    int count, p,j,k,gN, i;
+    int count, p,j,k, i;
     char buf[30], prev[30];
     scanf("%d", &count);
     for (p=0; p<count; p++) {        
         scanf("%d", &gN);
-        scanf("%s", prev);
-        memset(gGraph, false, sizeof(gGraph));
-        for ( j = 0; j < gN-1; j++){            
-            scanf("%s", buf);
-            fillGraph(prev, buf);
-            strcpy(prev, buf);
+        for ( j = 0; j < gN; j++){
+            scanf("%s", gWord[j]);
         }
 
-        solve();
+        topologicalSort();
         
     }
     
