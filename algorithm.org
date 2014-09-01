@@ -57,14 +57,14 @@ void qsort(int* arr, int left, int right){
 * algorithm
 ** max heap
 properties: A[p]>=A[i], left = 2*i+1(0-based idx), right=2*i+2, parent = i/2
-- maxHeapify
-- buildMaxHeap
-- heapSort
+- maxHeapify(A, len, i) : LEFT(i) & RIGHT(i) already max heap. float down.
+- buildMaxHeap : 
+- heapSort : 
 
 priorityqueue using max heap
 - heapMaximum
 - heapExtractMax
-- heapIncreaseKey
+- heapIncreaseKey : 
 - maxHeapInsert
 
 ** greedy

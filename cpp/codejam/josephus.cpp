@@ -62,9 +62,35 @@ void solve(){
 }
 
 void solve2(){
-    list<bool> l(gN, false);
+    list<int> l(gN-1);
+    list<int>::iterator it, itEnd;
+    int v=2;
+    for (it = l.begin(); it != l.end(); it++){
+        *it =v;
+        v++;
+    }
+
+    it=l.begin();
+    for (int i = 0; i < gN-3; i++){
+        
+        int k = gK-1;
+        while (k>0) {
+            it++;
+            if (it==l.end()) {
+                it = l.begin();
+            }
+            k--;
+        }
+        it = l.erase(it);
+        if (it==l.end()) {
+            it = l.begin();
+        }
+    }
     
-    
+    for (it = l.begin(); it !=l.end(); it++) {
+        printf("%d ", *it);
+    }
+    printf("\n");
 }
 
 void check(bool ret){
@@ -86,6 +112,12 @@ void check(char expected, char actual){
 }
 
 void test(){
+    list<int> l(1, 1);
+    list<int>::iterator it, end;
+    it = l.begin();
+    end = l.end();
+    
+    check(1, *it);
 }
 
 int main(){
@@ -108,7 +140,8 @@ int main(){
     for (p=0; p<count; p++) {        
         scanf("%d %d", &gN, &gK);
         
-        solve();        
+        solve();
+        solve2();
     }
     
     if (gDebug) {
