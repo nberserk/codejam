@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9503CAC519B479EA00BD7C6B /* josephus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9503CAC319B479EA00BD7C6B /* josephus.cpp */; };
+		951E150719B5824000A3CC33 /* traversal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 951E150519B5824000A3CC33 /* traversal.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
 /* End PBXBuildFile section */
 
@@ -26,8 +27,8 @@
 
 /* Begin PBXFileReference section */
 		950016B9198C723D00B27870 /* tictactoe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tictactoe.cpp; path = codejam/tictactoe.cpp; sourceTree = "<group>"; };
-		9503CAC319B479EA00BD7C6B /* josephus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = josephus.cpp; sourceTree = "<group>"; };
-		9503CAC419B479EA00BD7C6B /* josephus.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = josephus.in; sourceTree = "<group>"; };
+		9503CAC319B479EA00BD7C6B /* josephus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = josephus.cpp; path = codejam/josephus.cpp; sourceTree = "<group>"; };
+		9503CAC419B479EA00BD7C6B /* josephus.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = josephus.in; path = codejam/josephus.in; sourceTree = "<group>"; };
 		95059F861949218B00A8DF9E /* fixparen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fixparen.cpp; path = codejam/fixparen.cpp; sourceTree = "<group>"; };
 		95059F871949218B00A8DF9E /* fixparen.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fixparen.in; path = codejam/fixparen.in; sourceTree = "<group>"; };
 		9509F1E5194814C100C623F8 /* poly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = poly.cpp; path = codejam/poly.cpp; sourceTree = "<group>"; };
@@ -43,6 +44,8 @@
 		950D29E819ADA2F700B695D4 /* dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dictionary.cpp; path = codejam/dictionary.cpp; sourceTree = "<group>"; };
 		950D29E919ADA2F700B695D4 /* dictionary.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dictionary.in; path = codejam/dictionary.in; sourceTree = "<group>"; };
 		95150C5B19A8873900EE3AED /* sort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sort.cpp; sourceTree = "<group>"; };
+		951E150519B5824000A3CC33 /* traversal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = traversal.cpp; sourceTree = "<group>"; };
+		951E150619B5824000A3CC33 /* traversal.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = traversal.in; sourceTree = "<group>"; };
 		9525E4E11962563900332F82 /* morse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = morse.cpp; path = codejam/morse.cpp; sourceTree = "<group>"; };
 		9525E4E21962563900332F82 /* morse.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = morse.in; path = codejam/morse.in; sourceTree = "<group>"; };
 		954767D419054D490021B178 /* codejam */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = codejam; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,8 +134,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				9503CAC319B479EA00BD7C6B /* josephus.cpp */,
-				9503CAC419B479EA00BD7C6B /* josephus.in */,
+				951E150519B5824000A3CC33 /* traversal.cpp */,
+				951E150619B5824000A3CC33 /* traversal.in */,
 				95150C5B19A8873900EE3AED /* sort.cpp */,
 				9581988119A01D920080DD5B /* minastirith.cpp */,
 				9581988219A01D920080DD5B /* minastirith.in */,
@@ -172,6 +175,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				9503CAC319B479EA00BD7C6B /* josephus.cpp */,
+				9503CAC419B479EA00BD7C6B /* josephus.in */,
 				95B06F2D199757FF0087CB42 /* strjoin.cpp */,
 				95B06F2E199757FF0087CB42 /* strjoin.in */,
 				95AC0761198FD67500573D8F /* matchorder.cpp */,
@@ -271,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				951E150719B5824000A3CC33 /* traversal.cpp in Sources */,
 				9503CAC519B479EA00BD7C6B /* josephus.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
