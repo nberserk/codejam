@@ -36,6 +36,7 @@ int gMid[100];
 // both inclusive
 void traverse(int s,int e, int s1, int e1){
     if (e-s<=0){
+        check(gPre[s]==gMid[s1]);
         printf("%d ", gPre[s]);
         return;
     }
@@ -48,14 +49,36 @@ void traverse(int s,int e, int s1, int e1){
         }
     }
     check(idxCenterMid!=-1);
-    int l = idxCenterMid-s1;
-    int r = e1-idxCenterMid;
+    int lsize = idxCenterMid-s1;
+    int rsize = e1-idxCenterMid;
 
-    int ns = 
-    
+    // left
+    if (lsize>0){
+        int ns = s+1;
+        int ne = s+1+lsize-1;
+        int ns1 = s1;
+        int ne1 = s1+lsize-1;
+        check(ne1-ns1+1==lsize);
+        check(ne-ns+1==lsize);
+        traverse(ns,ne,ns1,ne1);    
+    }    
+    // right
+    if (rsize>0){
+        int ns = s+lsize+1;
+        int ne = ns+rsize-1;
+        int ns1 = s1+lsize+1;
+        int ne1 = ns1+rsize-1;
+        check(ne1-ns1+1==rsize);
+        check(ne-ns+1==rsize);
+        traverse(ns,ne,ns1,ne1);    
+    }
+
+    printf("%d ", gPre[s]);
 }
 
 void solve(){
+    traverse(0, gN-1, 0, gN-1);
+    printf("\n");
     
 }
 
