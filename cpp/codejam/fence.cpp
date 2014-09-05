@@ -113,8 +113,8 @@ int main(){
         for (j=0; j<N; j++) {
             scanf("%d", h+j);
         }
-        //int s = maxAreaBrute(0, N);
-        int s2 = maxAreaDivide(0, N-1);
+        int s2 = maxAreaBrute(0, N);
+        //int s2 = maxAreaDivide(0, N-1);
         printf("%d\n", s2);
     }
     
