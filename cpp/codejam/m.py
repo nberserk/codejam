@@ -13,9 +13,9 @@ def main():
     else:
         name = binName    
     
-    args = "gcc %s -o %s" % (name+".cpp", binName)
+    args = "gcc %s -o bin/%s" % (name+".cpp", binName)
     subprocess.check_call(args.split(" "))
-    os.system("time(cat %s | ./%s)" % (name+".in", binName))
+    os.system("time(bin/%s)" % ( binName))
 
 if __name__ == "__main__":
     main()

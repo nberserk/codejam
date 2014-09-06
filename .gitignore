@@ -5,3 +5,4 @@ java/bin
 *.war
 *.ear
 .*
+cpp/codejam/bin
