@@ -115,4 +115,10 @@ QuickSelect(A, k)
     return pivot
 #+END_SRC
 *** pemutation, combination
-see [[file:cpp/codejam/combination.cpp][combination]]
+    see [[file:cpp/codejam/combination.cpp][combination]]
+** CrackCode
+- 1.6 NxN matrix, rotate 90 degree clockwise in-place
+- 2.2 Implement an algorithm to find the nth to last element of a singly linked list. hint : using 2 node pointers
+- 2.5 circular linked list. finding loop start. hint : using 2 node pointers
+
+
