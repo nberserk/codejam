@@ -1,5 +1,6 @@
 package crackcode;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -98,6 +99,19 @@ public class CheckBalancedTree {
         System.out.println("max depth :"+max);
         root.isBalanced(root);
 
+        
+		// copy constructor/clone test
+        ArrayList<Integer> test = new ArrayList<Integer>();
+        test.add(1);
+        test.add(7);
+        test.add(8);
+        
+		// ArrayList<Integer> copy = new ArrayList<Integer>(test);
+		ArrayList<Integer> copy = (ArrayList<Integer>) test.clone();
+        copy.add(9);
+        
+		System.out.println(test.toString());
+		System.out.println(copy.toString());
 
 
     }
