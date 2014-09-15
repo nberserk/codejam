@@ -18,35 +18,6 @@
       return a.start < a.start;
   } 
 #+END_SRC
-- quick sort
-#+BEGIN_SRC c++
-void qsort(int* arr, int left, int right){
-    int pivot = arr[(left+right)/2];
-    int i=left, j=right;
-    int tmp;
-
-    while(i<=j){
-        while(arr[i]<pivot)
-            i++;
-        while(arr[j]>pivot)
-            j--;
-        if (i<=j){
-            tmp=arr[i];
-            arr[i]=arr[j];
-            arr[j]=tmp;
-            i++;
-            j--;
-        }
-    }
-
-    if (left<j){
-        qsort(arr, left, j);
-    }
-    if (right>i){
-        qsort(arr, i, right);
-    }
-}
-#+END_SRC
 ** priority_queue
 #+BEGIN_SRC c++
   #include <queue>
@@ -81,8 +52,30 @@ void toposort(){
 - multiple category : for small N, choose brute force, for large N choose approximation algorithm like greedy.
   .e.g, category 1, N<10 , category 2 N<100, category 3, N<1000
 * project G
-** sort custom object
+** sort 
 #+BEGIN_SRC java
+
+  int partition(int[] a, int s, int e){
+      p = a[e];
+      i = s-1;
+      for (int j = s; j <= e-1; j++){
+          if (a[j]<=p){
+              i++;
+              swap(a[j], a[i]);
+          }
+      }
+      swap(a[i+1], a[e]);
+      return i+1;
+  }
+  // s,e : inclusive
+  void qsort(int[] a, int s, int e){
+      if (s<e){
+          int m = partition(a, s, e);
+          qsort(a, s, m-1);
+          qsort(a, m+1, e);
+      }
+  }
+  // sort custom object
   Arrays.sort(strings, new Comparator<String>(){
           int compare(String o1, String o2) {
               // return >0 , if o1 is greater than o2,
@@ -117,7 +110,6 @@ Tizen/bada : 사람들을 설득 시키는 것의 어려움. 후발주자 플랫
 *** hardest bug
 IE/CS SDK : global setting, html parsing(illegal syntax)
 bada : vxworks target 에 포팅할때 int size가 2byte 였던 것으로 기억한다. 그래서 memcp 할때 메모리를 침범해서 정말 힘든 버그로 남았던 기억이 있다.
-
 *** enjoyed most
 Domino : 자발적으로 시작한 것이라 그런지 가장 많이 기억에 남는다. 4개월 동안 정말 게임 디자인/구현/서버/대기실/게임방 등을 모두 구현했고
 프로그레스가 보이니 재미있기도 했다. 더구나 게임개발 부분 2위, 전체 3위의 성적을 받았기에 더욱더 기억에 남는다.
