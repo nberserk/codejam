@@ -81,6 +81,15 @@ void toposort(){
 - multiple category : for small N, choose brute force, for large N choose approximation algorithm like greedy.
   .e.g, category 1, N<10 , category 2 N<100, category 3, N<1000
 * project G
+** sort custom object
+#+BEGIN_SRC java
+  Arrays.sort(strings, new Comparator<String>(){
+          int compare(String o1, String o2) {
+              // return >0 , if o1 is greater than o2,
+              // return 0, when equals
+          }
+      });
+#+END_SRC
 ** behavoral questions
 *** most challenging
 Tizen/bada : 팀장 및 팀원들을 위키/cmake/CI를 사용하게 설득한 점. backward compatibility. bada 1.0 1.1 1.2

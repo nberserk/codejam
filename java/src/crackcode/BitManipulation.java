@@ -2,7 +2,9 @@ package crackcode;
 
 public class BitManipulation {
 
-	static void check(int expected, int actual) {
+    private static int[] mA;
+
+    static void check(int expected, int actual) {
 		if (expected != actual) {
 			System.out.println("check failed: expected:" + expected
 					+ ", actual:" + actual);
@@ -28,8 +30,67 @@ public class BitManipulation {
 		int ret = updateBits(0b10000000000, 0b10101, 2, 6);
 		System.out.println(String.format("%s", Integer.toBinaryString(ret)));
 
+        int N = 8;
+        mA = new int[N];
+        mA[0] = 1;
+        mA[1] = 2;
+        mA[2] = 4;
+        mA[3] = 5;
+        mA[4] = 3;
+        mA[5] = 6;
+        mA[6] = 0;
+        mA[7] = 8;
+        int miss = findMissing(N);
+        System.out.println(miss);
+    }
+
+    static int fetchBit(int i, int j) {
+        return mA[i] & (1 << j);
+    }
+
+    static int findMissing(int n) {
+        boolean[] filtered = new boolean[n];
+        int ret = 0;
+
+        int max = 0, cur = n;
+        while (cur > 0) {
+            cur = cur >> 1;
+            max++;
+        }
+
+        for (int i = 0; i < max; i++) {
+            int count0 = 0;
+            int count1 = 0;
+            for (int j = 0; j < n; j++) {
+                if (filtered[j]) {
+                    continue;
+                }
+
+                if (fetchBit(j, i) > 0) {
+                    count1++;
+                } else {
+                    count0++;
+                }
+            }
+            boolean is1Seletect = false;
+            if (count0 > count1) {
+                ret = ret | (1 << i);
+                is1Seletect = true;
+            }
+            for (int j = 0; j < n; j++) {
+                if (filtered[j]) {
+                    continue;
+                }
+                if (is1Seletect && fetchBit(j, i) >0) {
+                    filtered[j]=true;
+                } else if (!is1Seletect && fetchBit(j, i) == 0) {
+                    filtered[j] = true;
+                }
+            }
+        }
+        return ret;
 	}
-	
+
 	static int getBit(int n, int idx) {
 		return (n & (1 << idx)) == 0 ? 0 : 1;
 	}
@@ -81,13 +142,13 @@ public class BitManipulation {
 		}
 		return r;
 	}
-	
+
 	static int updateBits(int N, int M, int i, int j) {
 		int mask = ~0;
 		int left = mask >> (31 - i);
 		int right = mask << j;
 		int mask2 = left | right;
-		
+
 		return N & mask2 | (M << i);
 	}
 
