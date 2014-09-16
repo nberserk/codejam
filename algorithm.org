@@ -90,6 +90,21 @@ void toposort(){
           }
       });
 #+END_SRC
+** binary search
+#+BEGIN_SRC java
+  static int binarySearch(int[] a, int s, int e, int key) {
+      while (s <= e) {
+          int m = (s + e) / 2;
+          if (a[m] > key) {
+              e = m - 1;
+          } else if (a[m] < key) {
+              s = m + 1;
+          } else
+              return m;
+      }
+      return -1;
+  }
+#+END_SRC
 ** behavoral questions
 *** most challenging
 Tizen/bada : 팀장 및 팀원들을 위키/cmake/CI를 사용하게 설득한 점. backward compatibility. bada 1.0 1.1 1.2
