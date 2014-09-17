@@ -18,14 +18,61 @@ public class Search {
 
         String[] strings = { "at", "", "", "", "ball", "", "", "car", "", "", "dad", "", "" };
         idx = customBinarySearch(strings, 0, strings.length - 1, "ball");
+        System.out.println(idx);
 
+        // matrix search
+        int[][] m = new int[4][4];
+        int v = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                m[i][j] = ++v;
+            }
+        }
+        boolean found = findKeyInMatrix(m, 4, 4, 100);
+        System.out.println(found);
+
+        //
+    }
+
+    private static boolean findKeyInMatrix(int[][] m, int row, int col, int key) {
+        int r = 0;
+        int c = col - 1;
+
+        while (r < row && c >= 0) {
+            if (m[r][c] > key) {
+                c--;
+            } else if (m[r][c] < key)
+                r++;
+            else
+                return true;
+        }
+
+        return false;
     }
 
 
-    private static int customBinarySearch(String[] strings, int i, int j, String string) {
-        String s;
+    private static int customBinarySearch(String[] strings, int start, int end, String key) {
 
-        return 0;
+        while (start <= end) {
+            int m = (start + end) / 2;
+            int lm = m;
+            while ("".equals(strings[lm]) && start <= lm) {
+                lm--;
+            }
+            if (lm < start) {
+                start = m + 1;
+            } else {
+                int compare = key.compareTo(strings[lm]);
+                if (compare > 0) {
+                    start = m + 1;
+                } else if (compare < 0) {
+                    end = lm - 1;
+                } else
+                    return lm;
+            }
+        }
+
+        return -1;
     }
 
     static int binarySearch(int[] a, int s, int e, int key) {

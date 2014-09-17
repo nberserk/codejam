@@ -166,6 +166,26 @@ QuickSelect(A, k)
           return 0;
       return 1 + Math.max(getMaxDepth(n.left), getMaxDepth(n.right));
   }
+
+  Node getMinRecursive(Node n){
+      if (n==null){
+          return 987654321;
+      }
+      if (n.left!=null){
+          return getMin(n.left);
+      }
+      return n;
+  }
+
+  Node getMinIterative(Node n){
+      if (n==null){
+          return 987654321;
+      }
+      Node cur = n;
+      while(cur.left!=null)
+          cur = cur.left;
+      return cur;
+  }
 #+END_SRC
 ** bit
 #+BEGIN_SRC java
