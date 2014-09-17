@@ -1,7 +1,26 @@
 package crackcode;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 
 public class Search {
+	static int[] mNext = new int[100];
+	static int[] mCache = new int[100];
+
+	static class Person {
+		int h, w;
+
+		Person(int h, int w) {
+			this.h = h;
+			this.w = w;
+		}
+
+		@Override
+		public String toString() {
+			return String.format("h:%d w:%d", h, w);
+		}
+	}
 
     public static void main(String[] args) {
 
@@ -31,10 +50,43 @@ public class Search {
         boolean found = findKeyInMatrix(m, 4, 4, 100);
         System.out.println(found);
 
-        //
+		// lis
+		Person[] persons = { new Person(65, 100), new Person(70, 150),
+				new Person(56, 90), new Person(75, 190), new Person(60, 95),
+				new Person(68, 110) };
+		Arrays.sort(persons, new Comparator<Person>() {
+			public int compare(Person p1, Person p2) {
+				return p1.h - p2.h;
+			}
+		});
+		
+		Arrays.fill(mCache, -1);
+		int max = maxTower(persons, -1);
+		System.out.println("maxTower = " + max);
     }
 
-    private static boolean findKeyInMatrix(int[][] m, int row, int col, int key) {
+	private static int maxTower(Person[] persons, int start) {
+		if (mCache[start + 1] != -1) {
+			return mCache[start + 1];
+		}
+
+		int ret = 1, cur;
+    	for(int i=start+1;i<persons.length ; i++){
+			if (start == -1 || persons[i].w > persons[start].w) {
+				cur = 1 + maxTower(persons, i);
+				if (cur > ret) {
+					ret = cur;
+					mNext[start + 1] = i;
+				}
+			}
+    	}
+
+		System.out.println(String.format("%d=%d", start, ret));
+		mCache[start + 1] = ret;
+		return ret;
+	}
+
+	private static boolean findKeyInMatrix(int[][] m, int row, int col, int key) {
         int r = 0;
         int c = col - 1;
 

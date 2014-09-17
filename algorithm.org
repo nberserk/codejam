@@ -187,6 +187,12 @@ QuickSelect(A, k)
       return cur;
   }
 #+END_SRC
+** math
+- gcd
+gcd(a,a) = a
+gcd(a,b) = gcd(a - b,b), if a > b
+gcd(a,b) = gcd(a, b-a)d, if b > a
+
 ** bit
 #+BEGIN_SRC java
   int setBit(int n, int idx, boolean bset){
