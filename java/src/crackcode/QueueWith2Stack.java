@@ -1,5 +1,6 @@
 package crackcode;
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class QueueWith2Stack {
@@ -52,6 +53,8 @@ public class QueueWith2Stack {
 		q.enqueue(100);
 		q.print();
 
+		LinkedList<Integer> l = new LinkedList<Integer>();
+		l.poll();
 	}
 
 

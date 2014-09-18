@@ -159,6 +159,17 @@ QuickSelect(A, k)
 #+END_SRC
 *** pemutation, combination
     see [[file:cpp/codejam/combination.cpp][combination]]
+** stack, queue
+#+BEGIN_SRC java
+  // queue
+  LinkedList<Integer> l = new LinkedList<Integer>();
+          l.poll();
+
+  // stack
+  Stack<Integer> stack = new Stack<Intege>();
+  stack.push(1);
+  stack.pop();
+#+END_SRC
 ** tree
 #+BEGIN_SRC java
   int getMaxDepth(Node n){
@@ -210,6 +221,5 @@ gcd(a,b) = gcd(a, b-a)d, if b > a
 - 2.5 circular linked list. finding loop start. hint : using 2 node pointers
 - 4.5 in-order successor
 - 4.8 all path of tree which sum is S
-- 
 
 
