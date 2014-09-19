@@ -98,32 +98,6 @@ void toposort(){
       return -1;
   }
 #+END_SRC
-** behavoral questions
-*** most challenging
-Tizen/bada : 팀장 및 팀원들을 위키/cmake/CI를 사용하게 설득한 점. backward compatibility. bada 1.0 1.1 1.2
-IE/CS SDK : global setting에 연관검색 관련 메뉴추가를 했는데/ 관련 지식이 없는 상태에서 몇일안에 셋팅에 추가해야 하는 일이 발생. 관련 지식이 없었기 때문에 해당 팀에 수소문 해서
- 그분에게 도움을 요청. 전반적인 골격을 이해한 다음. 빌드/테스트 방법을 알아 추가 하는데 별탈 없이 잘 추가가 되었고. 이는 마지막 순간에 드롭이 되어 다시 빼야 했던일. 파생향등이 너무 많아
-그것을 다 정리하는데 몇주가 소요 되었던 점.
-*** what u learned 
-IE/CS SDK : data의 중요성. privacy. service mind. 
-Tizen/bada : 사람들을 설득 시키는 것의 어려움. 후발주자 플랫폼 프로바이더로서의 한계점. 
-*** hardest bug
-IE/CS SDK : global setting, html parsing(illegal syntax)
-bada : vxworks target 에 포팅할때 int size가 2byte 였던 것으로 기억한다. 그래서 memcp 할때 메모리를 침범해서 정말 힘든 버그로 남았던 기억이 있다.
-*** enjoyed most
-Domino : 자발적으로 시작한 것이라 그런지 가장 많이 기억에 남는다. 4개월 동안 정말 게임 디자인/구현/서버/대기실/게임방 등을 모두 구현했고
-프로그레스가 보이니 재미있기도 했다. 더구나 게임개발 부분 2위, 전체 3위의 성적을 받았기에 더욱더 기억에 남는다.
-무언가에 같은 뜻을 가진 팀이 되어 도전한다는 것이 이렇게 재미날 수 있구나 하는 것을 느끼게 해준 프로젝트이다.
-디자이너는 ppt로 모든 텍스쳐 작업을 했다. 군대의 힘이란 대단했다. 
-Mobile Secondlife : connecting real/virtual world란 컨셉이 너무 멋있어서 한껏 고무되어서 했던것 같다. mixed contact, mixed chat이 너무 미래 지향적인것 같다. 
-*** conflict with teammates
-IE/CS SDK : 거의 모든 의사결정시 의견이 맞지 않는 팀원이 있어서 많은 스트레스를 받았던 적이 있다. module decomposition, policy, api param 이름 까지. 그 팀원은 항상 완벽주의를 추구했고
-그렇게 하면 현실적으로 일정을 맞출수 없기도 하고 roi가 크지 않은 것들에 집착을 나타냈다. 심지어 여러 이해 당사자들과 이미 정리한 것들도 다시 얘기를 꺼내며 이렇게 해야 하지 않느냐고 말을 꺼내기도 했다.
-그럴때 마다 약간 화가 나기도 했지만, 그 친구도 자신의 입장에서 최선을 다하려고 하는것은 알고 있었기에 나무랄 수만은 없었다. 그래서 그 친구 의도대로 완벽을 기할 수 있게 결정하고 진행할 수 있는 일들
-위주로 주고 대신에 외국 연구소 인력을 몇 붙여 주었더니 자신의 철학대로 일도 진행하면서 나는 결과만 받고 그러니 일이 너무 잘 진행이 되는 것을 느낄 수 있었다.
-Domino : 팀원 한명이 처음에는 잘 하다가 점점 참여도가 떨어졌다. 할일은 많은데 다른 팀원들도 불만이 생기기 시작했다.  어떻게 할까 하다가 결국엔 우리가 기여한 만큼 크레딧을 가지기로 했다. 
-그러니 팀원들도 사람들도 수긍하는 눈치였고, 그 친구는 중간에 빠지면서 10%의 크레딧을 주장했고 우리는 인정해 주었다. 
-
 ** questions
 http://www.glassdoor.com/Interview/Google-Interview-Questions-E9079.htm
 http://courses.csail.mit.edu/iap/interview/Hacking_a_Google_Interview_Practice_Questions_Person_B.pdf
@@ -163,7 +137,9 @@ QuickSelect(A, k)
 #+BEGIN_SRC java
   // queue
   LinkedList<Integer> l = new LinkedList<Integer>();
-          l.poll();
+  l.poll();
+  l.peek();
+  l.add();
 
   // stack
   Stack<Integer> stack = new Stack<Intege>();
@@ -221,5 +197,10 @@ gcd(a,b) = gcd(a, b-a)d, if b > a
 - 2.5 circular linked list. finding loop start. hint : using 2 node pointers
 - 4.5 in-order successor
 - 4.8 all path of tree which sum is S
+- 11.1 stock price - system design
+raw text files : hard to maintain
+db : dynamic query, 
+json file for each : simple enough to display static info
+
 
 
