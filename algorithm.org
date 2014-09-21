@@ -27,16 +27,50 @@
 #+END_SRC
 * algorithm
 ** max heap
-properties: A[p]>=A[i], left = 2*i+1(0-based idx), right=2*i+2, parent = i/2
+properties: A[p]>=A[i], left = 2*i+1(0-based idx), right=2*i+2, parent = (i-1)/2
 - maxHeapify(A, len, i) : LEFT(i) & RIGHT(i) already max heap. float down.
 - buildMaxHeap : 
 - heapSort : 
-
 priorityqueue using max heap
 - heapMaximum
 - heapExtractMax
 - heapIncreaseKey : 
 - maxHeapInsert
+#+BEGIN_SRC java
+
+  // assume under i, already maxheap
+  void maxHeapify(int[] a, int i, int size){
+      int largest = i;
+      int left = 2*i +1;
+      int right = left +1;
+
+      if (left < size && a[left] > a[largest]){
+          largest = left;
+      }
+      if (right < size && a[right] > a[largest]){
+          largest = right;
+      }
+      if (largest!=i){
+          swap(a[i], a[largest]);
+          maxHeapify(a, largest);
+      }
+  }
+
+  void buildMaxHeap(int[] a){
+      for (int i = a.length/2; i >=0 ; i--){
+          maxHeapify(a, i, a.length);
+      }
+  }
+
+  void heapSort(int[] a){
+      buildMaxHeap();
+      int len = a.length -1;
+      for (int i = len; i >0; i--){
+          swap(a[i], a[0]);
+          maxHeapify(a, 0, i);
+      }
+  }
+#+END_SRC
 
 ** greedy
 ** graph
@@ -154,24 +188,83 @@ QuickSelect(A, k)
       return 1 + Math.max(getMaxDepth(n.left), getMaxDepth(n.right));
   }
 
-  Node getMinRecursive(Node n){
+  Node getTreeMinRecursive(Node n){
       if (n==null){
-          return 987654321;
+          return null;
       }
       if (n.left!=null){
-          return getMin(n.left);
+          return getTreeMinRecusive(n.left);
       }
       return n;
   }
 
-  Node getMinIterative(Node n){
+  Node getTreeMinIterative(Node n){
       if (n==null){
-          return 987654321;
+          return null;
       }
       Node cur = n;
       while(cur.left!=null)
           cur = cur.left;
       return cur;
+  }
+
+  Node getTreeMax(Node n){
+      if (node==null){
+          return null;
+      }
+      Node cur=n;
+      while (cur.right!=null){
+          cur = cur.right;
+      }
+      return cur;
+  }
+
+  Node getTreePredecessor(Node n){
+      if (node==null){
+          return null;
+      }
+
+      if (node.left!=null){
+          return getTreeMax(node.right);
+      }
+
+      Node cur = n;
+      while (cur.getParent()!=null && cur==cur.getParent().left){
+          cur = cur.getParent();
+      }
+      return cur.getParent();
+  }
+
+  Node getTreeSuccessor(Node n){
+      if (n==null){
+          return null;
+      }
+
+      if (n.right!=null){
+          return getTreeMin(Node n);
+      }
+
+      Node cur = n;
+      while (cur.getParent()!=null && cur==cur.getParent().right){
+          cur = cur.getParent();
+      }
+
+      return cur.getParent();    
+  }
+
+  void transPlant(Tree t, Node u, Node v){
+      if (u.parent==null){
+          t.root = v;
+          return;
+      }
+
+      if (u==u.parent.left){
+          u.parent.left =v;
+      }else
+          u.parent.right=v;
+      if (v!=null){
+          v.parent = u.parent;        
+      }
   }
 #+END_SRC
 ** math
@@ -201,6 +294,8 @@ gcd(a,b) = gcd(a, b-a)d, if b > a
 raw text files : hard to maintain
 db : dynamic query, 
 json file for each : simple enough to display static info
+- find 2 numbers add up to x, with unsorted arrays; sort it, 2 pointers. one from the start, one from the end
+- reserse words
 
 
 

@@ -42,6 +42,12 @@ public class BitManipulation {
         mA[7] = 8;
         int miss = findMissing(N);
         System.out.println(miss);
+        
+		int n2 = -1;
+		n2 = (n2 & 0b100001);
+		n2 = (n2 >>> 4);
+		System.out.println(Integer.toBinaryString(n2));
+        
     }
 
     static int fetchBit(int i, int j) {

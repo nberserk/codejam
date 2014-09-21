@@ -2,12 +2,14 @@ package crackcode;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Recursive {
 	static int[] stage = { 25, 10, 5, 1 };
 	static int[] columnForRow = new int[8];
 	static int gQueenWay;
 	static int gQueenWay2;
+	private static int sPhonumberCount;
 	public static void main(String[] args) {
 
 
@@ -27,6 +29,21 @@ public class Recursive {
 
 		ArrayList<Point> ptQueens = new ArrayList<Point>();
 		queen(ptQueens);
+
+		char[] str = { 'a', 'b', 'c', 'd' };
+		char[] cur = new char[str.length];
+		permutation(str, cur, 0);
+
+		char[] inForCombination = "123".toCharArray();
+		char[] out = new char[inForCombination.length];
+		combination(inForCombination, out, 0, 0, 1);
+		combination(inForCombination, out, 0, 0, 2);
+		combination(inForCombination, out, 0, 0, 3);
+		
+		int[] numbers = { 8, 6, 6, 2, 6, 6, 5 };
+		int[] numbers2 = { 8, 1, 1, 1, 1, 1, 1, };
+		pPhoneNumber(numbers2, new char[7], 0);
+		System.out.println(sPhonumberCount);
 	}
 
 	static boolean isShareX(ArrayList<Point> pt, int x) {
@@ -155,6 +172,63 @@ public class Recursive {
 			c[idx] = ')';
 			parenthesis(N, open, closed - 1, c);
 		}
+	}
+
+	static void permutation(char[] c, char[] cur, int idx) {
+		if (idx == c.length) {
+			System.out.println(Arrays.toString(cur));
+			return;
+		}
+
+		for (int i = 0; i < c.length; i++) {
+			if (c[i] == ' ') {
+				continue;
+			}
+			cur[idx] = c[i];
+			char t = c[i];
+			c[i] = ' ';
+			permutation(c, cur, idx + 1);
+			c[i] = t;
+		}
+	}
+
+	static void combination(char[] in, char[] out, int start, int k, int maxk) {
+		if (k == maxk) {
+			System.out.println(Arrays.toString(out));
+			return;
+		}
+
+		for (int i = start; i < in.length; i++) {
+			out[k] = in[i];
+			combination(in, out, i + 1, k + 1, maxk);
+		}
+	}
+
+	static void pPhoneNumber(int[] numbers, char[] out, int idx) {
+		if (idx == numbers.length) {
+			System.out.println(Arrays.toString(out));
+			sPhonumberCount++;
+			return;
+		}
+
+		if (numbers[idx] == 1 || numbers[idx] == 0) {
+			out[idx] = (char) ('0' + numbers[idx]);
+			pPhoneNumber(numbers, out, idx + 1);
+		} else {
+			for (int i = 0; i < 3; i++) {
+				out[idx] = getCharKey(numbers[idx], i + 1);
+				pPhoneNumber(numbers, out, idx + 1);
+			}
+		}
+
+	}
+
+	static char getCharKey(int key, int place) {
+		char[][] table = { { 'a', 'b', 'c' }, { 'd', 'e', 'f' },
+				{ 'g', 'h', 'i' }, { 'j', 'k', 'l' }, { 'm', 'n', 'o' },
+				{ 'p', 'r', 's' }, { 't', 'u', 'v' }, { 'w', 'x', 'y' } };
+
+		return table[key - 2][place - 1];
 	}
 
 }
