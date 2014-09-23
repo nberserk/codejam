@@ -10,19 +10,43 @@ public class List {
 		Node(int d) {
 			data = d;
 		}
+
+		@Override
+		public String toString() {
+			return String.format("%d", data);
+		}
 	}
 
-	boolean insertAfter(Node n, int data) {
+	int size() {
+		int count = 0;
+		Node cur = head;
+		while (cur != null) {
+			count++;
+			cur = cur.next;
+		}
+		return count;
+	}
+
+	Node insertAfter(Node n, int data) {
 		if (n == null) {
 			Node node = new Node(data);
 			node.data = data;
 			node.next = head;
 			head = node;
-			return true;
+			return node;
+		} else {
+			Node cur = head;
+			while (cur != null) {
+				if (cur == n) {
+					Node node = new Node(data);
+					node.next = cur.next;
+					cur.next = node;
+					return node;
+				}
+				cur = cur.next;
+			}
+			return null;
 		}
-
-
-		return true;
 	}
 
 	boolean delete(Node n) {
@@ -50,26 +74,38 @@ public class List {
 	}
 
 	public static void main(String[] args) {
-		
-		String t = "0123456789";
-		System.out.println(t.charAt(9));
-		int cp = t.codePointAt(0);
-		int count = Character.charCount(cp);
+		List list = new List();
+		CheckUtil.check(0, list.size());
 
+		Node inserted = list.insertAfter(null, 1);
+		CheckUtil.check(1, list.size());
+		inserted = list.insertAfter(inserted, 5);
+		inserted = list.insertAfter(inserted, 10);
+		inserted = list.insertAfter(inserted, 20);
+		CheckUtil.check(4, list.size());
 
-		char[] c = t.toCharArray();
-		String nn = new String(c);
-		if (t.contains("1")) {
-			System.out.println("t contains 1");
-		}
-
-		Node n1 = new Node(10);
-		Node n2 = new Node(20);
-		Node n3 = n1;
-
-		System.out.println(n1 == n2 ? "same" : "not same");
-		System.out.println(n1 == n3 ? "same" : "not same");
-
+		CheckUtil.check(true, list.deleteMiddle(list.head));
+		CheckUtil.check(3, list.size());
 	}
 
+	boolean deleteMiddle(Node head) {
+		Node slow = head, prev = null;
+		Node fast = head;
+		while (fast != null) {
+			fast = fast.next;
+			if (fast != null) {
+				fast = fast.next;
+			}
+			if (fast == null) {
+				if (prev != null) {
+					prev.next = slow.next;
+				}
+				return true;
+			}
+			prev = slow;
+			slow = slow.next;
+		}
+
+		return false;
+	}
 }

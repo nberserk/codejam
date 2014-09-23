@@ -1,5 +1,7 @@
 package crackcode;
 
+import java.util.Arrays;
+
 public class Strings {
 
 	public static void main(String[] args) {
@@ -8,6 +10,63 @@ public class Strings {
 		CheckUtil.check(-335, toInt("-335"));
 
 		CheckUtil.check("789", toString(789));
+		char[] s = "hello there!".toCharArray();
+		CheckUtil.check("!ereht olleh".toCharArray(), reverseString(s));
+
+		char[] s2 = "aaaaaaaaaaaaaaaaa".toCharArray();
+		removeDuplicate(s2);
+		System.out.println(Arrays.toString(s2));
+
+		// sub string
+		String raw = "abc";
+		String r2 = raw.substring(0, 3);
+		String r3 = new String(s2);
+		System.out.println(r2);
+
+	}
+
+	static void removeDuplicate(char[] in) {
+		if (in.length < 2) {
+			return;
+		}
+
+		int i, j;
+		int tail = 1;
+		for (i = 1; i < in.length; i++) {
+			for (j = 0; j < 1; j++) {
+				if (in[i] == in[j])
+					break;
+			}
+
+			if (j == tail) {
+				in[tail] = in[i];
+				tail++;
+			}
+		}
+
+		in[tail] = 0;
+	}
+
+	static char[] reverseString(char[] in) {
+		if (in == null) {
+			return in;
+		}
+
+		int i = 0;
+		int j = in.length - 1;
+
+		while (i < j) {
+			swap(in, i, j);
+			i++;
+			j--;
+		}
+		return in;
+	}
+
+	private static void swap(char[] c, int i, int j) {
+		char t = c[i];
+		c[i] = c[j];
+		c[j] = t;
 	}
 
 	static String toString(int n) {

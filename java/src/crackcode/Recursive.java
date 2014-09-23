@@ -40,6 +40,12 @@ public class Recursive {
 		combination(inForCombination, out, 0, 0, 2);
 		combination(inForCombination, out, 0, 0, 3);
 		
+		char[] in2 = "abcd".toCharArray();
+		char[] out2 = new char[in2.length];
+		ArrayList<String> subset = new ArrayList<String>();
+		allSubset(in2, out2, 0, 0, 4, subset);
+		System.out.println(subset.toString());
+
 		int[] numbers = { 8, 6, 6, 2, 6, 6, 5 };
 		int[] numbers2 = { 8, 1, 1, 1, 1, 1, 1, };
 		pPhoneNumber(numbers2, new char[7], 0);
@@ -201,6 +207,21 @@ public class Recursive {
 		for (int i = start; i < in.length; i++) {
 			out[k] = in[i];
 			combination(in, out, i + 1, k + 1, maxk);
+		}
+	}
+
+	static void allSubset(char[] in, char[] out, int start, int k, int maxk,
+			ArrayList<String> array) {
+		if (k == maxk) {
+			System.out.println(Arrays.toString(out));
+			return;
+		}
+
+		array.add(new String(out, 0, k));
+
+		for (int i = start; i < in.length; i++) {
+			out[k] = in[i];
+			allSubset(in, out, i + 1, k + 1, maxk, array);
 		}
 	}
 
