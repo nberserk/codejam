@@ -86,6 +86,19 @@ public class List {
 
 		CheckUtil.check(true, list.deleteMiddle(list.head));
 		CheckUtil.check(3, list.size());
+
+        List circular = new List();
+        inserted = circular.insertAfter(null, 1);
+        inserted = circular.insertAfter(inserted, 2);
+        inserted = circular.insertAfter(inserted, 3);
+        Node n3 = inserted;
+        inserted = circular.insertAfter(inserted, 4);
+        inserted = circular.insertAfter(inserted, 5);
+        inserted = circular.insertAfter(inserted, 6);
+        inserted.next = n3;
+
+        Node start = circular.findStartOfLoop();
+        CheckUtil.check(n3.data, start.data);
 	}
 
 	boolean deleteMiddle(Node head) {
@@ -108,4 +121,41 @@ public class List {
 
 		return false;
 	}
+
+    Node findStartOfLoop() {
+        if (head == null) {
+            return null;
+        }
+
+        Node slow = head;
+        Node fast = head;
+        while (fast != null) {
+            fast = fast.next;
+            if (fast == null) {
+                return null;
+            } else {
+                fast = fast.next;
+            }
+            slow = slow.next;
+
+            if (slow == fast) {
+                System.out.println("met first");
+                break;
+            }
+        }
+        slow = head;
+
+        while (fast != null) {
+            slow = slow.next;
+            fast = fast.next;
+            if (slow == fast) {
+                System.out.println("second first");
+                return slow;
+            }
+        }
+
+        return null;
+    }
+
+
 }
