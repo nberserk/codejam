@@ -186,6 +186,8 @@ QuickSelect(A, k)
   stack.pop();
 #+END_SRC
 ** tree
+- # nodes of having values between 2 given integers. each node has # left children and #right children.
+- 
 #+BEGIN_SRC java
   int getMaxDepth(Node n){
       if(node==null)
@@ -279,6 +281,11 @@ gcd(a,b) = gcd(a - b,b), if a > b
 gcd(a,b) = gcd(a, b-a)d, if b > a
 
 ** bit
+- >> : append 1 when negative. called 부호확장. use >>> to append 0 always
+- remove specific bit : bit &= ~(1<<p)
+- toggle specific bit : bit ^= (1<<p)
+- Integer.bitCount(toppings)
+- 
 #+BEGIN_SRC java
   int setBit(int n, int idx, boolean bset){
       if(bSet){
@@ -304,3 +311,10 @@ json file for each : simple enough to display static info
 
 
 
+** ing
+- strtok implementation
+- given set of characters duplicates possible, and given dictionary (list of words). Find longest word from dictionary that can be made from given characters. How will you do it if '*' (matches one wild character) is also included?
+- Access card system design
+- Implement a stack with find_min api as well.
+- Given set of points, find line with max points on it.
+- utf-8 byte stream verification and character extraction.

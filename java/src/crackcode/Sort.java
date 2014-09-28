@@ -29,8 +29,11 @@ public class Sort {
 				return o1.length() - o2.length();
 			}
 		});
-
 		System.out.println(Arrays.toString(ss));
+
+		CheckUtil
+				.check(9, findKthNumber(a, 0, a.length - 1, a.length - 1));
+		CheckUtil.check(5, findKthNumber(a, 0, a.length - 1, 2));
 	}
 
 	private static void customSort(String[] strings) {
@@ -60,7 +63,6 @@ public class Sort {
                 i++;
 				swap(a, i, j);
 			}
-			;
         }
 		swap(a, i + 1, e);
         return i+1;
@@ -73,6 +75,15 @@ public class Sort {
             qsort(a, m+1, e);
         }
     }
+
+	static int findKthNumber(int[] a, int s, int e, int k) {
+		int q = partition(a, s, e);
+		if (k > q)
+			return findKthNumber(a, q + 1, e, k - q);
+		else if (k < q)
+			return findKthNumber(a, s, q - 1, k);
+		return a[q];
+	}
 
 	// a& b inclusive
 	static void mergeSort(int[] a, int[] b, int start, int end) {

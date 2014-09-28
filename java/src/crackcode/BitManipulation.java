@@ -47,8 +47,25 @@ public class BitManipulation {
 		n2 = (n2 & 0b100001);
 		n2 = (n2 >>> 4);
 		System.out.println(Integer.toBinaryString(n2));
-        
+
+		CheckUtil.check(32, numOf1Bit(-1));
+		CheckUtil.check(1, numOf1Bit(1));
+		CheckUtil.check(2, numOf1Bit(5));
+		CheckUtil.check(0, numOf1Bit(0));
     }
+
+	static int numOf1Bit(int n) {
+		int count = 0;
+		int mask = 1;
+		for (int i = 0; i < 32; i++) {
+			if ((mask & n) > 0)
+				count++;
+			n = n >>> 1;
+			if (n == 0)
+				break;
+		}
+		return count;
+	}
 
     static int fetchBit(int i, int j) {
         return mA[i] & (1 << j);
