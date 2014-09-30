@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950A28C519DA872A00F75822 /* rainfill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950A28C319DA872A00F75822 /* rainfill.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
 		95B05E5A19D7F32300480993 /* christmas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B05E5819D7F32300480993 /* christmas.cpp */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,8 @@
 		95059F871949218B00A8DF9E /* fixparen.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fixparen.in; path = codejam/fixparen.in; sourceTree = "<group>"; };
 		9509F1E5194814C100C623F8 /* poly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = poly.cpp; path = codejam/poly.cpp; sourceTree = "<group>"; };
 		9509F1E6194814C100C623F8 /* poly.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = poly.in; path = codejam/poly.in; sourceTree = "<group>"; };
+		950A28C319DA872A00F75822 /* rainfill.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rainfill.cpp; sourceTree = "<group>"; };
+		950A28C419DA872A00F75822 /* rainfill.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rainfill.in; sourceTree = "<group>"; };
 		950C36E71923126200A4DB7E /* jumpgame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = jumpgame.cpp; path = codejam/jumpgame.cpp; sourceTree = "<group>"; };
 		950C36E81923126200A4DB7E /* jumpgame.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = jumpgame.in; path = codejam/jumpgame.in; sourceTree = "<group>"; };
 		950C3C04192763360001C8BC /* trianglepath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = trianglepath.cpp; path = codejam/trianglepath.cpp; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				950A28C319DA872A00F75822 /* rainfill.cpp */,
+				950A28C419DA872A00F75822 /* rainfill.in */,
 				95B05E5819D7F32300480993 /* christmas.cpp */,
 				95B05E5919D7F32300480993 /* christmas.in */,
 				95AFE8E519BBE42600E37658 /* ites.cpp */,
@@ -295,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950A28C519DA872A00F75822 /* rainfill.cpp in Sources */,
 				95B05E5A19D7F32300480993 /* christmas.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

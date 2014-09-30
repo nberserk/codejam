@@ -1,5 +1,5 @@
-// http://algospot.com/judge/problem/read/CHRISTMAS
-// category: partial sum
+// rain water 2d
+// from http://codeanytime.blogspot.kr/2013/03/this-was-discussed-in-httpwww.html
 
 #include <algorithm>
 #include <unistd.h>
@@ -28,18 +28,87 @@ typedef unsigned int ui;
 
 void check(bool ret);
 
-int gN, gK;
-int gn[100000];
+int gN;
+int gM[255][255];
+int gTemp[255];
+int gTemp1[255];
 int gSum[100000];
 vector<vector<int>> pairs;
 bool gDebug;
 int gCount, gUniqueCount;
 int gLastIndex;
 
-int partialSum(int a, int b){
-    if (a==0) return gSum[b];
-    return gSum[b]-gSum[a-1];
+void FindMaxHeightCols(int* newMatrixCols)
+{
+    for (int j = 0; j < gN; ++j)
+    {
+        // Find the ascending sequence from Top to bottom
+        gTemp[0] = gM[0][j];
+        for (int i = 1; i < gN; ++i)
+        {
+            gTemp[i] =max(gTemp[i-1], gM[i][j]);
+        }
+        // Find the ascending sequence from Top to bottom
+        gTemp1[0] = gM[gN-1][j];
+        for (int i = gN-2; i >=0; --i)
+        {
+            gTemp1[i] = (max(gTemp1[i+1], gM[i][j]));
+        }
+        
+        for(int i = 0; i < gN; ++i)
+        {
+            newMatrixCols[i, j] = Math.Min(ascB_T[i], ascT_B[i]);
+        }
+    }
 }
+
+
+void FindMaxHeightRows(int[] newMatrixRows){
+    
+    for (int i = 0; i < gN; ++i)
+    {
+        // Find the ascending sequence from left to right
+        int[] ascL_R = new int[n];
+        ascL_R[0] = matrix[i, 0];
+        for (int j = 1; j < n; ++j)
+        {
+            ascL_R[j] =Math.Max(ascL_R[j-1], matrix[i,j]);
+        }
+        // Find the ascending sequence from Right to Left
+        int[] ascR_L = new int[n];
+        ascR_L[n-1] = matrix[i, n-1];
+        for (int j = n-2; j >=0; --j)
+        {
+            ascR_L[j]= Math.Max(ascR_L[j+1], matrix[i,j]);
+        }
+        
+        for(int j = 0; j < n; ++j){
+            newMatrixRows[i, j] = Math.Min(ascR_L[j], ascL_R[j]);
+        }
+    }
+}
+
+
+int solve()
+{
+    //Two extra 2d array with same size as matrix
+    int[] potentialWaterRows = new int[gN];
+    int[] potentialWaterCol = new int[gN];
+    FindMaxHeightRows(potentialWaterRows);
+    FindMaxHeightCols(potentialWaterCol);
+    int sum = 0;
+    for (int i = 0; i < m; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+           
+            sum += Math.Min(potentialWaterRows[i, j], potentialWaterCol[i, j]) - matrix[i, j];
+        }
+    }
+    return sum;
+}
+
+
 
 void solve(){
     gCount = gUniqueCount=0;
