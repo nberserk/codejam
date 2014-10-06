@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		950A28C519DA872A00F75822 /* rainfill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950A28C319DA872A00F75822 /* rainfill.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95B05E5A19D7F32300480993 /* christmas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B05E5819D7F32300480993 /* christmas.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -301,7 +300,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				950A28C519DA872A00F75822 /* rainfill.cpp in Sources */,
-				95B05E5A19D7F32300480993 /* christmas.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -314,6 +314,10 @@ json file for each : simple enough to display static info
 ** etc
 - Given a string, convert it into a palindrome with the lease number of insertions possible.
 - Write code to determine if a given input string contains   balanced parentheses. follow up: Modify the code to work for more brackets: {}, [].
+- majority voting algorithm, http://www.cs.utexas.edu/~moore/best-ideas/mjrty/example.html 
+If the counter is 0, we set the current candidate to e and we set the counter to 1.
+If the counter is not 0, we increment or decrement the counter according to whether e is the current candidate.
+- 
 ** ing
 - given set of characters duplicates possible, and given dictionary (list of words). Find longest word from dictionary that can be made from given characters. How will you do it if '*' (matches one wild character) is also included?
 - Access card system design

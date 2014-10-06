@@ -30,60 +30,53 @@ void check(bool ret);
 
 int gN;
 int gM[255][255];
-int gTemp[255];
-int gTemp1[255];
-int gSum[100000];
-vector<vector<int>> pairs;
-bool gDebug;
-int gCount, gUniqueCount;
-int gLastIndex;
+int gPotentialWaterRows[255][255];
+int gPotentialWaterCol[255][255];
 
-void FindMaxHeightCols(int* newMatrixCols)
+bool gDebug;
+
+
+void FindMaxHeightCols(int newMatrixCols[255][255])
 {
-    for (int j = 0; j < gN; ++j)
+    int gAscTB[255];
+    int gAscBT[255];
+    for (int j = 1; j < gN; ++j)
     {
         // Find the ascending sequence from Top to bottom
-        gTemp[0] = gM[0][j];
-        for (int i = 1; i < gN; ++i)
-        {
-            gTemp[i] =max(gTemp[i-1], gM[i][j]);
+        gAscTB[0] = gM[0][j];
+        for (int i = 1; i < gN; ++i)        {
+            gAscTB[i] = max(gAscTB[i-1], gM[i][j]);
         }
-        // Find the ascending sequence from Top to bottom
-        gTemp1[0] = gM[gN-1][j];
-        for (int i = gN-2; i >=0; --i)
-        {
-            gTemp1[i] = (max(gTemp1[i+1], gM[i][j]));
+        // Find the ascending sequence from bottom to top
+        gAscBT[gN-1] = gM[gN-1][j];
+        for (int i = gN-2; i >=0; --i)        {
+            gAscBT[i] = max(gAscBT[i+1], gM[i][j]);
         }
         
-        for(int i = 0; i < gN; ++i)
-        {
-            newMatrixCols[i, j] = Math.Min(ascB_T[i], ascT_B[i]);
+        for(int i = 1; i < gN; ++i)        {
+            newMatrixCols[i][j] = min(gAscBT[i], gAscTB[i]);
         }
     }
 }
 
-
-void FindMaxHeightRows(int[] newMatrixRows){
-    
+void FindMaxHeightRows(int newMatrixRows[255][255]){
+    int gAscLR[255];
+    int gAscRL[255];
     for (int i = 0; i < gN; ++i)
     {
-        // Find the ascending sequence from left to right
-        int[] ascL_R = new int[n];
-        ascL_R[0] = matrix[i, 0];
-        for (int j = 1; j < n; ++j)
-        {
-            ascL_R[j] =Math.Max(ascL_R[j-1], matrix[i,j]);
+        // Find the ascending sequence from left to right        
+        gAscLR[0] = gM[i][ 0];
+        for (int j = 1; j < gN; ++j)        {
+            gAscLR[j] =max(gAscLR[j-1], gM[i][j]);
         }
         // Find the ascending sequence from Right to Left
-        int[] ascR_L = new int[n];
-        ascR_L[n-1] = matrix[i, n-1];
-        for (int j = n-2; j >=0; --j)
-        {
-            ascR_L[j]= Math.Max(ascR_L[j+1], matrix[i,j]);
+        gAscRL[gN-1] = gM[i][gN-1];
+        for (int j = gN-2; j >=0; --j)        {
+            gAscRL[j]= max(gAscRL[j+1], gM[i][j]);
         }
         
-        for(int j = 0; j < n; ++j){
-            newMatrixRows[i, j] = Math.Min(ascR_L[j], ascL_R[j]);
+        for(int j = 0; j < gN; ++j){
+            newMatrixRows[i][j] = min(gAscRL[j], gAscLR[j]);
         }
     }
 }
@@ -92,47 +85,23 @@ void FindMaxHeightRows(int[] newMatrixRows){
 int solve()
 {
     //Two extra 2d array with same size as matrix
-    int[] potentialWaterRows = new int[gN];
-    int[] potentialWaterCol = new int[gN];
-    FindMaxHeightRows(potentialWaterRows);
-    FindMaxHeightCols(potentialWaterCol);
+    FindMaxHeightRows(gPotentialWaterRows);
+    FindMaxHeightCols(gPotentialWaterCol);
     int sum = 0;
-    for (int i = 0; i < m; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-           
-            sum += Math.Min(potentialWaterRows[i, j], potentialWaterCol[i, j]) - matrix[i, j];
+    for (int i = 1; i < gN-1; ++i){
+        for (int j = 1; j < gN-1; ++j){
+            int cur = min(gPotentialWaterRows[i][j], gPotentialWaterCol[i][j]) - gM[i][j];
+            if (j==1 && i==1) {
+                printf("\n");
+            }
+            printf("%3d", cur);
+            sum += cur;
         }
+        printf("\n");
     }
     return sum;
 }
 
-
-
-void solve(){
-    gCount = gUniqueCount=0;
-    gLastIndex=-1;
-    // calc partial sum
-    pairs = vector<vector<int>>(gK);
-    pairs[0].push_back(-1);
-    int sum = 0;
-    for (int i = 0; i < gN; i++){
-        sum = ( sum + gn[i])%gK;
-        pairs[sum].push_back(i);
-    }
-    
-    int count =0;
-    int size;
-    for (int i = 0; i < gK; i++){
-        size = pairs[i].size();
-        if (size >=2) {
-            count += size*(size-1)/2;
-            count %= 20091101;
-        }
-    }
-    gCount = count;
-}
 
 void check(bool ret){
     if (ret==false) {
@@ -157,7 +126,7 @@ void test(){
 }
 
 int main(){
-    char fn[] = "christmas.in";
+    char fn[] = "rainfill.in";
     if (access(fn, F_OK)!=-1) {
         gDebug = true;
     }
@@ -170,14 +139,16 @@ int main(){
     test();
 
     // handling input
-    int count, p,j,k, i;    
+    int count, p,j,k, i;
     scanf("%d", &count);
     for (p=0; p<count; p++) {        
-        scanf("%d %d", &gN, &gK);
-        for (int i=0;i<gN;i++)
-            scanf("%d", gn+i);
-        solve();
-        printf("%d %d\n", gCount, gUniqueCount);
+        scanf("%d ", &gN);
+        for ( i=0;i<gN;i++)
+            for (j=0;j<gN;j++)
+                scanf("%d", &gM[i][j]);
+
+        int s = solve();
+        printf("%d\n", s);
     }
     
     if (gDebug) {
