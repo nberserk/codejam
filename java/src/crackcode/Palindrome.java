@@ -1,5 +1,8 @@
 package crackcode;
 
+import codejam.lib.CheckUtil;
+
+
 public class Palindrome {
 
     public static void main(String[] args) {
@@ -13,6 +16,18 @@ public class Palindrome {
         CheckUtil.check(2, minInsertionToMakePalindrome_Table("abccbaff".toCharArray(), 0, 7));
         // CheckUtil.check(0, minInsertionToMakePalindrome("abc".toCharArray(), 0, 2));
         // CheckUtil.check(0, minInsertionToMakePalindrome("abc".toCharArray(), 0, 2));
+        
+        
+        
+        // longest palindrome
+        char[] s = "abba".toCharArray();
+
+		CheckUtil.check(4, palindrome(s, 0, 3));
+
+		CheckUtil.check(-1, palindrome(s, 0, 2));
+
+		char[] s2 = "fedabcfcbadddabccba".toCharArray();
+		CheckUtil.check(9, longestPalindrome(s2));
     }
 
     static int minInsertionToMakePalindrome(char[] a, int start, int end) {
@@ -56,5 +71,43 @@ public class Palindrome {
 
         return t[0][n - 1];
     }
+    
+	static int longestPalindrome(char[] s) {
+		// for (int i = 0; i < sCache.length; i++) {
+		// Arrays.fill(sCache[i], -1);
+		// }
+		int len = s.length;
+		for (int i = len - 1; i >= 2; i--) {
+			for (int start = 0; start < len - i; start++) {
+				for (int end = start + i; end < s.length; end++) {
+					int cur = palindrome(s, start, end);
+					if (cur != -1)
+						return cur;
+				}
+			}
+		}
+		return 1;
+	}
+
+	static int palindrome(char[] s, int start, int end) {
+		if (s[start] != s[end])
+			return -1;
+
+		if (end - start <= 2) {
+			return end - start + 1;
+		}
+
+		int ret = -1;
+		int prev = palindrome(s, start + 1, end - 1);
+		if (prev != -1) {
+			ret = prev + 2;
+		}
+
+		// sCache[start][end] = ret;
+		return ret;
+	}
+
+
+
 
 }

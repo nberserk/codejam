@@ -1,5 +1,7 @@
 package crackcode;
 
+import codejam.lib.CheckUtil;
+
 public class HStackMin {
 	int[] data = new int[1024];
 	int[] min = new int[1024];

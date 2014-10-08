@@ -1,5 +1,7 @@
 package crackcode;
 
+import codejam.lib.CheckUtil;
+
 
 public class BinarySearchTree {
 	public static class Node {

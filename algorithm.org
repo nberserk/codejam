@@ -94,6 +94,19 @@ void toposort(){
 - stable sort : add index to each object, when compare use index with the primary data.
 - given an array of integers arrange them   such that alternate elements are large and small.(2,5,3,6,...) ; find median and split, and arrange
 #+BEGIN_SRC java
+  void insertionSort(int[] a){
+      int key;
+      for (int j = 2; j < a.length; j++){
+          key = a[j];
+          i = j-1;
+          while(i>0 && a[i]>key){
+              a[i+1] = a[i];
+              i=i-1;
+          }
+          a[i+1] = key;            
+      }
+  }
+
   int partition(int[] a, int s, int e){
       p = a[e];
       i = s-1;
@@ -188,7 +201,6 @@ QuickSelect(A, k)
 #+END_SRC
 ** tree
 - # nodes of having values between 2 given integers. each node has # left children and #right children.
-- 
 #+BEGIN_SRC java
   int getMaxDepth(Node n){
       if(node==null)
@@ -315,11 +327,9 @@ json file for each : simple enough to display static info
 - majority voting algorithm, http://www.cs.utexas.edu/~moore/best-ideas/mjrty/example.html 
 If the counter is 0, we set the current candidate to e and we set the counter to 1.
 If the counter is not 0, we increment or decrement the counter according to whether e is the current candidate.
-- 
 ** ing
 - given set of characters duplicates possible, and given dictionary (list of words). Find longest word from dictionary that can be made from given characters. How will you do it if '*' (matches one wild character) is also included?
 - Access card system design
-- Given set of points, find line with max points on it.
 - utf-8 byte stream verification and character extraction.
 
 from http://www.glassdoor.com/Interview/An-array-contains-integers-with-the-property-that-a-particular-number-called-the-majority-element-appears-more-than-50-o-QTN_717526.htm
@@ -328,5 +338,4 @@ An array contains integers with the property that a particular number, called th
 Implement std::vector's push_back()
 
 Also asked for maximum contiguous subarray problem   Answer Question
-There are n points in a plane. Find the max number of points that lie on a line   View Answer
 In a given binary tree, find the number of elements that lie in a given range.   View Answer

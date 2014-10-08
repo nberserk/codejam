@@ -3,6 +3,8 @@ package crackcode;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import codejam.lib.CheckUtil;
+
 public class Sort {
 
 	public static void main(String[] args) {

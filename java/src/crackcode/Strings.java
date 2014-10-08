@@ -2,6 +2,8 @@ package crackcode;
 
 import java.util.Arrays;
 
+import codejam.lib.CheckUtil;
+
 public class Strings {
 
 	public static void main(String[] args) {
@@ -23,6 +25,8 @@ public class Strings {
 		String r3 = new String(s2);
 		System.out.println(r2);
 
+		String org = " do or do not, ";
+		CheckUtil.check(" not, do or do ", reverseWord(org));
 	}
 
 	static void removeDuplicate(char[] in) {
@@ -61,6 +65,31 @@ public class Strings {
 			j--;
 		}
 		return in;
+	}
+
+	static String reverseWord(String s) {
+		StringBuilder sb = new StringBuilder(s.length());
+
+		int start = -1;
+		int end = -1;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			char c = s.charAt(i);
+			if (c == ' ') {
+				if (start != -1 && end != -1) {
+					sb.append(s.substring(start, end + 1));
+					start = end = -1;
+				}
+				sb.append(c);
+			} else if (end == -1) {
+				end = i;
+			} else {
+				start = i;
+				if (i == 0) {
+					sb.append(s.substring(start, end + 1));
+				}
+			}
+		}
+		return sb.toString();
 	}
 
 	private static void swap(char[] c, int i, int j) {

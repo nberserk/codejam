@@ -1,5 +1,7 @@
 package crackcode;
 
+import codejam.lib.CheckUtil;
+
 public class BitManipulation {
 
     private static int[] mA;
