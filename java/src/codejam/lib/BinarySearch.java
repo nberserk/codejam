@@ -111,7 +111,7 @@ public class BinarySearch {
 		return -1;
 	}
 
-	static int countKeys(int[] a, int key) {
+	static int binarySearchRange(int[] a, int key) {
 		int s = binarySearchStart(a, key);
 		if (s == -1)
 			return 0;
@@ -200,9 +200,9 @@ public class BinarySearch {
 		//
 		int[] a2 = { 1, 2, 3, 3, 3, 3, 5, 6, 7, 8, 9 };
 		int[] a3 = { 1, 2, 4, 5, 7 };
-		CheckUtil.check(4, countKeys(a2, 3));
-		CheckUtil.check(0, countKeys(a3, 3));
-		CheckUtil.check(0, countKeys(a3, 100));
+		CheckUtil.check(4, binarySearchRange(a2, 3));
+		CheckUtil.check(0, binarySearchRange(a3, 3));
+		CheckUtil.check(0, binarySearchRange(a3, 100));
 	}	
 
 }
