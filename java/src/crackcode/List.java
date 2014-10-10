@@ -15,7 +15,10 @@ public class List {
 
 		@Override
 		public String toString() {
-			return String.format("%d", data);
+            String s = String.format("%d ", data);
+            if (next != null)
+                s += next.toString();
+            return s;
 		}
 	}
 
@@ -101,6 +104,26 @@ public class List {
 
         Node start = circular.findStartOfLoop();
         CheckUtil.check(n3.data, start.data);
+
+
+        // reverse
+        List r = new List();
+
+        inserted = r.insertAfter(null, 1);
+        CheckUtil.check("1 ", r.head.toString());
+        inserted = r.insertAfter(inserted, 2);
+        inserted = r.insertAfter(inserted, 3);
+        inserted = r.insertAfter(inserted, 4);
+        CheckUtil.check("1 2 3 4 ", r.head.toString());
+
+        Node newHead = r.reverseIterative(r.head);
+        r.head = newHead;
+        CheckUtil.check("4 3 2 1 ", newHead.toString());
+
+        newHead = r.reverseRecursive(r.head, null);
+        CheckUtil.check("1 2 3 4 ", newHead.toString());
+        r.head = newHead;
+        // end of reverse
 	}
 
 	boolean deleteMiddle(Node head) {
@@ -159,5 +182,43 @@ public class List {
         return null;
     }
 
+    // return new head;
+    Node reverseIterative(Node head) {
+        if (head == null)
+            return head;
+
+        Node prev = null;
+        Node cur = head;
+        Node next;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = prev;
+
+            prev = cur;
+            cur = next;
+        }
+
+        return prev;
+    }
+
+    Node reverseRecursive(Node cur, Node prev) {
+        if (cur == null)
+            return null;
+
+        Node next = cur.next;
+        cur.next = prev;
+
+        Node ret = reverseRecursive(next, cur);
+        if (ret == null)
+            ret = cur;
+        return ret;
+    }
+
+    Node reverseEveryKNodes(Node head, int k) {
+        if (head == null)
+            return null;
+
+
+    }
 
 }
