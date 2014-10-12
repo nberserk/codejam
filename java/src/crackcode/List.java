@@ -124,7 +124,10 @@ public class List {
         CheckUtil.check("1 2 3 4 ", newHead.toString());
         r.head = newHead;
         // end of reverse
+
+		testReverseEveryK();
 	}
+
 
 	boolean deleteMiddle(Node head) {
 		Node slow = head, prev = null;
@@ -214,11 +217,58 @@ public class List {
         return ret;
     }
 
-    Node reverseEveryKNodes(Node head, int k) {
+	/*
+	 * returns new head
+	 */
+	Node reverseEveryKNodes(Node head, Node prev, int k) {
         if (head == null)
             return null;
 
+		Node nextPrev = head;
+		Node p = null;
+		Node n = null;
+		Node cur = head;
+		int count = 0;
+		while (cur != null) {
+			n = cur.next;
+			cur.next = p;
+			count++;
+			if (count == k)
+				break;
 
+			p = cur;
+			cur = n;
+		}
+
+		if (prev != null)
+			prev.next = cur;
+		reverseEveryKNodes(n, nextPrev, k);
+		return cur;
     }
+
+	private static void testReverseEveryK() {
+		List n = new List();
+		Node i = n.insertAfter(null, 1);
+		i = n.insertAfter(i, 2);
+		i = n.insertAfter(i, 3);
+		i = n.insertAfter(i, 4);
+		i = n.insertAfter(i, 5);
+		i = n.insertAfter(i, 6);
+		i = n.insertAfter(i, 7);
+		i = n.insertAfter(i, 8);
+		i = n.insertAfter(i, 9);
+
+		CheckUtil.check("1 2 3 4 5 6 7 8 9 ", n.head.toString());
+
+		Node newHead = n.reverseEveryKNodes(n.head, null, 3);
+		CheckUtil.check("3 2 1 6 5 4 9 8 7 ", newHead.toString());
+
+		newHead = n.reverseEveryKNodes(newHead, null, 3);
+		CheckUtil.check("1 2 3 4 5 6 7 8 9 ", newHead.toString());
+
+		newHead = n.reverseEveryKNodes(newHead, null, 4);
+		CheckUtil.check("4 3 2 1 8 7 6 5 ", newHead.toString());
+
+	}
 
 }

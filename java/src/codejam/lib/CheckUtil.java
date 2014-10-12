@@ -13,7 +13,7 @@ public class CheckUtil {
 
 	public static void check(boolean expected, boolean actual) {
 		if (expected != actual) {
-			System.out.println(String.format("expected:%d, actual:%d",
+			System.out.println(String.format("expected:%b, actual:%b",
 					expected, actual));
 		}
 	}

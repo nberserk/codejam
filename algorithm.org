@@ -335,7 +335,6 @@ If the counter is not 0, we increment or decrement the counter according to whet
 from http://www.glassdoor.com/Interview/An-array-contains-integers-with-the-property-that-a-particular-number-called-the-majority-element-appears-more-than-50-o-QTN_717526.htm
 Find the local minima in an array. A local minima is defined as a number whose left and right indices are greater than it in value.   View Answers (4)
 An array contains integers with the property that a particular number, called the majority element, appears more than 50% of the time. Give an algo to find this majority number   View Answers (4)
-Implement std::vector's push_back()
 
-Also asked for maximum contiguous subarray problem   Answer Question
-In a given binary tree, find the number of elements that lie in a given range.   View Answer
+Also asked for maximum contiguous subarray problem   
+In a given binary tree, find the number of elements that lie in a given range. 
