@@ -1,5 +1,7 @@
 package crackcode;
 
+import java.util.Stack;
+
 import codejam.lib.CheckUtil;
 
 
@@ -50,6 +52,12 @@ public class BinarySearchTree {
 
 		CheckUtil.check(2, countInRange(root, 50, 70));
 		CheckUtil.check(7, countInRange(root, 0, 500));
+
+		inorderTraversalIterative(root);
+
+		Node out = null;
+		findKthNode(root, -1, 5, out);
+		System.out.println(out);
 	}
 
 	// see http://www.careercup.com/question?id=5165570324430848
@@ -65,6 +73,38 @@ public class BinarySearchTree {
 		if (n.key < max)
 			ret += countInRange(n.right, min, max);
 		return ret;
+	}
+
+	static int findKthNode(Node n, int start, int k, Node out) {
+		if (out != null)
+			return 0;
+		if (n == null)
+			return 0;
+		int ret = start == -1 ? 0 : start;
+		ret += findKthNode(n.left, start, k, out);
+		ret++;
+		if (ret == k) {
+			out = n;
+			return 0;
+		}
+		ret += findKthNode(n.right, ret, k, out);
+		return ret;
+	}
+
+	// sounds strange
+	static void inorderTraversalIterative(Node root) {
+		Stack<Node> s = new Stack<Node>();
+		Node cur = root;
+		while (s.size() > 0 || cur != null) {
+			if (cur != null) {
+				s.push(cur);
+				cur = cur.left;
+			} else { // reach to leaf
+				cur = s.pop();
+				System.out.println(cur);
+				cur = cur.right;
+			}
+		}
 	}
 
 }

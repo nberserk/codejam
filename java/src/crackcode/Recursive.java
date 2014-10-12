@@ -50,6 +50,11 @@ public class Recursive {
 		int[] numbers2 = { 8, 1, 1, 1, 1, 1, 1, };
 		pPhoneNumber(numbers2, new char[7], 0);
 		System.out.println(sPhonumberCount);
+
+		// printNum
+		for (int i = 1; i < 10; i++) {
+			printNum(i, 1000);
+		}
 	}
 
 	static boolean isShareX(ArrayList<Point> pt, int x) {
@@ -250,6 +255,16 @@ public class Recursive {
 				{ 'p', 'r', 's' }, { 't', 'u', 'v' }, { 'w', 'x', 'y' } };
 
 		return table[key - 2][place - 1];
+	}
+
+	static void printNum(int n, int max) {
+		if (n > max)
+			return;
+		System.out.println(n);
+
+		for (int i = 0; i < 10; i++) {
+			printNum(n * 10 + i, max);
+		}
 	}
 
 }
