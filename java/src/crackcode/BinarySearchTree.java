@@ -1,8 +1,8 @@
 package crackcode;
 
-import java.util.Stack;
-
 import codejam.lib.CheckUtil;
+
+import java.util.Stack;
 
 
 public class BinarySearchTree {
@@ -41,6 +41,8 @@ public class BinarySearchTree {
 		}
 	}
 
+    private static int sCount;
+
 	public static void main(String[] args) {
 		Node root = new Node(100);
 		root.add(new Node(50));
@@ -52,12 +54,13 @@ public class BinarySearchTree {
 
 		CheckUtil.check(2, countInRange(root, 50, 70));
 		CheckUtil.check(7, countInRange(root, 0, 500));
+        CheckUtil.check(2, countInRangeOptimized(root, 50, 70, Integer.MIN_VALUE, Integer.MAX_VALUE));
+        CheckUtil.check(7, countInRangeOptimized(root, 0, 500, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
-		inorderTraversalIterative(root);
-
-		Node out = null;
-		findKthNode(root, -1, 5, out);
-		System.out.println(out);
+        inorderTraversalIterative(root);
+        sCount = 0;
+        Node target = findKthNode(root, 5);
+        CheckUtil.check(220, target.key);
 	}
 
 	// see http://www.careercup.com/question?id=5165570324430848
@@ -75,19 +78,37 @@ public class BinarySearchTree {
 		return ret;
 	}
 
-	static int findKthNode(Node n, int start, int k, Node out) {
-		if (out != null)
-			return 0;
-		if (n == null)
-			return 0;
-		int ret = start == -1 ? 0 : start;
-		ret += findKthNode(n.left, start, k, out);
-		ret++;
-		if (ret == k) {
-			out = n;
-			return 0;
-		}
-		ret += findKthNode(n.right, ret, k, out);
+    static int countInRangeOptimized(Node n, int min, int max, int curMin, int curMax) {
+        if (n == null)
+            return 0;
+        if (curMax < min || curMin > max) {
+            return 0;
+        }
+        int ret = 0;
+        if (min <= n.key && n.key <= max)
+            ret++;
+        ret += countInRangeOptimized(n.left, min, max, curMin, n.key);
+        ret += countInRangeOptimized(n.right, min, max, n.key, curMax);
+        return ret;
+    }
+
+    static Node findKthNode(Node n, int k) {
+        if (n == null)
+            return null;
+
+        Node ret = null;
+        ret = findKthNode(n.left, k);
+        if (ret != null)
+            return ret;
+
+        sCount++;
+        if (sCount == k) {
+            return n;
+        }
+        ret = findKthNode(n.right, k);
+        if (ret != null)
+            return ret;
+
 		return ret;
 	}
 
