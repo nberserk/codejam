@@ -1,13 +1,14 @@
 package crackcode;
 
-import codejam.lib.CheckUtil;
-
 import java.util.Stack;
+
+import codejam.lib.CheckUtil;
 
 
 public class BinarySearchTree {
 	public static class Node {
 		int key;
+		int leftSubTreeCount;
 		Node left, right;
 
 		Node(int v) {
@@ -76,6 +77,15 @@ public class BinarySearchTree {
 		if (n.key < max)
 			ret += countInRange(n.right, min, max);
 		return ret;
+	}
+
+	static int getLessCount(Node n, int t) {
+		if (n == null)
+			return 0;
+		if (n.key < t) {
+			return 1 + n.leftSubTreeCount + getLessCount(n.right, t);
+		}
+		return getLessCount(n.left, t);
 	}
 
     static int countInRangeOptimized(Node n, int min, int max, int curMin, int curMax) {
