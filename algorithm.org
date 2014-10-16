@@ -294,6 +294,7 @@ gcd(a,b) = gcd(a - b,b), if a > b
 gcd(a,b) = gcd(a, b-a)d, if b > a
 
 ** bit
+- big endian; store from MSB, little endian, store from LSB. x86 : little, arm: bi-endianness
 - >> : append 1 when negative. called 부호확장. use >>> to append 0 always
 - remove specific bit : bit &= ~(1<<p)
 - toggle specific bit : bit ^= (1<<p)
