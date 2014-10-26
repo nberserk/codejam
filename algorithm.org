@@ -52,7 +52,7 @@ priorityqueue using max heap
       }
       if (largest!=i){
           swap(a[i], a[largest]);
-          maxHeapify(a, largest);
+          maxHeapify(a, largest, size);
       }
   }
 

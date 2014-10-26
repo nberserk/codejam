@@ -6,28 +6,22 @@ public class BitManipulation {
 
     private static int[] mA;
 
-    static void check(int expected, int actual) {
-		if (expected != actual) {
-			System.out.println("check failed: expected:" + expected
-					+ ", actual:" + actual);
-		}
-	}
-
 	public static void main(String[] args) {
 
-		check(1 << 30, getNextLargest(0b1));
-		check((1 << 30) | (1 << 29), getNextLargest(0b11));
+		CheckUtil.check(0.11, Double.parseDouble(".11"));
+
+		CheckUtil.check(1 << 30, getNextLargest(0b1));
+		CheckUtil.check((1 << 30) | (1 << 29), getNextLargest(0b11));
 
 		int n = 0b111111111;
-		check(0b111111011, clearBit(n, 2));
-		check(0, getBit(n, 30));
-		check(1, getBit(n, 0));
-		check(1, getBit(n, 8));
-		check(0b1111111111, setBit(n, 9));
+		CheckUtil.check(0b111111011, clearBit(n, 2));
+		CheckUtil.check(0, getBit(n, 30));
+		CheckUtil.check(1, getBit(n, 0));
+		CheckUtil.check(1, getBit(n, 8));
+		CheckUtil.check(0b1111111111, setBit(n, 9));
 
-
-		String bin = toBinary("17.72");
-		System.out.println(bin);
+		CheckUtil.check("error", toBinary("17.72"));
+		CheckUtil.check("11.01", toBinary("3.25"));
 
 		int ret = updateBits(0b10000000000, 0b10101, 2, 6);
 		System.out.println(String.format("%s", Integer.toBinaryString(ret)));
@@ -54,6 +48,10 @@ public class BitManipulation {
 		CheckUtil.check(1, numOf1Bit(1));
 		CheckUtil.check(2, numOf1Bit(5));
 		CheckUtil.check(0, numOf1Bit(0));
+
+		// swapOddEvenBits
+		CheckUtil.check(2, swapOddEvenBits(1));
+		CheckUtil.check(10, swapOddEvenBits(5));
     }
 
 	static int numOf1Bit(int n) {
@@ -166,6 +164,10 @@ public class BitManipulation {
 			}
 		}
 		return r;
+	}
+
+	static int swapOddEvenBits(int x) {
+		return ((x & 0xaaaaaaaa) >>> 1) | ((x & 0x55555555) << 1);
 	}
 
 	static int updateBits(int N, int M, int i, int j) {

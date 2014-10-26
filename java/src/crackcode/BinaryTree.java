@@ -54,6 +54,12 @@ public class BinaryTree {
 		max = maxDepth(root);
 		CheckUtil.check(4, maxDepth(root));
 		CheckUtil.check(false, isBalanced(root));
+
+		//
+		Node small = new Node(300);
+		small.add(new Node(400));
+
+		CheckUtil.check(true, containsTree(root, small));
 	}
 
 	public static int maxDepth(Node n) {
@@ -76,5 +82,30 @@ public class BinaryTree {
 			return false;
 		}
 		return true;
+	}
+
+	public static boolean containsTree(Node large, Node small) {
+		if (small == null)
+			return true;
+		if (large == null)
+			return false;
+		if (large.key == small.key)
+			return matchTree(large, small);
+
+		return containsTree(large.left, small)
+				|| containsTree(large.right, small);
+	}
+
+	public static boolean matchTree(Node large, Node small) {
+		if (small == null)
+			return true;
+		if (large == null)
+			return false;
+
+		if (small.key != large.key)
+			return false;
+
+		return matchTree(large.left, small.left)
+				&& matchTree(large.right, small.right);
 	}
 }
