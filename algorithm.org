@@ -70,6 +70,26 @@ priorityqueue using max heap
           maxHeapify(a, 0, i);
       }
   }
+
+  void heapExtractMax(int[] a){
+      if (a.heap_size < 1)
+          error "heap underflow";
+      int max = a[0];
+      a[0] = a[heap_size-1];
+      a.heap_size --;
+      maxHeapify(a, 0, a.heap_size);
+      return max;
+  }
+
+  void heapIncreaseKey(int[] a, int i, int key){
+      if (key < a[i])
+          error "new key is smaller than current key";
+      a[i] = key;
+      while(i>1 && a[PARENT(i)] <a[i]){
+          swap(a[i], a[PARENT(i)]);
+          i=PARENT(i);
+      }            
+  }
 #+END_SRC
 
 ** greedy
@@ -299,7 +319,7 @@ gcd(a,b) = gcd(a, b-a)d, if b > a
 - remove specific bit : bit &= ~(1<<p)
 - toggle specific bit : bit ^= (1<<p)
 - Integer.bitCount(toppings)
-- 
+- 5.3 next smallest number/ previous largest number that have same number of 1 bits in their binary representation
 #+BEGIN_SRC java
   int setBit(int n, int idx, boolean bset){
       if(bSet){
