@@ -147,6 +147,41 @@ void toposort(){
           qsort(a, m+1, e);
       }
   }
+
+  // a& b inclusive
+  static void mergeSort(int[] a, int[] b, int start, int end) {
+      if (start == end) {
+          return;
+      }
+          
+      int m = (start+end)/2;
+      mergeSort(a, b, start, m);
+      mergeSort(a, b, m+1, end);
+      // copy sorted a to b
+      int l = start;
+      int r = m + 1;
+      for (int i = start; i <= end; i++) {
+          if (l > m) {
+              b[i] = a[r++];
+              continue;
+          }
+          if (r > end) {
+              b[i] = a[l++];
+              continue;
+          }
+
+          if (a[l] > a[r]) {
+              b[i] = a[r++];
+          } else {
+              b[i] = a[l++];
+          }
+      }
+          
+      // copy b back to a
+      for (int i = start; i <= end; i++) {
+          a[i] = b[i];
+      }
+  }
   // sort custom object
   Arrays.sort(strings, new Comparator<String>(){
           int compare(String o1, String o2) {
@@ -154,6 +189,7 @@ void toposort(){
               // return 0, when equals
           }
       });
+
 #+END_SRC
 
 ** binary search
