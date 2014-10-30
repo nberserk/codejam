@@ -24,6 +24,16 @@
 
   priority_queue<int> pq;
   priority_queue<int, vector<int>, greater<int>> pq_decreasing;
+
+  // pq with custom class pointer
+  class Comparator {
+  public:
+      bool operator()(const Node* a, const Node* b)
+      {
+          return (a->distance > b->distance);
+      }
+  };
+  priority_queue<Node*, vector<Node*>, Comparator > queue;
 #+END_SRC
 * algorithm
 ** max heap
@@ -366,6 +376,12 @@ gcd(a,b) = gcd(a, b-a)d, if b > a
       }
   }
 #+END_SRC
+
+** design
+*** image search
+computer vision, machine learning
+image distance: compare similarity of two images in color, texture, shape
+
 ** CrackCode
 - 1.6 NxN matrix, rotate 90 degree clockwise in-place
 - 2.2 Implement an algorithm to find the nth to last element of a singly linked list. hint : using 2 node pointers
