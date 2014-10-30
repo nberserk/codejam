@@ -2,6 +2,8 @@ package crackcode;
 
 import codejam.lib.CheckUtil;
 
+import java.util.ArrayList;
+
 public class BinaryTree {
 	public static class Node {
 		int key;
@@ -60,6 +62,10 @@ public class BinaryTree {
 		small.add(new Node(400));
 
 		CheckUtil.check(true, containsTree(root, small));
+
+        ArrayList<Node> path = new ArrayList<Node>();
+        findPath(root, path, 400);
+        System.out.println(path.toString());
 	}
 
 	public static int maxDepth(Node n) {
@@ -108,4 +114,17 @@ public class BinaryTree {
 		return matchTree(large.left, small.left)
 				&& matchTree(large.right, small.right);
 	}
+
+    public static boolean findPath(Node n, ArrayList<Node> path, int target) {
+        if (n == null)
+            return false;
+        path.add(n);
+        if (n.key == target)
+            return true;
+        if (findPath(n.left, path, target) || findPath(n.right, path, target))
+            return true;
+
+        path.remove(path.size() - 1);
+        return false;
+    }
 }
