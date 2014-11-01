@@ -35,6 +35,11 @@
   };
   priority_queue<Node*, vector<Node*>, Comparator > queue;
 #+END_SRC
+** pair
+#+BEGIN_SRC c++
+  priority_queue<pair<int,int>> pq;
+  pq.push(make_pair(3,4));
+#+END_SRC
 * algorithm
 ** max heap
 properties: A[p]>=A[i], left = 2*i+1(0-based idx), right=2*i+2, parent = (i-1)/2

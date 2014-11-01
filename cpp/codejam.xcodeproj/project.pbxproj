@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		950A28C519DA872A00F75822 /* rainfill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950A28C319DA872A00F75822 /* rainfill.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
+		95B491231A03A9CD0033F7FA /* newbus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B491211A03A9CD0033F7FA /* newbus.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +101,8 @@
 		95B06F2D199757FF0087CB42 /* strjoin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = strjoin.cpp; path = codejam/strjoin.cpp; sourceTree = "<group>"; };
 		95B06F2E199757FF0087CB42 /* strjoin.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strjoin.in; path = codejam/strjoin.in; sourceTree = "<group>"; };
 		95B235B1198CA52100AE9423 /* tictactoe.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tictactoe.in; path = codejam/tictactoe.in; sourceTree = "<group>"; };
+		95B491211A03A9CD0033F7FA /* newbus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = newbus.cpp; sourceTree = "<group>"; };
+		95B491221A03A9CD0033F7FA /* newbus.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = newbus.in; sourceTree = "<group>"; };
 		95C0E916194B37C1000C2AE7 /* numb3rs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = numb3rs.cpp; path = codejam/numb3rs.cpp; sourceTree = "<group>"; };
 		95C0E917194B37C1000C2AE7 /* numb3rs.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = numb3rs.in; path = codejam/numb3rs.in; sourceTree = "<group>"; };
 		95C628C0193625270046B9B0 /* quantize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = quantize.cpp; path = codejam/quantize.cpp; sourceTree = "<group>"; };
@@ -142,6 +144,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95B491211A03A9CD0033F7FA /* newbus.cpp */,
+				95B491221A03A9CD0033F7FA /* newbus.in */,
 				950A28C319DA872A00F75822 /* rainfill.cpp */,
 				950A28C419DA872A00F75822 /* rainfill.in */,
 				95B05E5819D7F32300480993 /* christmas.cpp */,
@@ -299,7 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950A28C519DA872A00F75822 /* rainfill.cpp in Sources */,
+				95B491231A03A9CD0033F7FA /* newbus.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
