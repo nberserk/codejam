@@ -68,7 +68,7 @@ void search(int src, int to){
     }
     
     for (int i=1; i<=gN; i++) {
-        //printf("%d %d\n", dist[i], count[i]);
+        printf("%d %d\n", dist[i], count[i]);
         for (int j=0; j<gQuestion.size(); j++) {
             if (src == gQuestion[j].first){
                 gAnswer[j] = count[gQuestion[j].second];
