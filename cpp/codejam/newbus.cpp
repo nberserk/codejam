@@ -1,5 +1,5 @@
 // http://algospot.com/judge/problem/read/NEWBUS
-// category: 
+// category: graph
 
 #include <algorithm>
 #include <unistd.h>
@@ -20,7 +20,7 @@
 
 
 using namespace std;
-#define H_MAX 87654321
+#define H_MAX 987654321
 #define H_MIN -987654321
 #define H_EPSILON 0.000001
 #define H_MOD 10000000
@@ -31,44 +31,36 @@ void check(bool ret);
 bool gDebug;
 int gN;
 int gMat[101][101];
-int gCount[101][101];
-vector<pair<int, int   >> gQuestion;
-
-
+int gDist[101][101];
 
 void floyd(){
+    for (int k=1; k<=gN; k++) {
+        for (int i=1; i<=gN; i++) {
+            gDist[k][i] = H_MAX;
+            if (gMat[k][i]!=-1  ) {
+                gDist[k][i] = gMat[k][i];
+            }
+        }
+    }
     for (int i=1; i<=gN; i++) {
-        gMat[i][i] = 0;
+        gDist[i][i] = 0;
     }
     
     for (int k=1; k<=gN; k++) {
         for (int i=1; i<=gN; i++) {
             for (int j=1; j<=gN; j++) {
-                int n = gMat[i][k]+gMat[k][j];
-                if (n>=H_MAX)
-                    continue;
-                if (n<gMat[i][j]) {
-                    gCount[i][j] = 1;
-                    gMat[i][j] = n;
-                }else if (n==gMat[i][j]){
-                    gCount[i][j] ++;
+                int n = gDist[i][k]+gDist[k][j];
+                if (n<gDist[i][j]) {
+                    //gCount[i][j] = 1;
+                    gDist[i][j] = n;
                 }
+//                else if (n==gMat[i][j]){
+//                    gCount[i][j] ++;
+//                }
             }
         }
     }
     
-    
-    for (int i=0; i<gQuestion.size(); i++) {
-        int from = gQuestion[i].first;
-        int to = gQuestion[i].second;
-        int v = gCount[from][to];
-        if (gMat[from][to]>100000)
-            printf("no\n");
-        else if(v==2)
-            printf("only\n");
-        else
-            printf("many\n");
-    }
 }
 
 
@@ -94,13 +86,7 @@ int main(){
     for (p=0; p<count; p++) {
         int m, q;
         scanf("%d %d %d", &gN, &m, &q);
-        
-        for (int j=1;j<=gN; j++){
-            for (int k=1; k<=gN; k++) {
-                gMat[j][k] = H_MAX;
-            }
-        }
-        memset(gCount, 0, sizeof(gCount));
+        memset(gMat, -1, sizeof(gMat));
         for (int j = 0; j < m; j++){
             int from , to, distance;
             scanf("%d %d %d", &from, &to, &distance);
@@ -108,13 +94,33 @@ int main(){
             gMat[to][from] = distance;
         }
 
-        gQuestion.clear();
+        floyd();
         for (int j = 0; j < q; j++){
             int from , to;
             scanf("%d %d", &from, &to);
-            gQuestion.push_back(make_pair(from, to));
+
+            if (gDist[from][to]>=H_MAX){
+                printf("no\n");
+            }else{
+                int count=0;
+                for (int k=1; k<=gN; k++) {
+                    if (gMat[from][k]==-1)
+                        continue;
+                    if (gMat[from][k] + gDist[k][to]==gDist[from][to]) {
+                        count++;
+                        if (count==2){
+                            break;
+                        }
+                    }
+                }
+                if(count==1)
+                    printf("only\n");
+                else
+                    printf("many\n");
+            }
+            
         }
-        floyd();
+
     }
     
     if (gDebug) {
