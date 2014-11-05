@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951D82AE1A09DFF0004481E9 /* drunken.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 951D82AC1A09DFF0004481E9 /* drunken.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95B491231A03A9CD0033F7FA /* newbus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B491211A03A9CD0033F7FA /* newbus.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +45,8 @@
 		950D29E819ADA2F700B695D4 /* dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dictionary.cpp; path = codejam/dictionary.cpp; sourceTree = "<group>"; };
 		950D29E919ADA2F700B695D4 /* dictionary.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dictionary.in; path = codejam/dictionary.in; sourceTree = "<group>"; };
 		95150C5B19A8873900EE3AED /* sort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sort.cpp; path = codejam/sort.cpp; sourceTree = "<group>"; };
+		951D82AC1A09DFF0004481E9 /* drunken.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drunken.cpp; sourceTree = "<group>"; };
+		951D82AD1A09DFF0004481E9 /* drunken.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = drunken.in; sourceTree = "<group>"; };
 		951E150519B5824000A3CC33 /* traversal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = traversal.cpp; sourceTree = "<group>"; };
 		951E150619B5824000A3CC33 /* traversal.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = traversal.in; sourceTree = "<group>"; };
 		9525E4E11962563900332F82 /* morse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = morse.cpp; path = codejam/morse.cpp; sourceTree = "<group>"; };
@@ -144,6 +146,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				951D82AC1A09DFF0004481E9 /* drunken.cpp */,
+				951D82AD1A09DFF0004481E9 /* drunken.in */,
 				95B491211A03A9CD0033F7FA /* newbus.cpp */,
 				95B491221A03A9CD0033F7FA /* newbus.in */,
 				950A28C319DA872A00F75822 /* rainfill.cpp */,
@@ -303,7 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95B491231A03A9CD0033F7FA /* newbus.cpp in Sources */,
+				951D82AE1A09DFF0004481E9 /* drunken.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
