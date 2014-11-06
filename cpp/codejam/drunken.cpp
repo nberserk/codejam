@@ -42,21 +42,36 @@ void floyd(){
                 gTime[i][j] = H_MAX;
             else
                 gTime[i][j] = gMat[i][j];
+            gMaxDelay[i][j]=0;
         }
-    }
-//    memcpy(gTime, gMat, sizeof(gMat));
-    for (int i = 0; i < gN; i++){
-        gTime[i][i] =0;
+        gTime[i][i]=0;
     }
 
     for (int k = 1; k <= gN; k++){
         for (int i = 1; i <= gN; i++){
             for (int j = 1; j <= gN; j++){
-                int delay = 0;
-                if (k!=i && k!=j){
+
+                int delay =0;
+                if (i!=k && j!=k){
                     delay = gDelay[k];
                 }
-                gTime[i][j] = min(gTime[i][j], delay+gTime[i][k]+gTime[k][j]);                
+                int d=0;
+                int oldMax= max(gMaxDelay[i][k], gMaxDelay[k][j]);
+                int curDelay = max(oldMax, delay);
+                if (delay>oldMax){
+                    d=delay-gMaxDelay[i][k]-gMaxDelay[k][j];
+                }else{
+                    d=gMaxDelay[i][k] > gMaxDelay[k][j] ? -gMaxDelay[k][j] : -gMaxDelay[i][k];
+                }
+          
+                int n = gTime[i][k]+gTime[k][j]+d;
+                if (gTime[i][j] > n){
+                    gTime[i][j] = n;
+                    gMaxDelay[i][j] = curDelay;
+                    
+                    //printf("maxDelay(%d,%d)=%d, %d", i,j, gTime[i][j], curDelay);
+                    //printf("\n");
+                }
             }            
         }
     }
@@ -79,20 +94,22 @@ int main(){
     test();
 
     // handling input
-    int count, p,j,k, i;
+    int count, p,j,k;
 
     
         int e;
         scanf("%d %d", &gN, &e);
-        for (int i = 0; i < gN; i++){
+        for (int i = 1; i <= gN; i++){
             scanf("%d", &gDelay[i]);            
         }
         memset(gMat, -1, sizeof(gMat));
         for (int j = 0; j < e; j++){
             int from , to, time;
             scanf("%d %d %d", &from, &to, &time);
+            if(from>to)
+                swap(from, to);
             gMat[from][to] = time;
-            gMat[to][from] = time;
+            //gMat[to][from] = time;
         }
         floyd();
         
@@ -100,10 +117,11 @@ int main(){
         for (int i = 0; i < count; i++){
             int from, to;
             scanf("%d %d", &from, &to);
+            if (from>to){
+                swap(from, to);
+            }
             printf("%d\n", gTime[from][to]);
         }
-
-
     
     if (gDebug) {
         fclose(fp);
