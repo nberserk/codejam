@@ -27,6 +27,11 @@ public class Strings {
 
 		String org = " do or do not, ";
 		CheckUtil.check(" not, do or do ", reverseWord(org));
+
+		//
+		for (int i = 1; i < 10; i++) {
+			printStringByComparisonOrder(Integer.toString(i), 100);
+		}
 	}
 
 	static void removeDuplicate(char[] in) {
@@ -134,6 +139,16 @@ public class Strings {
 		if (isMinus)
 			ret *= -1;
 		return ret;
+	}
+
+	static void printStringByComparisonOrder(String s, int N) {
+		if (s.length() > 0 && Integer.parseInt(s) > N) {
+			return;
+		}
+		System.out.println(s);
+		for (int i = 0; i < 10; i++) {
+			printStringByComparisonOrder(s + i, N);
+		}
 	}
 
 }

@@ -53,15 +53,28 @@ public class BinarySearchTree {
 		root.add(new Node(300));
 		root.add(new Node(400));
 
+		//          |-  100   -|
+		//         50          220
+		//   30 ---|- 70        |-- 300
+		//                       	 |---400
+		
 		CheckUtil.check(2, countInRange(root, 50, 70));
 		CheckUtil.check(7, countInRange(root, 0, 500));
         CheckUtil.check(2, countInRangeOptimized(root, 50, 70, Integer.MIN_VALUE, Integer.MAX_VALUE));
         CheckUtil.check(7, countInRangeOptimized(root, 0, 500, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
         inorderTraversalIterative(root);
-        sCount = 0;
-        Node target = findKthNode(root, 5);
+
+		Node target = findKthNode(root, 5);
         CheckUtil.check(220, target.key);
+        
+		int[] ret = findTwoNodeValueEqualToX(root, 290);
+		CheckUtil.check(70, ret[0]);
+		CheckUtil.check(220, ret[1]);
+
+		Node r2 = new Node(5);
+		ret = findTwoNodeValueEqualToX(r2, 7);
+		CheckUtil.checkTrue(null == ret);
 	}
 
 	// see http://www.careercup.com/question?id=5165570324430848
@@ -102,12 +115,17 @@ public class BinarySearchTree {
         return ret;
     }
 
-    static Node findKthNode(Node n, int k) {
+	static Node findKthNode(Node n, int k) {
+		sCount = 0;
+		return findKthNodeInternal(n, k);
+	}
+
+    static Node findKthNodeInternal(Node n, int k) {
         if (n == null)
             return null;
 
         Node ret = null;
-        ret = findKthNode(n.left, k);
+        ret = findKthNodeInternal(n.left, k);
         if (ret != null)
             return ret;
 
@@ -115,11 +133,52 @@ public class BinarySearchTree {
         if (sCount == k) {
             return n;
         }
-        ret = findKthNode(n.right, k);
+        ret = findKthNodeInternal(n.right, k);
         if (ret != null)
             return ret;
 
 		return ret;
+	}
+    
+	// return node value[]
+	// http://www.careercup.com/question?id=15320677
+	static int[] findTwoNodeValueEqualToX(Node root, int sum) {
+		Stack<Node> left = new Stack<Node>();
+		Stack<Node> right = new Stack<Node>();
+		Node n = root;
+		while (n != null) {
+			left.push(n);
+			n = n.left;
+		}
+		n = root;
+		while (n != null) {
+			right.push(n);
+			n = n.right;
+		}
+
+		while (left.peek() != right.peek()) {
+			int cur = left.peek().key + right.peek().key;
+			if (cur > sum) {
+				n = right.pop().left;
+				while (n != null) {
+					right.push(n);
+					n = n.right;
+				}
+			} else if (cur < sum) {
+				n = left.pop().right;
+				while (n != null) {
+					left.push(n);
+					n = n.left;
+				}
+			} else {
+				int[] ret = new int[2];
+				ret[0] = left.peek().key;
+				ret[1] = right.peek().key;
+				return ret;
+			}
+		}
+
+		return null;
 	}
 
 	// sounds strange
@@ -137,5 +196,4 @@ public class BinarySearchTree {
 			}
 		}
 	}
-
 }

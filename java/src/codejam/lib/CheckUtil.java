@@ -4,6 +4,12 @@ import java.util.Arrays;
 
 public class CheckUtil {
 
+	public static void checkTrue(boolean b) {
+		if (b == false) {
+			System.out.println(String.format("expected:true, actual:%b", b));
+		}
+	}
+
 	public static void check(int expected, int actual) {
 		if (expected != actual) {
 			System.out.println(String.format("expected:%d, actual:%d",
