@@ -416,3 +416,8 @@ An array contains integers with the property that a particular number, called th
 
 Also asked for maximum contiguous subarray problem   
 In a given binary tree, find the number of elements that lie in a given range. 
+
+- design
+  - online battleship game over the internet
+  - wearable device
+  - google image search
