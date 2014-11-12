@@ -1,5 +1,7 @@
 package crackcode;
 
+import codejam.lib.CheckUtil;
+
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,8 +13,6 @@ public class Recursive {
 	static int gQueenWay2;
 	private static int sPhonumberCount;
 	public static void main(String[] args) {
-
-
 		int N = 3;
 		char[] c = new char[N * 2];
 		parenthesis(N, N, N, c);
@@ -39,7 +39,7 @@ public class Recursive {
 		combination(inForCombination, out, 0, 0, 1);
 		combination(inForCombination, out, 0, 0, 2);
 		combination(inForCombination, out, 0, 0, 3);
-		
+
 		char[] in2 = "abcd".toCharArray();
 		char[] out2 = new char[in2.length];
 		ArrayList<String> subset = new ArrayList<String>();
@@ -55,6 +55,13 @@ public class Recursive {
 		for (int i = 1; i < 10; i++) {
 			printNum(i, 1000);
 		}
+
+        //
+        CheckUtil.check(true, isAggregatedNumber("112358"));
+        CheckUtil.check(false, isAggregatedNumber("117"));
+        CheckUtil.check(true, isAggregatedNumber("112112224"));
+        CheckUtil.check(true, isAggregatedNumber("1299111210"));
+        CheckUtil.check(true, isAggregatedNumber("122436"));
 	}
 
 	static boolean isShareX(ArrayList<Point> pt, int x) {
@@ -85,7 +92,7 @@ public class Recursive {
 		}
 		return false;
 	}
-	
+
 	static void placeQueen(int row){
 		if (row == 8) {
 			for (int i = 0; i < 8; i++) {
@@ -266,5 +273,82 @@ public class Recursive {
 			printNum(n * 10 + i, max);
 		}
 	}
+
+    // http://www.careercup.com/question?id=14948278
+    static boolean isAggregatedNumber(String in){
+        int N = in.length();
+        int maxLen = (N - 1) / 2;
+        int start = 0;
+        for (int i = 1; i <= maxLen; i++){ //i: first len
+            for (int j = 1; j <= maxLen; j++){
+                if (i + j + Math.max(i, j) > N)
+                    continue;
+                start = 0;
+                String first = in.substring(start, start + i);
+                String second = in.substring(start+i, start+i+j);
+                int f = Integer.parseInt(first);
+                int s = Integer.parseInt(second);
+                int a = f+s;
+                String added = String.valueOf(a);
+
+                String sub = in.substring(start + i + j, start + i + j + added.length());
+                if (!added.equals(sub))
+                    continue;
+
+                start+=i+j+added.length();
+                while (true){
+                    if(start==N)
+                        return true;
+                    int next = s+a;
+                    String sNext = String.valueOf(next);
+
+                    if (start + sNext.length() > N)
+                        break;
+
+                    if (!sNext.equals(in.substring(start, start + sNext.length())))
+                        break;
+
+                    start += sNext.length();
+                    s=a;
+                    a=next;
+                }
+
+            }
+        }
+        return false;
+    }
+
+    static boolean isAggregatedNumberInternal(String in, int start, int curSum) {
+        int N = in.length();
+        if (start == N)
+            return true;
+        int sumLen = String.valueOf(curSum).length();
+        if (N - start < sumLen)
+            return false;
+
+        int maxLen = N - start - sumLen;
+        for (int i = 1; i <= maxLen; i++) {
+            String second = in.substring(start, start + i);
+            int s = Integer.parseInt(second);
+
+            int sum = s + curSum;
+            String sumStr = String.valueOf(sum);
+            boolean matched = true;
+            for (int k = 0; k < sumStr.length(); k++) {
+                if (sumStr.charAt(k) != in.charAt(start + i + k)) {
+                    matched = false;
+                    break;
+                }
+            }
+            if (!matched) {
+                continue;
+            }
+            System.out.println(String.format("trying to %d+%d=%d", curSum, s, sum));
+            if (isAggregatedNumberInternal(in, start + i + sumStr.length(), sum))
+                return true;
+        }
+
+        return false;
+    }
 
 }
