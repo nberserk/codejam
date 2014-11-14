@@ -1,4 +1,4 @@
-package crackcode;
+package crackcode.design;
 
 import java.util.ArrayList;
 
