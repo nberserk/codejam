@@ -1,13 +1,46 @@
 package crackcode.design;
 
+import crackcode.design.BattleShip.Board.CellState;
+
 public class BattleShip {
 
 	enum SHIP {
-		SUBMARINE, FRUGAL, MINE_SWEEPER
+		SUBMARINE, PATROL, MINE_SWEEPER
 	};
 
 	enum DIRECTION {
 		LEFT, RIGHT, UP, DOWN
+	}
+
+	static class Player {
+		String id;
+		String name;
+		BattleShip mBattle;
+
+		Player(BattleShip b){
+			mBattle = b;
+		}
+	}
+
+	Board mine = new Board();
+	Board opponent = new Board();
+
+	public void placeShip(SHIP ship, int x, int y, DIRECTION dir) {
+		int size = 1;
+		switch (ship) {
+		case SUBMARINE:
+			size = 5;
+			break;
+		case PATROL:
+			size = 3;
+		case MINE_SWEEPER:
+			size = 2;
+			break;
+		default:
+			size = 0;
+			break;
+		}
+		mine.setCellValue(x, y, CellState.HIT);
 	}
 
 	static class NetworkHandler {
@@ -17,14 +50,14 @@ public class BattleShip {
 
 		void onReceived(Packet p) {
 			if (p.getId() == Packet.PACKET_SHOT) {
-				p.
+
 			}
 		}
 	}
 
 	static class Board {
 		enum CellState {
-			HIT, MISS, NOT_OPENED
+			HIT, MISS, UNKNOWN
 		};
 
 		CellState[][] mCell;
@@ -33,14 +66,18 @@ public class BattleShip {
 			mCell = new CellState[size][size];
 			for (int i = 0; i < size; i++) {
 				for (int j = 0; j < size; j++) {
-					mCell[i][j] = CellState.NOT_OPENED;
+					mCell[i][j] = CellState.UNKNOWN;
 				}
 			}
 		}
 
-		void drawBoard() {
-
+		public void setCellValue(int x, int y, CellState hit) {
+			mCell[x][y] = hit;
 		}
+
+		void drawBoard() {
+		}
+
 	}
 
 	static class Packet {
@@ -59,13 +96,19 @@ public class BattleShip {
 	
 	static class PacketShot extends Packet {
 		int x, y;
-
-		public void PacketShot(int x, int y) {
+		PacketShot(int x, int y) {
 			super(PACKET_SHOT);
 			this.x = x;
 			this.y = y;
 		}
 	}
 
+	public static void main(String[] args) {
+		
+		BattleShip ship = new BattleShip();
+		Player me = new Player(ship);
+
+
+	}
 
 }

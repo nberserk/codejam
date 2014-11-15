@@ -1,4 +1,4 @@
-package crackcode;
+package crackcode.design;
 
 import java.awt.Point;
 import java.util.Deque;

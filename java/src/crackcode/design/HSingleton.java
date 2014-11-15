@@ -1,4 +1,4 @@
-package crackcode;
+package crackcode.design;
 
 public class HSingleton {
 
