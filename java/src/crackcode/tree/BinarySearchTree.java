@@ -1,4 +1,4 @@
-package crackcode;
+package crackcode.tree;
 
 import java.util.Stack;
 

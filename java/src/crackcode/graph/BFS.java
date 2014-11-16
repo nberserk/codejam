@@ -1,4 +1,4 @@
-package crackcode;
+package crackcode.graph;
 
 import java.awt.Point;
 import java.util.LinkedList;
