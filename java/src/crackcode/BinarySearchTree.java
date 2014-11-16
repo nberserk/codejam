@@ -75,6 +75,12 @@ public class BinarySearchTree {
 		Node r2 = new Node(5);
 		ret = findTwoNodeValueEqualToX(r2, 7);
 		CheckUtil.checkTrue(null == ret);
+
+		//
+		int[] sorted = { 1, 3, 5, 7, 9, 11, 15, 20, 25 };
+		Node bst = sortedArrayToBalancedBST(sorted);
+		CheckUtil.check(9, bst.key);
+		System.out.println(bst);
 	}
 
 	// see http://www.careercup.com/question?id=5165570324430848
@@ -92,6 +98,20 @@ public class BinarySearchTree {
 		return ret;
 	}
 
+    static int countInRangeOptimized(Node n, int from, int to, int curMin, int curMax) {
+        if (n == null)
+            return 0;
+        if (curMax < from || curMin > to) {
+            return 0;
+        }
+        int ret = 0;
+        if (from <= n.key && n.key <= to)
+            ret++;
+        ret += countInRangeOptimized(n.left, from, to, curMin, n.key);
+        ret += countInRangeOptimized(n.right, from, to, n.key, curMax);
+        return ret;
+    }
+
 	static int getLessCount(Node n, int t) {
 		if (n == null)
 			return 0;
@@ -100,20 +120,6 @@ public class BinarySearchTree {
 		}
 		return getLessCount(n.left, t);
 	}
-
-    static int countInRangeOptimized(Node n, int min, int max, int curMin, int curMax) {
-        if (n == null)
-            return 0;
-        if (curMax < min || curMin > max) {
-            return 0;
-        }
-        int ret = 0;
-        if (min <= n.key && n.key <= max)
-            ret++;
-        ret += countInRangeOptimized(n.left, min, max, curMin, n.key);
-        ret += countInRangeOptimized(n.right, min, max, n.key, curMax);
-        return ret;
-    }
 
 	static Node findKthNode(Node n, int k) {
 		sCount = 0;
@@ -195,5 +201,26 @@ public class BinarySearchTree {
 				cur = cur.right;
 			}
 		}
+	}
+
+	// http://www.geeksforgeeks.org/sorted-array-to-balanced-bst/
+	// http://www.careercup.com/question?id=5261732222074880
+	// O(n) solution
+	public static Node sortedArrayToBalancedBST(int[] a) {
+		return sortedArrayToBalancedBSTInternal(a, 0, a.length - 1);
+	}
+
+	private static Node sortedArrayToBalancedBSTInternal(int[] a, int start, int end) {
+		if (start > end)
+			return null;
+		if (start == end) {
+			return new Node(a[start]);
+		}
+		int m = (start + end) / 2;
+		Node root = new Node(a[m]);
+		root.left = sortedArrayToBalancedBSTInternal(a, start, m - 1);
+		root.right = sortedArrayToBalancedBSTInternal(a, m + 1, end);
+
+		return root;
 	}
 }
