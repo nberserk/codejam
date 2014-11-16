@@ -358,6 +358,8 @@ QuickSelect(A, k)
       }
   }
 #+END_SRC
+** trie
+insert/search O(M)
 ** math
 - gcd
 gcd(a,a) = a

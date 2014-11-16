@@ -78,6 +78,27 @@ public class Sort {
         }
     }
 
+	static int partitionDecreasing(int[] a, int s, int e) {
+		int p = a[e];
+		int i = s - 1;
+		for (int j = s; j <= e - 1; j++) {
+			if (a[j] >= p) {
+				i++;
+				swap(a, i, j);
+			}
+		}
+		swap(a, i + 1, e);
+		return i + 1;
+	}
+
+	static void qsortDecreasing(int[] a, int s, int e) {
+		if (s < e) {
+			int m = partition(a, s, e);
+			qsort(a, s, m - 1);
+			qsort(a, m + 1, e);
+		}
+	}
+
 	static int findKthNumber(int[] a, int s, int e, int k) {
 		int q = partition(a, s, e);
 		if (k > q)

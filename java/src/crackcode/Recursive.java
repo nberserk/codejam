@@ -1,10 +1,10 @@
 package crackcode;
 
-import codejam.lib.CheckUtil;
-
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import codejam.lib.CheckUtil;
 
 public class Recursive {
 	static int[] stage = { 25, 10, 5, 1 };
@@ -62,6 +62,13 @@ public class Recursive {
         CheckUtil.check(true, isAggregatedNumber("112112224"));
         CheckUtil.check(true, isAggregatedNumber("1299111210"));
         CheckUtil.check(true, isAggregatedNumber("122436"));
+
+		//
+		String[] in = { "dfgs", "sdfg", "ghjhk" };
+		String[] in3 = { "adsd", "qasdasdb", "ndasdf", "aasddq", "fasda", "deasdn", "oooa" };
+		CheckUtil.check(true, canBeTermedAllString(in));
+		CheckUtil.check(true, canBeTermedAllString(in3));
+
 	}
 
 	static boolean isShareX(ArrayList<Point> pt, int x) {
@@ -351,4 +358,27 @@ public class Recursive {
         return false;
     }
 
+	// http://www.careercup.com/question?id=6362892580421632
+	static boolean canBeTermedAllString(String[] s) {
+		boolean[] used = new boolean[s.length];
+		return canBeTermedAllStringInternal(s, used, 0, (char) 0);
+	}
+
+	static boolean canBeTermedAllStringInternal(String[] s, boolean[] used, int count, char prev) {
+		if (count == s.length) {
+			return true;
+		}
+		for (int i = 0; i < s.length; i++) {
+			if (used[i])
+				continue;
+			if (prev == 0 || prev == s[i].charAt(0)) {
+				used[i] = true;
+				if (canBeTermedAllStringInternal(s, used, count + 1, s[i].charAt(s[i].length() - 1)))
+					return true;
+				used[i] = false;
+			}
+		}
+
+		return false;
+	}
 }
