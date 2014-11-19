@@ -53,7 +53,7 @@ public class Recursive {
 
 		// printNum
 		for (int i = 1; i < 10; i++) {
-			printNum(i, 1000);
+			printNum(i, 10);
 		}
 
         //

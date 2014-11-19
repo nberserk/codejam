@@ -385,6 +385,16 @@ gcd(a,b) = gcd(a, b-a)d, if b > a
 #+END_SRC
 
 ** design
+*** scalability
+- scale up : add ram, scale out : add another machine
+- http://highscalability.com/google-architecture
+  - GFS
+  - MapReduce
+  - BigTable
+- url shortening service : http://www.hiredintech.com/app#the-system-design-process
+- load balancing
+  - port forwarding by loac balancer HW
+  - round robin DNS
 *** image search
 computer vision, machine learning
 image distance: compare similarity of two images in color, texture, shape

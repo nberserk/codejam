@@ -12,18 +12,29 @@ public class BattleShip {
 		LEFT, RIGHT, UP, DOWN
 	}
 
+	private Player mPlayer;
+	Board mine = new Board();
+	Board opponent = new Board();
+	private NetworkHandler mNetworkHandler;
+
+	BattleShip() {
+		mNetworkHandler = new NetworkHandler();
+	}
+
+	boolean login(String id, String password) {
+		mNetworkHandler.connect("server", 1001);
+
+		return true;
+	}
+
 	static class Player {
 		String id;
 		String name;
-		BattleShip mBattle;
 
-		Player(BattleShip b){
-			mBattle = b;
+		Player(String id) {
+			this.id = id;
 		}
 	}
-
-	Board mine = new Board();
-	Board opponent = new Board();
 
 	public void placeShip(SHIP ship, int x, int y, DIRECTION dir) {
 		int size = 1;
@@ -48,10 +59,27 @@ public class BattleShip {
 
 		}
 
-		void onReceived(Packet p) {
-			if (p.getId() == Packet.PACKET_SHOT) {
+		public void connect(String string, int i) {
+			// TODO Auto-generated method stub
 
+		}
+
+		void onReceived(Packet p) {
+			switch (p.getId()) {
+			case Packet.PACKET_LOGIN:
+				String id = parseString();
+				break;
+			case Packet.PACKET_SHOT:				
+
+			default:
+				break;
 			}
+			
+		}
+
+		private String parseString() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 	}
 
@@ -81,8 +109,9 @@ public class BattleShip {
 	}
 
 	static class Packet {
-		public static int PACKET_PLACE_SHIP_REQ = 1;
-		public static int PACKET_SHOT = 2;
+		public static final int PACKET_LOGIN = 0;
+		public static final int PACKET_PLACE_SHIP_REQ = 1;
+		public static final int PACKET_SHOT = 2;
 		private int id;
 
 		Packet(int id) {
@@ -93,7 +122,7 @@ public class BattleShip {
 			return id;
 		}
 	}
-	
+
 	static class PacketShot extends Packet {
 		int x, y;
 		PacketShot(int x, int y) {
@@ -106,7 +135,7 @@ public class BattleShip {
 	public static void main(String[] args) {
 		
 		BattleShip ship = new BattleShip();
-		Player me = new Player(ship);
+		ship.login("darren", "pwd");
 
 
 	}

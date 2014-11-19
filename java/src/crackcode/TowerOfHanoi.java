@@ -56,6 +56,9 @@ public class TowerOfHanoi {
 			towers[0].push(i);
 		}
 
+		towers[0].print();
+		towers[1].print();
+		towers[2].print();
 		towers[0].moveTower(N, towers[2], towers[1]);
 		towers[0].print();
 		towers[1].print();
