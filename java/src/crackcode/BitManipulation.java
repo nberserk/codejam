@@ -15,6 +15,7 @@ public class BitManipulation {
 
 		int n = 0b111111111;
 		CheckUtil.check(0b111111011, clearBit(n, 2));
+		CheckUtil.check(0b111110111, clearBit(n, 3));
 		CheckUtil.check(0, getBit(n, 30));
 		CheckUtil.check(1, getBit(n, 0));
 		CheckUtil.check(1, getBit(n, 8));
@@ -119,13 +120,8 @@ public class BitManipulation {
 	}
 
 	static int clearBit(int n, int idx) {
-		int full = ~0;
 
-		int low = (1 << idx) - 1;
-		int high = full << (idx + 1);
-		int mask = low | high;
-		// System.out.println(Integer.toBinaryString(mask));
-		return (n & mask);
+		return (n & ~(1 << idx));
 	}
 
 	static int setBit(int n, int idx) {

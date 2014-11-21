@@ -213,9 +213,7 @@ public class BinarySearchTree {
 	private static Node sortedArrayToBalancedBSTInternal(int[] a, int start, int end) {
 		if (start > end)
 			return null;
-		if (start == end) {
-			return new Node(a[start]);
-		}
+
 		int m = (start + end) / 2;
 		Node root = new Node(a[m]);
 		root.left = sortedArrayToBalancedBSTInternal(a, start, m - 1);
