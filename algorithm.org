@@ -7,6 +7,12 @@
 #+END_SRC
 - sort custom struct
 #+BEGIN_SRC C++
+  // 
+  bool myCompare(const int a, const int b){
+      return gDelay[a] < gDelay[b];
+  }
+  sort(gSortedDelay, gSortedDelay+gN, myCompare);
+
   struct Meeting{
       int start, end;
       int nth;

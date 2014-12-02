@@ -32,46 +32,41 @@ bool gDebug;
 int gN;
 int gMat[501][501];
 int gDelay[501];
+int gDelaySorted[501];
 int gTime[501][501];
 int gMaxDelay[501][501];
+
+bool myCompare(const int a, const int b){
+    return gDelay[a] < gDelay[b];
+}
 
 void floyd(){
     for (int i=1; i<=gN; i++) {
         for (int j=1; j<=gN; j++) {
-            if (gMat[i][j]==-1)
+            if (gMat[i][j]==-1){
                 gTime[i][j] = H_MAX;
-            else
+                gMaxDelay[i][j]=H_MAX;
+            } else{
                 gTime[i][j] = gMat[i][j];
-            gMaxDelay[i][j]=0;
+                gMaxDelay[i][j] = gMat[i][j];
+            }
+         
         }
         gTime[i][i]=0;
+        gMaxDelay[i][i] =0;
     }
 
+    for (int i = 0; i <= gN; i++){
+        gDelaySorted[i] =i;
+    }
+    sort(gDelaySorted+1, gDelaySorted+gN+1, myCompare);    
+
     for (int k = 1; k <= gN; k++){
+        int rk = gDelaySorted[k];
         for (int i = 1; i <= gN; i++){
             for (int j = 1; j <= gN; j++){
-
-                int delay =0;
-                if (i!=k && j!=k){
-                    delay = gDelay[k];
-                }
-                int d=0;
-                int oldMax= max(gMaxDelay[i][k], gMaxDelay[k][j]);
-                int curDelay = max(oldMax, delay);
-                if (delay>oldMax){
-                    d=delay-gMaxDelay[i][k]-gMaxDelay[k][j];
-                }else{
-                    d=gMaxDelay[i][k] > gMaxDelay[k][j] ? -gMaxDelay[k][j] : -gMaxDelay[i][k];
-                }
-          
-                int n = gTime[i][k]+gTime[k][j]+d;
-                if (gTime[i][j] > n){
-                    gTime[i][j] = n;
-                    gMaxDelay[i][j] = curDelay;
-                    
-                    //printf("maxDelay(%d,%d)=%d, %d", i,j, gTime[i][j], curDelay);
-                    //printf("\n");
-                }
+                gTime[i][j] = min(gTime[i][rk] + gTime[rk][j], gTime[i][j]);
+                gMaxDelay[i][j] = min(gMaxDelay[i][j], gTime[i][j] + gDelay[rk]);          
             }            
         }
     }
@@ -106,10 +101,10 @@ int main(){
         for (int j = 0; j < e; j++){
             int from , to, time;
             scanf("%d %d %d", &from, &to, &time);
-            if(from>to)
-                swap(from, to);
+            // if(from>to)
+            //     swap(from, to);
             gMat[from][to] = time;
-            //gMat[to][from] = time;
+            gMat[to][from] = time;
         }
         floyd();
         
@@ -117,10 +112,10 @@ int main(){
         for (int i = 0; i < count; i++){
             int from, to;
             scanf("%d %d", &from, &to);
-            if (from>to){
-                swap(from, to);
-            }
-            printf("%d\n", gTime[from][to]);
+            // if (from>to){
+            //     swap(from, to);
+            // }
+            printf("%d\n", gMaxDelay[from][to]);
         }
     
     if (gDebug) {
