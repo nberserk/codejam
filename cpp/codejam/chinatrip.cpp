@@ -48,9 +48,10 @@ public:
 class Comparator{
 public:
     bool operator() (const Node& a, const Node& b){
-        if (a.city==b.city)
-            return a.dist >b.dist;
-        return a.city > b.city;
+//        if (a.city==b.city)
+//            return a.dist >b.dist;
+//        return a.city > b.city;
+        return a.dist > b.dist;
     }
 };
 
@@ -58,7 +59,7 @@ vector<int> constructPath(Node& n){
    vector<int> path;   
    path.push_back(n.city);
    int next = gParent[n.city];
-   while (next!=1) {
+   while (next!=0) {
        path.push_back(next);
        next = gParent[next];
    }
@@ -81,26 +82,38 @@ int solve(){
 
         if (gVisited[cur.city]!=-1)
             continue;
-
         if( cur.dist>ret)
             continue;
-        gVisited[cur.city]=1;
+
+
         gParent[cur.city] = cur.parent;
-        printf("%d-%d=%d\n", cur.city, cur.parent, cur.dist);
+        //printf("%d-%d=%d\n", cur.city, cur.parent, cur.dist);
         
         if (cur.city==gN) {
             if (ret == cur.dist) {
+                vector<int> np = constructPath(cur);
+                for (int i = 0; i < np.size(); i++){
+                    if(i>=path.size() || path[i]>np[i]){                    
+                        path=np;
+                        break;                            
+                    }
+                }                
             }else if(ret > cur.dist){
                 ret = cur.dist;                
                 path = constructPath(cur);
-                for (int i = 0; i < path.size(); i++){
-                    printf("%d-", path[i]);
-                }
-                printf(" :%d\n", cur.dist);
+                
             }
+//            for (int i = 0; i < path.size(); i++){
+//                printf("%d-", path[i]);
+//            }
+//            printf(" :%d\n", cur.dist);
             continue;
-        }        
+        }
+        gVisited[cur.city]=1;
         for (int i=1; i<=gN; i++) {
+            if (gVisited[i]!=-1) {
+                continue;
+            }
             if (gMat[cur.city][i]>0){
                 q.push( Node(i, cur.dist+gMat[cur.city][i], cur.city) );
             }

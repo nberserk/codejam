@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95E60CFE1A31730900D71CF2 /* chinatrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95E60CFC1A31730900D71CF2 /* chinatrip.cpp */; };
+		95EA7F3C1A40549D0003C376 /* fortress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95EA7F3A1A40549D0003C376 /* fortress.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -115,6 +115,8 @@
 		95D0F5341958571B00430F8C /* ocr.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ocr.in; path = codejam/ocr.in; sourceTree = "<group>"; };
 		95E60CFC1A31730900D71CF2 /* chinatrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chinatrip.cpp; sourceTree = "<group>"; };
 		95E60CFD1A31730900D71CF2 /* chinatrip.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chinatrip.in; sourceTree = "<group>"; };
+		95EA7F3A1A40549D0003C376 /* fortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fortress.cpp; sourceTree = "<group>"; };
+		95EA7F3B1A40549D0003C376 /* fortress.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fortress.in; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95EA7F3A1A40549D0003C376 /* fortress.cpp */,
+				95EA7F3B1A40549D0003C376 /* fortress.in */,
 				95E60CFC1A31730900D71CF2 /* chinatrip.cpp */,
 				95E60CFD1A31730900D71CF2 /* chinatrip.in */,
 				9517DE041A2DA5C50080DD0E /* tiling.cpp */,
@@ -315,7 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95E60CFE1A31730900D71CF2 /* chinatrip.cpp in Sources */,
+				95EA7F3C1A40549D0003C376 /* fortress.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
