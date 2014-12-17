@@ -29,6 +29,7 @@ typedef long long ll;
 class Node{
 public:
     int x,y,r;
+    int maxDepth;
     vector<Node> child;
     
     void add(Node& n){
@@ -67,12 +68,31 @@ public:
             return true;
         return false;
     }
-    int depth(){
+    
+    int calcMaxDepth(){ // calc depth
         int ret = 1;
-        int cur;
         for (int i = 0; i < child.size(); i++){
-            cur = 1 + child[i].depth();
-            ret = max(ret, cur);
+            ret = max(ret, 1+child[i].calcMaxDepth());
+        }
+        maxDepth = ret;
+        return ret;
+    }
+
+    int maxWall(){
+        int ret = maxDepth-1;
+        
+        int csize = child.size();
+        if (csize >1) {
+            vector<int> w;
+            for (int i=0; i< child.size(); i++) {
+                w.push_back(child[i].maxDepth);
+            }
+            sort(w.begin(), w.end());
+            ret = max(ret, w[csize-1] + w[csize-2]);
+        }
+        
+        for (int i=0; i<csize; i++) {
+            ret = max(ret, child[i].maxWall());
         }
         return ret;
     }
@@ -85,20 +105,9 @@ int gN;
 Node gRoot;
 
 void solve(){
-    vector<int> depth;
-    for (int i = 0; i < gRoot.child.size(); i++){
-        depth.push_back(gRoot.child[i].depth());
-    }
-    int size = depth.size();
-    sort(depth.begin(), depth.end());
-    int ret;
-    if (size==0){
-        ret =0;
-    }else if (size==1){
-        ret = depth[0];
-    }else{
-        ret = depth[size-1] + depth[size-2];
-    }
+    gRoot.calcMaxDepth();
+    //gRoot.maxDepth =-1;
+    int ret = gRoot.maxWall();
     printf("%d\n", ret);    
 }
 
