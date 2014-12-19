@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95EA7F3C1A40549D0003C376 /* fortress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95EA7F3A1A40549D0003C376 /* fortress.cpp */; };
+		95DE59051A43F48F00CACD49 /* christmasGift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DE59021A43F45300CACD49 /* christmasGift.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -113,10 +113,12 @@
 		95C628C1193625270046B9B0 /* quantize.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = quantize.in; path = codejam/quantize.in; sourceTree = "<group>"; };
 		95D0F5331958571B00430F8C /* ocr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ocr.cpp; path = codejam/ocr.cpp; sourceTree = "<group>"; };
 		95D0F5341958571B00430F8C /* ocr.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ocr.in; path = codejam/ocr.in; sourceTree = "<group>"; };
+		95DE59021A43F45300CACD49 /* christmasGift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = christmasGift.cpp; sourceTree = "<group>"; };
+		95DE59031A43F45300CACD49 /* christmasGift.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = christmasGift.in; sourceTree = "<group>"; };
 		95E60CFC1A31730900D71CF2 /* chinatrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chinatrip.cpp; sourceTree = "<group>"; };
 		95E60CFD1A31730900D71CF2 /* chinatrip.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chinatrip.in; sourceTree = "<group>"; };
-		95EA7F3A1A40549D0003C376 /* fortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fortress.cpp; sourceTree = "<group>"; };
-		95EA7F3B1A40549D0003C376 /* fortress.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fortress.in; sourceTree = "<group>"; };
+		95EA7F3A1A40549D0003C376 /* fortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fortress.cpp; path = codejam/fortress.cpp; sourceTree = "<group>"; };
+		95EA7F3B1A40549D0003C376 /* fortress.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fortress.in; path = codejam/fortress.in; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,8 +154,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95EA7F3A1A40549D0003C376 /* fortress.cpp */,
-				95EA7F3B1A40549D0003C376 /* fortress.in */,
+				95DE59021A43F45300CACD49 /* christmasGift.cpp */,
+				95DE59031A43F45300CACD49 /* christmasGift.in */,
 				95E60CFC1A31730900D71CF2 /* chinatrip.cpp */,
 				95E60CFD1A31730900D71CF2 /* chinatrip.in */,
 				9517DE041A2DA5C50080DD0E /* tiling.cpp */,
@@ -216,6 +218,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				95EA7F3A1A40549D0003C376 /* fortress.cpp */,
+				95EA7F3B1A40549D0003C376 /* fortress.in */,
 				951D82AC1A09DFF0004481E9 /* drunken.cpp */,
 				951D82AD1A09DFF0004481E9 /* drunken.in */,
 				9503CAC319B479EA00BD7C6B /* josephus.cpp */,
@@ -319,7 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95EA7F3C1A40549D0003C376 /* fortress.cpp in Sources */,
+				95DE59051A43F48F00CACD49 /* christmasGift.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
