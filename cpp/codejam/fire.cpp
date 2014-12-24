@@ -31,21 +31,64 @@ void check(bool ret);
 
 bool gDebug;
 int gN, gP;
-int gCost[100001];
-int gMin [100001];
+int gCost[100002];
+int gMin [100002];
 
+
+void solve2(){
+    int i;
+    priority_queue<pair<int,int>, vector<pair<int,int>> ,greater<pair<int,int>> > pq;
+    for (i = 1; i <= gP; i++){
+        gMin[i] = gCost[i];
+        pq.push(make_pair(gMin[i], i));
+    }
+    
+    for (i = gP+1;i<=gN+1;i++){
+        while(pq.top().second<i-gP)
+            pq.pop();
+        gMin[i] = gCost[i] + pq.top().first;
+        pq.push(make_pair(gMin[i], i));
+    }
+    printf("%d\n", gMin[gN+1]);
+}
 
 void solve(){
     int i;
     for (i = gN-gP+1; i <=gN; i++){
         gMin[i] = gCost[i];
     }
+    int minIndex=-1;
+    int minV;
     for (i = gN-gP; i >=0; i--){
-        gMin[i]=gMin[i+1];
-        for (int j = 2; j <= gP; j++){
-            gMin[i] = min(gMin[i], gMin[i+j]);
+        if (minIndex==-1){
+            minV = gMin[i+1];
+            minIndex =i+1;
+            for (int j = 2; j <= gP; j++){
+                if (minV>gMin[i+j]){
+                    minV=gMin[i+j];
+                    minIndex=i+j;
+                }
+            }
+        }else{
+            if (gMin[i+1]<=minV){
+                minIndex = i+1;
+                minV = gMin[i+1];
+            }else{
+                if (minIndex==i+gP+1){
+                    minV = gMin[i+1];
+                    minIndex =i+1;
+                    for (int j = 2; j <= gP; j++){
+                        if (minV>gMin[i+j]){
+                            minV=gMin[i+j];
+                            minIndex=i+j;
+                        }
+                    }
+                }                
+            }
         }
-        gMin[i]+= gCost[i];
+        
+        gMin[i] = minV + gCost[i];
+        //printf("%d=%d\n", i, gMin[i]);
     }
     
     printf("%d\n", gMin[0]);
@@ -70,6 +113,15 @@ void check(char expected, char actual){
 }
 
 void test(){
+    
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int, int>> > pq;
+    pq.push(make_pair(3,2));
+    pq.push(make_pair(3,1));
+        pq.push(make_pair(4,1));
+    pq.push(make_pair(5, 1));
+    check(3, pq.top().first);
+        check(1, pq.top().second);
+    
     for (int i = 1; i <= 10; i++){
         gCost[i]=i;        
     }
@@ -104,7 +156,8 @@ int main(){
         for (int i = 1; i <= gN; i++){
             scanf("%d", gCost+i);
         }
-        solve();
+        //solve();
+        solve2();
     }
     
     if (gDebug) {

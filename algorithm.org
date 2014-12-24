@@ -29,7 +29,7 @@
   #include <queue>
 
   priority_queue<int> pq;
-  priority_queue<int, vector<int>, greater<int>> pq_decreasing;
+  priority_queue<int, vector<int>, greater<int>> pq_min_heap;
 
   // pq with custom class pointer
   class Comparator {
