@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95DC0FA51A480306005D6CFA /* fire.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DC0FA31A480306005D6CFA /* fire.cpp */; };
+		95E015011A4A928700AC838C /* chefbr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95E014FF1A4A928700AC838C /* chefbr.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -119,6 +119,8 @@
 		95DE59031A43F45300CACD49 /* christmasGift.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = christmasGift.in; sourceTree = "<group>"; };
 		95DE59061A440F6900CACD49 /* uri.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uri.cpp; path = codejam/uri.cpp; sourceTree = "<group>"; };
 		95DE59071A440F6900CACD49 /* uri.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = uri.in; path = codejam/uri.in; sourceTree = "<group>"; };
+		95E014FF1A4A928700AC838C /* chefbr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = chefbr.cpp; path = chef/chefbr.cpp; sourceTree = "<group>"; };
+		95E015021A4AA07800AC838C /* chefbr.cpp.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = chefbr.cpp.in; path = chef/chefbr.cpp.in; sourceTree = "<group>"; };
 		95E60CFC1A31730900D71CF2 /* chinatrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chinatrip.cpp; sourceTree = "<group>"; };
 		95E60CFD1A31730900D71CF2 /* chinatrip.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chinatrip.in; sourceTree = "<group>"; };
 		95EA7F3A1A40549D0003C376 /* fortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fortress.cpp; path = codejam/fortress.cpp; sourceTree = "<group>"; };
@@ -158,6 +160,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95E015021A4AA07800AC838C /* chefbr.cpp.in */,
+				95E014FF1A4A928700AC838C /* chefbr.cpp */,
 				95DC0FA31A480306005D6CFA /* fire.cpp */,
 				95DC0FA41A480306005D6CFA /* fire.in */,
 				95DE59021A43F45300CACD49 /* christmasGift.cpp */,
@@ -331,7 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95DC0FA51A480306005D6CFA /* fire.cpp in Sources */,
+				95E015011A4A928700AC838C /* chefbr.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
