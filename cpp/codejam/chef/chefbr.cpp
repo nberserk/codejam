@@ -22,7 +22,7 @@ using namespace std;
 #define H_MAX 987654321
 #define H_MIN -987654321
 #define H_EPSILON 0.000001
-#define H_MOD 10000000
+#define H_MOD 1000000009
 typedef long long ll;
 
 
@@ -30,46 +30,40 @@ void check(bool ret);
 
 bool gDebug;
 int gN;
-int gn[100];
-int gWay[100];
+ll gn[101];
+ll gWay[101][101];
+
+ll ways(int s, int e){
+    if (s>=e){
+        return 1;
+    }
+    ll& ret = gWay[s][e];
+    if (ret!=-1){
+        return ret;
+    }
+    ret = ways(s, e-1);
+
+    for (int i = s; i < e; i++){
+        if (gn[e]>0 && gn[e]==-gn[i]){
+            ll n = ways(s,i-1);
+            ll m = ways(i+1, e-1);
+            n = (n*m)%H_MOD;
+            ret = (ret + n)%H_MOD;
+        }
+    }
+    //printf("%d,%d=%lld\n", s,e,ret);
+    return ret;
+}
 
 void solve(){
-    vector<pair<int,int>> pair; // endIndex, startIndex
-    for (int i = 0; i < gN; i++){        
-        if (gn[i]>0)
-            continue;
-
-        for (int j = i+1; j < gN; j++){
-            if (gn[i]==gn[j]*-1){
-                pair.push_back(make_pair(j,i));
-            }
+    //int s = sizeof(long);
+    //memset(gWay,-1,sizeof(gWay));
+    for (int i = 0; i < gN; i++){
+        for (int j=0; j<gN; j++) {
+            gWay[i][j]=-1;
         }
     }
-
-    sort(pair.begin(), pair.end());
-
-    int prev=-1;    
-    for (int i = 0; i < pair.size(); i++){
-        int e = pair[i].first;
-        int s = pair[i].second;
-        if (prev!=-1){
-            for (int j = prev+1; j < e; j++){
-                gWay[j] = gWay[j-1];
-            }
-        }
-        if (s==0) {
-            gWay[e]=1 + gWay[e-1];
-        }else{
-            gWay[e] = gWay[s-1] + gWay[e-1];            
-        }
-        gWay[e] %= 1000000007;
-        printf("%d=%d\n", e, gWay[e]);
-        prev = e;
-    }
-    if (prev==-1){
-        prev=0;
-    }
-    printf("%d\n", gWay[prev]);
+    printf("%lld\n", ways(0,gN-1));
 }
 
 void check(bool ret){
@@ -94,14 +88,16 @@ void test(){
 }
 
 int main(){
-    char fn[256] = __FILE__".in";
-    if (access(fn, F_OK)!=-1) {
+    string fn = __FILE__;
+    size_t pos = fn.find(".cpp");
+    fn = fn.substr(0,pos) + ".txt";
+    if (access(fn.c_str(), F_OK)!=-1) {
         gDebug = true;
     }
 
     FILE *fp;
     if (gDebug) {
-        fp = freopen(fn, "r", stdin);
+        fp = freopen(fn.c_str(), "r", stdin);
     }
     
     test();
@@ -115,8 +111,7 @@ int main(){
         scanf("%d", &gN);
 
         for (int i = 0; i < gN; i++){
-            scanf("%d", gn+i);
-            gWay[i]=1;
+            scanf("%lld", gn+i);
         }
         
         solve();
@@ -126,6 +121,5 @@ int main(){
         fclose(fp);
     }
     return 0;
-    
 }
 

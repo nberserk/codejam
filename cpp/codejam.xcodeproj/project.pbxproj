@@ -104,6 +104,7 @@
 		95B060F919262EF800E85D54 /* wildcard.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wildcard.in; path = codejam/wildcard.in; sourceTree = "<group>"; };
 		95B06F2D199757FF0087CB42 /* strjoin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = strjoin.cpp; path = codejam/strjoin.cpp; sourceTree = "<group>"; };
 		95B06F2E199757FF0087CB42 /* strjoin.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strjoin.in; path = codejam/strjoin.in; sourceTree = "<group>"; };
+		95B0C0AC1A4FC9D7002FF5C0 /* chefbr.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = chefbr.txt; path = chef/chefbr.txt; sourceTree = "<group>"; };
 		95B235B1198CA52100AE9423 /* tictactoe.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tictactoe.in; path = codejam/tictactoe.in; sourceTree = "<group>"; };
 		95B491211A03A9CD0033F7FA /* newbus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = newbus.cpp; sourceTree = "<group>"; };
 		95B491221A03A9CD0033F7FA /* newbus.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = newbus.in; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		95DE59061A440F6900CACD49 /* uri.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uri.cpp; path = codejam/uri.cpp; sourceTree = "<group>"; };
 		95DE59071A440F6900CACD49 /* uri.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = uri.in; path = codejam/uri.in; sourceTree = "<group>"; };
 		95E014FF1A4A928700AC838C /* chefbr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = chefbr.cpp; path = chef/chefbr.cpp; sourceTree = "<group>"; };
-		95E015021A4AA07800AC838C /* chefbr.cpp.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = chefbr.cpp.in; path = chef/chefbr.cpp.in; sourceTree = "<group>"; };
 		95E60CFC1A31730900D71CF2 /* chinatrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chinatrip.cpp; sourceTree = "<group>"; };
 		95E60CFD1A31730900D71CF2 /* chinatrip.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chinatrip.in; sourceTree = "<group>"; };
 		95EA7F3A1A40549D0003C376 /* fortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fortress.cpp; path = codejam/fortress.cpp; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95E015021A4AA07800AC838C /* chefbr.cpp.in */,
+				95B0C0AC1A4FC9D7002FF5C0 /* chefbr.txt */,
 				95E014FF1A4A928700AC838C /* chefbr.cpp */,
 				95DC0FA31A480306005D6CFA /* fire.cpp */,
 				95DC0FA41A480306005D6CFA /* fire.in */,
