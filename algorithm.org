@@ -1,6 +1,7 @@
 
 * c++ specific
 ** sort 
+- sorted vector : use set
 - reverse sort
 #+BEGIN_SRC C++
   std::sort(begin, end, std::greater<int>())
