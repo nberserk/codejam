@@ -33,28 +33,68 @@ bool gDebug;
 int gN;
 int gA [50000], gB[50000];
 
-struct compareA{
-    bool operator() (const int a,const int o){
-        return gA[a]<gA[o];
+class Nerd{
+public:
+    Nerd(int _a, int _b){
+        a=_a; b=_b;
     }
+    int a,b;
 };
 
-struct compareB{
-    bool operator() (const int a,const int o){
-        return gB[a]<gB[o];
+struct compareA{    
+    bool operator() (const Nerd& left, const Nerd& right){
+        return left.a < right.a;
     }
+//    bool operator() (const Nerd& left,  int a){
+//        return left.a < a;
+//    }
+//    bool operator() ( int a, const Nerd& right){
+//        return a < right.a;
+//    }    
 };
 
 void solve(){
-    set<int, compareA> a;
-    set<int, compareB> b;
+    set<Nerd, compareA> a;
     int ret=1;
-    a.insert(0);
-    b.insert(0);
-
+    a.insert(Nerd(gA[0], gB[0]));
+    set<Nerd>::iterator itEnd, itStart,it;
+    pair<set<Nerd>::iterator, bool> r;
     for (int i = 1; i < gN; i++){
-        
-    } 
+        Nerd n(gA[i], gB[i]);
+        r = a.insert(n);
+        if (r.second==false){
+            printf("error\n");
+        }
+        itEnd = r.first;
+        if (itEnd==a.begin()){
+            it = itEnd;
+            it++;
+            if (it!=a.end() && n.b < it->b) {
+                a.erase(itEnd);
+            }
+        }else{
+//           printf("%d\n", itEnd->a);
+            itStart = itEnd;
+            itStart--;
+            while(true){           
+                if (itStart->b > n.b){
+                    itStart++;
+                    break;
+                }
+                if (itStart==a.begin()){
+                    break;
+                }
+                itStart--;           
+            }
+            a.erase(itStart, itEnd);
+        }
+//        for ( it = a.begin(); it !=a.end(); it++){
+//            printf("%d/%d, ", it->a, it->b);
+//        }
+//        printf("\n");
+        ret += a.size();
+    }
+    printf("%d\n", ret);
 }
 
 void check(bool ret){
@@ -76,13 +116,26 @@ void check(char expected, char actual){
 }
 
 void test(){
-    set<int, compareA> a;
-    gA[0] = 9;
-    gA[1] = 8;
-    a.insert(0);
-    a.insert(1);
+    set<Nerd, compareA> a;
+    a.insert(Nerd(9,1));
+    a.insert(Nerd(7,2));
+    a.insert(Nerd(1,9));
+    
+    set<Nerd>::iterator it;
+    it = a.upper_bound(Nerd(-2,1));
+    printf("%d\n", (*it).a);
+    
+    
+    std::set<int> myset;
+    std::set<int>::iterator itlow,itup;
+    
+    for (int i=1; i<10; i++) myset.insert(i*10); // 10 20 30 40 50 60 70 80 90
+    
+    itlow=myset.lower_bound (30);                //       ^
+    itup=myset.upper_bound (60);                 //                   ^
+    printf("%d\n", *itlow);
+    printf("%d\n", *itup);
 
-    check(8, *a.begin());
 }
 
 int main(){
@@ -98,7 +151,7 @@ int main(){
         fp = freopen(fn.c_str(), "r", stdin);
     }
     
-    test();
+    //test();
     
     // handling input
     int count, p,j,k, i;
