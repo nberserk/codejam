@@ -61,33 +61,35 @@ void solve(){
     pair<set<Nerd>::iterator, bool> r;
     for (int i = 1; i < gN; i++){
         Nerd n(gA[i], gB[i]);
-        r = a.insert(n);
-        if (r.second==false){
-            printf("error\n");
-        }
-        itEnd = r.first;
-        if (itEnd==a.begin()){
-            it = itEnd;
-            it++;
-            if (it!=a.end() && n.b < it->b) {
-                a.erase(itEnd);
-            }
+        it = a.lower_bound(n); //return greator
+        // first check if n is nerd
+        if (it!= a.end() && n.b < it->b) {
+            
         }else{
-//           printf("%d\n", itEnd->a);
-            itStart = itEnd;
-            itStart--;
-            while(true){           
-                if (itStart->b > n.b){
-                    itStart++;
-                    break;
-                }
-                if (itStart==a.begin()){
-                    break;
-                }
-                itStart--;           
+            r = a.insert(n);
+            if (r.second==false){
+                printf("error\n");
             }
-            a.erase(itStart, itEnd);
+            itEnd = r.first;
+            if (itEnd==a.begin()){
+            }else{
+                //           printf("%d\n", itEnd->a);
+                itStart = itEnd;
+                itStart--;
+                while(true){
+                    if (itStart->b > n.b){
+                        itStart++;
+                        break;
+                    }
+                    if (itStart==a.begin()){
+                        break;
+                    }
+                    itStart--;           
+                }
+                a.erase(itStart, itEnd);
+            }
         }
+        
 //        for ( it = a.begin(); it !=a.end(); it++){
 //            printf("%d/%d, ", it->a, it->b);
 //        }
@@ -131,7 +133,7 @@ void test(){
     
     for (int i=1; i<10; i++) myset.insert(i*10); // 10 20 30 40 50 60 70 80 90
     
-    itlow=myset.lower_bound (30);                //       ^
+    itlow=myset.lower_bound (1);                //       ^
     itup=myset.upper_bound (60);                 //                   ^
     printf("%d\n", *itlow);
     printf("%d\n", *itup);
