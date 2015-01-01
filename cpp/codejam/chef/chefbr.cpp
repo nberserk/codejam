@@ -1,4 +1,5 @@
 // http://www.codechef.com/problems/CHEFBR
+// category : dp
 
 #include <algorithm>
 #include <unistd.h>
