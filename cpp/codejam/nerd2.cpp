@@ -1,5 +1,5 @@
 // https://algospot.com/judge/problem/read/NERD2
-// category: ??
+// category: 
 
 #include <algorithm>
 #include <unistd.h>
