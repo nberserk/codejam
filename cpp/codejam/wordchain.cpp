@@ -33,10 +33,67 @@ bool gDebug;
 int gN;
 char gWord[100][15];
 int gMat[100][100];
+int gIn[100], gOut[100];
+int gVisited[100];
+
+
+void dfs(int node, vector<int>& path){
+    if (gVisited[node]==1){
+        return;
+    }
+    gVisited[node]=1;
+
+    for (int i = 0; i < gN; i++){
+        if (gMat[node][i]==1){
+            dfs(i, path);
+        }
+    }
+    path.push_back(node);    
+}
 
 void solve(){
-    int ret = 0;
-    printf("%d\n", ret);
+    
+    memset(gMat, -1, sizeof(gMat));
+    for (int i = 0; i < gN; i++){
+        gIn[i]=0;
+        gOut[i]=0;
+    }
+    for (int i = 0; i < gN; i++){
+        int len = strlen(gWord[i]);
+
+        char e = gWord[i][len-1];
+        for (int j = 0; j < gN; j++){
+            if (i==j)continue;
+            if (e==gWord[j][0]){
+                gMat[i][j]=1;
+                gOut[i]++;
+                gIn[j]++;
+            }
+            
+        }
+    }
+    
+    int start=-1;
+    for (int i=0; i<gN; i++) {
+        if (gIn[i]==0 ) {
+            start =i;
+            break;
+        }
+    }
+    if(start==-1)
+        start = gN-1;
+
+    vector<int> path;
+    memset(gVisited, -1, sizeof(gVisited));
+    dfs(start, path);
+    if (path.size()!=gN) {
+        printf ("IMPOSSIBLE\n");
+        return;
+    }
+    for (int i = path.size()-1; i >=0 ; i--){
+        printf("%s ", gWord[path[i]]);
+    }    
+    printf("\n");
 }
 
 void check(bool ret){
