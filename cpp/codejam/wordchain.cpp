@@ -33,65 +33,91 @@ bool gDebug;
 int gN;
 char gWord[100][15];
 int gMat[100][100];
+int gMatched[26][26][100];
+int gCount[26][26];
 int gIn[100], gOut[100];
 int gVisited[100];
 
 
-void dfs(int node, vector<int>& path){
-    if (gVisited[node]==1){
-        return;
-    }
-    gVisited[node]=1;
 
-    for (int i = 0; i < gN; i++){
-        if (gMat[node][i]==1){
+void warn(){
+    printf("strange\n");
+}
+
+void dfs(int node, vector<int>& path){    
+    for (int i = 0; i < 26; i++){
+        while (gMat[node][i]>0){
+            gMat[node][i]--;
             dfs(i, path);
-        }
+        }        
     }
-    path.push_back(node);    
+    path.push_back(node);
+    //printf("dfs-%d\n", node);
+}
+
+void makeGraph(){
+    
+    for (int i = 0; i < 26; i++){
+        for (int j = 0; j < 26; j++){
+            gCount[i][j] =0;
+            gMat[i][j]=0;
+        }
+        gIn[i]=0;
+        gOut[i]=0;        
+    }
+    
+    for (int i = 0; i < gN; i++){
+        int len = strlen(gWord[i]);
+        int s = gWord[i][0]-'a';
+        int e = gWord[i][len-1]-'a';
+        
+        gMat[s][e]++;
+        gCount[s][e]++;
+        gMatched[s][e][gCount[s][e]-1] = i;        
+        gOut[s]++;
+        gIn[e]++;        
+    }
 }
 
 void solve(){
+    makeGraph();    
     
-    memset(gMat, -1, sizeof(gMat));
-    for (int i = 0; i < gN; i++){
-        gIn[i]=0;
-        gOut[i]=0;
-    }
-    for (int i = 0; i < gN; i++){
-        int len = strlen(gWord[i]);
-
-        char e = gWord[i][len-1];
-        for (int j = 0; j < gN; j++){
-            if (i==j)continue;
-            if (e==gWord[j][0]){
-                gMat[i][j]=1;
-                gOut[i]++;
-                gIn[j]++;
-            }
-            
-        }
-    }
-    
-    int start=-1;
-    for (int i=0; i<gN; i++) {
-        if (gIn[i]==0 ) {
+    int start=-1;    
+    for (int i=0; i<26; i++) {
+        if ( gIn[i]+1 ==gOut[i] ) {
             start =i;
             break;
+        }        
+    }
+    if(start==-1){
+        for (int i=0; i<26; i++) {
+            if ( gOut[i]>0 ) {
+                start =i;
+                break;
+            }
         }
     }
-    if(start==-1)
-        start = gN-1;
-
+    //printf("start-%d\n", start);
     vector<int> path;
-    memset(gVisited, -1, sizeof(gVisited));
+    
     dfs(start, path);
-    if (path.size()!=gN) {
+    if (path.size()!=gN+1) {
         printf ("IMPOSSIBLE\n");
         return;
     }
-    for (int i = path.size()-1; i >=0 ; i--){
-        printf("%s ", gWord[path[i]]);
+    reverse(path.begin(), path.end());
+    
+    int size = path.size();
+    int p = path[0];
+    for (int i = 1; i <size ; i++){
+        int c= path[i];
+        gCount[p][c]--;
+        int idx = gMatched[p][c][gCount[p][c]];
+        if (gCount[p][c]<0){
+            warn();
+        }
+        printf("%s ", gWord[idx]);
+        p = c;
     }    
     printf("\n");
 }
@@ -113,6 +139,7 @@ void check(char expected, char actual){
         printf("failed expected=%c, actual=%c\n", expected, actual);
     }
 }
+
 
 void test(){
 }
