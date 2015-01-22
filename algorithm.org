@@ -124,6 +124,18 @@ void toposort(){
 
 }
 #+END_SRC
+*** floyd
+shortest path of all vertex
+#+BEGIN_SRC c++
+  for (int k = 0; k < N; k++){
+      for (int i = 0; i < N; i++){
+          for (int j = 0; j < N; j++){
+              gMat[i][j] = min(gMat[i][j], gMat[i][k] + gMat[k][j]);
+          }
+      }
+  }
+#+END_SRC
+ 
 * samsung strategy
 - multiple category : for small N, choose brute force, for large N choose approximation algorithm like greedy.
   .e.g, category 1, N<10 , category 2 N<100, category 3, N<1000

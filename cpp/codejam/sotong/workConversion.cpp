@@ -38,28 +38,24 @@ int gMat[501][501];
 
 
 void solve(){
-
-          for (int i = 0; i < gN; i++){
-            for (int j = 0; j < gN; j++){
-                for (int k = 0; k < gN; k++){
-                gMat[i][j] = min(gMat[i][j], gMat[i][k] + gMat[k][j]);
-            }
-        }
-    }
-
-    int count =0;
-    int sum=0;
-    for (int i = 0; i < gN; i++){
-        for (int j = 0; j < gN; j++){
-            if (i==j || gMat[i][j]==H_MAX){
-                continue;                
-            }
-            count++;
-            sum += gMat[i][j];
+    for (int k = 1; k <= gN; k++){
+        for (int i = 1; i <= gN; i++){
+	/*		if(gMat[i][k]==H_MAX)
+				  continue;*/
+			for (int j = 1; j <= gN; j++){
+				gMat[i][j] = min(gMat[i][j], gMat[i][k] + gMat[k][j]);
+			}
         }
     }
     
-    printf("%.3f\n", sum/count);
+    int sum=0;
+    for (int i = 1; i <= gN; i++){
+        for (int j = 1; j <= gN; j++){     
+            sum += gMat[i][j];
+        }
+    }
+    float ret = sum/(float)(gN*(gN-1));
+    printf("%.3f\n",  ret);
 }
 
 void check(bool ret){
@@ -99,22 +95,24 @@ int main(){
     //test();
     
     // handling input
-    int count, p,j,k, i;
+    int count, p,j,k, i,n;
     scanf("%d", &count);
     for (p=0; p<count; p++) {        
-        scanf("%d", &gN);
+        scanf("%d", &n);
 
-        for (int i = 1; i <= gN; i++){
-            for (int j = 1; j <= gN; j++){
+        for (int i = 1; i <= n; i++){
+            for (int j = 1; j <= n; j++){
                 gMat[i][j] = H_MAX;
             }
             gMat[i][i]=0;
         }
 
         int s,e;
-        for (int i = 0; i < gN; i++){            
+		gN=-1;
+        for (int i = 0; i < n; i++){            
             scanf("%d%d", &s,&e);
             gMat[s][e] =1;
+			gN = max(max(gN, s), e);			
         }
         solve();
     }
