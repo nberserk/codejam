@@ -34,8 +34,21 @@ void check(bool ret);
 bool gDebug;
 int gN;
 int gMat[501][501];
+int gVia[501][501];
 
 
+void reconstruct(int s, int e, vector<int>& path){
+
+    int m = gVia[s][e];
+    if (m==-1) {
+        path.push_back(s);
+        path.push_back(e);
+        return;
+    }
+    reconstruct(s, m, path);
+    path.pop_back(); // remove m
+    reconstruct(m, e, path);
+}
 
 void solve(){
     for (int k = 1; k <= gN; k++){
@@ -43,7 +56,10 @@ void solve(){
 	/*		if(gMat[i][k]==H_MAX)
 				  continue;*/
 			for (int j = 1; j <= gN; j++){
-				gMat[i][j] = min(gMat[i][j], gMat[i][k] + gMat[k][j]);
+                if (gMat[i][j] > gMat[i][k] + gMat[k][j]){
+                    gVia[i][j] = k;
+                    gMat[i][j] = gMat[i][k] + gMat[k][j];
+                }				
 			}
         }
     }
@@ -56,7 +72,18 @@ void solve(){
     }
     float ret = sum/(float)(gN*(gN-1));
     printf("%.3f\n",  ret);
+
+
+    // reconstruct demo
+    // vector<int> path;
+    // reconstruct(1,gN, path );
+    // for (int i = 0; i < path.size(); i++){
+    //     printf("%d,", path[i]);
+    // }
+    // printf("\n");
 }
+
+
 
 void check(bool ret){
     if (ret==false) {
@@ -103,6 +130,7 @@ int main(){
         for (int i = 1; i <= n; i++){
             for (int j = 1; j <= n; j++){
                 gMat[i][j] = H_MAX;
+                gVia[i][j] =-1;
             }
             gMat[i][i]=0;
         }
