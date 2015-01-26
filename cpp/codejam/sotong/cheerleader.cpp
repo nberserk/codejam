@@ -34,8 +34,6 @@ bool gDebug;
 int gN;
 char gS[11];
 
-
-
 void permutation(char* s, int c){
     if (c==gN-1){
         printf("%s\n", s);
@@ -57,11 +55,32 @@ void permutation(char* s, int c){
     strcpy(s, t);
 }
 
-
+bool nextP(char* c){
+    
+    for (int i = gN-2; i >= 0; i--){
+        char* src = c+i;
+        char* smallest = 0;
+        for (int j = i+1; j < gN; j++){
+            char* dest = c+j;
+            if(*src>=*dest)continue;
+            if (smallest==0 || *smallest>*dest){
+                smallest = dest;
+            }            
+        }
+        if (smallest!=0){
+            swap(*src, *smallest);
+            sort(c+i+1, c+gN);
+            printf("%s\n", c);
+            return true;
+        }
+    }
+    return false;
+}
 
 void solve(){
     sort(gS, gS+gN);
-    permutation(gS, 0);
+    while(nextP(gS));
+    
     printf("\n");
 }
 
