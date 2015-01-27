@@ -79,6 +79,7 @@ bool nextP(char* c){
 
 void solve(){
     sort(gS, gS+gN);
+    printf("%s\n", gS);
     while(nextP(gS));
     
     printf("\n");
