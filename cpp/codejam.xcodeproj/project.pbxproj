@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95D450601A7131710015F820 /* cheerleader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95D4505E1A7131710015F820 /* cheerleader.cpp */; };
+		95AC54301A85F32A00444353 /* peak.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95AC542E1A85F32A00444353 /* peak.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,6 +85,8 @@
 		95AC0762198FD67500573D8F /* matchorder.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = matchorder.in; path = codejam/matchorder.in; sourceTree = "<group>"; };
 		95AC22D9198CEB3B00987DCE /* meetingroom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = meetingroom.cpp; sourceTree = "<group>"; };
 		95AC22DA198CEB3B00987DCE /* meetingroom.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meetingroom.in; sourceTree = "<group>"; };
+		95AC542E1A85F32A00444353 /* peak.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = peak.cpp; path = sotong/peak.cpp; sourceTree = "<group>"; };
+		95AC542F1A85F32A00444353 /* peak.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = peak.txt; path = sotong/peak.txt; sourceTree = "<group>"; };
 		95ACEFD119303ED900B31DA8 /* pi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pi.cpp; path = codejam/pi.cpp; sourceTree = "<group>"; };
 		95ACEFD219303ED900B31DA8 /* pi.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pi.in; path = codejam/pi.in; sourceTree = "<group>"; };
 		95ADC98419BA83F6009E5FEF /* combination.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = combination.cpp; path = codejam/combination.cpp; sourceTree = "<group>"; };
@@ -116,8 +118,8 @@
 		95C628C1193625270046B9B0 /* quantize.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = quantize.in; path = codejam/quantize.in; sourceTree = "<group>"; };
 		95D0F5331958571B00430F8C /* ocr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ocr.cpp; path = codejam/ocr.cpp; sourceTree = "<group>"; };
 		95D0F5341958571B00430F8C /* ocr.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ocr.in; path = codejam/ocr.in; sourceTree = "<group>"; };
-		95D4505E1A7131710015F820 /* cheerleader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cheerleader.cpp; path = sotong/cheerleader.cpp; sourceTree = "<group>"; };
-		95D4505F1A7131710015F820 /* cheerleader.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cheerleader.txt; path = sotong/cheerleader.txt; sourceTree = "<group>"; };
+		95D4505E1A7131710015F820 /* cheerleader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cheerleader.cpp; path = codejam/sotong/cheerleader.cpp; sourceTree = "<group>"; };
+		95D4505F1A7131710015F820 /* cheerleader.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cheerleader.txt; path = codejam/sotong/cheerleader.txt; sourceTree = "<group>"; };
 		95DC0FA31A480306005D6CFA /* fire.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fire.cpp; path = codejam/fire.cpp; sourceTree = "<group>"; };
 		95DC0FA41A480306005D6CFA /* fire.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fire.in; path = codejam/fire.in; sourceTree = "<group>"; };
 		95DD8F5C1A5E0A7B0021FF54 /* stakeCovering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stakeCovering.cpp; path = codejam/sotong/stakeCovering.cpp; sourceTree = "<group>"; };
@@ -174,8 +176,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95D4505E1A7131710015F820 /* cheerleader.cpp */,
-				95D4505F1A7131710015F820 /* cheerleader.txt */,
+				95AC542E1A85F32A00444353 /* peak.cpp */,
+				95AC542F1A85F32A00444353 /* peak.txt */,
 				95DFE6C91A64D48800149D16 /* wordchain.cpp */,
 				95DFE6CA1A64D48800149D16 /* wordchain.txt */,
 				95E60CFC1A31730900D71CF2 /* chinatrip.cpp */,
@@ -240,6 +242,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				95D4505E1A7131710015F820 /* cheerleader.cpp */,
+				95D4505F1A7131710015F820 /* cheerleader.txt */,
 				95DDA6B81A6FB86000EB9787 /* workConversion.cpp */,
 				95DDA6B91A6FB86000EB9787 /* workConversion.txt */,
 				95DD8F5C1A5E0A7B0021FF54 /* stakeCovering.cpp */,
@@ -371,7 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95D450601A7131710015F820 /* cheerleader.cpp in Sources */,
+				95AC54301A85F32A00444353 /* peak.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

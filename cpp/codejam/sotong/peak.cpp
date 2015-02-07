@@ -43,25 +43,88 @@ typedef long long ll;
 void check(bool ret);
 
 bool gDebug;
-int gN;
+int gN, gK;
 int gMap[1000][1000];
 bool gVisited[1000][1000];
+int gCount; // neighbor count
+int gPath[1000000][2];
+int gHeightCount;
+int gHeight[100];
+int gMaxHeight;
 
+void addHeight(int nh){
+    for (int i = 0; i < gHeightCount; i++){
+        if(gHeight[i]==nh)
+            return;
+    }
+    gHeight[gHeightCount]=nh;
+    gHeightCount++;
+}
 
+void traverse(int x,int y){
+    if (x<0 || y<0 || x>=gN || y>=gN){
+        addHeight(-1);    
+        return;
+    }
+    if (gVisited[y][x]){
+        return;
+    }
+    gVisited[y][x]=true;
+    if (gMap[y][x]!=0){
+        addHeight(gMap[y][x]);
+        return;
+    }    
 
+    gPath[gCount][0]=x;
+    gPath[gCount][1]=y;
+    gCount++;
 
-void find(int sx, int sy, int ex, int ey){
-    for (int y = sy; y <= ey; y++){
-        for (int x = sx; x <= ex; x++){
-            if(gVisited[y][x]) continue;
-            
+    traverse(x-1, y);
+    traverse(x+1, y);
+    traverse(x, y-1);
+    traverse(x, y+1);    
+}
+
+void traverseWrap(int x, int y){
+    gCount=0;
+    gHeightCount=0;
+
+    traverse(x,y);
+
+    printf("hCount=%d, ", gHeightCount);
+    for (int i = 0; i < gHeightCount; i++){
+        printf("%d ", gHeight[i]);
+    }
+    printf("\n");
+    if (gHeightCount==1 && gHeight[0]==gMaxHeight){
+        int l,r,t,b;
+        printf("gCount=%d\n", gCount);
+        if (gK==1) {
+            printf("%d\n", gCount);
+        }
+        
+    }else{
+        for (int i = 0; i < gCount; i++){
+            int x = gPath[i][0];
+            int y = gPath[i][1];
+            gMap[y][x] = -100;
         }
     }
 }
 
 void solve(){
-    find(0,0,gN-1,gN-1);
-    
+    for (int y = 0; y < gN; y++){
+        for (int x = 0; x < gN; x++){
+            if (gMap[y][x]!=0){
+                continue;
+            }
+            if(gMap[y][x]==0 && gVisited[y][x]==false){
+                traverseWrap(x,y);
+            }
+                
+            
+        }
+    }    
 }
 
 
@@ -109,10 +172,13 @@ int main(){
     for (p=0; p<count; p++) {        
         scanf("%d%d", &gN, &gK);
 
+        gMaxHeight=0;
         for (int i = 0; i<gN; i++){
             scanf("%s", buf);
             for (int j = 0; j < gN; j++){
                 gMap[i][j] = buf[j]-'0';
+                if(gMap[i][j]>gMaxHeight)
+                    gMaxHeight=gMap[i][j];
                 gVisited[i][j] = false;
             }            
         }        
