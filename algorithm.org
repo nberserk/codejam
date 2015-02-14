@@ -116,6 +116,40 @@ priorityqueue using max heap
 
 ** greedy
 ** graph
+*** shortest path, Dijstra
+#+BEGIN_SRC c++
+  struct Node{
+      int x,y,v;
+  };
+  Node q[10000]; // when you can't use priority_queue<Node>
+  #define H_MAX 987654321
+
+  void findMin(int x, int y){
+      int dx = 100;
+      int dy = 100;
+
+      q[0].x = x;
+      q[0].y = y;
+      q[0].v = H_MAX;
+      int top=1;
+      
+      while (top>0){
+          Node cur = q[top-1];
+          top--;
+          // optimize; pop min value form q[0] ~ q[top-1]
+
+          for (int i = 0; i <N; i++){
+              int nx, ny, nv;
+              // calc nx, ny, nv
+              q[top].x = nx;
+              q[top].y = ny;
+              q[top].v = nv;
+              top++;
+          }
+      }
+  }
+
+#+END_SRC
 *** dfs
 - topological sort : DAG(no cycle), see [[file:cpp/codejam/dictionary.cpp][dictionary]]
 #+BEGIN_SRC c++
