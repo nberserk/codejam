@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95F96E5C1A89BE9E009293D6 /* turnovergame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */; };
+		95F0638C1A9215A4008FA5F4 /* connectingCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -139,8 +139,10 @@
 		95E60CFD1A31730900D71CF2 /* chinatrip.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chinatrip.in; sourceTree = "<group>"; };
 		95EA7F3A1A40549D0003C376 /* fortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fortress.cpp; path = codejam/fortress.cpp; sourceTree = "<group>"; };
 		95EA7F3B1A40549D0003C376 /* fortress.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fortress.in; path = codejam/fortress.in; sourceTree = "<group>"; };
-		95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = turnovergame.cpp; path = sotong/turnovergame.cpp; sourceTree = "<group>"; };
-		95F96E5B1A89BE9E009293D6 /* turnovergame.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = turnovergame.txt; path = sotong/turnovergame.txt; sourceTree = "<group>"; };
+		95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = connectingCore.cpp; path = sotong/connectingCore.cpp; sourceTree = "<group>"; };
+		95F0638B1A9215A4008FA5F4 /* connectingCore.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = connectingCore.txt; path = sotong/connectingCore.txt; sourceTree = "<group>"; };
+		95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = turnovergame.cpp; path = codejam/sotong/turnovergame.cpp; sourceTree = "<group>"; };
+		95F96E5B1A89BE9E009293D6 /* turnovergame.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = turnovergame.txt; path = codejam/sotong/turnovergame.txt; sourceTree = "<group>"; };
 		95FC67C41A5A97D100839591 /* rrstone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rrstone.cpp; path = codejam/chef/rrstone.cpp; sourceTree = "<group>"; };
 		95FC67C51A5A97D100839591 /* rrstone.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rrstone.txt; path = codejam/chef/rrstone.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,8 +180,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */,
-				95F96E5B1A89BE9E009293D6 /* turnovergame.txt */,
+				95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */,
+				95F0638B1A9215A4008FA5F4 /* connectingCore.txt */,
 				95AC542E1A85F32A00444353 /* peak.cpp */,
 				95AC542F1A85F32A00444353 /* peak.txt */,
 				95DFE6C91A64D48800149D16 /* wordchain.cpp */,
@@ -246,6 +248,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */,
+				95F96E5B1A89BE9E009293D6 /* turnovergame.txt */,
 				95D4505E1A7131710015F820 /* cheerleader.cpp */,
 				95D4505F1A7131710015F820 /* cheerleader.txt */,
 				95DDA6B81A6FB86000EB9787 /* workConversion.cpp */,
@@ -379,7 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95F96E5C1A89BE9E009293D6 /* turnovergame.cpp in Sources */,
+				95F0638C1A9215A4008FA5F4 /* connectingCore.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
