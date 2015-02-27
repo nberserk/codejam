@@ -19,6 +19,7 @@
 #include <limits>
 #include <set>
 #include <iostream>
+#include "../myutil.h"
 
 
 using namespace std;
@@ -32,6 +33,12 @@ struct Node{
     int x,y,v;
 };
 
+class Comparator{
+public:
+    bool operator()(const Node& l, const Node& r){
+        return l.v > r.v;
+    }
+};
 
 void check(bool ret);
 
@@ -44,6 +51,64 @@ Node q[100000];
 int gMin[100][100];
 
 
+// using priority_queue is 3-4 times faster
+// elapsed time: 8504ms with priority_queue
+// elapsed time: 34127ms without priority_queue
+int findMinUsingPriorityqueue(int s, int e){
+    int dx = gCore[e][0];
+    int dy = gCore[e][1];
+    
+    int visited[300][300] = {0,};
+    priority_queue<Node, vector<Node>, Comparator> q;
+
+    Node start;
+    start.x = gCore[s][0];
+    start.y = gCore[s][1];
+    start.v = 1;
+    q.push(start);
+    
+    int d[4][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+    
+    int ret = 1000;
+    while (q.size()>0){
+        // TODO: use simple dijkstra
+        Node cur = q.top();
+        q.pop();
+        
+        // cache
+        if (visited[cur.y][cur.x]!=0 && cur.v >= visited[cur.y][cur.x]){
+            continue;
+        }
+        visited[cur.y][cur.x] = cur.v;
+        
+        //
+        for (int i = 0; i < 4; i++){
+            int nx = cur.x + d[i][0];
+            int ny = cur.y + d[i][1];
+            if (nx <0 || ny<0 || nx >=gN || ny>=gN) continue;
+            if (gMat[ny][nx]==-1){
+                continue;
+            }else if (gMat[ny][nx]==0){
+                if (nx==dx && ny==dy){
+                    return cur.v;
+                }else
+                    continue;
+            }
+            int nv = cur.v < gMat[ny][nx] ? gMat[ny][nx] : cur.v;
+            if (nv>ret){
+                continue;
+            }
+            Node nn ;
+            nn.x = nx;
+            nn.y = ny;
+            nn.v = nv;
+            q.push(nn);
+            //            printf("%d\n", count);
+        }        
+    }
+    
+    return ret;    
+}
 
 int findMin(int s, int e){
     int dx = gCore[e][0];
@@ -109,17 +174,51 @@ bool myCompare(const Unit& l, const Unit& r){
     return l.v - r.v;
 }
 
-void solve(){
-    int count =0;  
+void comparePerformance(){
+    int count=0;
+    h_startTimeMeasure();
     for (int i = 0; i < gCoreCount; i++){
         for (int j = i+1; j < gCoreCount; j++){
             gUnit[count].s = i;
             gUnit[count].e = j;
-            gUnit[count].v = findMin(i,j);            
-            printf("%d-%d=%d\n", i, j, gUnit[count].v);
+            //gUnit[count].v = findMin(i,j);
+            gUnit[count].v = findMinUsingPriorityqueue(i,j);
+            //printf("%d-%d=%d\n", i, j, gUnit[count].v);
             count++;
         }
     }
+    h_endTimeMeasure();
+    
+    count=0;
+    h_startTimeMeasure();
+    for (int i = 0; i < gCoreCount; i++){
+        for (int j = i+1; j < gCoreCount; j++){
+            gUnit[count].s = i;
+            gUnit[count].e = j;
+            gUnit[count].v = findMin(i,j);
+            //printf("%d-%d=%d\n", i, j, gUnit[count].v);
+            count++;
+        }
+    }
+    h_endTimeMeasure();
+
+}
+
+void solve(){
+    comparePerformance();
+    
+    int count =0;
+    for (int i = 0; i < gCoreCount; i++){
+        for (int j = i+1; j < gCoreCount; j++){
+            gUnit[count].s = i;
+            gUnit[count].e = j;
+            //gUnit[count].v = findMin(i,j);
+            gUnit[count].v = findMinUsingPriorityqueue(i,j);
+            //printf("%d-%d=%d\n", i, j, gUnit[count].v);
+            count++;
+        }
+    }
+
 
     sort(gUnit, gUnit+count, myCompare);
 
@@ -179,6 +278,8 @@ void check(char expected, char actual){
     }
 }
 
+
+
 void test(){
 }
 
@@ -196,6 +297,7 @@ int main(){
     }
     
     //test();
+    //h_generateRandomMap(100);
     
     // handling input
     int count, p,j,k, i,n;

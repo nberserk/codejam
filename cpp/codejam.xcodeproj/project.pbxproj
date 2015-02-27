@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95DA73801A9E9C6C0033EA47 /* pass486.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DA737E1A9E9C6C0033EA47 /* pass486.cpp */; };
+		95E36B471A9FFEE800241FE2 /* connectingCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -387,7 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95DA73801A9E9C6C0033EA47 /* pass486.cpp in Sources */,
+				95E36B471A9FFEE800241FE2 /* connectingCore.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
