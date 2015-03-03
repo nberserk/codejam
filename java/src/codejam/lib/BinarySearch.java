@@ -162,7 +162,54 @@ public class BinarySearch {
 		return -1;
 	}
 	
+	/**
+	 * find popular repeated number n/4 times or more. log(N) required.
+	 * 
+	 * @param a
+	 *            sorted array
+	 * @param minCount
+	 *            minCount
+	 * @return popular number
+	 **/
+	static int findDominantNumber(int[] a) {
+		int n = a.length;
+		int minCount = n / 4;
+		int target = a[n / 4];
+		int r = binarySearchRange(a, target);
+		if (r >= minCount)
+			return target;
+
+		target = a[n / 2];
+		r = binarySearchRange(a, target);
+		if (r >= minCount)
+			return target;
+
+		target = a[(n * 3) / 4];
+		r = binarySearchRange(a, target);
+		if (r >= minCount)
+			return target;
+		else
+			return -1;
+	}
+	
+	static void testFindDominantNumber() {
+		int r;
+		int[] a = { 1, 2, 3, 4, 4, 4, 4, 4, 5, 6, 7, 8 };
+		r = findDominantNumber(a);
+		CheckUtil.check(4, r);
+
+		int[] b = { 1, 2, 3, 4, 5, 6, 7, 8 };
+		r = findDominantNumber(b);
+		CheckUtil.check(-1, r);
+
+		int[] c = { 1, 2, 2, 4, 5, 6, 7, 8 };
+		r = findDominantNumber(c);
+		CheckUtil.check(2, r);
+	}
+
 	public static void main(String[] args) {
+		testFindDominantNumber();
+
 		final int[] a = { 1, 10, 20, 80, 99, 101, 200, 1000 };
 		int result = BinarySearch.binarySearchSmallestSatisfyingCondition(0, a.length-1, new IValidator() {			
 			@Override
