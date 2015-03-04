@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95E36B471A9FFEE800241FE2 /* connectingCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */; };
+		95DB23521AA6EDA80039D476 /* potion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DB23501AA6EDA80039D476 /* potion.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -120,8 +120,10 @@
 		95D0F5341958571B00430F8C /* ocr.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ocr.in; path = codejam/ocr.in; sourceTree = "<group>"; };
 		95D4505E1A7131710015F820 /* cheerleader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cheerleader.cpp; path = codejam/sotong/cheerleader.cpp; sourceTree = "<group>"; };
 		95D4505F1A7131710015F820 /* cheerleader.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cheerleader.txt; path = codejam/sotong/cheerleader.txt; sourceTree = "<group>"; };
-		95DA737E1A9E9C6C0033EA47 /* pass486.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pass486.cpp; sourceTree = "<group>"; };
-		95DA737F1A9E9C6C0033EA47 /* pass486.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pass486.txt; sourceTree = "<group>"; };
+		95DA737E1A9E9C6C0033EA47 /* pass486.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pass486.cpp; path = codejam/pass486.cpp; sourceTree = "<group>"; };
+		95DA737F1A9E9C6C0033EA47 /* pass486.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pass486.txt; path = codejam/pass486.txt; sourceTree = "<group>"; };
+		95DB23501AA6EDA80039D476 /* potion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = potion.cpp; sourceTree = "<group>"; };
+		95DB23511AA6EDA80039D476 /* potion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = potion.txt; sourceTree = "<group>"; };
 		95DC0FA31A480306005D6CFA /* fire.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fire.cpp; path = codejam/fire.cpp; sourceTree = "<group>"; };
 		95DC0FA41A480306005D6CFA /* fire.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fire.in; path = codejam/fire.in; sourceTree = "<group>"; };
 		95DD8F5C1A5E0A7B0021FF54 /* stakeCovering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stakeCovering.cpp; path = codejam/sotong/stakeCovering.cpp; sourceTree = "<group>"; };
@@ -182,8 +184,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95DA737E1A9E9C6C0033EA47 /* pass486.cpp */,
-				95DA737F1A9E9C6C0033EA47 /* pass486.txt */,
+				95DB23501AA6EDA80039D476 /* potion.cpp */,
+				95DB23511AA6EDA80039D476 /* potion.txt */,
 				95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */,
 				95F0638B1A9215A4008FA5F4 /* connectingCore.txt */,
 				95AC542E1A85F32A00444353 /* peak.cpp */,
@@ -252,6 +254,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				95DA737E1A9E9C6C0033EA47 /* pass486.cpp */,
+				95DA737F1A9E9C6C0033EA47 /* pass486.txt */,
 				95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */,
 				95F96E5B1A89BE9E009293D6 /* turnovergame.txt */,
 				95D4505E1A7131710015F820 /* cheerleader.cpp */,
@@ -387,7 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95E36B471A9FFEE800241FE2 /* connectingCore.cpp in Sources */,
+				95DB23521AA6EDA80039D476 /* potion.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
