@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95DB23521AA6EDA80039D476 /* potion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DB23501AA6EDA80039D476 /* potion.cpp */; };
+		95FA46FB1AA845B8003A6EFC /* movingMarbles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95FA46F91AA845B8003A6EFC /* movingMarbles.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -122,8 +122,8 @@
 		95D4505F1A7131710015F820 /* cheerleader.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cheerleader.txt; path = codejam/sotong/cheerleader.txt; sourceTree = "<group>"; };
 		95DA737E1A9E9C6C0033EA47 /* pass486.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pass486.cpp; path = codejam/pass486.cpp; sourceTree = "<group>"; };
 		95DA737F1A9E9C6C0033EA47 /* pass486.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pass486.txt; path = codejam/pass486.txt; sourceTree = "<group>"; };
-		95DB23501AA6EDA80039D476 /* potion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = potion.cpp; sourceTree = "<group>"; };
-		95DB23511AA6EDA80039D476 /* potion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = potion.txt; sourceTree = "<group>"; };
+		95DB23501AA6EDA80039D476 /* potion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = potion.cpp; path = codejam/potion.cpp; sourceTree = "<group>"; };
+		95DB23511AA6EDA80039D476 /* potion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = potion.txt; path = codejam/potion.txt; sourceTree = "<group>"; };
 		95DC0FA31A480306005D6CFA /* fire.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fire.cpp; path = codejam/fire.cpp; sourceTree = "<group>"; };
 		95DC0FA41A480306005D6CFA /* fire.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fire.in; path = codejam/fire.in; sourceTree = "<group>"; };
 		95DD8F5C1A5E0A7B0021FF54 /* stakeCovering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stakeCovering.cpp; path = codejam/sotong/stakeCovering.cpp; sourceTree = "<group>"; };
@@ -147,6 +147,8 @@
 		95F0638B1A9215A4008FA5F4 /* connectingCore.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = connectingCore.txt; path = sotong/connectingCore.txt; sourceTree = "<group>"; };
 		95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = turnovergame.cpp; path = codejam/sotong/turnovergame.cpp; sourceTree = "<group>"; };
 		95F96E5B1A89BE9E009293D6 /* turnovergame.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = turnovergame.txt; path = codejam/sotong/turnovergame.txt; sourceTree = "<group>"; };
+		95FA46F91AA845B8003A6EFC /* movingMarbles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = movingMarbles.cpp; path = sotong/movingMarbles.cpp; sourceTree = "<group>"; };
+		95FA46FA1AA845B8003A6EFC /* movingMarbles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movingMarbles.txt; path = sotong/movingMarbles.txt; sourceTree = "<group>"; };
 		95FC67C41A5A97D100839591 /* rrstone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rrstone.cpp; path = codejam/chef/rrstone.cpp; sourceTree = "<group>"; };
 		95FC67C51A5A97D100839591 /* rrstone.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rrstone.txt; path = codejam/chef/rrstone.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,8 +186,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95DB23501AA6EDA80039D476 /* potion.cpp */,
-				95DB23511AA6EDA80039D476 /* potion.txt */,
+				95FA46F91AA845B8003A6EFC /* movingMarbles.cpp */,
+				95FA46FA1AA845B8003A6EFC /* movingMarbles.txt */,
 				95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */,
 				95F0638B1A9215A4008FA5F4 /* connectingCore.txt */,
 				95AC542E1A85F32A00444353 /* peak.cpp */,
@@ -254,6 +256,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				95DB23501AA6EDA80039D476 /* potion.cpp */,
+				95DB23511AA6EDA80039D476 /* potion.txt */,
 				95DA737E1A9E9C6C0033EA47 /* pass486.cpp */,
 				95DA737F1A9E9C6C0033EA47 /* pass486.txt */,
 				95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */,
@@ -391,7 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95DB23521AA6EDA80039D476 /* potion.cpp in Sources */,
+				95FA46FB1AA845B8003A6EFC /* movingMarbles.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
