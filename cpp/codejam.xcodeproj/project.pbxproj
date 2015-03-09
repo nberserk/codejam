@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95D726831AA99A5500E1E66A /* honeycomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95D726811AA99A5500E1E66A /* honeycomb.cpp */; };
+		95D9CA7A1AADC03A001B281E /* cnote.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95D9CA781AADC03A001B281E /* cnote.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -120,8 +120,10 @@
 		95D0F5341958571B00430F8C /* ocr.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ocr.in; path = codejam/ocr.in; sourceTree = "<group>"; };
 		95D4505E1A7131710015F820 /* cheerleader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cheerleader.cpp; path = codejam/sotong/cheerleader.cpp; sourceTree = "<group>"; };
 		95D4505F1A7131710015F820 /* cheerleader.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cheerleader.txt; path = codejam/sotong/cheerleader.txt; sourceTree = "<group>"; };
-		95D726811AA99A5500E1E66A /* honeycomb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = honeycomb.cpp; path = sotong/honeycomb.cpp; sourceTree = "<group>"; };
-		95D726821AA99A5500E1E66A /* honeycomb.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = honeycomb.txt; path = sotong/honeycomb.txt; sourceTree = "<group>"; };
+		95D726811AA99A5500E1E66A /* honeycomb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = honeycomb.cpp; path = codejam/sotong/honeycomb.cpp; sourceTree = "<group>"; };
+		95D726821AA99A5500E1E66A /* honeycomb.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = honeycomb.txt; path = codejam/sotong/honeycomb.txt; sourceTree = "<group>"; };
+		95D9CA781AADC03A001B281E /* cnote.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cnote.cpp; path = chef/cnote.cpp; sourceTree = "<group>"; };
+		95D9CA791AADC03A001B281E /* cnote.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cnote.txt; path = chef/cnote.txt; sourceTree = "<group>"; };
 		95DA737E1A9E9C6C0033EA47 /* pass486.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pass486.cpp; path = codejam/pass486.cpp; sourceTree = "<group>"; };
 		95DA737F1A9E9C6C0033EA47 /* pass486.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pass486.txt; path = codejam/pass486.txt; sourceTree = "<group>"; };
 		95DB23501AA6EDA80039D476 /* potion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = potion.cpp; path = codejam/potion.cpp; sourceTree = "<group>"; };
@@ -188,8 +190,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
-				95D726811AA99A5500E1E66A /* honeycomb.cpp */,
-				95D726821AA99A5500E1E66A /* honeycomb.txt */,
+				95D9CA781AADC03A001B281E /* cnote.cpp */,
+				95D9CA791AADC03A001B281E /* cnote.txt */,
 				95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */,
 				95F0638B1A9215A4008FA5F4 /* connectingCore.txt */,
 				95AC542E1A85F32A00444353 /* peak.cpp */,
@@ -258,6 +260,8 @@
 		95C628C3193625330046B9B0 /* solved */ = {
 			isa = PBXGroup;
 			children = (
+				95D726811AA99A5500E1E66A /* honeycomb.cpp */,
+				95D726821AA99A5500E1E66A /* honeycomb.txt */,
 				95FA46F91AA845B8003A6EFC /* movingMarbles.cpp */,
 				95FA46FA1AA845B8003A6EFC /* movingMarbles.txt */,
 				95DB23501AA6EDA80039D476 /* potion.cpp */,
@@ -399,7 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95D726831AA99A5500E1E66A /* honeycomb.cpp in Sources */,
+				95D9CA7A1AADC03A001B281E /* cnote.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
