@@ -43,11 +43,11 @@ struct Node{
 class Comparator{
 public:
     bool operator() (const Node& a, const Node& b){
-        return a.p + a.count > b.p + b.count;
-//        if (a.count==b.count) {
-//            return (a.p > b.p);
-//        }
-//        return (a.count > b.count);
+        if (a.count==b.count){
+            return a.p > b.p;
+        }
+        //return (a.p > b.p);
+        return (a.count > b.count);
     }
 };
 
