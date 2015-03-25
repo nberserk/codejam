@@ -43,8 +43,11 @@ struct Node{
 class Comparator{
 public:
     bool operator() (const Node& a, const Node& b){
-
-        return (a.p > b.p);
+        return a.p + a.count > b.p + b.count;
+//        if (a.count==b.count) {
+//            return (a.p > b.p);
+//        }
+//        return (a.count > b.count);
     }
 };
 
@@ -52,10 +55,11 @@ void fillValidCount(Node& n){
     int d=0;
     char b[3];
     int t;
-    for (int i=0; i<gN*gN-1; i++) {
+    for (int i=0; i<gN*gN; i++) {
         strncpy(b, n.c.c_str() + i*2, 2);
         t  = atoi(b);
-        if (i+1==t || t==0)continue;
+        if(t==0) t = gN*gN;
+        if (i+1==t)continue;
         t--;
         int r = i/gN;
         int c = i%gN;
@@ -102,13 +106,11 @@ void solve(){
         if (n.count >= ret) {
             continue;
         }
-        printf("%s-%d-%d\n", n.c.c_str(), n.p, n.count);
+        //printf("%s-%d-%d\n", n.c.c_str(), n.p, n.count);
         if (n.p==0) {
-            if (n.count < ret) {
-                ret = n.count;
-                printf("%s done(%d)\n", n.c.c_str(), n.count);
-            }
-            continue;
+            ret = n.count;
+            printf("%s done(%d)\n", n.c.c_str(), n.count);
+            break;
         }
         for (int i=0; i<4; i++) {
             int t = n.e + d[i];
