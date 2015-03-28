@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95F0B12E1AB1835B00EF6986 /* sangheepuzzle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95F0B12C1AB1835B00EF6986 /* sangheepuzzle.cpp */; };
+		95ECB3501AC634A40007046F /* geneticnumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95ECB34E1AC634A40007046F /* geneticnumber.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -147,6 +147,8 @@
 		95E60CFD1A31730900D71CF2 /* chinatrip.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chinatrip.in; sourceTree = "<group>"; };
 		95EA7F3A1A40549D0003C376 /* fortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fortress.cpp; path = codejam/fortress.cpp; sourceTree = "<group>"; };
 		95EA7F3B1A40549D0003C376 /* fortress.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fortress.in; path = codejam/fortress.in; sourceTree = "<group>"; };
+		95ECB34E1AC634A40007046F /* geneticnumber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geneticnumber.cpp; path = sotong/geneticnumber.cpp; sourceTree = "<group>"; };
+		95ECB34F1AC634A40007046F /* geneticnumber.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = geneticnumber.txt; path = sotong/geneticnumber.txt; sourceTree = "<group>"; };
 		95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = connectingCore.cpp; path = sotong/connectingCore.cpp; sourceTree = "<group>"; };
 		95F0638B1A9215A4008FA5F4 /* connectingCore.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = connectingCore.txt; path = sotong/connectingCore.txt; sourceTree = "<group>"; };
 		95F0B12C1AB1835B00EF6986 /* sangheepuzzle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sangheepuzzle.cpp; path = sotong/sangheepuzzle.cpp; sourceTree = "<group>"; };
@@ -192,6 +194,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95ECB34E1AC634A40007046F /* geneticnumber.cpp */,
+				95ECB34F1AC634A40007046F /* geneticnumber.txt */,
 				95F0B12C1AB1835B00EF6986 /* sangheepuzzle.cpp */,
 				95F0B12D1AB1835B00EF6986 /* sangheepuzzle.txt */,
 				95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */,
@@ -407,7 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95F0B12E1AB1835B00EF6986 /* sangheepuzzle.cpp in Sources */,
+				95ECB3501AC634A40007046F /* geneticnumber.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
