@@ -29,7 +29,7 @@ typedef long long ll;
 #define CHRONO_LENGTH 36
 #define POP_SIZE 100
 
-int gR;
+float gR;
 struct Node{
     int c[CHRONO_LENGTH];
     float f;
@@ -88,7 +88,7 @@ void node_fitness(Node& n){
         }
     }
     if (cur ==gR){
-        n.f = 1;
+        n.f = 1.0f;
     }else{
         double diff = gR-cur;
         if(diff<0) diff=-diff;
@@ -150,13 +150,15 @@ void crossover(Node& n, Node& o){
 
     int m = randInt(CHRONO_LENGTH);
     for (int i = m; i < CHRONO_LENGTH; i++){
-        swap(n.c[i], o.c[i]);
+        int t = n.c[i];
+        n.c[i] = o.c[i];
+        o.c[i] = t;
     }    
 }
 
 void mutate(Node& n){
     for (int i = 0; i < CHRONO_LENGTH; i++){
-        if (randDouble(1)<0.002){
+        if (randDouble(1)<0.015){
             n.c[i] = n.c[i]==0?1:0;
         }
     }    
@@ -237,7 +239,7 @@ int main(){
     int count, p,j,k, i,n;
     scanf("%d", &count);
     for (p=0; p<count; p++) {        
-        scanf("%d", &gR);        
+        scanf("%f", &gR);
         solve();
     }
     

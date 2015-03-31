@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95ECB3501AC634A40007046F /* geneticnumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95ECB34E1AC634A40007046F /* geneticnumber.cpp */; };
+		95FE3BEB1ACA730400FD2BDE /* genetic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95FE3BE81ACA721F00FD2BDE /* genetic.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -159,6 +159,8 @@
 		95FA46FA1AA845B8003A6EFC /* movingMarbles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = movingMarbles.txt; path = codejam/sotong/movingMarbles.txt; sourceTree = "<group>"; };
 		95FC67C41A5A97D100839591 /* rrstone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rrstone.cpp; path = codejam/chef/rrstone.cpp; sourceTree = "<group>"; };
 		95FC67C51A5A97D100839591 /* rrstone.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rrstone.txt; path = codejam/chef/rrstone.txt; sourceTree = "<group>"; };
+		95FE3BE81ACA721F00FD2BDE /* genetic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = genetic.cpp; path = sotong/genetic.cpp; sourceTree = "<group>"; };
+		95FE3BEC1ACA735000FD2BDE /* genetic.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = genetic.txt; path = sotong/genetic.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95FE3BEC1ACA735000FD2BDE /* genetic.txt */,
+				95FE3BE81ACA721F00FD2BDE /* genetic.cpp */,
 				95ECB34E1AC634A40007046F /* geneticnumber.cpp */,
 				95ECB34F1AC634A40007046F /* geneticnumber.txt */,
 				95F0B12C1AB1835B00EF6986 /* sangheepuzzle.cpp */,
@@ -411,7 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95ECB3501AC634A40007046F /* geneticnumber.cpp in Sources */,
+				95FE3BEB1ACA730400FD2BDE /* genetic.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
