@@ -26,7 +26,7 @@ using namespace std;
 #define H_EPSILON 0.000001
 typedef long long ll;
 
-#define CHRONO_LENGTH 36
+#define CHRONO_LENGTH 70
 #define POP_SIZE 100
 
 
@@ -79,28 +79,36 @@ int select(){
 }
 
 void copyChromo(Node& src, Node& dest){
-    for (int i = 0; i < CHRONO_LENGTH; i++){
+    for (int i = 0; i < gN; i++){
         dest.c[i] = src.c[i];
     }
 }
 
 #define CROSSOVER_RATE 0.7
-void crossover(Node& n, Node& o){
+void crossoverPair(Node& n, Node& o){
     if (randDouble(1)>CROSSOVER_RATE){
         return;
     }
 
-    int m = randInt();
-    for (int i = m; i < CHRONO_LENGTH; i++){
-        int t = n.c[i];
-        n.c[i] = o.c[i];
-        o.c[i] = t;
-    }    
+}
+void crossover(Node& n, Node& o, Node& dest){
+//    if (randDouble(1)>CROSSOVER_RATE){
+//        copyChromo(n, dest);
+//        return;
+//    }
+    
+    for (int j = 0; j < gN; j++){
+        if (randDouble(1)>CROSSOVER_RATE){
+            dest.c[j] = n.c[j];
+        }else{
+            dest.c[j] = o.c[j];
+        }
+    }
 }
 
 void mutate(Node& n){
     for (int i = 0; i < gN; i++){
-        if (randDouble(1)<0.015){
+        if (randDouble(1)<0.005){
             n.c[i] = n.c[i]==0?1:0;
         }
     }    
@@ -140,18 +148,12 @@ void solve(){
         }
 
         int index =0;
-        t[0] = gCandidate[bestIdx];
+        //t[index++] = gCandidate[bestIdx];
 
         for (int i = index; i < POP_SIZE; i++){
             int t1 = select();
-            int t2 = select();
-            for (int j = 0; j < gN; j++){
-                if (randDouble(1)>0.7){
-                    t[i].c[j] = gCandidate[t1].c[j];
-                }else{
-                    t[i].c[j] = gCandidate[t2].c[j];
-                }
-            }
+            int t2=select();
+            crossover(gCandidate[t2], gCandidate[t1], t[i]);
             mutate(t[i]);
             updateFitness(t[i]);
         }
