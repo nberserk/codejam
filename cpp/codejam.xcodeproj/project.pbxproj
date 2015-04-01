@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95FE3BEB1ACA730400FD2BDE /* genetic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95FE3BE81ACA721F00FD2BDE /* genetic.cpp */; };
+		95F6EA281ACB963D00A51D29 /* tsp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95F6EA261ACB963D00A51D29 /* tsp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -153,6 +153,8 @@
 		95F0638B1A9215A4008FA5F4 /* connectingCore.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = connectingCore.txt; path = sotong/connectingCore.txt; sourceTree = "<group>"; };
 		95F0B12C1AB1835B00EF6986 /* sangheepuzzle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sangheepuzzle.cpp; path = sotong/sangheepuzzle.cpp; sourceTree = "<group>"; };
 		95F0B12D1AB1835B00EF6986 /* sangheepuzzle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sangheepuzzle.txt; path = sotong/sangheepuzzle.txt; sourceTree = "<group>"; };
+		95F6EA261ACB963D00A51D29 /* tsp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tsp.cpp; sourceTree = "<group>"; };
+		95F6EA271ACB963D00A51D29 /* tsp.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tsp.txt; sourceTree = "<group>"; };
 		95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = turnovergame.cpp; path = codejam/sotong/turnovergame.cpp; sourceTree = "<group>"; };
 		95F96E5B1A89BE9E009293D6 /* turnovergame.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = turnovergame.txt; path = codejam/sotong/turnovergame.txt; sourceTree = "<group>"; };
 		95FA46F91AA845B8003A6EFC /* movingMarbles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = movingMarbles.cpp; path = codejam/sotong/movingMarbles.cpp; sourceTree = "<group>"; };
@@ -196,6 +198,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95F6EA261ACB963D00A51D29 /* tsp.cpp */,
+				95F6EA271ACB963D00A51D29 /* tsp.txt */,
 				95FE3BEC1ACA735000FD2BDE /* genetic.txt */,
 				95FE3BE81ACA721F00FD2BDE /* genetic.cpp */,
 				95ECB34E1AC634A40007046F /* geneticnumber.cpp */,
@@ -415,7 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95FE3BEB1ACA730400FD2BDE /* genetic.cpp in Sources */,
+				95F6EA281ACB963D00A51D29 /* tsp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,13 +1,48 @@
-
+#include <algorithm>
+#ifdef _MSC_VER
+#include <io.h>
+#define F_OK 0
+#else
+#include <unistd.h>
+#endif
 #include <stdio.h>
 #include <math.h>
-#include <limits.h>
+#include <vector>
+#include <map>
+#include <queue>
+#include <time.h>
+#include <string>
+#include <sstream>
+#include <string.h>
+#include <stack>
+#include <list>
+#include <limits>
+#include <set>
+#include <iostream>
 
+using namespace std;
 #define MAX_N 17
 #define MAX_PERMUTATION 131072 // 2^17
-int N=MAX_N;
+int gN;
 int cache[MAX_N][MAX_PERMUTATION];
-int parent[MAX_PERMUTATION];
+int parent[MAX_N][MAX_PERMUTATION];
+int gCost[MAX_N][MAX_N];
+bool gDebug;
+struct Node{
+    int g[MAX_N];
+    int f;
+};
+
+ int rand(){
+    static unsigned int next=1;
+    next = next*987654321 + 12347;
+    return (unsigned int)next>>16;
+}
+
+double randDouble(){
+    double r = (rand()%10001)/10000.0;
+    return r;
+}
 
 int tsp(int cost[MAX_N][MAX_N], int n, int end){
 	int min = INT_MAX, cur;
@@ -33,79 +68,214 @@ int tsp(int cost[MAX_N][MAX_N], int n, int end){
 			cur = cost[end][i] + tsp(cost, n-mask, i);
 			if(cur < min){
 				min = cur;
-				parent[n]= i;
+				parent[end][n]= i;
 			}
 		}		
 	}
 
-	printf("%d,%d=%d\n", end,n,min);
+	//printf("%d,%d=%d\n", end,n,min);
 	cache[end][n] = min;
-
 	return min;
+}
+
+void solveDP(){
+    int i, j;
+    for(i=0;i<gN;i++){
+        for (j=0;j<MAX_PERMUTATION;j++ ){
+            cache[i][j]=-1;
+        }
+    }
+    int permu = (1<<gN)-2;
+    int min = tsp(gCost, permu, 0);
+    printf("%d\n", min);
+
+
+    int curP = permu;
+    int cur = 0;
+    int next;
+    for (i = 0; i < gN; ++i) {
+        next = parent[cur][curP];
+        printf("%d ", next);
+        curP -= 1<<next;
+        cur = next;
+    }
+    printf("\n");
+}
+
+void fintness(Node& n){
+    int s=gCost[gN][n.g[0]] + gCost[n.g[gN-1]][gN];
+    for (int i = 0; i < gN-1; i++){
+        s += gCost[n.g[i]][n.g[i+1]];
+    }
+    n.f = s;
+}
+
+Node pop[100]; //TODO: proper POP_SIZE ?
+int select(){
+    int r=rand()%100;
+    int best=pop[r].f;
+
+    for (int i = 0; i < 4; i++){
+        int t = rand()%100;
+        if (pop[t].f < best){
+            best = pop[t].f;
+            r=t;
+        }
+    }    
+
+    return r;
+}
+
+void printNode(Node& n){
+    for (int i=0; i<gN; i++) {
+        printf("%d ", n.g[i]);
+    }
+    printf("\n");
+}
+
+void crossover(Node& n){
+    if (randDouble()< 0.7){
+        int s = rand()%gN;
+        int e = rand()%gN;
+        while (s==e){
+            e = rand()%gN;
+        }
+        if (e<s) {
+            swap(s,e);
+        }
+
+        Node bac = n;
+        int fromBack=e;
+        for (int i = s; i <= e; i++){
+            n.g[i] = bac.g[fromBack];
+            fromBack--;
+        }        
+        //printNode(bac);
+        //printNode(n);
+    }    
+}
+
+void mutate(Node& n){
+    if (randDouble()<0.02){
+        int s = rand()%gN;
+        int e = rand()%gN;
+        while (s==e){
+            e = rand()%gN;
+        }
+        swap(n.g[s], n.g[e]);
+    }
+}
+
+void solveGenetic(){
+    gN--; // starts : (gN-1) ends : (gN-1)
+    Node temp[100];
+        
+    for (int i = 0; i < 100; i++){
+        for (int j = 0; j < gN; j++){
+            pop[i].g[j]=j;
+        }
+        for (int j = 0; j < gN-1; j++){
+            int s = rand()%(gN);
+            int d = rand()%(gN);
+            if(s==d)
+                continue;                
+            swap(pop[i].g[s], pop[i].g[d]);
+        }
+        fintness(pop[i]);
+    }
+    
+
+    int gen =0;
+    int best=987654321;
+    int bestIdx;
+    int retryMax=100;
+    int retry=0;
+    while (1){
+        int cBest=987654321;
+        for (int i = 0; i < 100; i++){
+            if (cBest>pop[i].f){
+                cBest=pop[i].f;
+                bestIdx=i;
+            }
+        }
+
+        if (cBest<best){
+            best=cBest;
+            retry=0;
+        }else{
+            retry++;
+        }
+        //printf("gen %d - %d, ", gen, best);
+        //printNode(pop[bestIdx]);
+        gen++;
+        if (retry>=retryMax){
+            break;
+        }
+
+        //crossover
+        int index=0;
+        temp[0] = pop[bestIdx];
+        for (int i = 1; i < 100; i++){
+            int t1 = select();
+            Node t = pop[t1];
+            crossover(t);
+            mutate(t);
+            fintness(t);
+            
+            temp[i]= t;            
+        }
+
+        for (int i = 0; i < 100; i++){
+            pop[i] = temp[i];
+        }                
+    }
+
+    printf("%d\n", best);
+    printNode(pop[bestIdx]);
+}
+
+void test(){
+    for (int i=0; i<100; i++) {
+        double d = randDouble();
+        printf("%f\n", d);
+    }
 }
 
 
 
 int main(){
-    int c[4][4] = {
-            {0, 12, 11, 16},
-            {15, 0, 15, 10},
-            {8,14,0,8},
-            {9,11,17,0}
-    };
+    string fn = __FILE__;
+    size_t pos = fn.find(".cpp");
+    fn = fn.substr(0,pos) + ".txt";    
+    if (access(fn.c_str(), F_OK)!=-1) {
+        gDebug = true;
+    }
 
-    int d[15][15] = {
-	  {0,       29,        82,        46,        68,        52,        72,        42,        51,        55,        29,        74,        23,        72,        46},
-	  {29,         0,        55,        46,        42,        43,        43,        23,        23,        31,        41,        51,        11,        52,        21},
-	  {82,        55,         0,        68,        46,        55,        23,        43,        41,        29,        79,        21,        64,        31,        51},
-    {46,        46,        68,         0,        82,        15,        72,        31,        62,        42,        21,        51,        51,        43,        64},
-    {68,        42,        46,        82,         0,        74,        23,        52,        21,        46,        82,        58,        46,        65,        23},
-    {52,        43,        55,        15,        74,         0,        61,        23,        55,        31,        33,        37,        51,        29,        59},
-    {72,        43,        23,        72,        23,        61,         0,        42,        23,        31,        77,        37,        51,        46,        33},
-    {42,        23,        43,        31,        52,        23,        42,         0,        33,        15,        37,        33,        33,        31,        37},
-    {51,        23,        41,        62,        21,        55,        23,        33,         0,        29,        62,        46,        29,        51,        11},
-    {55,        31,        29,        42,        46,        31,        31,        15,        29,         0,        51,        21,        41,        23,        37},
-    {29,        41,        79,        21,        82,        33,        77,        37,        62,        51,         0,        65,        42,        59,        61},
-    {74,        51,        21,        51,        58,        37,        37,        33,        46,        21,        65,         0,        61,        11,        55},
-    {23,        11,        64,        51,        46,        51,        51,        33,        29,        41,        42,        61,         0,        62,        23},
-    {72,        52,        31,        43,        65,        29,        46,        31,        51,        23,        59,        11,        62,         0,        59},
-    {46,        21,        51,        64,        23,        59,        33,        37,        11,        37,        61,        55,        23,        59,         0}};
-
-	int e[17][17] = {
-	  {0, 633, 257,  91, 412, 150,  80, 134, 259, 505, 353, 324,  70, 211, 268, 246, 121},
-	  {633,   0, 390, 661, 227, 488, 572, 530, 555, 289, 282, 638, 567, 466, 420, 745, 518},
-	  {257, 390,   0, 228, 169, 112, 196, 154, 372, 262, 110, 437, 191,  74,  53, 472, 142},
-	  {91, 661, 228,   0, 383, 120,  77, 105, 175, 476, 324, 240,  27, 182, 239, 237,  84},
-	  {412, 227, 169, 383,   0, 267, 351, 309, 338, 196,  61, 421, 346, 243, 199, 528, 297},
-	  {150, 488, 112, 120, 267,   0,  63,  34, 264, 360, 208, 329,  83, 105, 123, 364,  35},
-	  {80, 572, 196,  77, 351,  63,   0,  29, 232, 444, 292, 297,  47, 150, 207, 332,  29},
-	  {134, 530, 154, 105, 309,  34,  29,   0, 249, 402, 250, 314,  68, 108, 165, 349,  36},
-	  {259, 555, 372, 175, 338, 264, 232, 249,   0, 495, 352,  95, 189, 326, 383, 202, 236},
-	  {505, 289, 262, 476, 196, 360, 444, 402, 495,   0, 154, 578, 439, 336, 240, 685, 390},
-	  {353, 282, 110, 324,  61, 208, 292, 250, 352, 154,   0, 435, 287, 184, 140, 542, 238},
-	  {324, 638, 437, 240, 421, 329, 297, 314,  95, 578, 435,   0, 254, 391, 448, 157, 301},
-	  {70, 567, 191,  27, 346,  83,  47,  68, 189, 439, 287, 254,   0, 145, 202, 289,  55},
-	  {211, 466,  74, 182, 243, 105, 150, 108, 326, 336, 184, 391, 145,   0,  57, 426,  96},
-	  {268, 420,  53, 239, 199, 123, 207, 165, 383, 240, 140, 448, 202,  57,   0, 483, 153},
-	  {246, 745, 472, 237, 528, 364, 332, 349, 202, 685, 542, 157, 289, 426, 483,   0, 336},
-	  {121, 518, 142,  84, 297,  35,  29,  36, 236, 390, 238, 301,  55,  96, 153, 336,   0}
-	};
-
-    int i, j;
-    for(i=0;i<MAX_N;i++){
-        for (j=0;j<MAX_PERMUTATION;j++ ){
-            cache[i][j]=-1;
+    FILE *fp;
+    if (gDebug) {
+        fp = freopen(fn.c_str(), "r", stdin);
+    }
+    
+    srand(time(NULL));
+    //test();
+    
+    // handling input
+    int count, p,j,k, i,n;
+    scanf("%d", &count);
+    for (p=0; p<count; p++) {        
+        scanf("%d ", &gN);        
+        
+        for (i=0; i<gN; i++) {
+            for (int j = 0; j < gN; j++){
+                scanf("%d", &gCost[i][j]);    
+            }
         }
+        solveDP();
+        solveGenetic();        
     }
-
-    //int min = tsp(c, pow((long double)2, 4) -2, 0);
-    int min = tsp(e, pow((long double)2, 17)-2, 0);
-    printf("%d\n", min);
-
-    int cur = pow((long double)2, 17)-2;
-    for (i = 0; i < MAX_N; ++i) {
-        printf("%d ", parent[cur]);
-        cur -= 1<<parent[cur];
+    
+    if (gDebug) {
+        fclose(fp);
     }
-
+    return 0;
 }
