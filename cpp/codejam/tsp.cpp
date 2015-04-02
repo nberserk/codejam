@@ -19,6 +19,7 @@
 #include <limits>
 #include <set>
 #include <iostream>
+#include "myutil.h"
 
 using namespace std;
 #define MAX_N 17
@@ -102,7 +103,7 @@ void solveDP(){
     printf("\n");
 }
 
-void fintness(Node& n){
+void fitness(Node& n){
     int s=gCost[gN][n.g[0]] + gCost[n.g[gN-1]][gN];
     for (int i = 0; i < gN-1; i++){
         s += gCost[n.g[i]][n.g[i+1]];
@@ -181,14 +182,14 @@ void solveGenetic(){
                 continue;                
             swap(pop[i].g[s], pop[i].g[d]);
         }
-        fintness(pop[i]);
+        fitness(pop[i]);
     }
     
 
     int gen =0;
     int best=987654321;
     int bestIdx;
-    int retryMax=100;
+    int retryMax=1000;
     int retry=0;
     while (1){
         int cBest=987654321;
@@ -220,7 +221,7 @@ void solveGenetic(){
             Node t = pop[t1];
             crossover(t);
             mutate(t);
-            fintness(t);
+            fitness(t);
             
             temp[i]= t;            
         }
@@ -270,8 +271,12 @@ int main(){
                 scanf("%d", &gCost[i][j]);    
             }
         }
+        h_startTimeMeasure();
         solveDP();
-        solveGenetic();        
+        h_endTimeMeasure();
+        h_startTimeMeasure();
+        solveGenetic();
+        h_endTimeMeasure();
     }
     
     if (gDebug) {
