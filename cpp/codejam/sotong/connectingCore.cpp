@@ -21,6 +21,11 @@
 #include <iostream>
 #include "../myutil.h"
 
+/*
+  constraints :
+  - x,y   < 300
+  - #core < 100 
+ */
 
 using namespace std;
 #define H_MAX 987654321
@@ -70,8 +75,9 @@ int gMin[100][100];
 // pq start
 
 
+#define MAX_PQSIZE 100000
 int pq_size;
-Node q[100000];
+Node q[MAX_PQSIZE];
 void pq_init(){    
     pq_size=0;
 }
@@ -88,6 +94,9 @@ void pq_push(int x, int y, int v){
     q[pq_size].y = y;
     q[pq_size].v = v;
     pq_size++;
+    if (pq_size>=MAX_PQSIZE){
+        printf("pq overflow\n");
+    }
     
     if (pq_size==1){
         return;
@@ -205,6 +214,76 @@ int findMinUsingPriorityqueue(int s, int e){
     
     return ret;    
 }
+
+int getCoreIndex(int x, int y){
+    for (int i = 0; i < gCoreCount; i++){
+        if(gCore[i][0]==x && gCore[i][1]==y)
+            return i;
+    }
+    return -1;
+}
+
+void findMinUsingPriorityqueueAll(int s, int* shortest){    
+    int visited[300][300] = {0,};
+    priority_queue<Node, vector<Node>, Comparator> q;
+
+    Node start;
+    start.x = gCore[s][0];
+    start.y = gCore[s][1];
+    start.v = 1;
+    q.push(start);
+    
+    int d[4][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+    int remaining = gCoreCount-(s+1);
+    
+    int ret = 1000;
+    while (q.size()>0){
+        // TODO: use simple dijkstra
+        Node cur = q.top();
+        q.pop();
+        
+        // cache
+        if (visited[cur.y][cur.x]!=0 && cur.v >= visited[cur.y][cur.x]){
+            continue;
+        }
+        visited[cur.y][cur.x] = cur.v;
+        if ( gMat[cur.y][cur.x]==0){
+            int idx = getCoreIndex(cur.x, cur.y);
+            if (idx==-1) {
+                //printf("ddddd\n");
+                continue;
+            }
+            if (idx<s)   continue;
+            else if (idx!=s){
+                shortest[idx] = cur.v;
+                //printf("%d-%d=%d\n", s, idx, cur.v);
+                remaining--;
+                if (remaining==0){
+                    return;
+                }
+                continue;
+            }
+        }
+        
+        //
+        for (int i = 0; i < 4; i++){
+            int nx = cur.x + d[i][0];
+            int ny = cur.y + d[i][1];
+            if (nx <0 || ny<0 || nx >=gN || ny>=gN) continue;
+            if (gMat[ny][nx]==-1){
+                continue;
+            }            
+            int nv = cur.v < gMat[ny][nx] ? gMat[ny][nx] : cur.v;            
+            Node nn ;
+            nn.x = nx;
+            nn.y = ny;
+            nn.v = nv;
+            q.push(nn);
+            //            printf("%d\n", count);
+        }        
+    }
+}
+
 
 int findMinUsingCustomPriorityqueue(int s, int e){
     int dx = gCore[e][0];
@@ -360,22 +439,41 @@ void comparePerformance(){
 void solve(){
     //comparePerformance();
     
+    /*
     int count =0;
+    h_startTimeMeasure();
     for (int i = 0; i < gCoreCount; i++){
         for (int j = i+1; j < gCoreCount; j++){
             gUnit[count].s = i;
             gUnit[count].e = j;
-            //gUnit[count].v = findMin(i,j);
-            gUnit[count].v = findMinUsingPriorityqueue(i,j);
+            gUnit[count].v = findMin(i,j);
+            int v2 = findMinUsingPriorityqueue(i,j);
+            if (gUnit[count].v!=v2 || v2==1000) {
+                printf("oops\n");
+            }
             //printf("%d-%d=%d\n", i, j, gUnit[count].v);
             count++;
         }
     }
+    h_endTimeMeasure();
+    */
+
+    int shortest[100];
+    int count =0;
+    h_startTimeMeasure();
+    for (int i = 0; i < gCoreCount; i++){
+        findMinUsingPriorityqueueAll(i, shortest);
+        for (int j=i+1; j<gCoreCount; j++) {
+            check(gUnit[count].v , shortest[j] );
+            count++;
+        }
+    }
+    h_endTimeMeasure();
 
 
     sort(gUnit, gUnit+count, myCompare);
 
-    int set[100];
+    int set[10000];
     for (int i = 0; i < count; i++)
         set[i] = -1;
 
