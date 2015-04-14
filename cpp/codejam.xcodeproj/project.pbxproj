@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95E2FF7D1AD3790A00062E23 /* connectingCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95F0638A1A9215A4008FA5F4 /* connectingCore.cpp */; };
+		95DECA711ADD41B900014668 /* assignTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DECA6F1ADD41B900014668 /* assignTask.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,6 +138,8 @@
 		95DE59031A43F45300CACD49 /* christmasGift.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = christmasGift.in; path = codejam/christmasGift.in; sourceTree = "<group>"; };
 		95DE59061A440F6900CACD49 /* uri.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uri.cpp; path = codejam/uri.cpp; sourceTree = "<group>"; };
 		95DE59071A440F6900CACD49 /* uri.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = uri.in; path = codejam/uri.in; sourceTree = "<group>"; };
+		95DECA6F1ADD41B900014668 /* assignTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = assignTask.cpp; path = sotong/assignTask.cpp; sourceTree = "<group>"; };
+		95DECA701ADD41B900014668 /* assignTask.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = assignTask.txt; path = sotong/assignTask.txt; sourceTree = "<group>"; };
 		95DFE6C91A64D48800149D16 /* wordchain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wordchain.cpp; sourceTree = "<group>"; };
 		95DFE6CA1A64D48800149D16 /* wordchain.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wordchain.txt; sourceTree = "<group>"; };
 		95E014FF1A4A928700AC838C /* chefbr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = chefbr.cpp; path = codejam/chef/chefbr.cpp; sourceTree = "<group>"; };
@@ -198,6 +200,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95DECA6F1ADD41B900014668 /* assignTask.cpp */,
+				95DECA701ADD41B900014668 /* assignTask.txt */,
 				95F6EA261ACB963D00A51D29 /* tsp.cpp */,
 				95F6EA271ACB963D00A51D29 /* tsp.txt */,
 				95FE3BEC1ACA735000FD2BDE /* genetic.txt */,
@@ -419,7 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95E2FF7D1AD3790A00062E23 /* connectingCore.cpp in Sources */,
+				95DECA711ADD41B900014668 /* assignTask.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

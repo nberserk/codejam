@@ -34,10 +34,20 @@ struct Node{
     int f;
 };
 
- int rand(){
+int rand2(){
     static unsigned int next=1;
     next = next*987654321 + 12347;
     return (unsigned int)next>>16;
+}
+
+int rand(){
+    static unsigned int next=1;
+    static unsigned int m=(1<<17) -1;
+    next ^= next >> 6;
+    next ^= next << 13;
+    next ^= next >> 19;
+    next *= m;
+    return (unsigned int)next>>2;
 }
 
 double randDouble(){
@@ -131,11 +141,12 @@ void printNode(Node& n){
     for (int i=0; i<gN; i++) {
         printf("%d ", n.g[i]);
     }
+    printf("%d", gN);//because of (gN--)
     printf("\n");
 }
 
 void crossover(Node& n){
-    if (randDouble()< 0.7){
+    if (randDouble()< 0.8){
         int s = rand()%gN;
         int e = rand()%gN;
         while (s==e){
@@ -233,6 +244,86 @@ void solveGenetic(){
 
     printf("%d\n", best);
     printNode(pop[bestIdx]);
+    gN++; // restore gN
+}
+
+
+int distance(int* cur){
+    int d=gCost[cur[gN-1]][cur[0]];
+    for (int i = 0; i < gN-1; i++){
+        d+= gCost[cur[i]][cur[i+1]];
+    }
+    return d;
+}
+
+int neighbor(int* cur, int* next){
+    for (int i = 0; i < gN; i++){
+        next[i] = cur[i];
+    }
+    int s = rand()%gN;
+    int d = rand()%gN;
+    swap(next[s], next[d]);
+    return distance(next);
+}
+
+void take(int* src, int* dest){
+    for (int i = 0; i < gN; i++){
+        dest[i] = src[i];
+    }
+}
+
+double myexp(double x){
+    x = 1+x/512.0;
+    x *=x; x*=x;   x *=x; x*=x;
+    x *=x; x*=x;   x *=x; x*=x;
+    x*=x;
+    return x;
+}
+
+void solveSA(){
+    int cur[MAX_N];
+    int next[MAX_N];
+    for (int i = 0; i < gN; i++){
+        cur[i] = i;
+    }
+    double t = 400;
+    double epsilon = 0.001;
+    double alpha = 0.999;
+    int dist = distance(cur);
+    int ndistance;
+    int iter=0;
+    int best=dist;
+    
+    while (t>epsilon){
+        ndistance = neighbor(cur, next);
+        int delta = ndistance - dist;
+        
+        if (delta<0){
+            take(next, cur);
+            dist = ndistance;
+            
+            best = min(dist, best);
+        }else {
+            double bias = myexp(-delta/t);
+            //printf("%lf\n",bias);
+            if (randDouble() < bias ){
+                take(next, cur);
+                dist = ndistance;
+                best=min(dist, best);
+            }
+        }
+        t*=alpha;
+        iter++;
+        //if(iter%400==0)
+        //   printf("%d ", dist);
+        
+    }
+
+    printf("%d(%d) - %d\n", dist, best, iter);
+    for (int i = 0; i < gN; i++){
+        printf("%d ", cur[i]);
+    }
+    printf("\n");
 }
 
 void test(){
@@ -241,8 +332,6 @@ void test(){
         printf("%f\n", d);
     }
 }
-
-
 
 int main(){
     string fn = __FILE__;
@@ -273,9 +362,16 @@ int main(){
         }
         h_startTimeMeasure();
         solveDP();
+        printf("DP- ");
         h_endTimeMeasure();
         h_startTimeMeasure();
         solveGenetic();
+        printf("Genetic- ");
+        h_endTimeMeasure();
+
+        h_startTimeMeasure();
+        solveSA();
+        printf("SA- ");
         h_endTimeMeasure();
     }
     

@@ -26,3 +26,12 @@ inline void h_generateRandomMap(int n){
     }
 }
 
+inline void h_generateRow(int n, int low, int high){
+    int range = high-low;
+    for (int i = 0; i < n; i++){        
+        int v = rand()%range + low ;
+        printf("%d ", v);
+    }
+    printf("\n");
+}
+
