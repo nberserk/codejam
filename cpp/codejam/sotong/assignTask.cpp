@@ -142,7 +142,9 @@ int main(){
         for (int i = 0; i < gN; i++){
             scanf("%d",&gLoad[i]);
         }
+        //h_startTimeMeasure();
         solve();
+        //h_endTimeMeasure();
     }
     
     if (gDebug) {
