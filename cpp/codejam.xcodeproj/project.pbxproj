@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95CEAC5D1ADE85E60060EFEE /* mordor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95CEAC5B1ADE85E60060EFEE /* mordor.cpp */; };
+		95F585F21AE4B75F00435840 /* ramcesGarden.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95F585F01AE4B75F00435840 /* ramcesGarden.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -157,6 +157,8 @@
 		95F0638B1A9215A4008FA5F4 /* connectingCore.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = connectingCore.txt; path = sotong/connectingCore.txt; sourceTree = "<group>"; };
 		95F0B12C1AB1835B00EF6986 /* sangheepuzzle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sangheepuzzle.cpp; path = sotong/sangheepuzzle.cpp; sourceTree = "<group>"; };
 		95F0B12D1AB1835B00EF6986 /* sangheepuzzle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sangheepuzzle.txt; path = sotong/sangheepuzzle.txt; sourceTree = "<group>"; };
+		95F585F01AE4B75F00435840 /* ramcesGarden.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ramcesGarden.cpp; path = sotong/ramcesGarden.cpp; sourceTree = "<group>"; };
+		95F585F11AE4B75F00435840 /* ramcesGarden.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ramcesGarden.txt; path = sotong/ramcesGarden.txt; sourceTree = "<group>"; };
 		95F6EA261ACB963D00A51D29 /* tsp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tsp.cpp; sourceTree = "<group>"; };
 		95F6EA271ACB963D00A51D29 /* tsp.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tsp.txt; sourceTree = "<group>"; };
 		95F96E5A1A89BE9E009293D6 /* turnovergame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = turnovergame.cpp; path = codejam/sotong/turnovergame.cpp; sourceTree = "<group>"; };
@@ -202,6 +204,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95F585F01AE4B75F00435840 /* ramcesGarden.cpp */,
+				95F585F11AE4B75F00435840 /* ramcesGarden.txt */,
 				95CEAC5B1ADE85E60060EFEE /* mordor.cpp */,
 				95CEAC5C1ADE85E60060EFEE /* mordor.txt */,
 				95DECA6F1ADD41B900014668 /* assignTask.cpp */,
@@ -427,7 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95CEAC5D1ADE85E60060EFEE /* mordor.cpp in Sources */,
+				95F585F21AE4B75F00435840 /* ramcesGarden.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
