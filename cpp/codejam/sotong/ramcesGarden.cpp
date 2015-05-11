@@ -49,6 +49,8 @@ void check(char expected, char actual){
     }
 }
 
+//#define MAX_N 1000001
+#define MAX_N 20
 bool gDebug;
 int gN, gM; 
 int gCount[5][5][1000000];
@@ -56,26 +58,33 @@ int gCount[5][5][1000000];
 // L_N : ends L, 
 // L_L : ends L, LL showed up before
 // L_P : ends L, PP showed up before
-int L_N[1000001];
-int L_L[1000001];
-int L_P[1000001];
-int P_N[1000001];
-int P_L[1000001];
-int P_P[1000001];
+int L_N[MAX_N];
+int L_L[MAX_N];
+int L_P[MAX_N];
+int P_N[MAX_N];
+int P_L[MAX_N];
+int P_P[MAX_N];
 
 char gS[1000001];
 
 
 void precalc(){
-    L_N[1]=2;
-    L_L[1]=1;
-    L_P[1]=2;
+    L_N[0]=1;
+    L_L[0]=0;
+    L_P[0]=1;
+    P_N[0]=1;    
+    P_L[0]=1;
+    P_P[0]=0;    
     
-    P_N[1]=2;
-    P_L[1]=2;
-    P_P[1]=1;
+//    L_N[1]=2;
+//    L_L[1]=1;
+//    L_P[1]=2;
+//    
+//    P_N[1]=2;
+//    P_L[1]=2;
+//    P_P[1]=1;
     
-    for (int i = 2; i <= gN; i++){
+    for (int i = 1; i <= gN; i++){
         L_N[i]= (L_L[i-1]+P_N[i-1])%gM;
         L_L[i]= P_L[i-1];
         L_P[i]= (L_N[i-1]+P_P[i-1])%gM;
@@ -83,13 +92,10 @@ void precalc(){
         P_N[i]= (L_N[i-1]+ P_P[i-1])%gM;
         P_L[i]= (L_L[i-1]+ P_N[i-1])%gM;
         P_P[i]= L_P[i-1];
-
-        printf("L_N-%d=%d\n", i, L_N[i]);
-    }
-    
-    
+        //printf("L_N-%d=%d\n", i, L_N[i]);
+    }    
 }
-
+    
 // acc,  0:LL , 1:PP, 2:none
 // prev, 0:L  , 1:P  2:none
 int count(int acc,int prev, int remainingN){
@@ -151,12 +157,22 @@ int count(int acc,int prev, int remainingN){
             r += count(acc, 1, nextN);
         }
     }    
+
     
     //printf("%d,%d,%d=%d\n", acc, prev, remainingN, r);
+    r= r%gM;
     return r;
 }
 
-void solve(){    
+void solve(){
+    for (int i=0; i<5; i++) {
+        for (int j=0; j<5; j++) {
+            for (int k=0; k<=gN; k++) {
+                gCount[i][j][k]=-1;
+            }
+        }
+    }
+    
     int acc=2;
     int prev=2;
     int r=1;
@@ -165,25 +181,30 @@ void solve(){
             int d=0;
             int n = gN-i-1;
             if (acc==0) {
-                //skip
-            }else if(acc==1)
-                d=
-            int na=acc;
-            if (prev==0){
-                // L+L
-                if (na!=0){
-                    na = na==1 ? 2 : 0;
-                    d += count(na, 0, gN-i-1);
+                if (prev==0){
+                    //nope
+                }else if (prev==1){
+                    d=count(acc,0,n);
+                }else{
+                    printf("strange\n");
                 }                
-            }else if (prev==1){
-                // P+L
-                d+=count(na,0,gN-i-1);
-            }else {
-                //
-                d+=count(na,0, gN-i-1);
-            }
-            
-            printf(" %d, %d %d %d=%d\n",i, na, 0, gN-i-1,d );
+            }else if(acc==1){
+                if (prev==0){
+                    d=count(2,0,n);
+                }else if (prev==1){
+                    d=count(1,0,n);
+                }else{
+                    printf("strange\n");
+                }
+            }else{
+                if (prev==0){
+                    d=count(0,0,n);
+                }else if (prev==1){
+                    d=count(2,0,n);
+                }else
+                    d=count(2,0,n);
+            }            
+            printf(" %d, %d %d %d=%d\n",i, 100, 0, n,d );
             r+= d;
             r %=gM;            
         }
@@ -210,30 +231,34 @@ void solve2(){
             int d=0;
             if (acc==0){
                 if (prev==0) {
-                    // LL LL
+                    // LL L + L                    
                 }else if (prev==1) {
                     // LL PL
                     d=L_L[n];
                 }else{
-                    d=L_N[n];
+                    printf("strange\n");
                 }
             }else if (acc==1){
                 if (prev==0) {
-                    // LL LL
-                }else if (prev==1) {
-                    // LL PL
-                    d=L_L[n];
-                }else{
+                    // PP LL
                     d=L_N[n];
+                }else if (prev==1) {
+                    // PP PL
+                    d=L_P[n];
+                }else{
+                    printf("strange\n");
                 }
             }else if (acc==2){
                 if (prev==0) {
                     d=L_L[n];
                 }else if(prev==1)
                     d=L_N[n];
+                else
+                    d=L_N[n];
             }
             r+=d;
-            printf(" %d=%d\n", i, d);
+            r%=gM;
+            //printf(" %d=%d\n", i, d);
         }
         if (gS[i]=='L' && prev==0){
             acc = acc==1 ? 2 : 0;
@@ -241,6 +266,7 @@ void solve2(){
             acc = acc==0 ? 2 : 1;
         }
         prev = gS[i]=='L' ? 0:1;
+        //printf("%d, %d %d\n", i, acc, prev);
     }
     printf("%d\n", r);
 }
@@ -270,7 +296,7 @@ void test(){
 int main(){
     string fn = __FILE__;
     size_t pos = fn.find(".cpp");
-    fn = fn.substr(0,pos) + ".txt";    
+    fn = fn.substr(0,pos) + ".txt";
     if (access(fn.c_str(), F_OK)!=-1) {
         gDebug = true;
     }
@@ -281,22 +307,16 @@ int main(){
     }
 
     //h_generateRandomMap(100);
-    for (int i=0; i<5; i++) {
-        for (int j=0; j<5; j++) {
-            for (int k=0; k<1000000; k++) {
-                gCount[i][j][k]=-1;
-            }
-        }
-    }
-    //test();
+        //test();
     //precalc();
     
     // handling input
     int count, p,j,k, i,n;
     scanf("%d", &count);
     for (p=0; p<count; p++) {        
-        scanf("%d%d", &gN, &gM);
-        scanf("%s", gS);        
+        scanf("%d %d", &gN, &gM);
+        scanf("%s", gS);
+        //solve();
         solve2();
     }
     
