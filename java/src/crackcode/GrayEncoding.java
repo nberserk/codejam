@@ -1,10 +1,9 @@
 package crackcode;
 
-import java.util.ArrayList;
-
 import junit.framework.TestCase;
-
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 public class GrayEncoding extends TestCase {
 	

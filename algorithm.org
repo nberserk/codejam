@@ -263,6 +263,13 @@ shortest path of all vertex
 
 #+END_SRC
 
+*** return the number of non-empty contiguous subarray whose sum is in range[a,b]
+http://www.careercup.com/question?id=5200686994161664
+idea : sort prefix sum. and choose
+*** 3sum
+3sum : https://leetcode.com/problems/3sum/
+3sum closest : 
+
 ** binary search
 #+BEGIN_SRC java
   static int binarySearch(int[] a, int s, int e, int key) {

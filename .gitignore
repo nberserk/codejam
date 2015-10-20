@@ -6,3 +6,8 @@ java/bin
 *.ear
 .*
 cpp/codejam/bin
+*.iml
+out
+.idea
+
+
