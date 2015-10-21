@@ -269,8 +269,13 @@ idea : sort prefix sum. and choose
 *** 3sum
 3sum : https://leetcode.com/problems/3sum/
 3sum closest : 
-
+** lis (longest increasing subsequence)
+see [[file:cpp/codejam/lis.cpp][lis(java)]]
+http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/
+http://www.geeksforgeeks.org/dynamic-programming-set-14-variations-of-lis/
 ** binary search
+https://www.topcoder.com/community/data-science/data-science-tutorials/binary-search/
+see [[file:java/src/codejam/lib/BinarySearch.java][BinarySearch(java)]]
 #+BEGIN_SRC java
   static int binarySearch(int[] a, int s, int e, int key) {
       while (s <= e) {
