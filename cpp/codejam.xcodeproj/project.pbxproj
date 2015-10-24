@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		95F585F21AE4B75F00435840 /* ramcesGarden.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95F585F01AE4B75F00435840 /* ramcesGarden.cpp */; };
+		95DDED721BDB543800027407 /* 2printer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95DDED701BDB543800027407 /* 2printer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -136,6 +136,8 @@
 		95DD8F5D1A5E0A7B0021FF54 /* stakeCovering.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stakeCovering.txt; path = codejam/sotong/stakeCovering.txt; sourceTree = "<group>"; };
 		95DDA6B81A6FB86000EB9787 /* workConversion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = workConversion.cpp; path = codejam/sotong/workConversion.cpp; sourceTree = "<group>"; };
 		95DDA6B91A6FB86000EB9787 /* workConversion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = workConversion.txt; path = codejam/sotong/workConversion.txt; sourceTree = "<group>"; };
+		95DDED701BDB543800027407 /* 2printer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = 2printer.cpp; path = sotong/2printer.cpp; sourceTree = "<group>"; };
+		95DDED711BDB543800027407 /* 2printer.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2printer.txt; path = sotong/2printer.txt; sourceTree = "<group>"; };
 		95DE59021A43F45300CACD49 /* christmasGift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = christmasGift.cpp; path = codejam/christmasGift.cpp; sourceTree = "<group>"; };
 		95DE59031A43F45300CACD49 /* christmasGift.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = christmasGift.in; path = codejam/christmasGift.in; sourceTree = "<group>"; };
 		95DE59061A440F6900CACD49 /* uri.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uri.cpp; path = codejam/uri.cpp; sourceTree = "<group>"; };
@@ -204,6 +206,8 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				95DDED701BDB543800027407 /* 2printer.cpp */,
+				95DDED711BDB543800027407 /* 2printer.txt */,
 				95F585F01AE4B75F00435840 /* ramcesGarden.cpp */,
 				95F585F11AE4B75F00435840 /* ramcesGarden.txt */,
 				95CEAC5B1ADE85E60060EFEE /* mordor.cpp */,
@@ -431,7 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95F585F21AE4B75F00435840 /* ramcesGarden.cpp in Sources */,
+				95DDED721BDB543800027407 /* 2printer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

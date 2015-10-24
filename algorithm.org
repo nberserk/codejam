@@ -174,8 +174,24 @@ shortest path of all vertex
 - simulated annealing : http://www.theprojectspot.com/tutorial-post/simulated-annealing-algorithm-for-beginners/6
 - genetic algorithm
 * samsung strategy
+** useful macros
+#+BEGIN_SRC c++
+// swap
+#define SWAP(a,b) do{int t=a;a=b;b=t;} while(0)
+
+// ddebug
+#define HDEBUG
+#ifdef HDEBUG
+#define hprint(fmt, args...) printf(fmt, ##args)
+#else
+#define hprint(fmt,args...)
+#endif
+#+END_SRC
 - multiple category : for small N, choose brute force, for large N choose approximation algorithm like greedy.
   .e.g, category 1, N<10 , category 2 N<100, category 3, N<1000
+- review 10/24
+  - 500x500 dfs using recursive cause stackoverflow. plz use stack
+  - time is out. I was almost there. sigh!
 * project G
 ** sort 
 - selection sort : O(n^2), swap O(n)
