@@ -193,6 +193,9 @@ shortest path of all vertex
   - 500x500 dfs using recursive cause stackoverflow. plz use stack
   - time is out. I was almost there. sigh!
 * project G
+** linked list
+- [[file:java/src/crackcode/List.java::reverseIterative][reverse linked list, reverse every K nodes]]
+- 
 ** sort 
 - selection sort : O(n^2), swap O(n)
 - insertion sort : O(n^2) very effective when sorting already sorted data
