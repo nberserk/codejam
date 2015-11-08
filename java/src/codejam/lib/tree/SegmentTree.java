@@ -1,5 +1,7 @@
 package codejam.lib.tree;
 
+import codejam.lib.CheckUtil;
+
 /**
  * Created by darren on 11/8/15.
  */
@@ -37,18 +39,30 @@ public class SegmentTree {
     }
 
     int query(int cs,int ce, int s, int e, int i){
-        int r = 0;
+        if (ce <s || cs>e) return 0;
+
         int m = (s+e)/2;
 
         if(s==e)
             return node[i].sum;
 
-        if()
-            r += query(cs, m, s,m, 2*i+1);
-        if(cs<m+1&& ce>m+1)
-            r+= query(m+1, ce, m+1, e, 2*i+2 );
+        if(ce <=m)
+            return query(cs, ce, s,m, 2*i+1);
+        else if (cs >= m+1)
+            return query(cs, ce, m+1, e, 2*i+2);
 
+        int r = 0;
+        r += query(cs, m, s, m, 2*i+1 );
+        r += query(m+1, ce, m+1, e, 2*i+2);
         return r;
+    }
+
+    void update(int dest, int diff){
+        update(dest, diff, 0);
+    }
+
+    void update(int dest, int diff, int i){
+        
     }
 
     public static void main(String[] args) {
@@ -60,8 +74,15 @@ public class SegmentTree {
         }
 
         tree.build(a);
-        int v = tree.query(0,0, 0, 9, 0);
-        System.out.println(v);
+        int v = tree.query(0,1, 0, 9, 0);
+        CheckUtil.check(3,v);
+        v = tree.query(0,9, 0, 9, 0);
+        CheckUtil.check(55,v);
+
+        v = tree.query(1,5, 0, 9, 0);
+        CheckUtil.check(20,v);
+
+        System.out.println("done");
     }
 
 
