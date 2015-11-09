@@ -13,9 +13,12 @@ public class SegmentTree {
         int l,r;
     }
     Node[] node;
+    int N;
     int build(int[]in ){
-        node = new Node[in.length*4];
-        return build(in, 0, in.length-1, 0);
+        N = in.length;
+        node = new Node[N*4];
+
+        return build(in, 0, N-1, 0);
     }
     int build(int[] in, int s, int e, int i){
         int m = (s+e)/2;
@@ -38,7 +41,11 @@ public class SegmentTree {
         return node[i].sum;
     }
 
-    int query(int cs,int ce, int s, int e, int i){
+    int query(int s, int e){
+        return _query(s,e,0, N-1, 0);
+    }
+
+    int _query(int cs,int ce, int s, int e, int i){
         if (ce <s || cs>e) return 0;
 
         int m = (s+e)/2;
@@ -47,22 +54,32 @@ public class SegmentTree {
             return node[i].sum;
 
         if(ce <=m)
-            return query(cs, ce, s,m, 2*i+1);
+            return _query(cs, ce, s, m, 2 * i + 1);
         else if (cs >= m+1)
-            return query(cs, ce, m+1, e, 2*i+2);
+            return _query(cs, ce, m + 1, e, 2 * i + 2);
 
         int r = 0;
-        r += query(cs, m, s, m, 2*i+1 );
-        r += query(m+1, ce, m+1, e, 2*i+2);
+        r += _query(cs, m, s, m, 2 * i + 1);
+        r += _query(m + 1, ce, m + 1, e, 2 * i + 2);
         return r;
     }
 
-    void update(int dest, int diff){
-        update(dest, diff, 0);
+    void update(int dest, int newValue)    {
+        int v = query(dest, dest);
+        int diff = newValue - v;
+        _update(dest, diff, 0, N - 1, 0);
     }
 
-    void update(int dest, int diff, int i){
-        
+    private void _update(int dest, int diff, int s, int e, int i){
+        if (dest<s || dest>e) return;
+
+        node[i].sum += diff;
+
+        if(s==e) return;
+
+        int m = (s+e)/2;
+        _update(dest, diff, s, m, 2*i+1);
+        _update(dest, diff, m+1, e, 2*i+2);
     }
 
     public static void main(String[] args) {
@@ -74,13 +91,17 @@ public class SegmentTree {
         }
 
         tree.build(a);
-        int v = tree.query(0,1, 0, 9, 0);
+        int v = tree.query(0, 1);
         CheckUtil.check(3,v);
-        v = tree.query(0,9, 0, 9, 0);
+        v = tree.query(0, 9);
         CheckUtil.check(55,v);
 
-        v = tree.query(1,5, 0, 9, 0);
+        v = tree.query(1, 5);
         CheckUtil.check(20,v);
+
+        tree.update(0, 0);
+        v = tree.query(0, 9);
+        CheckUtil.check(54, v);
 
         System.out.println("done");
     }

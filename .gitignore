@@ -1,4 +1,5 @@
 *.class
+target
 java/bin
 # Package Files #
 *.jar
