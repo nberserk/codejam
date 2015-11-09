@@ -45,22 +45,29 @@ public class SegmentTree {
         return _query(s,e,0, N-1, 0);
     }
 
+    /**
+     * 3 cases; out or range , in range, overlapping
+     * @param cs querying start index
+     * @param ce querying end index
+     * @param s start index of current node
+     * @param e end index of current node
+     * @param i node index
+     * @return
+     */
     int _query(int cs,int ce, int s, int e, int i){
-        if (ce <s || cs>e) return 0;
+        // out of range
+        if (ce <s || cs>e)
+            return 0;
 
-        int m = (s+e)/2;
-
-        if(s==e)
+        // in range
+        if (cs <=s && e<=ce)
             return node[i].sum;
 
-        if(ce <=m)
-            return _query(cs, ce, s, m, 2 * i + 1);
-        else if (cs >= m+1)
-            return _query(cs, ce, m + 1, e, 2 * i + 2);
-
+        // overlapping
+        int m = (s+e)/2;
         int r = 0;
-        r += _query(cs, m, s, m, 2 * i + 1);
-        r += _query(m + 1, ce, m + 1, e, 2 * i + 2);
+        r += _query(cs, ce, s, m, 2 * i + 1);
+        r += _query(cs, ce, m + 1, e, 2 * i + 2);
         return r;
     }
 
