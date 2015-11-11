@@ -46,12 +46,18 @@ public class CheckUtil {
 		}
 	}
 
+    public static void check(long expected, long actual) {
+        if (expected != actual) {
+            System.out.println(String.format("expected:%d, actual:%d",
+                    expected, actual));
+        }
+    }
+
 	public static void check(double expected, double actual) {
 		if (expected != actual) {
 			System.out.println(String.format("expected:%f, actual:%f",
 					expected, actual));
 		}
-
 	}
 
 }

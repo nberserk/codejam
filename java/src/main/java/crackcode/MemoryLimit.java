@@ -16,7 +16,7 @@ public class MemoryLimit {
         System.out.println(Integer.toBinaryString(n));
 
 		ArrayList<Integer> a = new ArrayList<Integer>();
-		LinkedList<Integer> list = new LinkedList<>();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 
 
 
