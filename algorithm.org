@@ -278,6 +278,8 @@ idea : sort prefix sum. and choose
 see [[file:cpp/codejam/lis.cpp][lis(java)]]
 http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/
 http://www.geeksforgeeks.org/dynamic-programming-set-14-variations-of-lis/
+hackerrank, https://www.hackerrank.com/challenges/subsequence-weighting/copy-from/15171041
+http://www.programminglogic.com/codesprint-2-problem-subsequence-weighting/
 ** binary search
 https://www.topcoder.com/community/data-science/data-science-tutorials/binary-search/
 see [[file:java/src/codejam/lib/BinarySearch.java][BinarySearch(java)]]
