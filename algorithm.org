@@ -433,6 +433,8 @@ QuickSelect(A, k)
       }
   }
 #+END_SRC
+*** segment tree
+[[file:java/src/main/java/codejam/lib/tree/SegmentTree.java][segment tree]]
 ** trie
 insert/search O(M)
 ** math
