@@ -117,8 +117,75 @@ int solveNaive(int module[][4][4]){
 struct Part{
     int c[3];
     int base;
+    int bucket;
 };
 Part gPart[MAX];
+
+struct Encode{
+    int base;
+    int org, inverted;
+};
+
+Encode
+
+
+/*
+strategy,
+- find base, create matchable grid, convert it to int, rotate it 90, 180, 270 and store min value
+- 
+ */
+int solveUsingHash(int module[][4][4]){
+    h_startTimeMeasure();
+    for (int i = 0; i < 16; i++){
+        gbcount[i]=0;
+    }
+    
+    for (int i = 0; i < MAX; i++){
+        int sum=0;
+        for (int y = 0; y < 4; y++){
+            for (int x = 0; x < 4; x++){
+                sum += module[i][y][x];                
+            }
+        }
+
+        int b = sum % 16;        
+
+        gPart[i].bucket = b;
+        gBucket[b][gbcount[b]]=i;
+        gbcount[b]++;
+        if (gbcount[b]==5000){
+            hprint("strange");
+        }
+    }    
+
+    gmcount=0;
+    for (int i=0; i<MAX; i++) {
+        int db = 16-gPart[i].bucket;
+        if (db==16){
+            db =0;
+        }
+
+        for (int j = 0; j < gbcount[db]; j++){
+            int d = gBucket[db][j];
+            if (d<=i){
+                continue;
+            }
+            int h = matchNaive(module, i, d);
+            if (h==0){
+                continue;
+            }
+                
+            gMatch[gmcount].h = h;
+            gMatch[gmcount].s = i;
+            gMatch[gmcount].d = d;
+            gmcount++;
+
+        }
+    }
+    
+    h_endTimeMeasure();
+    return 0;
+}
 
 int solveUsingPart(int module[][4][4]){
     h_startTimeMeasure();
@@ -158,7 +225,7 @@ int solveUsingPart(int module[][4][4]){
                 gMatch[gmcount].s = i;
                 gMatch[gmcount].d = j;
                 gmcount++;
-                hprint("%d\n", h);                
+                //hprint("%d\n", h);
             }
             
         }
@@ -184,7 +251,8 @@ int main(){
             }
         }
 
-        int s = solveUsingPart(module);
+        int s = solveUsingHash(module);
+        solveUsingPart(module);
         printf("#%d: %d\n", p, s);
     }
 }
