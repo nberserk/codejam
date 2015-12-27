@@ -30,7 +30,7 @@ public class SubsequenceWeighting {
             public int compare(Node o1, Node o2) {
                 int d = o1.x - o2.x;
                 if (d==0)
-                    return int(o1.w - o2.w);
+                    return (int)(o1.w - o2.w);
                 return d;
             }
         });

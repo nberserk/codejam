@@ -531,3 +531,7 @@ In a given binary tree, find the number of elements that lie in a given range.
 - reivew 12/5 [[file:cpp/codejam/sotong/151205maxModuleHeight.cpp][maxModuleHeight]]
   - find maximum height of matching grid, 30000 4x4 grid given.
     - each grid have height, base = 1 + rand()%6, delta= base + rand()%3
+* Amazon
+from http://www.workingus.com/v3/forums/topic/%EC%95%84%EB%A7%88%EC%A1%B4-%EC%84%9C%EC%9A%B8%EC%B1%84%EC%9A%A9/
+Behavioral의 경우 어떻게 개인 능력을 뛰어 넘는 업무를 성공적으로 수행했는지, 가장 어려웠던 업무를 어떻게 수행했는지와 비슷한 부류의 질문을 모든 세션에서 집요하게 질문받았습니다.
+그리고 처음 두 session에서는 algorithm coding 질문을 받았는데 주어진 시간 내에 코딩을 완료하고 추가 질문에 대답할 수 있을 정도의 난이도로, 그리 어려운 문제는 아니었던 것 같구요. 세번째 session에서는 object oriented design, 마지막에는 system design question을 받았는데 각 면접관의 담당 업무와 관련지어서 문제를 출제한 것 같았습니다. 

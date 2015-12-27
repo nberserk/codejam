@@ -24,7 +24,7 @@ public class SwapNodes {
 
         // init
         for (int i = 0; i < N; i++) {
-            nodes[i].
+            //nodes[i].
         }
 
     }
