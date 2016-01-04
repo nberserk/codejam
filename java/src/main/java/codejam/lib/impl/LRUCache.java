@@ -11,36 +11,74 @@ import static org.junit.Assert.assertEquals;
  */
 public class LRUCache {
 
+    static class Node{
+        int key,value;
+        Node prev,next;
+    }
+
     private final int capacity;
-    private HashMap<Integer, Integer> map = new HashMap<>();
-    private LinkedList<Integer> keys = new LinkedList<>();
+    private HashMap<Integer, Node> map = new HashMap<>();
+    Node head, tail;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
     }
 
     public int get(int key) {
-        Integer r = map.get(key);
-        if (r==null)
+        if (map.containsKey(key)){
+            Node node = map.get(key);
+            unlinkeNode(node);
+            appendLast(node);
+            return node.value;
+        }else
             return -1;
-        keys.remove(Integer.valueOf(key));
-        keys.addLast(key);
-        return r;
+    }
+
+    private void appendLast(Node node) {
+        if(tail==null){
+            head=tail=node;
+            node.prev=node.next=null;
+        }else{
+            tail.next=node;
+            node.prev=tail;
+            node.next=null;
+            tail=node;
+        }
+    }
+
+    private void unlinkeNode(Node node) {
+        if(node.prev!=null)
+            node.prev.next = node.next;
+        else
+            head = node.next;
+
+        if(node.next==null)
+            tail = node.prev;
+        else
+            node.next.prev = node.prev;
     }
 
     public void set(int key, int value) {
-        Integer r = map.get(key);
-        if(r==null){
-            if(map.size()==capacity){
-                Integer first = keys.getFirst();
-                map.remove(first);
-                keys.removeFirst();
-            }
+        if(map.containsKey(key)){
+            Node node = map.get(key);
+
+            unlinkeNode(node);
+            node.value = value;
+            appendLast(node);
         }else{
-            keys.remove(Integer.valueOf(key));
+            if(map.size()==capacity){
+                // remove head
+                map.remove(head.key);
+                unlinkeNode(head);
+                //head = head.next;
+            }
+            Node node = new Node();
+            node.key = key;
+            node.value = value;
+
+            appendLast(node);
+            map.put(key, node);
         }
-        keys.addLast(key);
-        map.put(key, value);
     }
 
     public static void main(String[] args) {
@@ -48,17 +86,14 @@ public class LRUCache {
         lru.set(1, 1);
         lru.set(2, 2);
         lru.set(3, 3);
-        lru.set(4,4);
+        lru.set(4, 4);
 
         assertEquals(-1, lru.get(1));
         assertEquals(2, lru.get(2));
         assertEquals(3, lru.get(3));
-
         lru.set(2, 4);
         lru.set(5, 5);
         assertEquals(3, lru.get(3));
-
-
 
     }
 }
