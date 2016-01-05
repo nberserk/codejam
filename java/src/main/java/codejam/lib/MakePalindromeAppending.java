@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * http://www.careercup.com/question?id=5673151029575680
- * make palindrom by appending minimum set of chars at the end
+ * make palindrome by appending minimum set of chars at the end
  */
 public class MakePalindromeAppending {
 
