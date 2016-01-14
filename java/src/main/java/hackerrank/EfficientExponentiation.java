@@ -1,9 +1,8 @@
 package hackerrank;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,35 +11,41 @@ import static org.junit.Assert.assertEquals;
  */
 public class EfficientExponentiation {
 
-    static List<Integer> best ;
+    static List<Integer> best = new ArrayList<>();
+    static final int MAX_N = 300;
+    static int[] depth =  new int[MAX_N];
+    static int[] path = new int[MAX_N];
 
-    public static void solve(int N, int cur, LinkedList<Integer> list){
-        if (cur>N)
-            return;
-        if(best!=null && list.size()>best.size())
-            return;
+    public static void expand(int N, int cur, int curDepth){
+        if(cur>N || curDepth > depth[cur]) return;
+
+        if(best.size()>0 && curDepth+1 >= best.size()) return;
+
+        depth[cur] = curDepth;
+        path[curDepth] = cur;
         if(cur==N){
-            if(best==null || best.size()>list.size()){
-                best = new LinkedList<Integer>(list);
-                //System.out.println(list.size()+ ":"+list);
+            if(best.size()==0 || best.size() > curDepth+1){
+                best.clear();
+                for (int i = 0; i <= curDepth; i++) {
+                    best.add(path[i]);
+                }
+                //System.out.println(best.size() +":" + best.toString());
             }
             return;
         }
-
-        for (int i = list.size()-1; i >=0; i--) {
-            int v = cur + list.get(i);
-            list.addLast(v);
-            solve(N, v, list);
-            list.removeLast();
+        for (int i = curDepth; i >= 0; i--) {
+            expand(N, cur + path[i], curDepth+1);
         }
+
     }
 
-    static int solve2(int N){
-        best=null;
+    static int solve(int N){
+        best.clear();
+        for (int i = 1; i <= N; i++) {
+            depth[i] = Integer.MAX_VALUE;
+        }
 
-        LinkedList<Integer> list = new LinkedList<>();
-        list.addLast(1);
-        solve(N, 1, list);
+        expand(N, 1, 0);
 
         System.out.println(best.size() - 1);
         for (int i = 1; i < best.size(); i++) {
@@ -59,8 +64,9 @@ public class EfficientExponentiation {
 
     public static void main(String[] args) {
 
-        assertEquals(1, solve2(2));
-        assertEquals(5, solve2(15));
+        assertEquals(1, solve(2));
+        assertEquals(5, solve(15));
+        assertEquals(11, solve(275));
 
 
         Scanner s = new Scanner(System.in);
@@ -68,7 +74,7 @@ public class EfficientExponentiation {
 
         for (int i = 0; i < T; i++) {
             int k = s.nextInt();
-            solve2(k);
+            solve(k);
         }
     }
 }
