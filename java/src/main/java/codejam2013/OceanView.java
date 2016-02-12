@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-import codejam.lib.BinarySearch;
-import codejam.lib.BinarySearch.IValidator;
+import codejam.lib.binarysearch.BinarySearch;
+import codejam.lib.binarysearch.BinarySearch.IValidator;
 import codejam.lib.CodejamBase;
 
 /*
