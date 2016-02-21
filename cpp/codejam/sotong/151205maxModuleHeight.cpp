@@ -126,7 +126,7 @@ struct Encode{
     int org, inverted;
 };
 
-Encode
+//Encode
 
 
 /*
@@ -134,6 +134,7 @@ strategy,
 - find base, create matchable grid, convert it to int, rotate it 90, 180, 270 and store min value
 - 
  */
+/*
 int solveUsingHash(int module[][4][4]){
     h_startTimeMeasure();
     for (int i = 0; i < 16; i++){
@@ -186,7 +187,7 @@ int solveUsingHash(int module[][4][4]){
     h_endTimeMeasure();
     return 0;
 }
-
+*/
 int solveUsingPart(int module[][4][4]){
     h_startTimeMeasure();
     
@@ -251,7 +252,8 @@ int main(){
             }
         }
 
-        int s = solveUsingHash(module);
+        //int s = solveUsingHash(module);
+        int s=0;
         solveUsingPart(module);
         printf("#%d: %d\n", p, s);
     }

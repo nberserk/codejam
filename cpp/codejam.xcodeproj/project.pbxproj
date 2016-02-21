@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951CF3FF1C79671000F45D69 /* 160220DogPersonMatching.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 951CF3FE1C79671000F45D69 /* 160220DogPersonMatching.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		958CD0681C13418500303A2A /* 151205maxModuleHeight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 958CD0671C13418500303A2A /* 151205maxModuleHeight.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +47,7 @@
 		95150C5B19A8873900EE3AED /* sort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sort.cpp; path = codejam/sort.cpp; sourceTree = "<group>"; };
 		9517DE041A2DA5C50080DD0E /* tiling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tiling.cpp; sourceTree = "<group>"; };
 		9517DE051A2DA5C50080DD0E /* tiling.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tiling.in; sourceTree = "<group>"; };
+		951CF3FE1C79671000F45D69 /* 160220DogPersonMatching.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = 160220DogPersonMatching.cpp; path = sotong/160220DogPersonMatching.cpp; sourceTree = "<group>"; };
 		951D82AC1A09DFF0004481E9 /* drunken.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = drunken.cpp; path = codejam/drunken.cpp; sourceTree = "<group>"; };
 		951D82AD1A09DFF0004481E9 /* drunken.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = drunken.in; path = codejam/drunken.in; sourceTree = "<group>"; };
 		951E150519B5824000A3CC33 /* traversal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = traversal.cpp; path = codejam/traversal.cpp; sourceTree = "<group>"; };
@@ -207,6 +208,7 @@
 		954767D619054D490021B178 /* codejam */ = {
 			isa = PBXGroup;
 			children = (
+				951CF3FE1C79671000F45D69 /* 160220DogPersonMatching.cpp */,
 				95DDED701BDB543800027407 /* 151024Toprinter.cpp */,
 				95DDED711BDB543800027407 /* 151024Toprinter.txt */,
 				95F585F01AE4B75F00435840 /* ramcesGarden.cpp */,
@@ -437,7 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				958CD0681C13418500303A2A /* 151205maxModuleHeight.cpp in Sources */,
+				951CF3FF1C79671000F45D69 /* 160220DogPersonMatching.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
