@@ -529,8 +529,11 @@ In a given binary tree, find the number of elements that lie in a given range.
   - 500x500 dfs using recursive cause stackoverflow. plz use stack
   - time is out. I was almost there. sigh!
 - reivew 12/5 [[file:cpp/codejam/sotong/151205maxModuleHeight.cpp][maxModuleHeight]]
-  - find maximum height of matching grid, 30000 4x4 grid given.
+  - find maximum height of matching grid, 30000 pieces, 4x4 grid given.
     - each grid have height, base = 1 + rand()%6, delta= base + rand()%3
+- review Feb [[file:cpp/codejam/sotong/160220DogPersonMatching.cpp][PersonDogMatching]]
+  - N:5009, 10 sec time limit, dog has 4 properties(hair, age, height, weight, donation). person can adopt a dog satisfying its property range. finding max donation score by matching a dog to a person.
+    - approach: 1. hash dog by weight. sort person by highest donation & lowest matcher. and from the start match a dog. if already taken, see already matching person can choose another dog. repeat!
 * Amazon
 from http://www.workingus.com/v3/forums/topic/%EC%95%84%EB%A7%88%EC%A1%B4-%EC%84%9C%EC%9A%B8%EC%B1%84%EC%9A%A9/
 Behavioral의 경우 어떻게 개인 능력을 뛰어 넘는 업무를 성공적으로 수행했는지, 가장 어려웠던 업무를 어떻게 수행했는지와 비슷한 부류의 질문을 모든 세션에서 집요하게 질문받았습니다.
