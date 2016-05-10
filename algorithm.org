@@ -155,9 +155,20 @@ priorityqueue using max heap
 - topological sort : DAG(no cycle), see [[file:cpp/codejam/dictionary.cpp][dictionary]]
 #+BEGIN_SRC c++
 
-void toposort(){
+  void toposort(){    
+    Stack<Integer> s;
+    Stack<Integer> path;
+    s.push(start);  
+  
+    while(1){
+        int cur = s.peek();
 
-}
+        s.
+    }
+
+
+
+  }
 #+END_SRC
 *** floyd
 shortest path of all vertex
