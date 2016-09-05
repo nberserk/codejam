@@ -48,6 +48,9 @@
   pq.push(make_pair(3,4));
 #+END_SRC
 * algorithm
+** complexity
+http://bigocheatsheet.com/
+
 ** max heap
 properties: A[p]>=A[i], left = 2*i+1(0-based idx), right=2*i+2, parent = (i-1)/2
 - maxHeapify(A, len, i) : LEFT(i) & RIGHT(i) already max heap. float down.
@@ -520,6 +523,19 @@ In a given binary tree, find the number of elements that lie in a given range.
   - online battleship game over the internet
   - wearable device
   - google image search
+* system design
+** scalability for dummy
+** instagram
+- OS: Ubuntu
+- load balancer : 2 nginx(nginx can be used application-level load balancer) & dns round-robin -> AWS ELB & 3 nginx
+- application svr : 25 Django servers. gunicorn as wsgi server. use Fabric to run commands on many instances.
+- data storage : PostgreSQL with shard. master-replica using streaming replication. use EBS to snapshotting
+  - photos on S3.
+  - redis : session, main feed, activity feed
+  - 6 memcached instances,
+  - Gearman : task queue , monitoring : Munin
+  - 
+- 
 * samsung strategy
 ** useful macros
 #+BEGIN_SRC c++
@@ -552,6 +568,12 @@ Behavioral의 경우 어떻게 개인 능력을 뛰어 넘는 업무를 성공�
 * study
 ** 8/30
 https://leetcode.com/problems/russian-doll-envelopes/
-https://leetcode.com/problems/linked-list-cycle/
+easy , https://leetcode.com/problems/linked-list-cycle/
+** gray encoding
+https://leetcode.com/problems/gray-code/
+https://discuss.leetcode.com/topic/55808/1ms-java-solution-with-explaination
+
+** pow(x,n) : 2진법을 이용해서 풀자. conside n can be negative
+** 
 
 
