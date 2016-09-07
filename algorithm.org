@@ -447,8 +447,13 @@ QuickSelect(A, k)
       }
   }
 #+END_SRC
+
+*** binary indexed tree
+L(i) : position of last 1 bit. eg> 3= 11 -> 1, 4=100 -> 3
 *** segment tree
 [[file:java/src/main/java/codejam/lib/tree/SegmentTree.java][segment tree]]
+
+
 ** trie
 insert/search O(M)
 ** math
@@ -534,7 +539,6 @@ In a given binary tree, find the number of elements that lie in a given range.
   - redis : session, main feed, activity feed
   - 6 memcached instances,
   - Gearman : task queue , monitoring : Munin
-  - 
 - 
 * samsung strategy
 ** useful macros
@@ -573,7 +577,14 @@ easy , https://leetcode.com/problems/linked-list-cycle/
 https://leetcode.com/problems/gray-code/
 https://discuss.leetcode.com/topic/55808/1ms-java-solution-with-explaination
 
-** pow(x,n) : 2진법을 이용해서 풀자. conside n can be negative
-** 
+** pow(x,n) : 2진법을 이용해서 풀자. consider n can be negative
+** bit(binary indexed tree)
+http://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/
+https://www.acmicpc.net/blog/view/21
+problems: https://leetcode.com/problems/range-sum-query-2d-mutable/
+
+
+** 9/6
+
 
 
