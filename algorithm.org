@@ -584,7 +584,7 @@ https://www.acmicpc.net/blog/view/21
 problems: https://leetcode.com/problems/range-sum-query-2d-mutable/
 
 
-** 9/6
+** 9/9
 
 
 

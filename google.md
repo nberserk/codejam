@@ -32,5 +32,7 @@ from https://techinterviewsolutions.net/2013/03/30/google-interview-questions-co
 Design distributed backend side for query auto-completion feature
 
 https://techinterviewsolutions.net/2013/03/30/google-interview-questions-compilations/
+* design a google gmail system
+
 * sync
 http://www.gilgil.net/communities_kr/14456  synchronization 관련 문제 인듯 한데.. 

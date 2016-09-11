@@ -2,8 +2,10 @@ package codejam.lib.binarysearch;
 
 
 import codejam.lib.CheckUtil;
+import junit.framework.TestCase;
+import org.junit.Test;
 
-public class BinarySearch {
+public class BinarySearch extends TestCase {
 	
 	public static interface IValidator{
 		boolean validate(int index);		
@@ -32,6 +34,9 @@ public class BinarySearch {
 	/*
 	 * ideas comes from python bisect module
 	 * gets insertion index of array a, to make a ascending list
+	 * same as lower_bound in c++ std.
+	 *
+	 * 1 1 2 2 3 3, bisect_left(2) = 2(insertion point)
 	 */
 	public static int bisect_left(int lo, int hi, int[] a, int key){
 		while (lo<hi) {
@@ -46,7 +51,8 @@ public class BinarySearch {
 	}
 	
 	/*
-	 * only difference between bisect_left is, when equal lo = mid +1
+	 * upper_bound in c++ std.
+	 * 1 1 2 2 3 3, bisect_right(2) = 4
 	 */
 	public static int bisect_right(int lo, int hi, int[] a, int key){
 		while (lo<hi) {
@@ -192,8 +198,9 @@ public class BinarySearch {
 		else
 			return -1;
 	}
-	
-	static void testFindDominantNumber() {
+
+    @Test
+	public void testFindDominantNumber() {
 		int r;
 		int[] a = { 1, 2, 3, 4, 4, 4, 4, 4, 5, 6, 7, 8 };
 		r = findDominantNumber(a);
@@ -208,6 +215,7 @@ public class BinarySearch {
 		CheckUtil.check(2, r);
 	}
 
+    /*
 	public static void main(String[] args) {
 		testFindDominantNumber();
 
@@ -221,7 +229,8 @@ public class BinarySearch {
 				return false;
 			}
 		});
-		
+
+
 		result = bisect_left(0, a.length-1, a, 100);
 		assert result == 5;
 		
@@ -251,6 +260,14 @@ public class BinarySearch {
 		CheckUtil.check(4, binarySearchRange(a2, 3));
 		CheckUtil.check(0, binarySearchRange(a3, 3));
 		CheckUtil.check(0, binarySearchRange(a3, 100));
-	}	
+	}
+*/
+    @Test
+    public void test_bisect_left(){
+        int[] a= new int[]{1, 1, 2, 2, 3, 3};
+
+        assertEquals(2, bisect_left(0, a.length, a, 2));
+        assertEquals(4, bisect_right(0, a.length, a, 2));
+    }
 
 }
