@@ -11,12 +11,10 @@ public class BinarySearch extends TestCase {
 		boolean validate(int index);		
 	}
 	
-		
-	
 	public static int binarySearch(int target, int[] a){
 		int lo = 0;
 		int hi = a.length - 1;
-		while (lo<=hi) {
+		while (lo<=hi) { // notice = is there.
 			int mid = lo + (hi-lo)/2;
 			if (a[mid] > target ) {
 				hi = mid-1;
@@ -25,9 +23,8 @@ public class BinarySearch extends TestCase {
 			}else{
 				return mid;
 			}
-		}		
-		
-		//Arrays.binarySearch(a, key);
+		}
+
 		return -1;
 	}
 	
