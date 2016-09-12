@@ -199,24 +199,6 @@ public class Recursive {
 		}
 	}
 
-	static void permutation(char[] c, char[] cur, int idx) {
-		if (idx == c.length) {
-			System.out.println(Arrays.toString(cur));
-			return;
-		}
-
-		for (int i = 0; i < c.length; i++) {
-			if (c[i] == ' ') {
-				continue;
-			}
-			cur[idx] = c[i];
-			char t = c[i];
-			c[i] = ' ';
-			permutation(c, cur, idx + 1);
-			c[i] = t;
-		}
-	}
-
 	static void combination(char[] in, char[] out, int start, int k, int maxk) {
 		if (k == maxk) {
 			System.out.println(Arrays.toString(out));
