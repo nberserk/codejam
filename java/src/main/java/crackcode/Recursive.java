@@ -30,9 +30,7 @@ public class Recursive {
 		ArrayList<Point> ptQueens = new ArrayList<Point>();
 		queen(ptQueens);
 
-		char[] str = { 'a', 'b', 'c', 'd' };
-		char[] cur = new char[str.length];
-		permutation(str, cur, 0);
+
 
 		char[] inForCombination = "123".toCharArray();
 		char[] out = new char[inForCombination.length];
