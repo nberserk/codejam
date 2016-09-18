@@ -33,6 +33,4 @@ public class InsertionSort extends TestCase{
 
     }
 
-    public static void main(String[] args) {
-    }
 }

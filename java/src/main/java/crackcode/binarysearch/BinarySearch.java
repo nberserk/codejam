@@ -200,16 +200,13 @@ public class BinarySearch extends TestCase {
 	public void testFindDominantNumber() {
 		int r;
 		int[] a = { 1, 2, 3, 4, 4, 4, 4, 4, 5, 6, 7, 8 };
-		r = findDominantNumber(a);
-		CheckUtil.check(4, r);
+		assertEquals(4, findDominantNumber(a));
 
 		int[] b = { 1, 2, 3, 4, 5, 6, 7, 8 };
-		r = findDominantNumber(b);
-		CheckUtil.check(-1, r);
+		assertEquals(-1, findDominantNumber(b));
 
 		int[] c = { 1, 2, 2, 4, 5, 6, 7, 8 };
-		r = findDominantNumber(c);
-		CheckUtil.check(2, r);
+		assertEquals(2,  findDominantNumber(c));
 	}
 
     /*
