@@ -497,6 +497,10 @@ gcd(a,b) = gcd(a, b-a)d, if b > a
 *** image search
 computer vision, machine learning
 image distance: compare similarity of two images in color, texture, shape
+*** GFS
+http://research.google.com/archive/gfs.html
+*** MapReduce
+http://research.google.com/archive/mapreduce.html
 
 ** CrackCode
 - 2.2 Implement an algorithm to find the nth to last element of a singly linked list. hint : using 2 node pointers
