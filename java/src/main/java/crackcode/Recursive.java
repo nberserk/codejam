@@ -29,7 +29,7 @@ public class Recursive {
 
 		ArrayList<Point> ptQueens = new ArrayList<Point>();
 		queen(ptQueens);
-		
+
 		char[] in2 = "abcd".toCharArray();
 		char[] out2 = new char[in2.length];
 		ArrayList<String> subset = new ArrayList<String>();

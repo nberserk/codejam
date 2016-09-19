@@ -3,7 +3,7 @@ package main.java.crackcode.tree;
 /**
  * Created by darren on 12/27/15.
  */
-public class BSTNode {
+public class BSTNode { // BinarySearchTreeNode
     public int key;    
     public BSTNode left, right;
 
