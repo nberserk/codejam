@@ -29,15 +29,7 @@ public class Recursive {
 
 		ArrayList<Point> ptQueens = new ArrayList<Point>();
 		queen(ptQueens);
-
-
-
-		char[] inForCombination = "123".toCharArray();
-		char[] out = new char[inForCombination.length];
-		combination(inForCombination, out, 0, 0, 1);
-		combination(inForCombination, out, 0, 0, 2);
-		combination(inForCombination, out, 0, 0, 3);
-
+		
 		char[] in2 = "abcd".toCharArray();
 		char[] out2 = new char[in2.length];
 		ArrayList<String> subset = new ArrayList<String>();
@@ -194,18 +186,6 @@ public class Recursive {
 		if (closed > open) {
 			c[idx] = ')';
 			parenthesis(N, open, closed - 1, c);
-		}
-	}
-
-	static void combination(char[] in, char[] out, int start, int k, int maxk) {
-		if (k == maxk) {
-			System.out.println(Arrays.toString(out));
-			return;
-		}
-
-		for (int i = start; i < in.length; i++) {
-			out[k] = in[i];
-			combination(in, out, i + 1, k + 1, maxk);
 		}
 	}
 

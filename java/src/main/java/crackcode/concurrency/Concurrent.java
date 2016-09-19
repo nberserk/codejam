@@ -1,4 +1,4 @@
-package crackcode;
+package main.java.crackcode.concurrency;
 
 import java.util.LinkedList;
 import java.util.concurrent.CountDownLatch;
