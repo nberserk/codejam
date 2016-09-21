@@ -1,11 +1,11 @@
 package codejam.lib.binarysearch;
 
 
-import codejam.lib.CheckUtil;
-import junit.framework.TestCase;
 import org.junit.Test;
 
-public class BinarySearch extends TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class BinarySearch {
 	
 	public static interface IValidator{
 		boolean validate(int index);		
@@ -206,7 +206,7 @@ public class BinarySearch extends TestCase {
 		assertEquals(-1, findDominantNumber(b));
 
 		int[] c = { 1, 2, 2, 4, 5, 6, 7, 8 };
-		assertEquals(2,  findDominantNumber(c));
+		assertEquals(2, findDominantNumber(c));
 	}
 
     /*
