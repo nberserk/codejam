@@ -3,12 +3,15 @@ package main.java.crackcode.tree;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by darren on 9/21/16.
  *
- * union set,
+ * tags: union find, disjoint set
  *
  * from: https://leetcode.com/problems/number-of-islands-ii/
  */
@@ -18,6 +21,23 @@ public class NumberOfIslands2 {
         int x, y;
         public Point(int x, int y){
             this.x=x;this.y=y;
+        }
+        Point parent;
+
+        @Override
+        public int hashCode() {
+            return Arrays.hashCode( new Object[]{x,y});
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if(obj instanceof Point){
+                Point p = (Point)obj;
+                if (x == p.x && y == p.y){
+                    return true;
+                }
+            }
+            return false;
         }
     }
     public List<Integer> numIslands2(int m, int n, int[][] positions) {
@@ -38,29 +58,37 @@ public class NumberOfIslands2 {
 
             List<Point> island = new ArrayList<>();
             for(int j=0;j<4;j++){
-                int nx = x + d[i][0];
-                int ny = y + d[i][1];
+                int nx = x + d[j][0];
+                int ny = y + d[j][1];
 
                 if(nx<0 || ny<0 || nx>=n || ny>=m) continue;
-                Point p = getParent(nx,ny,parent);
+                Point p = getRoot(nx, ny, parent);
                 if(p!=null){
-                    // todo duplicate check
-                    island.add(p);
+                    boolean duplicate =false;
+                    for (int k = 0; k < island.size(); k++) {
+                        Point cur = island.get(k);
+                        if(cur.x == p.x && cur.y==p.y){
+                            duplicate=true;
+                            break;
+                        }
+                    }
+                    if(!duplicate)
+                        island.add(p);
                 }
             }
+            parent[y][x] = new Point(x,y);
             if(island.size()==0) {
-                parent[y][x] = new Point(x,y);
                 count++;
             }else if (island.size()==1){
-                parent[y][x] = island.get(0);
+                parent[y][x].parent = island.get(0);
             }else{
                 count -= island.size()-1;
                 Point newroot = island.get(0);
                 for(int j=1;j<island.size();j++ ){
                     Point p = island.get(j);
-                    parent[p.y][p.x] = newroot;
+                    p.parent = newroot;
                 }
-                parent[y][x]=newroot;
+                parent[y][x].parent = newroot;
             }
 
             //
@@ -69,30 +97,38 @@ public class NumberOfIslands2 {
         return ret;
     }
 
-    Point getParent(int x, int y, Point[][] parent){
+    Point getRoot(int x, int y, Point[][] parent){
         Point cur = parent[y][x];
         if( cur== null) return null;
 
-        if(parent[cur.y][cur.x].x == cur.x && parent[cur.y][cur.x].y == cur.y){
-            return parent[y][x];
-        }
+        if(cur.parent==null)
+            return cur;
 
-        while(parent[cur.y][cur.x].x != cur.x && parent[cur.y][cur.x].y != cur.y){
-            cur = parent[cur.y][cur.x];
+        while(cur.parent!=null){
+            cur = cur.parent;
         }
-        parent[y][x] = cur;
+        parent[y][x].parent = cur;
         return cur;
     }
 
     @Test
-    public void UnionSet(){
+    public void test(){
         NumberOfIslands2 island = new NumberOfIslands2();
-        island.numIslands2(3,3, new int[][]{{0,0}, {0,1}, {1,2}, {2,1}});
+        List<Integer> ret =  island.numIslands2(3,3, new int[][]{{0,0}, {0,1}, {1,2}, {2,1}});
 
-        int[][][] d3 = new int[2][2][2];
-        d3[1][1][1] = -1;
+        int[] answers = {1,1,2,3};
+        for (int i = 0; i < answers.length; i++) {
+            assertEquals(answers[i], (int)ret.get(i));
+        }
 
-        int[] ref = d3[0][0];
-        System.out.println(ref[0]);
+        ret = island.numIslands2(5,5, new int[][]{
+                {1,2}, {2,1}, {1,1},
+                {3,3}, {3,2}, {3,1}
+            });
+
+        answers = new int[]{1, 2, 1, 2, 2, 1};
+        for (int i = 0; i < answers.length; i++){
+            assertEquals(answers[i], (int)ret.get(i));
+        }
     }
 }
