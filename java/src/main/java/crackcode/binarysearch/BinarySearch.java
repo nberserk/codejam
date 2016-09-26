@@ -257,11 +257,19 @@ public class BinarySearch {
 	}
 */
     @Test
-    public void test_bisect_left(){
+    public void testBisectLeft(){
         int[] a= new int[]{1, 1, 2, 2, 3, 3};
 
         assertEquals(2, bisect_left(0, a.length, a, 2));
         assertEquals(4, bisect_right(0, a.length, a, 2));
+    }
+
+    @Test
+    public void testBisectRight(){
+        int[] a= new int[]{1, 1, 2, 2, 3, 3};
+        assertEquals(6, bisect_right(0, a.length, a, 3));
+        assertEquals(4, bisect_right(0, a.length, a, 2));
+
     }
 
 }
