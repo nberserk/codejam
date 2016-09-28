@@ -209,6 +209,18 @@ public class BinarySearch {
 		assertEquals(2, findDominantNumber(c));
 	}
 
+	@Test
+	public void testBinarySearchRange(){
+		int[] a2 = { 1, 2, 3, 3, 3, 3, 5, 6, 7, 8, 9 };
+		int[] a3 = { 1, 2, 4, 5, 7 };
+		assertEquals(10, binarySearchStart(a2, 9));
+		assertEquals(10, binarySearchEnd(a2, 9));
+		assertEquals(-1, binarySearchStart(a2, 10));
+		assertEquals(-1, binarySearchStart(a2, -1));
+		assertEquals(4, binarySearchRange(a2, 3));
+		assertEquals(0, binarySearchRange(a3, 3));
+		assertEquals(0, binarySearchRange(a3, 100));
+	}
     /*
 	public static void main(String[] args) {
 		testFindDominantNumber();
@@ -249,11 +261,7 @@ public class BinarySearch {
 		System.out.println("\n");
 
 		//
-		int[] a2 = { 1, 2, 3, 3, 3, 3, 5, 6, 7, 8, 9 };
-		int[] a3 = { 1, 2, 4, 5, 7 };
-		CheckUtil.check(4, binarySearchRange(a2, 3));
-		CheckUtil.check(0, binarySearchRange(a3, 3));
-		CheckUtil.check(0, binarySearchRange(a3, 100));
+
 	}
 */
     @Test
