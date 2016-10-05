@@ -323,6 +323,9 @@ insert position찾을때
 특정 조건을 만족하는 시작점/끝점
 
 문제들...
+- kth smallest element in a soretd matrix https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
+- median of two sorted array https://leetcode.com/problems/median-of-two-sorted-arrays/
+  - explanation is awesome! https://discuss.leetcode.com/topic/4996/share-my-o-log-min-m-n-solution-with-explanation
 - 
 
 *** reference
@@ -490,6 +493,9 @@ QuickSelect(A, k)
       }
   }
 #+END_SRC
+
+*** depth traverse 
+https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 
 *** binary indexed tree
 L(i) : position of last 1 bit. eg> 3= 11 -> 1, 4=100 -> 3
