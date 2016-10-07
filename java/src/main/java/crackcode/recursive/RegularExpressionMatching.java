@@ -81,10 +81,14 @@ public class RegularExpressionMatching {
         assertEquals(true, isMatch("ab", ".*"));
         assertEquals(true, isMatch("aab", ".*"));
 
-        assertEquals(true, matchIterative("aa", "a*"));
-        assertEquals(true, matchIterative("aab", "c*a*b"));
-        assertEquals(true, matchIterative("bbbba", ".*a*a"));
-        assertEquals(true, matchIterative("ab", ".*"));
-        assertEquals(true, matchIterative("aab", ".*"));
+//        assertEquals(true, matchIterative("aa", "a*"));
+//        assertEquals(true, matchIterative("aab", "c*a*b"));
+//        assertEquals(true, matchIterative("bbbba", ".*a*a"));
+//        assertEquals(true, matchIterative("ab", ".*"));
+//        assertEquals(true, matchIterative("aab", ".*"));
+
+        int a = 66;
+        String cc = "aa" +(char) (a+'a');
+        System.out.println(cc);
     }
 }
