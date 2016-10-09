@@ -1,7 +1,6 @@
-package main.java.codejam.lib.impl;
+package main.java.crackcode.impl;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 

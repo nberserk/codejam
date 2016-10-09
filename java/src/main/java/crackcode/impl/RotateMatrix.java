@@ -1,4 +1,4 @@
-package codejam.lib.impl;
+package main.java.crackcode.impl;
 
 
 import codejam.lib.CheckUtil;

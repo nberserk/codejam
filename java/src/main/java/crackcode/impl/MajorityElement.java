@@ -1,4 +1,4 @@
-package main.java.codejam.lib.impl;
+package main.java.crackcode.impl;
 
 /**
  * Created by darren on 1/9/16.
