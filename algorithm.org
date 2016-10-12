@@ -281,6 +281,7 @@ shortest path of all vertex
 
 #+END_SRC
 
+
 *** return the number of non-empty contiguous subarray whose sum is in range[a,b]
 http://www.careercup.com/question?id=5200686994161664
 idea : sort prefix sum. and choose
