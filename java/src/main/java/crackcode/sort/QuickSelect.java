@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class QuickSelect {
 
+    static
     void swap(int[] a, int i, int j){
         int t = a[i];
         a[i]=a[j];
@@ -19,7 +20,7 @@ public class QuickSelect {
 
 
     // start, end inclusive
-    int partition(int[] a, int start, int end){
+    static int partition(int[] a, int start, int end){
         int pivot = a[end];
         int j = start-1;
         for (int i = start; i <end ; i++) {
@@ -32,11 +33,11 @@ public class QuickSelect {
 
     // k: 0 based index
     // Time complexity : O(N)
-    int quickselect(int[] a, int k){
+    static int quickselect(int[] a, int k){
         int left = 0;
         int right = a.length-1;
         while(true){
-            int m = partition(a, left, right);
+            int m = QuickSelect.partition(a, left, right);
             if (k>m)
                 left = m+1;
             else if (k<m)
