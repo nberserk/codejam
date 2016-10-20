@@ -583,6 +583,8 @@ In a given binary tree, find the number of elements that lie in a given range.
   - wearable device
   - google image search
 * system design
+https://www.careercup.com/page?pid=google-interview-questions&topic=system-design-interview-questions
+https://github.com/jwasham/google-interview-university/blob/master/README.md#implement-system-routines
 ** scalability for dummy
 ** instagram
 - OS: Ubuntu

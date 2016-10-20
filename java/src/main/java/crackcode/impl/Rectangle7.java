@@ -3,6 +3,8 @@ package main.java.crackcode.impl;
 import java.util.Arrays;
 
 /**
+ *
+ * make following 7x7 matrix by code.
  4444444
  4333334
  4322234
