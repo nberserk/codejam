@@ -22,7 +22,7 @@ public class WordLadder2 {
                 return false;
             }
         }
-        return true;
+        return diff==1;
     }
 
     void find(String cur, String dest, Set<String> words, Set<String> used, LinkedList<String> path, List<List<String>> out){
@@ -109,7 +109,7 @@ public class WordLadder2 {
                 }
                 continue;
             }
-            if(cur.depth>depth){
+            if(cur.depth>depth){ // we are finding min path. so comes visited path at later stage, can't be answer. so we can ignore that.
                 visited.addAll(buffer);
                 buffer.clear();
                 depth= cur.depth;
@@ -117,7 +117,7 @@ public class WordLadder2 {
             List<String> linked = map.get(cur.word);
             for(String next:linked){
                 if(visited.contains(next))continue;
-                stack.addLast(new Node(next, cur, cur.depth+1));
+                stack.addLast(new Node(next, cur, cur.depth + 1));
             }
         }
         //find(beginWord, endWord, wordList, new HashSet<String>(), path, ret);
@@ -130,7 +130,7 @@ public class WordLadder2 {
         HashSet<String> set = new HashSet<>();
         for(String w: words)
             set.add(w);
-        assertEquals("[[hot,dot,dog],[hot,hog,dog]]", findLadders("hot", "dog", set).toString());
+        assertEquals("[[hot, hog, dog], [hot, dot, dog]]", findLadders("hot", "dog", set).toString());
     }
 
 }
