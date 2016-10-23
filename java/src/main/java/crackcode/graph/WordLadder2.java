@@ -84,15 +84,14 @@ public class WordLadder2 {
         }
         List<List<String>> ret = new ArrayList<>();
 
-        LinkedList<String> path = new LinkedList<>();
-        LinkedList<Node> stack = new LinkedList<Node>();
-        stack.push(new Node(beginWord,null,0));
+        LinkedList<Node> queue = new LinkedList<Node>();
+        queue.push(new Node(beginWord, null, 0));
         HashSet<String> visited = new HashSet<>();
         HashSet<String> buffer = new HashSet<>();
         int shortestDepth=Integer.MAX_VALUE;
         int depth=0;
-        while(stack.size()>0){
-            Node cur = stack.removeFirst();
+        while(queue.size()>0){
+            Node cur = queue.removeFirst();
             if(visited.contains(cur.word))continue;
             buffer.add(cur.word);
             if( cur.depth>shortestDepth) continue;
@@ -117,7 +116,7 @@ public class WordLadder2 {
             List<String> linked = map.get(cur.word);
             for(String next:linked){
                 if(visited.contains(next))continue;
-                stack.addLast(new Node(next, cur, cur.depth + 1));
+                queue.addLast(new Node(next, cur, cur.depth + 1));
             }
         }
         //find(beginWord, endWord, wordList, new HashSet<String>(), path, ret);
