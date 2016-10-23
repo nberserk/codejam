@@ -596,6 +596,24 @@ https://github.com/jwasham/google-interview-university/blob/master/README.md#imp
   - 6 memcached instances,
   - Gearman : task queue , monitoring : Munin
 - 
+** Google Architecture 
+*** GFS (Google File System)
+- why?
+high scalability
+reliability
+huge read/write bandwidth
+suppport large blocks of data 
+- Master and data nodes(NameNode and data nodes in Hadoop)
+*** MapReduce
+- You got so much data. TBs of data stored across 1000 machines. DB don't scale or cost effectively scale to those levels. that's where MR comes in.
+- Users specify a map function that processes a key/value pair to generate a set of intermediate key/value pairs, and a reduce function that merges all intermediate values associated with the same intermediate key. Many real world tasks are expressible in this model.
+- why MR?
+nice way to partion task to across lots of machines
+handle machine failures
+computation can automatically move closer to the IO source
+
+*** BigTable
+
 * samsung strategy
 ** useful macros
 #+BEGIN_SRC c++
