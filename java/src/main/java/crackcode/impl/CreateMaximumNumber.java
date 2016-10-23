@@ -1,4 +1,4 @@
-package main.java.crackcode.dp;
+package crackcode.impl;
 
 import org.junit.Test;
 
@@ -8,6 +8,12 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Created by darren on 10/22/16.
+ *
+ * https://leetcode.com/problems/create-maximum-number/
+ *
+ * idea :
+ *      select l from the first array, select k-l from second array
+ *      merge select array to create max
  */
 public class CreateMaximumNumber {
     static class Node{
