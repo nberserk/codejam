@@ -77,7 +77,7 @@ public class MinimumHeightTrees {
             }
         }
         List<Integer> path = dfs(leaf, map, n);
-        path = dfs(path.get(0), map, n);
+        path = dfs(path.get(0), map, n); // one of the endpoint on the longest path
 
         System.out.println(path);
         List<Integer> ret = new ArrayList<>();

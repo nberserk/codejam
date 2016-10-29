@@ -19,27 +19,27 @@ import static org.junit.Assert.assertEquals;
  * warning : when handling visited. you have to reset visited state if recursive function calls ends.
  */
 public class WordSearch2 {
-    static class Node{
+    static class TrieNode {
         char ch;
         String word;
-        HashMap<Character, Node> child = new HashMap<>();
-        Node(char c){
+        HashMap<Character, TrieNode> child = new HashMap<>();
+        TrieNode(char c){
             ch=c;
         }
-        Node(){
+        TrieNode(){
         }
 
         void insert(String in){
-            Node cur = this;
+            TrieNode cur = this;
             for(char ch: in.toCharArray() ){
                 if(!cur.child.containsKey(ch) )
-                    cur.child.put(ch,new Node(ch) );
+                    cur.child.put(ch,new TrieNode(ch) );
                 cur = cur.child.get(ch);
             }
             cur.word=in;
         }
 
-        Node find(char c){
+        TrieNode find(char c){
             return child.get(c);
         }
         public String toString(){
@@ -47,10 +47,10 @@ public class WordSearch2 {
         }
     }
 
-    boolean find(Node prev, int x, int y, List<String> out, char[][] board){
+    boolean find(TrieNode prev, int x, int y, List<String> out, char[][] board){
         if(prev==null) return false;
         char ch = board[y][x];
-        Node node = prev.find(ch);
+        TrieNode node = prev.find(ch);
         if(node==null) return false;
         //cur = cur + ch;
 
@@ -80,7 +80,7 @@ public class WordSearch2 {
         if(row==0) return ret;
         int col = board[0].length;
 
-        Node trie = new Node();
+        TrieNode trie = new TrieNode();
         for(String w: words){
             trie.insert(w);
         }

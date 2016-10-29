@@ -1,18 +1,13 @@
 package main.java.crackcode.tree;
 
-import junit.framework.TestCase;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by darren on 9/19/16.
- *
- * Let's say you have List<String> history. implement auto complete function when given history, and input string.
- *
+ * Created by darren on 10/29/16.
  */
-public class AutoComplete extends TestCase{
+public class WordSquares {
     static class Node{
         char ch;
         String word;
@@ -64,29 +59,12 @@ public class AutoComplete extends TestCase{
         }
     }
 
-    public void testAutoComplete(){
-        String[] history = {"amazon", "ama", "apple", "google", "facebook"};
+    public List<List<String>> wordSquares(String[] words) {
         Node root = new Node();
-        for (int i = 0; i < history.length; i++) {
-            root.insert(history[i]);
+        for(String s: words){
+            root.insert(s);
         }
-
-        List<String> r = root.getCandidate("a");
-        assertEquals(3, r.size());
-        assertEquals(history[2], r.get(0));
-        assertEquals(history[1], r.get(1));
-        assertEquals(history[0], r.get(2));
-
-        r = root.getCandidate("ama");
-        assertEquals(2, r.size());
-        assertTrue(r.contains(history[0]));
-        assertTrue(r.contains(history[1]));
-
-
-        r = root.getCandidate("b");
-        assertEquals(0, r.size());
-
-
-
+        List<List<String>> ret = new ArrayList<>();
+        return ret;
     }
 }
