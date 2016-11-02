@@ -120,6 +120,10 @@ priorityqueue using max heap
 ** greedy
 - activity selection problem
 ** graph
+BFS, DFS time complexity : O(N+E)
+representations : adjacency matrix , list
+each pros/cons ?
+
 *** shortest path, Dijstra
 #+BEGIN_SRC c++
   struct Node{
@@ -621,7 +625,6 @@ in the second round. We denote the threshold as T.
 
 * Pregel, 
 http://horicky.blogspot.kr/2010/07/google-pregel-graph-processing.html
-
 
 
  
