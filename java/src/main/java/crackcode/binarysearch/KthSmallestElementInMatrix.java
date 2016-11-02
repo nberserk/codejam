@@ -1,17 +1,19 @@
 package main.java.crackcode.binarysearch;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  *
  * https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
- * keyword: priority queue, binary search
+ * tags: priority queue, binary search,
  */
-public class KthSmallestElementInMatrix extends TestCase {
+public class KthSmallestElementInMatrix {
 
     static class Node{
         int v,x,y;
@@ -27,7 +29,7 @@ public class KthSmallestElementInMatrix extends TestCase {
         }
     }
 
-
+    // NlogN
     int kth_pq(int[][] a, int k){
         PriorityQueue<Node> pq = new PriorityQueue<>(100, new Comparator<Node>(){
             @Override
@@ -53,6 +55,50 @@ public class KthSmallestElementInMatrix extends TestCase {
         }
 
         return 0;
+    }
+
+    static class Node2{
+        int row, v;
+        Node2(int r, int v){
+            row=r;
+            this.v=v;
+        }
+    }
+
+    // basically same with kth_pq.
+    // but each
+    int kthSmallest(int[][]a, int k){
+        int row = a.length;
+        if(row==0) return -1;
+        int col = a[0].length;
+        int[] lastCol = new int[row];
+        Arrays.fill(lastCol, -1);
+        lastCol[0]=0;
+        PriorityQueue<Node2> pq = new PriorityQueue<>(100, new Comparator<Node2>() {
+            @Override
+            public int compare(Node2 o1, Node2 o2) {
+                return o1.v-o2.v;
+            }
+        });
+        pq.add(new Node2(0,a[0][0]));
+        while(k>1){
+            Node2 cur = pq.poll();
+            int r = cur.row;
+            int c = lastCol[r];
+            // to right
+            if(lastCol[r]<col-1){
+                lastCol[r]++;
+                pq.add(new Node2(r, a[r][c+1]));
+            }
+            // down
+            if(r < row-1 && c==0 && lastCol[r+1]==-1){ // each row must start with 0 column.
+                lastCol[r+1]++;
+                pq.add(new Node2(r+1,a[r+1][c]));
+            }
+            k--;
+        }
+
+        return pq.poll().v;
     }
 
     int lower_bound(int[] a, int key){
@@ -82,6 +128,7 @@ public class KthSmallestElementInMatrix extends TestCase {
         return lo;
     }
 
+    // NlogN
     int kth_binarysearch(int[][] a, int k){
         int N = a.length;
         int lo = a[0][0];
@@ -94,7 +141,7 @@ public class KthSmallestElementInMatrix extends TestCase {
                 count += upper_bound(a[i], m);
             }
 
-            System.out.println("m="+m +", count="+count+",lo="+lo+",hi="+hi);
+            //System.out.println("m="+m +", count="+count+",lo="+lo+",hi="+hi);
             if (count < k)
                 lo=m+1;
             else
@@ -103,6 +150,8 @@ public class KthSmallestElementInMatrix extends TestCase {
         }
         return lo;
     }
+
+
 
 
     @Test
@@ -127,16 +176,47 @@ public class KthSmallestElementInMatrix extends TestCase {
         assertEquals(2, lower_bound(a, 3));
         assertEquals(4,lower_bound(a, 5));
         assertEquals(6,upper_bound(a, 5));
-        assertEquals(4,upper_bound(a, 3));
+        assertEquals(4, upper_bound(a, 3));
         assertEquals(2,upper_bound(a, 1));
 
-
         assertEquals(13,kth_binarysearch(m2, 8));
+    }
 
-        assertEquals(30, kth_binarysearch(m, 7));
-        assertEquals(10, kth_binarysearch(m, 1));
-        assertEquals(33, kth_binarysearch(m, 9));
+    int[][] createSortedMatrix(){
+        int size = 100;
+        int[][] a = new int[size][size];
+        for(int y=0;y<size;y++){
+            for (int x = 0; x < size; x++) {
+                a[y][x] = y*1000+x+1;
+            }
+        }
+        return a;
+    }
 
+    @Test
+    public void test_bs(){
+        int[][] m = createSortedMatrix();
 
+        assertEquals(99099, kth_binarysearch(m, 9999));
+        assertEquals(99098, kth_binarysearch(m, 9998));
+        assertEquals(98099, kth_binarysearch(m, 9899));
+    }
+
+    @Test
+    public void test_pq(){
+        int[][] m = createSortedMatrix();
+
+        assertEquals(99099, kth_pq(m, 9999));
+        assertEquals(99098, kth_pq(m, 9998));
+        assertEquals(98099, kth_pq(m, 9899));
+    }
+
+    @Test
+    public void test_pq2(){
+        int[][] m = createSortedMatrix();
+
+        assertEquals(99099, kthSmallest(m, 9999));
+        assertEquals(99098, kthSmallest(m, 9998));
+        assertEquals(98099, kthSmallest(m, 9899));
     }
 }
