@@ -5,12 +5,17 @@ import org.junit.Test;
 
 /**
  * Created by darren on 9/7/16.
+ *
+ * ex>
+ *      7 : 111 -> 7
+ *      6 : 110 -> 6,5
+ *      4 : 100 -> 4,3,2,1
+ *
  */
 public class BinaryIndexedTree extends TestCase{
     int[] n;
     int[] tree;
     int size;
-
 
     public void init(int[] n){
         //this.n = n;
