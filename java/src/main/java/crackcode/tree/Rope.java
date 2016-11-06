@@ -83,7 +83,7 @@ public class Rope {
 		int[] c2 = {0, 1, 1};
 
 		assertEquals("[3, 1, 2]", sortByCountTallerThanSelf(h2, c2).toString());
-		assertEquals("[6, 1, 3, 2, 5, 4]", sortByCountTallerThanSelf(h, c));
+		assertEquals("[4, 5, 2, 3, 1, 6]", sortByCountTallerThanSelf(h, c).toString());
 
 	}
 
