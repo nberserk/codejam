@@ -1,3 +1,10 @@
+# system design
+## numbers for twitter
+6000 tweets per second
+317M MAU
+
+
+
 * strobogrammatic
 
 A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
