@@ -18,7 +18,7 @@ public class SlidingWindowMaximum {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int N = nums.length;
         int R = N-k+1;
-        if(R<=0) return new int[]{};
+        if(R<=0||k==0) return new int[]{};
         int[] ret = new int[R];
         LinkedList<Integer> deque = new LinkedList<>(); // first:min, last:max
 
