@@ -587,41 +587,8 @@ In a given binary tree, find the number of elements that lie in a given range.
   - wearable device
   - google image search
 * system design
-https://www.careercup.com/page?pid=google-interview-questions&topic=system-design-interview-questions
-https://github.com/jwasham/google-interview-university/blob/master/README.md#implement-system-routines
 
 problems:
-- manual map reduce. https://www.careercup.com/question?id=4681660918398976
-Given a large network of computers, each keeping log files of visited urls, find the top ten of the most visited urls. 
-(i.e. have many large <string (url) -> int (visits)> maps, calculate implicitly <string (url) -> int (sum of visits among all distributed maps), and get the top ten in the combined map) 
-The result list must be exact, and the maps are too large to transmit over the network (especially sending all of them to a central server or using MapReduce directly, is not allowed)
-#+BEGIN_SRC text
-Presuming a protocol exists that can ask three questions to each server: 
-
-* the score of a single url 
-* the top 10 
-* the top n that satisfy score >= N 
-
-We program a two pass solution like so: 
-
-We denote the number of servers as S. 
-
-[First pass] 
-(1) Ask every server for its own top ten 
-
-(2) merge the results. For all URLs in the merged set calculate correct values by asking 
-all servers for their scores for each URL. Calculate a set of top ten from our sample. 
-
-(3) pick score of the now tenth URL as the threshold that we try to beat 
-in the second round. We denote the threshold as T. 
-
-[Second pass] 
-(4) Ask every server for all its top N that satisfy score >= T/S 
-
-(5) Merge these bigger samples again as in step (2) 
-
-(6) We now have the correct top ten with correct scores.
-#+END_SRC
 
 * Pregel, 
 http://horicky.blogspot.kr/2010/07/google-pregel-graph-processing.html
@@ -718,21 +685,3 @@ so beatutiful
 https://leetcode.com/problems/range-addition/
 
 
-
-
-kadane algorithm, maximum sum subarray
--1, -2, 3, 4, -5, 6
-
-
-http://codeforces.com/blog/entry/13713
-First time I saw this problem I didn't understand very well the idea. Then I saw it was an optimization in memory use. I would like to share the logic behind this optimization.
-dp[i] -> max value from first position to i
-For each position:
-dp[i] = max(dp[i - 1] + Number[i], 0) // This is max_ending_here
-maxsingleelement = max(maxsingleelement, Number[i]) // Check case all negative values.
-Then we will get our solution taking the max dp[i]
-For each position again:
-sol = max(sol, dp[i]) // This is max_so_far
-This implementation has O(n) in time complexity and memory usage.
-Then we can use only two variables in the solution you gave us. The complexity will be the same but memory usage will be constant .
-By the way, what happen when all the elements are negative values? This is a possible case. Based in this case I like to use a variable (maxsingleelement) that stores the max value from each Number[i]. At the end, if this value is lower than 0 then I return maxsingleelement otherwise return sol (max_so_far)
