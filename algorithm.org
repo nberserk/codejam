@@ -679,6 +679,11 @@ http://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/
 https://www.acmicpc.net/blog/view/21
 problems: https://leetcode.com/problems/range-sum-query-2d-mutable/
 
+** tree with count
+https://leetcode.com/problems/count-of-smaller-numbers-after-self/
+https://leetcode.com/problems/queue-reconstruction-by-height/
+https://leetcode.com/problems/count-of-range-sum/
+
 
 ** 9/9
 so beatutiful
