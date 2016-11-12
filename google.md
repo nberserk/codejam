@@ -4,11 +4,16 @@ https://github.com/jwasham/google-interview-university/blob/master/README.md#imp
 
 http://blog.gainlo.co/index.php/category/system-design-interview-questions/
 
+[ticket servers: distributed unique primary keys on the cheap](http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/)
+
 ## numbers for twitter
 6000 tweets per second
 317M MAU
 
 tips: 100M requests per day -> 1000 requests per second.(remove 5 digit)
+
+expected load, storage needed, required network throughput
+
 
 ## problems
 ### manual map reduce
