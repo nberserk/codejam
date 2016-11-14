@@ -14,6 +14,9 @@ tips: 100M requests per day -> 1000 requests per second.(remove 5 digit)
 
 expected load, storage needed, required network throughput
 
+## facebook chat function
+http persistent connection to reduce latency
+
 
 ## problems
 ### manual map reduce
