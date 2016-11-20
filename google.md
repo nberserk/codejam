@@ -6,9 +6,16 @@ http://blog.gainlo.co/index.php/category/system-design-interview-questions/
 
 [ticket servers: distributed unique primary keys on the cheap](http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/)
 
+## youtube viewcounting feature
+https://www.careercup.com/question?id=5139174346719232
+- 300이하 카운트는 fraud detection없이 그냥 카운트
+- db에 바로 쓰면 로드가 많을 것이니, redis나 memcache로 캐쉬 한후 주기적으로 db에 쓰기
+- abuser들이 있기 때문에 refresh가 많은 경우나 봇, 이런걸 계산해줘야 함
+
+
 ## architecture for twitter
 http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html
-
+- dedicate cache for user time line, user home feed, 
 ## numbers for twitter
 6000 tweets per second
 317M MAU
