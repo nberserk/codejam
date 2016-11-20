@@ -35,7 +35,7 @@ public class MedianOfTwoSortedArray {
         int M = nums1.length;
         int N = nums2.length;
         if(M>N) return findMedianSortedArrays(nums2, nums1);
-        int half = (M+N+1)/2;
+        int half = (M+N+1)/2; // why ?
         boolean odd = (M+N)%2==1;
         int lo = 0;
         int hi = M;

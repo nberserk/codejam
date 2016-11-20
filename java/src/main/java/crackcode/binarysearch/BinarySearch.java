@@ -74,12 +74,7 @@ public class BinarySearch {
 	public static int binarySearchBiggestSatisfyingCondition(int lo, int hi, IValidator validator){		
 		while (lo<hi) {
 			// special
-			int mid;
-			if (hi-lo ==1) {
-				mid = lo + (hi-lo+1)/2; // notice +1 added, round up. this is because
-			}else{
-				mid = lo + (hi-lo)/2; 
-			}
+			int mid = lo + (hi-lo+1)/2; // notice +1 added, to work around infinite loop
 			
 			if (validator.validate(mid)){
 				lo = mid;

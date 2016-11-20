@@ -6,6 +6,9 @@ http://blog.gainlo.co/index.php/category/system-design-interview-questions/
 
 [ticket servers: distributed unique primary keys on the cheap](http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/)
 
+## architecture for twitter
+http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html
+
 ## numbers for twitter
 6000 tweets per second
 317M MAU
