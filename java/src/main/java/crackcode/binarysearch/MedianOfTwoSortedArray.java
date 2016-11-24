@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
  *          A[i-1] <= B[j]
  *          B[j-1] <= A[i]
  *
- *          half = (M+N+1)/2
+ *          half = (M+N)/2
  *          M>N
  * so binary search with i
  *      when
@@ -35,7 +35,7 @@ public class MedianOfTwoSortedArray {
         int M = nums1.length;
         int N = nums2.length;
         if(M>N) return findMedianSortedArrays(nums2, nums1);
-        int half = (M+N+1)/2; // why ?
+        int half = (M+N)/2; // why ?
         boolean odd = (M+N)%2==1;
         int lo = 0;
         int hi = M;
@@ -57,12 +57,12 @@ public class MedianOfTwoSortedArray {
                 int min = Integer.MAX_VALUE;
                 int max=Integer.MIN_VALUE;
                 if(odd){
-                    if(i==0)
-                        max = nums2[j-1];
-                    else if(j==0)
-                        max = nums1[i];
-                    else max = Math.max(nums1[i-1], nums2[j-1]);
-                    return max;
+                    if(i==M)
+                        min = nums2[j];
+                    else if(j==N)
+                        min = nums1[i];
+                    else min = Math.min(nums1[i], nums2[j]);
+                    return min;
                 }else{
                     if(i==0)
                         max = nums2[j-1];
