@@ -29,34 +29,12 @@ public class LFUCache {
     }
 
     public int get(int key){
-        if(!values.containsKey(key)) return -1;
-
-        Node node = nodes.get(key);
-        node.keys.remove(key);
-
-        if (node.next==null){
-            node.next = new Node(node.frequency+1);
-            node.next.prev = node;
-
-            node.next.keys.add(key);
-        }else if (node.next.frequency == node.frequency+1){
-            node.next.keys.add(key);
-        }else{
-            Node n = new Node(node.frequency+1);
-            n.keys.add(key);
-            Node nextnext = node.next;
-            n.prev = node;
-            n.next = nextnext;
-
-            nextnext.prev = n;
-            node.next = n;
+        if(values.containsKey(key)){
+            increase(key);
+            return values.get(key);
         }
 
-        nodes.put(key, node.next);
-        if(0==node.keys.size()) {
-            removeNode(node);
-        }
-        return values.get(key);
+        return -1;
     }
 
     void removeOld(){
@@ -82,6 +60,34 @@ public class LFUCache {
 
         if(node.next!=null)
             node.next.prev = node.prev;
+    }
+
+    void increase(int key){
+        Node node = nodes.get(key);
+        node.keys.remove(key);
+
+        if (node.next==null){
+            node.next = new Node(node.frequency+1);
+            node.next.prev = node;
+
+            node.next.keys.add(key);
+        }else if (node.next.frequency == node.frequency+1){
+            node.next.keys.add(key);
+        }else{
+            Node n = new Node(node.frequency+1);
+            n.keys.add(key);
+            Node nextnext = node.next;
+            n.prev = node;
+            n.next = nextnext;
+
+            nextnext.prev = n;
+            node.next = n;
+        }
+
+        nodes.put(key, node.next);
+        if(0==node.keys.size()) {
+            removeNode(node);
+        }
     }
 
     public void set(int key, int value) {
