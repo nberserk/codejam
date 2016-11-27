@@ -93,16 +93,23 @@ public class LFUCache {
             node.keys.remove(key);
             node.keys.add(key);
         }else{
+            if(values.size()>=capacity){
+                removeOld();
+            }
+
             if(head==null){
                 head = new Node(1);
+            }
+            if(head.frequency!=1){
+                Node node = new Node(1);
+                node.next = head;
+                head.prev = node;
+
+                head = node;
             }
             head.keys.add(key);
             values.put(key, value);
             nodes.put(key, head);
-
-            if(values.size()>capacity){
-                removeOld();
-            }
         }
     }
 
@@ -121,5 +128,18 @@ public class LFUCache {
         assertEquals(3, cache.get(3));
         assertEquals(4, cache.get(4));
 
+        cache = new LFUCache();
+        cache.setCapacity(3);
+        cache.set(2, 2);
+        cache.set(1, 1);
+        assertEquals(2, cache.get(2));
+        assertEquals(1, cache.get(1));
+        assertEquals(2, cache.get(2));
+        cache.set(3, 3);
+        cache.set(4, 4);
+        assertEquals(-1, cache.get(3));
+        assertEquals(2, cache.get(2));
+        assertEquals(1, cache.get(1));
+        assertEquals(4, cache.get(4));
     }
 }
