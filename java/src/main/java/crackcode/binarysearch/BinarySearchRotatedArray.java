@@ -9,28 +9,6 @@ import java.util.LinkedList;
  */
 public class BinarySearchRotatedArray extends TestCase {
 
-    static int search(int[] a, int target){
-        int l = 0;
-        int h = a.length-1;
-        while(l<h){
-            int m = l + (h-l)/2;
-            if(target==a[m]) return m;
-
-            if(a[l]<=a[m]){
-                if(target >= a[l] && target <= a[m])
-                    h=m;
-                else l=m+1;
-            }else if(a[m]<=a[h]){
-                if(target>=a[m] && target <=a[h])
-                    l = m;
-                else
-                    h = m-1;
-            }
-        }
-
-        return -1;
-    }
-
     static int bsearchRotated(int[] a, int key){
         int lo = 0;
         int hi = a.length-1;
