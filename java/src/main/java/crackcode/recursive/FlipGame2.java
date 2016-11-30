@@ -28,7 +28,23 @@ public class FlipGame2 {
         if(s.length()<=1) return false;
 
         char[] c = s.toCharArray();
-        return flip(true, c);
+        //return flip(true, c);
+        return flip2(c);
+    }
+
+    static boolean flip2(char[] c){
+        for(int i=1;i<c.length;i++){
+            if(c[i-1]=='+' && c[i]=='+'){
+                c[i-1]=c[i]='-';
+                if(!flip2(c)){
+                    c[i-1]=c[i]='+';
+                    return true;
+                }
+
+                c[i-1]=c[i]='+';
+            }
+        }
+        return false;
     }
 
     @Test
