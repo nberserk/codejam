@@ -24,6 +24,10 @@ tips: 100M requests per day -> 1000 requests per second.(remove 5 digit)
 
 expected load, storage needed, required network throughput
 
+### snowflake - unique id generator based on timestamp
+timestamp, a worker number, and a sequence number.
+https://dev.twitter.com/overview/api/twitter-ids-json-and-snowflake
+
 ## facebook chat function
 http persistent connection to reduce latency
 
