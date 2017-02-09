@@ -4,6 +4,7 @@
 
 - Leetcode [UniqueBinarySearchTree](https://leetcode.com/problems/unique-binary-search-trees/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/UniqueBinarySearchTrees_96.java)
 - Leetcode [Kth smallest in lexicographical order](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/?tab=Description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KthSmallestInLexicographicalOrder_440.java)
+- [Longest palindrom substring @ Leetcode](https://leetcode.com/problems/longest-palindromic-substring/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestPalindromeSubstring_5.java)
 
 
 ## Coding
