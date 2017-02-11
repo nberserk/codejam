@@ -5,7 +5,7 @@
 - [Longest palindrom substring ](https://leetcode.com/problems/longest-palindromic-substring/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestPalindromeSubstring_5.java)
 - [UniqueBinarySearchTree ](https://leetcode.com/problems/unique-binary-search-trees/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/UniqueBinarySearchTrees_96.java)
 - [Kth smallest in lexicographical order](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/?tab=Description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KthSmallestInLexicographicalOrder_440.java)
-
+- [Coin Change2](https://leetcode.com/problems/coin-change-2/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/CoinChange2_518.java)
 
 ## Coding
 
