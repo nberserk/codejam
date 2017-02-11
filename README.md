@@ -16,3 +16,6 @@
 
 - [Longest valid parentheses](https://leetcode.com/problems/longest-valid-parentheses/?tab=Description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestValidParenthese_32.java)
 
+## Sort
+
+- [Relative ranks](https://leetcode.com/problems/relative-ranks/),[my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RelativeRanks_506.java)
