@@ -19,3 +19,10 @@
 ## Sort
 
 - [Relative ranks](https://leetcode.com/problems/relative-ranks/),[my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RelativeRanks_506.java)
+
+## Tree
+
+### BST
+
+- [Reverse Pairs](https://leetcode.com/contest/leetcode-weekly-contest-19/problems/reverse-pairs/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ReversePairs_493.java)
+- [Count of smaller numbers after self](https://leetcode.com/problems/count-of-smaller-numbers-after-self/), [my solution]()
