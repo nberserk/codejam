@@ -11,6 +11,7 @@
 
 - [RotateImage](https://leetcode.com/problems/rotate-image/), my solution
 - [Longest Repeating Character replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) , [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestRepeatingCharacterReplacement_424.java)
+- [Largest Palindrome Product](https://leetcode.com/problems/largest-palindrome-product/), [my solution and explanation](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LargestPalindromProduct_479.java)
 
 ## Stack
 
