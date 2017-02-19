@@ -36,13 +36,20 @@ using namespace std;
 #define HDEBUG
 #ifdef HDEBUG
 #define hprint(fmt, args...) printf(fmt, ##args)
-#define hassert(a) {if(a){}else{hprint("error: %d", __LINE__);}}
 #else
 #define hprint(fmt,args...)
 #define hassert(a)
 #endif
 
 #define MAX_CAR 1000000
+#define TREE
+
+
+void hassert(bool a){
+    if(!a){
+        hprint("error_line: %d\n", __LINE__);
+    }
+}
 
 struct CAR{
     int age;        // 0 - 19
@@ -56,9 +63,19 @@ int cari;
 
 int age[2], person[2], engine[2], price[2];
 
-#define MAX_PRC_CNT     1000
-int priceHash[30000][MAX_PRC_CNT];
-int priceCnt[30000];
+#ifdef TREE
+    // tree
+    bool treeMode=false;
+    const int  TREE_ENG=10;
+    const int  TREE_PRC=10;
+    const int MAX_TREE_ITEM=1000;
+    int    tree[20][13][TREE_ENG][TREE_PRC][MAX_TREE_ITEM];
+    int treeCnt[20][13][TREE_ENG][TREE_PRC];
+#else
+    #define MAX_PRC_CNT     1000
+    int priceHash[30000][MAX_PRC_CNT];
+    int priceCnt[30000];
+#endif
 int remain;
 
 #define MAX_SELL 100000
@@ -72,15 +89,22 @@ int orderNum;
 
 
 void addHash(CAR& c, int ci){
-    int pi = c.price-30000;
+#ifdef TREE
+    int i3 = (c.engine-1000)/400;
+    int i4 = (c.price-10000)/3000;
+
+    hassert(i3<10 && i4<10);
+    hassert(treeCnt[c.age][c.person][i3][i4]< MAX_TREE_ITEM);
+    tree[c.age][c.person][i3][i4][ treeCnt[c.age][c.person][i3][i4]++ ] = ci;
+#else
+    int pi = c.price-10000;
     hassert(pi>=0 && pi<30000);
     priceHash[pi][priceCnt[pi]++] = ci;
-    
+#endif
 }
 
 void buy(CAR c){
     car[cari] = c;
-    
     
     addHash(car[cari], cari);
     cari++;
@@ -120,6 +144,38 @@ void filter_price(int from , int to){
 }
 
 int sell(){
+#ifdef TREE
+    int es = (engine[0]-1000)/400;
+    int ee = (engine[1]-1000)/400;
+    int ps = (price[0]-10000)/3000;
+    int pe = (price[1]-10000)/3000;
+
+    for (int a=age[0]; a<=age[1]; a++) {
+        for (int pr=person[0]; pr<=person[1]; pr++) {
+            for (int e=es;e<=ee ; e++) {
+                for(int p=ps;p<=pe;p++){
+                    for(int i=0;i<treeCnt[a][pr][e][p];i++){
+                        int ci = tree[a][pr][e][p][i];
+                        CAR& c = car[ci];
+                        if(c.engine<engine[0] || c.engine>engine[1])continue;
+                        if(c.price<price[0] || c.price > price[1]) continue;
+                       
+                        hassert(transCnt[orderNum]<MAX_SELL_ITEM);
+                        trans[orderNum][ transCnt[orderNum]++ ] = ci;
+                        
+                        //hassert(c.age==a && c.person==pr);
+                        tree[a][pr][e][p][i] = tree[a][pr][e][p][ treeCnt[a][pr][e][p]-1 ];
+                        
+                        treeCnt[a][pr][e][p]--;
+                        i--;
+                        remain--;
+                    }
+                }
+            }
+        }
+    }
+    
+#else
     for (int i=price[0]-10000; i<=price[1]-10000; i++) {
         for (int j=0; j<priceCnt[i]; j++) {
             int ci = priceHash[i][j];
@@ -129,9 +185,7 @@ int sell(){
             if(c.engine<engine[0] || c.engine>engine[1])continue;
             
             // save
-            if (transCnt[orderNum]>=MAX_SELL_ITEM) {
-                printf("transCnt overflow\n");
-            }
+            hassert(transCnt[orderNum]<MAX_SELL_ITEM);
             trans[orderNum][transCnt[orderNum]++] = ci;
             
             
@@ -143,6 +197,8 @@ int sell(){
             remain--;
         }
     }
+#endif
+    
     int ret = orderNum;
     orderNum++;
     if (orderNum>=MAX_SELL) {
@@ -154,10 +210,22 @@ int sell(){
 int empty(){
     int ret = remain;
     
+#ifdef TREE
+    for (int a=0; a<=19; a++) {
+        for (int pr=2; pr<=12; pr++) {
+            for (int e=0;e<TREE_ENG ; e++) {
+                for(int p=0;p<TREE_PRC;p++){
+                    treeCnt[a][pr][e][p]=0;
+                }
+            }
+        }
+    }
+#else
     for (int i=0; i<30000; i++) {
         priceCnt[i]=0;
     }
-    
+
+#endif
     for (int i=0; i<MAX_SELL; i++) {
         transCnt[i]=0;
     }
@@ -190,7 +258,7 @@ int main(){
             c.age = rand()%20;
             c.person = 2+ rand()%11;
             c.engine = 1000+rand()%4000;
-            c.price = 30000 + rand()%30000;
+            c.price = 10000 + rand()%30000;
 
             buy(c);
             if(rand()%100 == 0){
