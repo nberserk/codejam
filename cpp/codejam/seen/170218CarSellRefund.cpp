@@ -22,8 +22,38 @@
 #include "../myutil.h"
 
 /*
-optimize test function withn 10 sec
- */
+ time limit:  10 sec
+ memory limit: 512M
+ 
+ 
+ with 1d hash:
+     1: SCORE=35345:
+     2: SCORE=35404:
+     3: SCORE=32947:
+     4: SCORE=31412:
+     5: SCORE=34339:
+     6: SCORE=37790:
+     7: SCORE=34568:
+     8: SCORE=32912:
+     9: SCORE=32733:
+     10: SCORE=33047:
+     elapsed time: 19149ms
+
+
+ with tree(4d hash):
+     1: SCORE=35345:
+     2: SCORE=35404:
+     3: SCORE=32947:
+     4: SCORE=31412:
+     5: SCORE=34339:
+     6: SCORE=37790:
+     7: SCORE=34568:
+     8: SCORE=32912:
+     9: SCORE=32733:
+     10: SCORE=33047:
+     elapsed time: 2230ms
+ 
+*/
 
 
 using namespace std;
@@ -150,6 +180,8 @@ int sell(){
     int ps = (price[0]-10000)/3000;
     int pe = (price[1]-10000)/3000;
 
+    hassert(es>=0 && ee<TREE_ENG);
+    hassert(ps>=0 && pe<TREE_PRC);
     for (int a=age[0]; a<=age[1]; a++) {
         for (int pr=person[0]; pr<=person[1]; pr++) {
             for (int e=es;e<=ee ; e++) {
@@ -163,7 +195,10 @@ int sell(){
                         hassert(transCnt[orderNum]<MAX_SELL_ITEM);
                         trans[orderNum][ transCnt[orderNum]++ ] = ci;
                         
-                        //hassert(c.age==a && c.person==pr);
+                        hassert(c.age>=age[0] && c.age<=age[1]);
+                        hassert(c.person>=person[0] && c.person<=person[1]);
+                        hassert(c.engine>=engine[0] && c.engine<=engine[1]);
+                        hassert(c.price>=price[0] && c.price<=price[1]);
                         tree[a][pr][e][p][i] = tree[a][pr][e][p][ treeCnt[a][pr][e][p]-1 ];
                         
                         treeCnt[a][pr][e][p]--;
@@ -211,6 +246,7 @@ int empty(){
     int ret = remain;
     
 #ifdef TREE
+    //int treeCnt[20][13][TREE_ENG][TREE_PRC];
     for (int a=0; a<=19; a++) {
         for (int pr=2; pr<=12; pr++) {
             for (int e=0;e<TREE_ENG ; e++) {
@@ -224,7 +260,6 @@ int empty(){
     for (int i=0; i<30000; i++) {
         priceCnt[i]=0;
     }
-
 #endif
     for (int i=0; i<MAX_SELL; i++) {
         transCnt[i]=0;
@@ -233,6 +268,7 @@ int empty(){
     // reset
     remain=0;
     orderNum=0;
+    cari=0;
 
     return ret;
 }
