@@ -95,9 +95,10 @@ int age[2], person[2], engine[2], price[2];
 
 #ifdef TREE
     // tree
-    bool treeMode=false;
-    const int  TREE_ENG=10;
-    const int  TREE_PRC=10;
+    const int TREE_ENG=10;
+    const int TREE_PRC=10;
+    const int TREE_PRC_SIZE=30000/TREE_PRC;
+    const int TREE_ENG_SIZE=4000/TREE_ENG;
     const int MAX_TREE_ITEM=1000;
     int    tree[20][13][TREE_ENG][TREE_PRC][MAX_TREE_ITEM];
     int treeCnt[20][13][TREE_ENG][TREE_PRC];
@@ -108,7 +109,7 @@ int age[2], person[2], engine[2], price[2];
 #endif
 int remain;
 
-#define MAX_SELL 100000
+#define MAX_SELL 10000
 #define MAX_SELL_ITEM   9000
 
 int trans[MAX_SELL][MAX_SELL_ITEM];
@@ -120,11 +121,11 @@ int orderNum;
 
 void addHash(CAR& c, int ci){
 #ifdef TREE
-    int i3 = (c.engine-1000)/400;
-    int i4 = (c.price-10000)/3000;
+    int i3 = (c.engine-1000)/TREE_ENG_SIZE;
+    int i4 = (c.price-10000)/TREE_PRC_SIZE;
 
-    hassert(i3<10 && i4<10);
-    hassert(treeCnt[c.age][c.person][i3][i4]< MAX_TREE_ITEM);
+//    hassert(i3<TREE_ENG && i4<TREE_PRC);
+//    hassert(treeCnt[c.age][c.person][i3][i4]< MAX_TREE_ITEM);
     tree[c.age][c.person][i3][i4][ treeCnt[c.age][c.person][i3][i4]++ ] = ci;
 #else
     int pi = c.price-10000;
@@ -175,10 +176,10 @@ void filter_price(int from , int to){
 
 int sell(){
 #ifdef TREE
-    int es = (engine[0]-1000)/400;
-    int ee = (engine[1]-1000)/400;
-    int ps = (price[0]-10000)/3000;
-    int pe = (price[1]-10000)/3000;
+    int es = (engine[0]-1000)/TREE_ENG_SIZE;
+    int ee = (engine[1]-1000)/TREE_ENG_SIZE;
+    int ps = (price[0]-10000)/TREE_PRC_SIZE;
+    int pe = (price[1]-10000)/TREE_PRC_SIZE;
 
     hassert(es>=0 && ee<TREE_ENG);
     hassert(ps>=0 && pe<TREE_PRC);
@@ -261,7 +262,7 @@ int empty(){
         priceCnt[i]=0;
     }
 #endif
-    for (int i=0; i<MAX_SELL; i++) {
+    for (int i=0; i<orderNum; i++) {
         transCnt[i]=0;
     }
 
@@ -280,7 +281,11 @@ void refund(int order_number){
         addHash(c, ci);
         remain++;
     }
-    //hprint("refund:%d\n", order_number);
+    for (int i=0; i<orderNum; i++) {
+        transCnt[i]=0;
+    }
+    //hprint("refund:%d\n", orderNum);
+    orderNum=0;
 }
 
 int main(){
@@ -321,21 +326,6 @@ int main(){
     }    
    
     h_endTimeMeasure();
-    /**
-     on Mac
-     1: SCORE=35345:
-     2: SCORE=35905:
-     3: SCORE=33744:
-     4: SCORE=32241:
-     5: SCORE=35073:
-     6: SCORE=38425:
-     7: SCORE=35242:
-     8: SCORE=33299:
-     9: SCORE=32700:
-     10: SCORE=33215:
-     elapsed time: 24658ms
-     Program ended with exit code: 0
-     */
     
 }
 
