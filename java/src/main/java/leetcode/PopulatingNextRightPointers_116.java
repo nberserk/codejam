@@ -1,4 +1,4 @@
-package main.java.crackcode.tree.traverse;
+package main.java.leetcode;
 
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by darren on 9/28/16.
  */
-public class PopulatingNextRightPointers {
+public class PopulatingNextRightPointers_116 {
     public class TreeLinkNode {
         int val;
         TreeLinkNode left, right, next;
