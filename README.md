@@ -24,6 +24,8 @@
 
 ## Tree
 
+- [Populating Next Right pointers in each node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/PopulatingNextRightPointers_116)
+
 ### BST
 
 - [Reverse Pairs](https://leetcode.com/contest/leetcode-weekly-contest-19/problems/reverse-pairs/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ReversePairs_493.java)

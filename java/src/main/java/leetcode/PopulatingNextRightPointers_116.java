@@ -2,12 +2,15 @@ package main.java.leetcode;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by darren on 9/28/16.
+ *
+ * https://leetcode.com/problems/populating-next-right-pointers-in-each-node
+ *
  */
 public class PopulatingNextRightPointers_116 {
     public class TreeLinkNode {
@@ -18,44 +21,7 @@ public class PopulatingNextRightPointers_116 {
         }
     }
 
-    class Node{
-        TreeLinkNode node;
-        int depth;
-        Node(TreeLinkNode node, int d){
-            this.node=node; depth=d;
-        }
-    }
-    List<List<TreeLinkNode>> traverse(TreeLinkNode root){
-        LinkedList<Node> q = new LinkedList<>();
-        q.add(new Node(root,0));
-        List<List<TreeLinkNode>> list = new ArrayList<>();
-
-        while(q.size()>0){
-            Node cur = q.pollFirst();
-            if (cur.node==null) continue;
-            if(list.size()<=cur.depth ){
-                List<TreeLinkNode> level = new ArrayList<>();
-                list.add(level);
-            }
-            List<TreeLinkNode> thisLevel = list.get(cur.depth);
-            thisLevel.add(cur.node);
-
-            q.addLast(new Node(cur.node.left, cur.depth+1));
-            q.addLast(new Node(cur.node.right, cur.depth+1));
-        }
-        return list;
-    }
-    public void connect_old(TreeLinkNode root) {
-        if(root==null) return;
-        List<List<TreeLinkNode>> list = traverse(root);
-        for(List<TreeLinkNode> l: list){
-            for(int i=0;i<l.size()-1;i++){
-                l.get(i).next = l.get(i+1);
-            }
-        }
-    }
-
-    public void connect(TreeLinkNode root) {
+    public void connect_second(TreeLinkNode root) {
         if(root==null) return;
         LinkedList<TreeLinkNode> q = new LinkedList<>();
         q.add(root);
@@ -76,14 +42,26 @@ public class PopulatingNextRightPointers_116 {
         }
     }
 
+    public void connect(TreeLinkNode root) {
+        if(root==null || root.left==null) return;
+        if(root.left!=null){
+            root.left.next=root.right;
+        }
+        if(root.next!=null){
+            root.right.next = root.next.left;
+        }
+        connect(root.left);
+        connect(root.right);
+    }
+
     @Test
     public void test(){
-        ArrayList<Integer> a = new ArrayList<>();
-        a.ensureCapacity(11);
-        a.set(10, 1);
+        TreeLinkNode root = new TreeLinkNode(4);
+        root.left = new TreeLinkNode(6);
+        root.right = new TreeLinkNode(9);
 
-        int t = a.get(2);
-        t = a.get(10);
+        connect(root);
 
+        assertEquals(root.right, root.left.next);
     }
 }
