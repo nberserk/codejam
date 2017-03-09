@@ -7,6 +7,8 @@
 - [Kth smallest in lexicographical order](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/?tab=Description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KthSmallestInLexicographicalOrder_440.java)
 - [Coin Change2](https://leetcode.com/problems/coin-change-2/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/CoinChange2_518.java)
 
+- [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SuperWashingMachines_517.java)
+
 ## Coding
 
 - [RotateImage](https://leetcode.com/problems/rotate-image/), my solution
@@ -24,7 +26,7 @@
 
 ## Tree
 
-- [Populating Next Right pointers in each node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/PopulatingNextRightPointers_116)
+- [Populating Next Right pointers in each node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/PopulatingNextRightPointers_116.java)
 
 ### BST
 
