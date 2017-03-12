@@ -32,3 +32,7 @@
 
 - [Reverse Pairs](https://leetcode.com/contest/leetcode-weekly-contest-19/problems/reverse-pairs/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ReversePairs_493.java)
 - [Count of smaller numbers after self](https://leetcode.com/problems/count-of-smaller-numbers-after-self/), [my solution]()
+
+## Graph
+
+- [Mine Sweeper](https://leetcode.com/problems/minesweeper/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MineSweeper_529.java)
