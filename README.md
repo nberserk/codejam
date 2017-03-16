@@ -31,6 +31,7 @@
 ### BST
 
 - [Reverse Pairs](https://leetcode.com/contest/leetcode-weekly-contest-19/problems/reverse-pairs/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ReversePairs_493.java)
+- [Single element in a sorted array](https://leetcode.com/problems/single-element-in-a-sorted-array/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SingleElementInSortedArray_540.java)
 - [Count of smaller numbers after self](https://leetcode.com/problems/count-of-smaller-numbers-after-self/), [my solution]()
 
 ## Graph
