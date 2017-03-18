@@ -15,6 +15,7 @@
 - [Longest Repeating Character replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) , [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestRepeatingCharacterReplacement_424.java)
 - [Largest Palindrome Product](https://leetcode.com/problems/largest-palindrome-product/), [my solution and explanation](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LargestPalindromProduct_479.java)
 - [Contiguous Array](https://leetcode.com/problems/contiguous-array/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ContiguousArray_525.java)
+- [Minimum time difference](https://leetcode.com/problems/minimum-time-difference/)[my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MinimumTimeDifference_539.java)
 
 ## Stack
 
