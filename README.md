@@ -9,6 +9,11 @@
 
 - [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SuperWashingMachines_517.java)
 
+## Recursive
+
+- [Output contest matches](https://leetcode.com/contest/leetcode-weekly-contest-24/problems/output-contest-matches/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/OutputContestMachines_544.java)
+
+
 ## Coding
 
 - [RotateImage](https://leetcode.com/problems/rotate-image/), my solution
