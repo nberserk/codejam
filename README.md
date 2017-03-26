@@ -43,3 +43,5 @@
 ## Graph
 
 - [Mine Sweeper](https://leetcode.com/problems/minesweeper/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MineSweeper_529.java)
+- [01 Matrix](https://leetcode.com/problems/01-matrix/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/Matrix01_542.java)
+
