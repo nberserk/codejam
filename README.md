@@ -22,6 +22,8 @@
 - [Contiguous Array](https://leetcode.com/problems/contiguous-array/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ContiguousArray_525.java)
 - [Minimum time difference](https://leetcode.com/problems/minimum-time-difference/)[my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MinimumTimeDifference_539.java)
 
+- [Oversized Pancake Flipper from codejam2017 ](https://code.google.com/codejam/contest/3264486/dashboard#s=p0) [my review](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/PancakeFlipper.java)
+
 ## Stack
 
 - [Longest valid parentheses](https://leetcode.com/problems/longest-valid-parentheses/?tab=Description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestValidParenthese_32.java)
