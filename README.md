@@ -24,6 +24,7 @@
 
 - [Oversized Pancake Flipper from codejam2017 ](https://code.google.com/codejam/contest/3264486/dashboard#s=p0) [my review](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/PancakeFlipper.java)
 - [Tidy Numbers](https://code.google.com/codejam/contest/3264486/dashboard#s=p1) [ my review](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/TidyNumbers.java)
+- [Bathroom stalls](https://code.google.com/codejam/contest/3264486/dashboard#s=p2) [ my review](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/BathroomStalls.java)
 
 ## Stack
 
