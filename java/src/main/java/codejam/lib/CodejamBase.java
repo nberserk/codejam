@@ -48,6 +48,13 @@ public class CodejamBase {
 		System.out.println("elapsed time(sec) :"+ elapsedTimeSec);
 	}
 
+	public void solveFromDefault(String inFile){
+		String def = "/Users/darren/Downloads/";
+		String in = def + inFile;
+		String out = in.replace(".in", ".out");
+		solve(in, out);
+	}
+
 	public void writeSolution(String s){
 		String outStr = "Case #"+ mCurrentProblem+": " +s + "\n";
 		print(outStr);

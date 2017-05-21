@@ -61,8 +61,6 @@ public class BathRoomStalls extends CodejamBase {
         String small2 = "C-small-practice-2.in";
         String large = "C-large-practice.in";
 
-        String in = dir + large;
-        String out = in.replace(".in", ".out");
-        b.solve(in, out );
+        b.solveFromDefault(large);
     }
 }
