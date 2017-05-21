@@ -6,10 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Stack;
 import java.util.TreeSet;
-
-import javax.management.openmbean.OpenDataException;
 
 import codejam.lib.CodejamBase;
 
@@ -227,7 +224,7 @@ public class Treasure extends CodejamBase {
 //		String sol = tic.doSolve(new char[][] {{'X', 'X', 'X', 'O'}, {'.', '.', 'O', '.'}, {'.', 'O', '.', '.'}, {'T', '.', '.', '.'} });
 //		print(sol);
 //		tic.solve("./src/codejam2013/qualification/A-small-attempt3.in", "./src/codejam2013/qualification/A-small.out");
-		treasure.solve("./src/codejam2013/qualification/D-small-practice.in", "./src/codejam2013/qualification/D-small-practice.out");
+		treasure.load("./src/codejam2013/qualification/D-small-practice.in", "./src/codejam2013/qualification/D-small-practice.out");
 	}
 
 }

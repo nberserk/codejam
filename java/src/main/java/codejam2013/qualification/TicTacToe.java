@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 import codejam.lib.CodejamBase;
-import codejam2013.OceanView;
 
 public class TicTacToe extends CodejamBase {
 
@@ -162,7 +161,7 @@ public class TicTacToe extends CodejamBase {
 //		String sol = tic.doSolve(new char[][] {{'X', 'X', 'X', 'O'}, {'.', '.', 'O', '.'}, {'.', 'O', '.', '.'}, {'T', '.', '.', '.'} });
 //		print(sol);
 //		tic.solve("./src/codejam2013/qualification/A-small-attempt3.in", "./src/codejam2013/qualification/A-small.out");
-		tic.solve("./src/codejam2013/qualification/A-large.in", "./src/codejam2013/qualification/A-large.out");
+		tic.load("./src/codejam2013/qualification/A-large.in", "./src/codejam2013/qualification/A-large.out");
 	}
 
 }

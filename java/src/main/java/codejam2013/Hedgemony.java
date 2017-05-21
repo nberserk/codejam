@@ -56,6 +56,6 @@ public class Hedgemony extends CodejamBase {
 	public static void main(String[] args) {
 		Hedgemony h = new Hedgemony();
 		//h.solve("./src/codejam2013/data/A-small-practice.in", "./src/codejam2013/data/A-small.out");
-		h.solve("./src/codejam2013/data/A-large-practice.in", "./src/codejam2013/data/A-large.out");
+		h.load("./src/codejam2013/data/A-large-practice.in", "./src/codejam2013/data/A-large.out");
 	}
 }

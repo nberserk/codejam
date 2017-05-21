@@ -10,7 +10,7 @@ public class CodejamBase {
 	BufferedWriter mWriter;
 	int	mCurrentProblem;
 	
-	public void solve(String inFile, String outFile){	
+	public void load(String inFile, String outFile){
 		BufferedReader mReader = null;		
 		long start = System.currentTimeMillis();
 				
@@ -48,11 +48,11 @@ public class CodejamBase {
 		System.out.println("elapsed time(sec) :"+ elapsedTimeSec);
 	}
 
-	public void solveFromDefault(String inFile){
+	public void loadFromDefault(String inFile){
 		String def = "/Users/darren/Downloads/";
 		String in = def + inFile;
 		String out = in.replace(".in", ".out");
-		solve(in, out);
+		load(in, out);
 	}
 
 	public void writeSolution(String s){

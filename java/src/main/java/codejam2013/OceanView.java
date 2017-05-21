@@ -17,7 +17,7 @@ public class OceanView extends CodejamBase{
 	public static void main(String[] args) {
 		OceanView ocean = new OceanView();		
 		String dir = "./input/codejam2013/";
-		ocean.solve(dir + "C-large-practice.in", dir + "C-large.out");
+		ocean.load(dir + "C-large-practice.in", dir + "C-large.out");
 		// ocean.solve(dir + "/C-small-practice.in", dir + "C-small.out");
 	}
 
