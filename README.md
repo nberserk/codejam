@@ -38,6 +38,8 @@
 ## Tree
 
 - [Populating Next Right pointers in each node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/PopulatingNextRightPointers_116.java)
+- Nested List Weight sum, [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NestedListWeightSum_339.java)
+- Nested List Weight sum II , [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NestedListWeightSum2_364.java)
 
 ### BST
 
