@@ -26,6 +26,7 @@
 - [Tidy Numbers](https://code.google.com/codejam/contest/3264486/dashboard#s=p1) [ my review](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/TidyNumbers.java)
 - [Bathroom stalls](https://code.google.com/codejam/contest/3264486/dashboard#s=p2) [ my review](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/BathroomStalls.java)
 - [Minimum window substring](https://leetcode.com/problems/minimum-window-substring/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/MinimumWindowSubstring_76.java)
+- [Find Duplicate File In System](https://leetcode.com/contest/leetcode-weekly-contest-35/problems/find-duplicate-file-in-system/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/FindDuplicateFileInSystem_609)
 
 ## Stack
 
