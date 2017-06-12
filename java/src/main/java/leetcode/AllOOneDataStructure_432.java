@@ -33,8 +33,8 @@ public class AllOOneDataStructure_432 {
                 s.add(key);
                 keys.put(v, s);
             }
-            if(max==v-1) max=v;
-            if(min==v-1 && !keys.containsKey(v-1) ) min=v;
+            max = Math.max(max, v);
+            if(!keys.containsKey(min)) min=v;
         }else{
             int v=1;
             map.put(key, 1);
@@ -56,18 +56,23 @@ public class AllOOneDataStructure_432 {
 
         int v = map.get(key);
         if(v==1){
-            map.remove(v);
+            map.remove(key);
             keys.get(v).remove(key);
             if(keys.get(v).size()==0) keys.remove(v);
 
-            if(max==v) max = Integer.MIN_VALUE;
-            if(min==v && !keys.containsKey(v) ) min=Integer.MAX_VALUE;
+            if(!keys.containsKey(min)){
+                min = Integer.MAX_VALUE;
+                for (int k : keys.keySet()){
+                    min=Math.min(min, k);
+                }
+            }
+            if(!keys.containsKey(max)) max = Integer.MIN_VALUE;
         }else{
             v--;
             map.put(key, v);
 
             keys.get(v+1).remove(key);
-            if(keys.get(v+1).size()==0) keys.remove(v);
+            if(keys.get(v+1).size()==0) keys.remove(v+1);
 
             if(keys.containsKey(v))
                 keys.get(v).add(key);
@@ -76,8 +81,8 @@ public class AllOOneDataStructure_432 {
                 s.add(key);
                 keys.put(v, s);
             }
-            if(max==v+1 && keys.containsKey(v+1)) max=v;
-            if(min==v+1) min=v;
+            if(!keys.containsKey(max)) max=v;
+            min=Math.min(min, v);
         }
 
     }
@@ -121,8 +126,34 @@ public class AllOOneDataStructure_432 {
         assertEquals("h", o.getMaxKey());
         assertEquals("h", o.getMinKey());
 
+        o.inc("b");
+        o.inc("b");
+        o.inc("b");
+        o.inc("b");
+        o.inc("b");
+        o.dec("b");
+        o.dec("b");
 
-//        assertEquals(987, largestPalindrome(2));
-//        assertEquals(475, largestPalindrome(8));
+        assertEquals("b", o.getMaxKey());
+        assertEquals("h", o.getMinKey());
+    }
+
+    @Test
+    public void test2(){
+
+        AllOOneDataStructure_432 o = new AllOOneDataStructure_432();
+        o.inc("a");
+        o.inc("b");
+        o.inc("b");
+        o.inc("c");
+        o.inc("c");
+        o.inc("c");
+        o.dec("b");
+        o.dec("b");
+        assertEquals("a", o.getMinKey());
+        assertEquals("c", o.getMaxKey());
+        o.dec("a");
+        assertEquals("c", o.getMaxKey());
+        assertEquals("c", o.getMinKey());
     }
 }
