@@ -28,6 +28,8 @@
 - [Minimum window substring](https://leetcode.com/problems/minimum-window-substring/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/MinimumWindowSubstring_76.java)
 - [Find Duplicate File In System](https://leetcode.com/contest/leetcode-weekly-contest-35/problems/find-duplicate-file-in-system/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/FindDuplicateFileInSystem_609.java)
 
+- [Zigzag conversion](https://leetcode.com/problems/zigzag-conversion/#/description), [ my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/ZigZagConversion_6.java)
+
 ### Array
 
 - [Shortest word distance II](http://www.programcreek.com/2014/07/leetcode-shortest-word-distance-ii-java/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/ShortestWordDistance2_244.java)
