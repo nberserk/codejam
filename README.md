@@ -29,6 +29,7 @@
 - [Find Duplicate File In System](https://leetcode.com/contest/leetcode-weekly-contest-35/problems/find-duplicate-file-in-system/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/FindDuplicateFileInSystem_609.java)
 
 - [Zigzag conversion](https://leetcode.com/problems/zigzag-conversion/#/description), [ my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/ZigZagConversion_6.java)
+- [Task Scheduler](https://leetcode.com/problems/task-scheduler/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/codejam2017/TaskScheduler_621.java)
 
 ### Array
 
