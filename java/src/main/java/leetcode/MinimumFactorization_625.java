@@ -37,35 +37,61 @@ import static org.junit.Assert.assertEquals;
 public class MinimumFactorization_625 {
     public int smallestFactorization(int a) {
         if(a==1) return a;
-        List<Integer> list = new ArrayList<>();
+        int[] cnt = new int[8];
 
         int m=2;
         while(a>1){
             if(m>=10) return 0;
             if(a%m==0){
-                list.add(m);
+                cnt[m]++;
                 a/=m;
             }
             else m++;
         }
 
         List<Integer> after = new ArrayList<>();
-        int cur = -1;
-        for (int i = list.size()-1; i >=0; i--) {
-            int c = list.get(i);
-            if(c>=5) after.add(c);
-            else{
-                if (cur==-1) cur = c;
-                else if(cur*c<10) {
-                    cur = cur*c;
-                }
-                else {
-                    after.add(cur);
-                    cur = c;
-                }
+        int[] key = {2,3,5,7};
+        for (int i = 0; i < cnt[5] ; i++) {
+            after.add(5);
+        }
+        for (int i = 0; i < cnt[7] ; i++) {
+            after.add(7);
+        }
+
+        int multiple = cnt[2]/3;
+        cnt[2]%=3;
+        for (int i = 0; i < multiple; i++) {
+            after.add(8);
+        }
+        multiple = cnt[3]/2;
+        for (int i = 0; i < multiple; i++) {
+            after.add(9);
+        }
+        cnt[3]%=2;
+
+        if(cnt[3]==0) {
+            switch (cnt[2]){
+                case 1:
+                    after.add(2);
+                    break;
+                case 2:
+                    after.add(4);
+                    break;
+            }
+        }else{
+            switch (cnt[2]){
+                case 0:
+                    after.add(3);
+                    break;
+                case 1:
+                    after.add(6);
+                    break;
+                case 2:
+                    after.add(2);
+                    after.add(6);
+                    break;
             }
         }
-        if(cur!=-1) after.add(cur);
 
         Collections.sort(after);
 

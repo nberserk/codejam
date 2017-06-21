@@ -30,7 +30,7 @@
 
 - [Zigzag conversion](https://leetcode.com/problems/zigzag-conversion/#/description), [ my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ZigZagConversion_6.java)
 - [Task Scheduler](https://leetcode.com/problems/task-scheduler/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/TaskScheduler_621.java)
-
+- [Minimum Factorization](https://leetcode.com/contest/leetcode-weekly-contest-37/problems/minimum-factorization/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MinimumFactorization_625.java)
 
 
 ### Array
