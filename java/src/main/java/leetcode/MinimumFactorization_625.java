@@ -36,6 +36,25 @@ import static org.junit.Assert.assertEquals;
  */
 public class MinimumFactorization_625 {
     public int smallestFactorization(int a) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 9; i >=2; i--) {
+            while(a%i==0){
+                list.add(i);
+                a/=i;
+            }
+        }
+
+        if(a>1) return 0;
+        long result =0;
+
+        for (int i = list.size()-1; i >= 0; i--) {
+            result = result*10 + list.get(i);
+            if(result>Integer.MAX_VALUE) return 0;
+        }
+        return (int)result;
+    }
+
+    public int smallestFactorization_firsttry(int a) {
         if(a==1) return a;
         int[] cnt = new int[8];
 
