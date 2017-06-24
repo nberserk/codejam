@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9507975C1E58300600A3493C /* 170218CarSellRefund.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9507975B1E58300600A3493C /* 170218CarSellRefund.cpp */; };
+		9510CDE71EFE47AE00D56416 /* 170624Multiply32Bit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9510CDE61EFE47AE00D56416 /* 170624Multiply32Bit.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +52,7 @@
 		950C3C0F1928CECB0001C8BC /* jlis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = jlis.in; path = codejam/jlis.in; sourceTree = "<group>"; };
 		950D29E819ADA2F700B695D4 /* dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dictionary.cpp; path = codejam/dictionary.cpp; sourceTree = "<group>"; };
 		950D29E919ADA2F700B695D4 /* dictionary.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dictionary.in; path = codejam/dictionary.in; sourceTree = "<group>"; };
+		9510CDE61EFE47AE00D56416 /* 170624Multiply32Bit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = 170624Multiply32Bit.cpp; path = codejam/seen/170624Multiply32Bit.cpp; sourceTree = "<group>"; };
 		95150C5B19A8873900EE3AED /* sort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sort.cpp; path = codejam/sort.cpp; sourceTree = "<group>"; };
 		9517DE041A2DA5C50080DD0E /* tiling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tiling.cpp; sourceTree = "<group>"; };
 		9517DE051A2DA5C50080DD0E /* tiling.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tiling.in; sourceTree = "<group>"; };
@@ -194,6 +195,7 @@
 		9507975A1E582FE700A3493C /* seen */ = {
 			isa = PBXGroup;
 			children = (
+				9510CDE61EFE47AE00D56416 /* 170624Multiply32Bit.cpp */,
 				9507975D1E58302000A3493C /* 160806RectSwap.cpp */,
 				9507975E1E58302000A3493C /* 160618sort.cpp */,
 				9507975F1E58302000A3493C /* 160404diamond.cpp */,
@@ -457,7 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9507975C1E58300600A3493C /* 170218CarSellRefund.cpp in Sources */,
+				9510CDE71EFE47AE00D56416 /* 170624Multiply32Bit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
