@@ -61,52 +61,82 @@ import static org.junit.Assert.assertEquals;
  The test cases are using double-quotes to represent a character.
  Please remember to RESET your class variables declared in class Excel, as static/class variables are persisted across multiple test cases. Please see here for more details.
 
- 
+
  */
 public class DesignExcelSumFormula_631 {
-    static class Equation{
-        String[] eq;
-        Set<String> depends = new HashSet<>();
-    }
-    int[][] v;
+    static class Cell{
+        int v;
+        Set<Cell> dependency = new HashSet<>();
+        String[] eq; // sum equation
+        String key;
 
-    HashMap<String, Set<String>> listener = new HashMap<>();
-    HashMap<String, Equation> equations = new HashMap<>();
+        @Override
+        public int hashCode() {
+            return key.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            Cell other = (Cell)obj;
+            return key.equals(other.key);
+        }
+
+        Cell(String key){
+            this.key=key;
+        }
+    }
+
+    HashMap<String, Cell> cells = new HashMap<>();
 
     public void init(int H, char W) {
-        int w = W-'A';
-        v = new int[H+1][w+1];
+        for (int i = 1; i <= H; i++) {
+            for (char j = 'A'; j <= W; j++) {
+                String key = toKey(i, j);
+                cells.put(key, new Cell(key));
+            }
+        }
     }
 
     String toKey(int h, char c){
         return String.format("%c%d", c,h);
     }
 
-    public void set(int row, char col, int v) {
-        int cc = col-'A';
-        this.v[row][cc] = v;
+    Cell getCell(int row, char col){
+        String key = toKey(row, col);
+        return cells.get(key);
+    }
 
-        String key = toKey(row,col);
-        if(equations.containsKey(key)){
-            Equation e = equations.get(key);
-            equations.remove(key);
-            for (String nk: e.depends){
-                listener.get(nk).remove(key);
+    Cell getCell(String key){
+        return cells.get(key);
+    }
+
+    public void set(int row, char col, int v) {
+
+        Cell cell = getCell(row, col);
+        cell.v = v;
+
+        if (cell.eq!=null){  // reset cell equation
+            for (String range: cell.eq){
+                if(range.contains(":")){
+                    String[] keys = range.split(":");
+                    getCell(keys[0]).dependency.remove(cell);
+                    getCell(keys[1]).dependency.remove(cell);
+                }else{
+                    getCell(range).dependency.remove(cell);
+                }
             }
+            cell.eq = null;
         }
-        if(listener.containsKey(key)){
-            for(String cell: listener.get(key)){
-                char c = getColumn(cell);
-                int r = getRow(cell);
-                recalc(r,c);
-            }
+
+        // update dependency
+        for (Cell c: cell.dependency){
+            recalc(c);
         }
     }
 
-    void recalc(int row, char col){
-        String key = toKey(row,col);
+    void recalc(Cell cell){
         int sum =0;
-        for (String s: equations.get(key).eq){
+        for (String s: cell.eq){
             if(s.contains(":")){
                 String[] temp = s.split(":");
                 int r = getRow(temp[0]);
@@ -122,29 +152,22 @@ public class DesignExcelSumFormula_631 {
 
                 for (r=rfrom;r<=rto;r++){
                     for (c=cfrom;c<=cto;c++){
-                        sum += v[r][c-'A'];
+                        sum += getCell(r, (char)c).v;
                     }
                 }
             }else{
-                int r = getRow(s);
-                int c = getColumn(s);
-                sum += v[r][c-'A'];
+                sum += getCell(s).v;
             }
         }
 
-        v[row][col-'A'] = sum;
-        if(listener.containsKey(key)){
-            for(String cell: listener.get(key)){
-                char c = getColumn(cell);
-                int r = getRow(cell);
-                recalc(r,c);
-            }
+        cell.v = sum;
+        for (Cell c: cell.dependency){
+            recalc(c);
         }
     }
 
     public int get(int r, char c) {
-        int cc = c-'A';
-        return v[r][cc];
+        return getCell(r,c).v;
     }
 
     int getRow(String key){
@@ -160,12 +183,9 @@ public class DesignExcelSumFormula_631 {
     }
 
     public int sum(int row, char col2, String[] strs) {
-        int col = col2-'A';
-        int sum=0;
-        String key = toKey(row, col2);
-        Equation eq = new Equation();
-        eq.eq = strs;
 
+        Cell cell = getCell(row, col2);
+        int sum=0;
         for (String s: strs){
             if(s.contains(":")){
                 String[] temp = s.split(":");
@@ -182,40 +202,21 @@ public class DesignExcelSumFormula_631 {
 
                 for (r=rfrom;r<=rto;r++){
                     for (c=cfrom;c<=cto;c++){
-                        sum += v[r][c-'A'];
+                        Cell ce = getCell(r, (char) c);
+                        sum += ce.v;
 
-                        String ss = toKey(r, (char)c);
-
-                        if(listener.containsKey(ss)){
-                            listener.get(ss).add(key);
-                        }else{
-                            Set<String> set = new HashSet<>();
-                            set.add(key);
-                            listener.put(ss, set);
-                        }
-                        eq.depends.add(ss);
+                        ce.dependency.add(cell);
                     }
                 }
 
             }else{
-                int r = getRow(s);
-                int c = getColumn(s);
-                sum += v[r][c-'A'];
-
-                if(listener.containsKey(s)){
-                    listener.get(s).add(key);
-                }else{
-                    Set<String> list = new HashSet<>();
-                    list.add(key);
-                    listener.put(s, list);
-                }
-                eq.depends.add(s);
+                sum += getCell(s).v;
+                getCell(s).dependency.add(cell);
             }
         }
 
-        equations.put(key, eq);
-
-        v[row][col]=sum;
+        cell.eq = strs;
+        cell.v = sum;
         return sum;
     }
 
