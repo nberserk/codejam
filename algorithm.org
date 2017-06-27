@@ -609,7 +609,7 @@ computation can automatically move closer to the IO source
 // ddebug
 #define HDEBUG
 #ifdef HDEBUG
-#define hprint(fmt, args...) printf(fmt, ##args)
+#define hprint(...) printf(__VA_ARGS__)
 #else
 #define hprint(fmt,args...)
 #endif
