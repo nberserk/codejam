@@ -31,12 +31,14 @@
 - [Zigzag conversion](https://leetcode.com/problems/zigzag-conversion/#/description), [ my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ZigZagConversion_6.java)
 - [Task Scheduler](https://leetcode.com/problems/task-scheduler/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/TaskScheduler_621.java)
 - [Minimum Factorization](https://leetcode.com/contest/leetcode-weekly-contest-37/problems/minimum-factorization/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MinimumFactorization_625.java)
-
+- [Course Schedule III](https://leetcode.com/contest/leetcode-weekly-contest-38/problems/course-schedule-iii/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/CourseSchedule3_630.java)
 
 ### Array
 
 - [Shortest word distance II](http://www.programcreek.com/2014/07/leetcode-shortest-word-distance-ii-java/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShortestWordDistance2_244.java)
 - [Maximum distance in arrays](https://leetcode.com/problems/maximum-distance-in-arrays/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumDistanceInArrays_624.java)
+
+
 
 ## Stack
 

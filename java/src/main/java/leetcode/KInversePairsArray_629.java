@@ -12,17 +12,14 @@ public class KInversePairsArray_629 {
     int[][] dp = new int[1001][1001];
 
     public int kInversePairs(int n, int k) {
-        if(n<=k) return 0;
-        if(k==0) return 1;
+        if(n<k) return 0;
+        if(k==0||n==k) return 1;
         if(k==1) return n-1;
 
         if(dp[n][k]!=0) return dp[n][k];
 
         int r = 0;
-        for (int i = 1; i < n; i++) {
-            r+= kInversePairs(n-i,k);
-        }
-        for (int i = k-1; i >= 0; i--) {
+        for (int i = k-n+1; i >= 0; i--) {
             r+=kInversePairs(n-1, i);
             r%=1000000007;
         }
