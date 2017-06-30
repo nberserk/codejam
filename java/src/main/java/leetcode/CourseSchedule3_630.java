@@ -32,32 +32,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class CourseSchedule3_630 {
 
-    int max(int[][] course, int start, int day, int cmax)
-    {
-        int N = course.length;
-        if(start==N) return 0;
-
-        int max = max(course, start+1, day, cmax);
-
-        if (day+course[start][0] <= course[start][1]){
-            max = Math.max(max, 1+ max(course, start+1, day+course[start][0], max));
-        }
-        //System.out.println(String.format("%d: %d\n", start, max));
-        return max;
-    }
-
-    int greedy(int[][] course){
-        int count=0;
-        int day=0;
-        for (int[] c: course){
-            if (day+c[0]<=c[1]){
-                day+=c[0];
-                count++;
-            }
-        }
-        return count;
-    }
-
     public int scheduleCourse(int[][] courses) {
         Arrays.sort(courses, (a,b) -> a[1]-b[1] );
         PriorityQueue<Integer> pq = new PriorityQueue<>(100, (a,b)->b-a);

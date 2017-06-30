@@ -8,6 +8,7 @@
 - [Coin Change2](https://leetcode.com/problems/coin-change-2/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/CoinChange2_518.java)
 
 - [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SuperWashingMachines_517.java)
+- [K Inverse Pairs Array](https://leetcode.com/problems/k-inverse-pairs-array/#/description) , [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KInversePairsArray_629.java)
 
 ## Recursive
 
