@@ -34,6 +34,8 @@
 - [Minimum Factorization](https://leetcode.com/contest/leetcode-weekly-contest-37/problems/minimum-factorization/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MinimumFactorization_625.java)
 - [Course Schedule III](https://leetcode.com/contest/leetcode-weekly-contest-38/problems/course-schedule-iii/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/CourseSchedule3_630.java)
 
+- [Maximum Product of Three Numbers](https://leetcode.com/contest/leetcode-weekly-contest-38/problems/maximum-product-of-three-numbers/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumProductOfThreeNumbers_628.java)
+
 ### Array
 
 - [Shortest word distance II](http://www.programcreek.com/2014/07/leetcode-shortest-word-distance-ii-java/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShortestWordDistance2_244.java)
