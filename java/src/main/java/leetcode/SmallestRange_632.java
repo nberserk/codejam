@@ -25,7 +25,7 @@ import static org.junit.Assert.assertEquals;
  1 <= k <= 3500
  -105 <= value of elements <= 105.
 
- 
+
 
  *
  */
@@ -77,10 +77,5 @@ public class SmallestRange_632 {
     public void test(){
         int[][] n = {{4,10,15,24,26}, {0,9,12,20}, {5,18,22,30}};
         assertEquals("[20, 24]", Arrays.toString(smallestRange(n)));
-
-//        assertEquals(true, judgeSquareSum(5));
-//        assertEquals(false, judgeSquareSum(3));
-
-
     }
 }

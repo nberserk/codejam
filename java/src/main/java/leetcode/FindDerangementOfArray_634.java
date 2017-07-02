@@ -24,13 +24,7 @@ public class FindDerangementOfArray_634 {
 
     @org.junit.Test
     public void test(){
-
         assertEquals(2, findDerangement(3));
         assertEquals(9, findDerangement(4));
-
-//        assertEquals(true, judgeSquareSum(5));
-//        assertEquals(false, judgeSquareSum(3));
-
-
     }
 }
