@@ -3,7 +3,10 @@ consistency vs availability vs partition tolerance
 network partitioning is a must. so generally consistency vs availability.
 RDBMS choose consistency over availability.
 nosql choose availability over consistency.
+
+reference:
 https://en.wikipedia.org/wiki/CAP_theorem
+https://www.youtube.com/watch?v=hUd_9FENShA (*****)
 
 
 
@@ -17,8 +20,8 @@ https://en.wikipedia.org/wiki/CAP_theorem
 
 [Distributed Systems]
 
-https://en.wikipedia.org/wiki/CAP_theorem
-CAP Theorem: https://www.youtube.com/watch?v=hUd_9FENShA (*****)
+
+
 http://www.allthingsdistributed.com/2008/12/eventually_consistent.html
 http://michaelnielsen.org/blog/consistent-hashing/ (*****)
 https://lethain.com/introduction-to-architecting-systems-for-scale/
