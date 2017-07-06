@@ -23,7 +23,7 @@ import static org.junit.Assert.assertEquals;
  Note:
  The given list may contain duplicates, so ascending order means >= here.
  1 <= k <= 3500
- -105 <= value of elements <= 105.
+ -10^5 <= value of elements <= 10^5.
 
 
 

@@ -9,7 +9,7 @@
 
 - [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SuperWashingMachines_517.java)
 - [K Inverse Pairs Array](https://leetcode.com/problems/k-inverse-pairs-array/#/description) , [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KInversePairsArray_629.java)
-- [Find the Derangement of An Array](https://leetcode.com/contest/leetcode-weekly-contest-39/problems/find-the-derangement-of-an-array/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FindDerangementOfArray_634.java)
+- [Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FindDerangementOfArray_634.java)
 
 ### difficult recurrence eqations
 

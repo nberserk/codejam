@@ -8,8 +8,9 @@ reference:
 https://en.wikipedia.org/wiki/CAP_theorem
 https://www.youtube.com/watch?v=hUd_9FENShA (*****)
 
+## consensus algo (paxos)
 
-
+https://www.youtube.com/watch?v=UUQ8xYWR4do
 
 
 
@@ -28,6 +29,7 @@ https://lethain.com/introduction-to-architecting-systems-for-scale/
 http://www.aosabook.org/en/distsys.html
 https://www.cl.cam.ac.uk/teaching/0910/ConcDistS/11a-cons-tx.pdf
 http://basho.com/posts/technical/why-vector-clocks-are-easy/
+
 [Distributed Key-Value Database]
 
 Dynamo: Amazon’s Highly Available Key-value Store (*****)
