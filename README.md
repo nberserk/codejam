@@ -10,6 +10,12 @@
 - [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SuperWashingMachines_517.java)
 - [K Inverse Pairs Array](https://leetcode.com/problems/k-inverse-pairs-array/#/description) , [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KInversePairsArray_629.java)
 - [Find the Derangement of An Array](https://leetcode.com/contest/leetcode-weekly-contest-39/problems/find-the-derangement-of-an-array/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FindDerangementOfArray_634.java)
+
+### difficult recurrence eqations
+
+- [Remove Boxes](https://leetcode.com/problems/remove-boxes/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RemoveBoxes_546.java)
+- [Burst Balloons](https://leetcode.com/problems/burst-balloons/#/description), 
+
 ## Recursive
 
 - [Output contest matches](https://leetcode.com/contest/leetcode-weekly-contest-24/problems/output-contest-matches/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/OutputContestMachines_544.java)
