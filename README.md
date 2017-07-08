@@ -14,7 +14,7 @@
 ### difficult recurrence eqations
 
 - [Remove Boxes](https://leetcode.com/problems/remove-boxes/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RemoveBoxes_546.java)
-- [Burst Balloons](https://leetcode.com/problems/burst-balloons/#/description), 
+- [Burst Balloons](https://leetcode.com/problems/burst-balloons/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/BurstBalloons_312.java)
 
 ## Recursive
 
@@ -54,7 +54,7 @@
 ## Stack
 
 - [Longest valid parentheses](https://leetcode.com/problems/longest-valid-parentheses/?tab=Description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestValidParenthese_32.java)
-- [Tag Validator] (https://leetcode.com/contest/leetcode-weekly-contest-35/problems/tag-validator/), [my soluion](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/TagValidator_591.java)
+- [Tag Validator](https://leetcode.com/contest/leetcode-weekly-contest-35/problems/tag-validator/), [my soluion](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/TagValidator_591.java)
 
 ## Sort
 

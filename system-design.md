@@ -8,12 +8,23 @@ reference:
 https://en.wikipedia.org/wiki/CAP_theorem
 https://www.youtube.com/watch?v=hUd_9FENShA (*****)
 
+https://en.wikipedia.org/wiki/Quorum_(distributed_computing)
+Vr + Vw > V
+Vw > V/2
+
+
 ## consensus algo (paxos)
 
 https://www.youtube.com/watch?v=UUQ8xYWR4do
 
 
 
+## spatial search 
+
+wonder explanation for RTree, KdTree
+https://blog.mapbox.com/a-dive-into-spatial-search-algorithms-ebd0c5e39d2a
+
+explaining NN search for kdree, https://en.wikipedia.org/wiki/K-d_tree
 
 
 
