@@ -10,8 +10,9 @@
 - [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SuperWashingMachines_517.java)
 - [K Inverse Pairs Array](https://leetcode.com/problems/k-inverse-pairs-array/#/description) , [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KInversePairsArray_629.java)
 - [Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FindDerangementOfArray_634.java)
+- [Decode Ways II](https://leetcode.com/contest/leetcode-weekly-contest-40/problems/decode-ways-ii/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DecodeWays2_639.java)
 
-### difficult recurrence eqations
+### difficult recurrence equations
 
 - [Remove Boxes](https://leetcode.com/problems/remove-boxes/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RemoveBoxes_546.java)
 - [Burst Balloons](https://leetcode.com/problems/burst-balloons/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/BurstBalloons_312.java)
@@ -65,6 +66,8 @@
 - [Populating Next Right pointers in each node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/PopulatingNextRightPointers_116.java)
 - Nested List Weight sum, [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NestedListWeightSum_339.java)
 - Nested List Weight sum II , [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NestedListWeightSum2_364.java)
+
+- [Average of Levels in Binary Tree](https://leetcode.com/contest/leetcode-weekly-contest-40/problems/average-of-levels-in-binary-tree/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AverageLevelsInBinaryTree_637.java) 
 
 
 ### Heap(PriorityQueue)
