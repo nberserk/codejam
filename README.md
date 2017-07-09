@@ -10,7 +10,7 @@
 - [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SuperWashingMachines_517.java)
 - [K Inverse Pairs Array](https://leetcode.com/problems/k-inverse-pairs-array/#/description) , [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KInversePairsArray_629.java)
 - [Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FindDerangementOfArray_634.java)
-- [Decode Ways II](https://leetcode.com/contest/leetcode-weekly-contest-40/problems/decode-ways-ii/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DecodeWays2_639.java)
+- [Decode Ways II](https://leetcode.com/problems/decode-ways-ii/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DecodeWays2_639.java)
 
 ### difficult recurrence equations
 
@@ -20,7 +20,7 @@
 ## Recursive
 
 - [Output contest matches](https://leetcode.com/contest/leetcode-weekly-contest-24/problems/output-contest-matches/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/OutputContestMachines_544.java)
-- [Shopping Offers](https://leetcode.com/contest/leetcode-weekly-contest-40/problems/shopping-offers/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShoppingOffers_638.java)
+- [Shopping Offers](https://leetcode.com/problems/shopping-offers/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShoppingOffers_638.java)
 
 
 ## Coding
@@ -45,7 +45,7 @@
 - [Maximum Product of Three Numbers](https://leetcode.com/contest/leetcode-weekly-contest-38/problems/maximum-product-of-three-numbers/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumProductOfThreeNumbers_628.java)
 - [Design Log Storage System](https://leetcode.com/problems/design-log-storage-system/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LogSystem_635.java)
 - [Sum of Square Numbers](https://leetcode.com/contest/leetcode-weekly-contest-39/problems/sum-of-square-numbers/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SumOfSquareNumbers_633.java)
-- [Solve the Equation](https://leetcode.com/contest/leetcode-weekly-contest-40/problems/solve-the-equation/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SolveTheEquation_640.java)
+- [Solve the Equation](https://leetcode.com/problems/solve-the-equation/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SolveTheEquation_640.java)
 
 ### Array
 
@@ -69,7 +69,7 @@
 - Nested List Weight sum, [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NestedListWeightSum_339.java)
 - Nested List Weight sum II , [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NestedListWeightSum2_364.java)
 
-- [Average of Levels in Binary Tree](https://leetcode.com/contest/leetcode-weekly-contest-40/problems/average-of-levels-in-binary-tree/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AverageLevelsInBinaryTree_637.java) 
+- [Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AverageLevelsInBinaryTree_637.java) 
 
 
 ### Heap(PriorityQueue)

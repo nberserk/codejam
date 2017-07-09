@@ -18,6 +18,9 @@ Vw > V/2
 https://www.youtube.com/watch?v=UUQ8xYWR4do
 
 
+## consistent hashing
+http://michaelnielsen.org/blog/consistent-hashing/
+
 
 ## spatial search 
 
