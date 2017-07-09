@@ -20,6 +20,7 @@
 ## Recursive
 
 - [Output contest matches](https://leetcode.com/contest/leetcode-weekly-contest-24/problems/output-contest-matches/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/OutputContestMachines_544.java)
+- [Shopping Offers](https://leetcode.com/contest/leetcode-weekly-contest-40/problems/shopping-offers/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShoppingOffers_638.java)
 
 
 ## Coding
