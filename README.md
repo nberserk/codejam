@@ -44,6 +44,7 @@
 - [Maximum Product of Three Numbers](https://leetcode.com/contest/leetcode-weekly-contest-38/problems/maximum-product-of-three-numbers/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumProductOfThreeNumbers_628.java)
 - [Design Log Storage System](https://leetcode.com/problems/design-log-storage-system/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LogSystem_635.java)
 - [Sum of Square Numbers](https://leetcode.com/contest/leetcode-weekly-contest-39/problems/sum-of-square-numbers/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SumOfSquareNumbers_633.java)
+- [Solve the Equation](https://leetcode.com/contest/leetcode-weekly-contest-40/problems/solve-the-equation/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SolveTheEquation_640.java)
 
 ### Array
 
