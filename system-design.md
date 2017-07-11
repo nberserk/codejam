@@ -24,10 +24,24 @@ http://michaelnielsen.org/blog/consistent-hashing/
 
 ## spatial search 
 
-wonder explanation for RTree, KdTree
+wonderful explanation for RTree, KdTree
 https://blog.mapbox.com/a-dive-into-spatial-search-algorithms-ebd0c5e39d2a
 
 explaining NN search for kdree, https://en.wikipedia.org/wiki/K-d_tree
+
+## CORS
+기본적으로 http request는 다른 오리진의 put, post요청을 허용하지 않는다. default security를 확보하기 위해서.
+그런데 웹 환경이 점점 복잡해지자 다른 도메인에 요청을 주고 받아야 할 필요가 생겼는데..
+허용할 것인지 말것인지에 대해서 기술하는 스펙을 CORS라고 한다.
+도메인 A에서 도메인 B로 요청을 할때 도메인 B의 서버는 CORS로 제한/허용할 수 있다.
+아래처럼 
+
+```
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+```
+https://brunch.co.kr/@adrenalinee31/1
+
 
 
 
