@@ -49,6 +49,7 @@
 
 ### Array
 
+- [Shortest word distance ](http://www.programcreek.com/2014/08/leetcode-shortest-word-distance-java/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShortestWordDistance_243.java)
 - [Shortest word distance II](http://www.programcreek.com/2014/07/leetcode-shortest-word-distance-ii-java/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShortestWordDistance2_244.java)
 - [Maximum distance in arrays](https://leetcode.com/problems/maximum-distance-in-arrays/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumDistanceInArrays_624.java)
 
