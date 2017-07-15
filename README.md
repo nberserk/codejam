@@ -47,6 +47,8 @@
 - [Sum of Square Numbers](https://leetcode.com/contest/leetcode-weekly-contest-39/problems/sum-of-square-numbers/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SumOfSquareNumbers_633.java)
 - [Solve the Equation](https://leetcode.com/problems/solve-the-equation/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SolveTheEquation_640.java)
 
+- [Encode and Decode Strings](http://buttercola.blogspot.kr/2015/09/leetcode-encode-and-decode-strings.html), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/EncodeDecodeStrings_271.java)
+
 ### Array
 
 - [Shortest word distance ](http://www.programcreek.com/2014/08/leetcode-shortest-word-distance-java/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShortestWordDistance_243.java)
