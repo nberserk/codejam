@@ -74,6 +74,9 @@
 
 - [Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AverageLevelsInBinaryTree_637.java) 
 
+### BIT(Binary Indexed Tree)
+
+- [Range sum query](https://leetcode.com/problems/range-sum-query-mutable/#/description), [ solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RangeSumQuery_307.java)
 
 ### Heap(PriorityQueue)
 - [Smallest Range](https://leetcode.com/contest/leetcode-weekly-contest-39/problems/smallest-range/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SmallestRange_632.java)
