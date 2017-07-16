@@ -57,6 +57,7 @@
 - [Maximum distance in arrays](https://leetcode.com/problems/maximum-distance-in-arrays/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumDistanceInArrays_624.java)
 - [Rotate Array](https://leetcode.com/problems/rotate-array/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RotateArray_189.java)
 
+- [Zero Flip](https://discuss.leetcode.com/topic/69921/find-k-zeroes-to-be-flipped-so-that-number-of-consecutive-1-s-is-maximized/2), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ZeroFlip.java)
 
 
 ## Stack
