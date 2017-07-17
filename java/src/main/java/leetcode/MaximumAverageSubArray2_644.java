@@ -6,42 +6,49 @@ public class MaximumAverageSubArray2_644 {
 
     public double findMaxAverage(int[] nums, int k) {
         int N = nums.length;
-        int[] dp = new int[N];
-        int[] len = new int[N];
 
-        dp[0] = nums[0];
-        len[0] = 1;
-        double max = -Double.MAX_VALUE;
-        if(1==k) {
-            max = dp[0];
+        double min=Integer.MAX_VALUE, max=Integer.MIN_VALUE;
+        for (int i:nums){
+            min = Math.min(min, i);
+            max = Math.max(max, i);
         }
-        for (int i = 1; i < N; i++) {
-            if(dp[i-1] + nums[i] >= nums[i]){
-                dp[i] = dp[i-1] + nums[i];
-                len[i] = len[i-1] + 1;
-            }else{
-                len[i]=1;
-                dp[i] = nums[i];
-            }
 
-            if(len[i]>=k){
-                double avg = dp[i]/(double)len[i];
-                max = Math.max(max, avg);
-
-                // let's see we can remove head
-                int count=1;
-                int sum = dp[i];
-                while(len[i]-count>=k){
-                    int idxLeft = i -len[i]+count;
-                    if (nums[idxLeft]<avg){
-                        sum-=nums[idxLeft];
-                        max = Math.max(max, sum/(double)(len[i]-count));
-                    }
-                    count++;
-                }
-            }
+        double error = Integer.MAX_VALUE;
+        double prev = max;
+        while (error > 0.0001){
+            double mid = (min+max)*0.5;
+            if(check(nums, mid, k))
+                min = mid;
+            else
+                max = mid;
+            error = Math.abs(mid-prev);
+            prev = mid;
         }
-        return max;
+        return min;
+    }
+
+    boolean check(int[] n, double avg, int k){
+        double sum=0;
+        for (int i = 0; i < k; i++) {
+            sum += n[i]-avg;
+        }
+        if(sum>=0) return true;
+
+        // ni .. nj
+        // (ni-avg) + ... + (nj-avg)>=0
+        // Si + ... Sj
+        // Sj - Si >=0, any region could be. so we track min Si . that's the point
+        double prev=0;
+        double minSum=0;
+        for (int i = k; i < n.length; i++) {
+            sum += n[i]-avg;
+            prev += n[i-k]-avg;
+            minSum = Math.min(minSum, prev);
+            if(sum>= minSum)
+                return true;
+        }
+
+        return false;
     }
 
 
