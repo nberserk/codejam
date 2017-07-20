@@ -21,6 +21,31 @@ https://www.youtube.com/watch?v=UUQ8xYWR4do
 ## consistent hashing
 http://michaelnielsen.org/blog/consistent-hashing/
 
+## distributed unique primary keys
+
+Flickr의 예..
+mysql을 Tickets64로 auto_increment로 사용해서 유닉 ID를 생성해서 주는 서보로 사용함. 
+이렇게 하면 SPOF가 되니까 두대의 서버를 둔뒤, 한대는 홀수 , 다른 한대는 짝수를 생성하게 해서 SPOF 안되게 함. 
+아주 쉽게 구현한 예..
+http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/
+
+twitter snowflack
+현재 twitter id는 64bit unsigned int이고 무지 크다..
+41bit : timestamp(milli second)
+10bit : machine id 
+12bit : sequential number
+https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake.html
+
+## Kafka(publisher/subscriber)
+
+
+https://www.infoq.com/articles/apache-kafka
+
+
+## vector clock
+
+http://basho.com/posts/technical/why-vector-clocks-are-easy/
+
 
 ## spatial search 
 
