@@ -60,6 +60,7 @@
 - [Zero Flip](https://discuss.leetcode.com/topic/69921/find-k-zeroes-to-be-flipped-so-that-number-of-consecutive-1-s-is-maximized/2), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ZeroFlip.java)
 - [Contiguous subarray sum](https://leetcode.com/problems/continuous-subarray-sum/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ContinuousSubArraySum_523.java)
 
+- [Elimination Game](https://leetcode.com/problems/elimination-game/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/EliminationGame_390.java)
 
 
 ## Stack
