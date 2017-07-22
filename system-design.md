@@ -42,6 +42,15 @@ https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake.html
 https://www.infoq.com/articles/apache-kafka
 
 
+## many to many relationships
+- one to many > a row in a database table can be associated with one or more rows in another table. 
+- one to one > person can have social security number.
+- many to many > customer and product. customer can buy many product. product also have manay customers.
+
+http://help.filemaker.com/app/answers/detail/a_id/9922/~/understanding-and-creating-many-to-many-relationships-in-filemaker-pro
+
+
+
 ## vector clock
 
 http://basho.com/posts/technical/why-vector-clocks-are-easy/

@@ -1,5 +1,12 @@
 
 
+
+## Design 
+
+- [Calculator](http://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/), [reference implementation](https://github.com/nberserk/codejam/blob/master/java/src/main/java/crackcode/design/Calculator.java)
+    - infix to posfix, stack
+
+
 ## Dynamic Programming
 
 - [Longest palindrom substring ](https://leetcode.com/problems/longest-palindromic-substring/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestPalindromeSubstring_5.java)
