@@ -10,6 +10,8 @@
 ## Dynamic Programming
 
 - [Longest palindrom substring ](https://leetcode.com/problems/longest-palindromic-substring/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestPalindromeSubstring_5.java)
+- [Palindrome substrings ](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/palindromic-substrings/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/PalindromeSubstrings_647.java)
+
 - [UniqueBinarySearchTree ](https://leetcode.com/problems/unique-binary-search-trees/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/UniqueBinarySearchTrees_96.java)
 - [Kth smallest in lexicographical order](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/?tab=Description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KthSmallestInLexicographicalOrder_440.java)
 - [Coin Change2](https://leetcode.com/problems/coin-change-2/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/CoinChange2_518.java)
@@ -18,6 +20,8 @@
 - [K Inverse Pairs Array](https://leetcode.com/problems/k-inverse-pairs-array/#/description) , [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KInversePairsArray_629.java)
 - [Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FindDerangementOfArray_634.java)
 - [Decode Ways II](https://leetcode.com/problems/decode-ways-ii/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DecodeWays2_639.java)
+- [Maximum length of pair chain](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/maximum-length-of-pair-chain/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumLengthOfPairChain_646.java)
+
 
 ### difficult recurrence equations
 
@@ -70,6 +74,11 @@
 - [Elimination Game](https://leetcode.com/problems/elimination-game/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/EliminationGame_390.java)
 
 
+## Hash
+
+- [Set Mismatch](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/set-mismatch/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SetMismatch_645.java)
+
+
 ## Stack
 
 - [Longest valid parentheses](https://leetcode.com/problems/longest-valid-parentheses/?tab=Description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestValidParenthese_32.java)
@@ -93,6 +102,7 @@
 ### Trie
 
 - [Design Search Autocomplete System](https://leetcode.com/contest/leetcode-weekly-contest-41/problems/design-search-autocomplete-system/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DesignSearchAutocompleteSystem_642.java)
+- [Replace Words](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/replace-words/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ReplaceWords_648.java)
 
 ### BIT(Binary Indexed Tree)
 
