@@ -1,4 +1,4 @@
-package crackcode.stack;
+package leetcode;
 
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * from: https://leetcode.com/problems/largest-rectangle-in-histogram/
  * 
  */
-public class LargestRectangleHistogram {
+public class LargestRectangleHistogram_84 {
 
     int largestRectangleArea(int[] heights) {
         int max = Integer.MIN_VALUE;

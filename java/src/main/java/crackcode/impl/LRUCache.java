@@ -26,7 +26,7 @@ public class LRUCache {
     public int get(int key) {
         if (map.containsKey(key)){
             Node node = map.get(key);
-            unlinkeNode(node);
+            unlinkNode(node);
             appendLast(node);
             return node.value;
         }else
@@ -45,7 +45,7 @@ public class LRUCache {
         }
     }
 
-    private void unlinkeNode(Node node) {
+    private void unlinkNode(Node node) {
         if(node.prev!=null)
             node.prev.next = node.next;
         else
@@ -61,14 +61,14 @@ public class LRUCache {
         if(map.containsKey(key)){
             Node node = map.get(key);
 
-            unlinkeNode(node);
+            unlinkNode(node);
             node.value = value;
             appendLast(node);
         }else{
             if(map.size()==capacity){
                 // remove head
                 map.remove(head.key);
-                unlinkeNode(head);
+                unlinkNode(head);
                 //head = head.next;
             }
             Node node = new Node();
