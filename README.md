@@ -86,7 +86,9 @@
 - [Tag Validator](https://leetcode.com/contest/leetcode-weekly-contest-35/problems/tag-validator/), [my soluion](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/TagValidator_591.java)
 - [312Pattern](https://leetcode.com/problems/132-pattern/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/Pattern132_456.java)
 - [Exclusive Time of Functions](https://leetcode.com/contest/leetcode-weekly-contest-41/problems/exclusive-time-of-functions/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ExclusiveTimeOfFunctions_636.java)
-- [Largestest renctangle in histogram] (https://leetcode.com/problems/largest-rectangle-in-histogram/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LargestRectangleHistogram_84.java)
+
+- [Largestest renctangle in histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LargestRectangleHistogram_84.java)
+- [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximalRectangle_85.java)
 
 
 ## Sort
