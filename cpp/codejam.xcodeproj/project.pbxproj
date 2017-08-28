@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9510CDE71EFE47AE00D56416 /* 170624Multiply32Bit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9510CDE61EFE47AE00D56416 /* 170624Multiply32Bit.cpp */; };
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
+		9550F78D1F4831CA00B8ADCE /* 170819RestoreImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9550F78C1F4831CA00B8ADCE /* 170819RestoreImage.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +65,7 @@
 		954767D419054D490021B178 /* codejam */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = codejam; sourceTree = BUILT_PRODUCTS_DIR; };
 		954767D719054D490021B178 /* picnic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picnic.cpp; sourceTree = "<group>"; };
 		954767D919054D490021B178 /* codejam.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = codejam.1; sourceTree = "<group>"; };
+		9550F78C1F4831CA00B8ADCE /* 170819RestoreImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = 170819RestoreImage.cpp; path = codejam/seen/170819RestoreImage.cpp; sourceTree = "<group>"; };
 		9556C1481972BBB300BB2B6A /* dragon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dragon.cpp; path = codejam/dragon.cpp; sourceTree = "<group>"; };
 		9556C1491972BBB300BB2B6A /* dragon.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dragon.in; path = codejam/dragon.in; sourceTree = "<group>"; };
 		9564D2C31984ED7400359258 /* restore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = restore.cpp; path = codejam/restore.cpp; sourceTree = "<group>"; };
@@ -195,6 +196,7 @@
 		9507975A1E582FE700A3493C /* seen */ = {
 			isa = PBXGroup;
 			children = (
+				9550F78C1F4831CA00B8ADCE /* 170819RestoreImage.cpp */,
 				9510CDE61EFE47AE00D56416 /* 170624Multiply32Bit.cpp */,
 				9507975D1E58302000A3493C /* 160806RectSwap.cpp */,
 				9507975E1E58302000A3493C /* 160618sort.cpp */,
@@ -459,7 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9510CDE71EFE47AE00D56416 /* 170624Multiply32Bit.cpp in Sources */,
+				9550F78D1F4831CA00B8ADCE /* 170819RestoreImage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
