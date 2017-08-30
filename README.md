@@ -60,6 +60,7 @@
 - [Solve the Equation](https://leetcode.com/problems/solve-the-equation/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SolveTheEquation_640.java)
 
 - [Encode and Decode Strings](http://buttercola.blogspot.kr/2015/09/leetcode-encode-and-decode-strings.html), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/EncodeDecodeStrings_271.java)
+- [Split Array into consecutive subsequences ](https://leetcode.com/problems/split-array-into-consecutive-subsequences/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SplitArrayIntoConsecutiveSubsequences_659.java)
 
 ### Array
 
