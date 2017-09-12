@@ -109,6 +109,10 @@
 - [Design Search Autocomplete System](https://leetcode.com/contest/leetcode-weekly-contest-41/problems/design-search-autocomplete-system/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DesignSearchAutocompleteSystem_642.java)
 - [Replace Words](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/replace-words/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ReplaceWords_648.java)
 
+derived 
+
+- [Magic Dictionary](https://leetcode.com/problems/implement-magic-dictionary/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MagicDictionary_676.java)
+
 ### BIT(Binary Indexed Tree)
 
 - [Range sum query](https://leetcode.com/problems/range-sum-query-mutable/#/description), [ solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RangeSumQuery_307.java)
