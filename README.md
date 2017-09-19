@@ -35,6 +35,10 @@
 - [Shopping Offers](https://leetcode.com/problems/shopping-offers/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShoppingOffers_638.java)
 
 
+## Array
+
+- [Maximum Swap](https://leetcode.com/problems/maximum-swap/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumSwap_670.java)
+
 ## Coding
 
 - [RotateImage](https://leetcode.com/problems/rotate-image/), my solution
