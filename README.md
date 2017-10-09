@@ -37,7 +37,7 @@
 
 ## Array
 
-- [Maximum Swap](https://leetcode.com/problems/maximum-swap/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumSwap_670.java)
+- [Maximum Swap(https://leetcode.com/problems/maximum-swap/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumSwap_670.java)
 
 ## Coding
 
@@ -78,6 +78,10 @@
 - [Contiguous subarray sum](https://leetcode.com/problems/continuous-subarray-sum/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ContinuousSubArraySum_523.java)
 
 - [Elimination Game](https://leetcode.com/problems/elimination-game/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/EliminationGame_390.java)
+
+### String
+
+- [Next Cloest time](https://leetcode.com/problems/next-closest-time/description/), [solution] (https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NextClosestTime_681.java)
 
 
 ## Hash
