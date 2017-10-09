@@ -84,6 +84,11 @@
 - [Next Cloest time](https://leetcode.com/problems/next-closest-time/description/), [solution] (https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NextClosestTime_681.java)
 
 
+### bit operation
+
+- [Bitwise AND of Numbers Range](https://leetcode.com/problems/bitwise-and-of-numbers-range/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/BitwiseAndOfNumbersRange_201.java)
+
+
 ## Hash
 
 - [Set Mismatch](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/set-mismatch/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SetMismatch_645.java)
