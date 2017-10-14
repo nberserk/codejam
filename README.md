@@ -22,7 +22,7 @@
 - [Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FindDerangementOfArray_634.java)
 - [Decode Ways II](https://leetcode.com/problems/decode-ways-ii/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DecodeWays2_639.java)
 - [Maximum length of pair chain](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/maximum-length-of-pair-chain/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumLengthOfPairChain_646.java)
-
+- [Maximum Sum of 3 Non-Overlapping Subarrays](https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaxSumOf3NovOverlappingSubArrays_689.java)
 
 ### difficult recurrence equations
 
