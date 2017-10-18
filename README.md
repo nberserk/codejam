@@ -110,6 +110,10 @@
 
 - [Relative ranks](https://leetcode.com/problems/relative-ranks/),[my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RelativeRanks_506.java)
 
+## Union-find
+
+- [Redundant Connection](https://leetcode.com/problems/redundant-connection/description/), [solution - detect cycle in tree](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RedundantConnection_684.java)
+
 ## Tree
 
 - [Populating Next Right pointers in each node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/PopulatingNextRightPointers_116.java)
@@ -120,10 +124,9 @@
 
 - [K Empty slots](https://leetcode.com/problems/k-empty-slots/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KEmptySlots_683.java)
 
+### segment tree
 
-## Union-find
-
-- [Redundant Connection](https://leetcode.com/problems/redundant-connection/description/), [solution - detect cycle in tree](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RedundantConnection_684.java)
+- [Falling Squares](https://leetcode.com/problems/falling-squares/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FallingSquares_699.java)
 
  
 ### Trie
