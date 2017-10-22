@@ -124,6 +124,16 @@
 
 - [K Empty slots](https://leetcode.com/problems/k-empty-slots/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KEmptySlots_683.java)
 
+### heap
+
+
+- Java default is minheap-ascending order. heap is 0-based.
+
+- [Top K frequent words](https://leetcode.com/problems/top-k-frequent-words/discuss/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/TopKFrequentWords_692.java)
+
+
+
+
 ### segment tree
 
 - [Falling Squares](https://leetcode.com/problems/falling-squares/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FallingSquares_699.java)
