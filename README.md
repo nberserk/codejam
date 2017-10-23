@@ -80,6 +80,14 @@
 
 - [Elimination Game](https://leetcode.com/problems/elimination-game/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/EliminationGame_390.java)
 
+
+
+### Sliding Window
+
+- [Subarray product less than K](https://leetcode.com/problems/subarray-product-less-than-k/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SubArrayProductLessThanK_713.java)
+
+
+
 ### String
 
 - [Next Cloest time](https://leetcode.com/problems/next-closest-time/description/), [solution] (https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NextClosestTime_681.java)
