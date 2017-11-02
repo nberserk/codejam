@@ -131,6 +131,9 @@
 - [Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AverageLevelsInBinaryTree_637.java)
 
 - [K Empty slots](https://leetcode.com/problems/k-empty-slots/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KEmptySlots_683.java)
+- [Range Module](https://leetcode.com/problems/range-module/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RangeModule_715.java)
+    - very tricky
+    
 
 
 ### segment tree
