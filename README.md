@@ -177,3 +177,4 @@ derived
 ## Binary Search
 
 - [Search For a range](https://leetcode.com/problems/search-for-a-range/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SearchForRange_34.java)
+- [Find Kth smallest pair distance](https://leetcode.com/problems/find-k-th-smallest-pair-distance/description/), [ solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FindKthSmallestPairDistance_719.java)
