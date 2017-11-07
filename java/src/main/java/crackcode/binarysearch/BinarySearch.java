@@ -27,41 +27,37 @@ public class BinarySearch {
 
 		return -1;
 	}
-	
-	/*
-	 * ideas comes from python bisect module
-	 * gets insertion index of array a, to make a ascending list
-	 * same as lower_bound in c++ std.
-	 *
-	 * 1 1 2 2 3 3, bisect_left(2) = 2(insertion point)
-	 */
-	public static int bisect_left(int lo, int hi, int[] a, int key){
+
+
+	public static int lowerBound(int lo, int hi, int[] a, int key){
 		while (lo<hi) {
-			int mid = (lo+hi)/2;
+			int mid = lo + (hi-lo)/2;
 			if (a[mid] < key) {
 				lo = mid+1; 
-			}else{
+			}else if(a[mid]>key) {
+                hi = mid;
+            }else{
 				hi = mid;
 			}
 		}
-		return lo;
+        if(a[lo]==key) return lo;
+        return -1;
 	}
-	
-	/*
-	 * upper_bound in c++ std.
-	 * 1 1 2 2 3 3, bisect_right(2) = 4
-	 */
-	public static int bisect_right(int lo, int hi, int[] a, int key){
+
+	public static int upperBound(int lo, int hi, int[] a, int key){
 		while (lo<hi) {
-			int mid = (lo+hi)/2;
+			int mid = lo+(hi-lo+1)/2;
 			
-			if (a[mid] <= key) {
-				lo = mid+1; 
-			}else{
-				hi = mid;
+			if (a[mid] < key) {
+				lo = mid;
+			}else if (a[mid]>key){
+                hi = mid-1;
+            }else{
+				lo = mid;
 			}
 		}
-		return lo;
+        if(a[lo]==key) return lo;
+        return -1;
 	}
 	
 	
@@ -260,19 +256,24 @@ public class BinarySearch {
 	}
 */
     @Test
-    public void testBisectLeft(){
-        int[] a= new int[]{1, 1, 2, 2, 3, 3};
+    public void testBinarySearch(){
+        int[] a= new int[]{1, 2,  3, 4, 7, 9, 10};
 
-        assertEquals(2, bisect_left(0, a.length, a, 2));
-        assertEquals(4, bisect_right(0, a.length, a, 2));
+        assertEquals(2, binarySearch(3, a));
+        assertEquals(-1, binarySearch(0, a));
+        assertEquals(-1, binarySearch(100, a));
     }
-
     @Test
-    public void testBisectRight(){
+    public void testLowerBound_upperBound(){
         int[] a= new int[]{1, 1, 2, 2, 3, 3};
-        assertEquals(6, bisect_right(0, a.length, a, 3));
-        assertEquals(4, bisect_right(0, a.length, a, 2));
 
+        int len = a.length-1;
+
+        assertEquals(2, lowerBound(0, len, a, 2));
+        assertEquals(-1, lowerBound(0, len, a, 4));
+        assertEquals(3, upperBound(0, len, a, 2));
+        assertEquals(5, upperBound(0, len, a, 3));
+        assertEquals(-1, upperBound(0, len, a, 4));
     }
 
 }
