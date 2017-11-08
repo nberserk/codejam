@@ -173,6 +173,7 @@ derived
 - [Mine Sweeper](https://leetcode.com/problems/minesweeper/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MineSweeper_529.java)
 - [01 Matrix](https://leetcode.com/problems/01-matrix/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/Matrix01_542.java)
 - [Minimum Genetic Mutation](https://leetcode.com/problems/minimum-genetic-mutation/#/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MinimumGeneticMutation_433.java)
+- [Accounts Merge](https://leetcode.com/problems/accounts-merge/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AccountsMerge_721.java)
 
 ## Binary Search
 
