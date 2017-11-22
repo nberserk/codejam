@@ -48,6 +48,7 @@ public class NumberOfAtoms_726 {
 
     public String countOfAtoms(String formula) {
         Result r  = atom(formula, 0);
+        return "";
     }
 
     public String countOfAtoms1(String formula) {
