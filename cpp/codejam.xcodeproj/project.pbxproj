@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
 		9550F78D1F4831CA00B8ADCE /* 170819RestoreImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9550F78C1F4831CA00B8ADCE /* 170819RestoreImage.cpp */; };
+		9579B6881FB68B92004A1646 /* 171111FileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9579B6871FB68B92004A1646 /* 171111FileSystem.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +77,7 @@
 		956740331941A328002D426F /* asymtiling.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = asymtiling.in; path = codejam/asymtiling.in; sourceTree = "<group>"; };
 		95778A84191BA8990074651E /* quadtree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = quadtree.cpp; path = codejam/quadtree.cpp; sourceTree = "<group>"; };
 		95778A85191BA8990074651E /* quadtree.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = quadtree.in; path = codejam/quadtree.in; sourceTree = "<group>"; };
+		9579B6871FB68B92004A1646 /* 171111FileSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 171111FileSystem.cpp; sourceTree = "<group>"; };
 		9581988119A01D920080DD5B /* minastirith.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = minastirith.cpp; path = codejam/minastirith.cpp; sourceTree = "<group>"; };
 		9581988219A01D920080DD5B /* minastirith.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minastirith.in; path = codejam/minastirith.in; sourceTree = "<group>"; };
 		958536BA1916228B007D7BD1 /* clocksync.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = clocksync.cpp; path = codejam/clocksync.cpp; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				9550F78C1F4831CA00B8ADCE /* 170819RestoreImage.cpp */,
+				9579B6871FB68B92004A1646 /* 171111FileSystem.cpp */,
 				9510CDE61EFE47AE00D56416 /* 170624Multiply32Bit.cpp */,
 				9507975D1E58302000A3493C /* 160806RectSwap.cpp */,
 				9507975E1E58302000A3493C /* 160618sort.cpp */,
@@ -461,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9579B6881FB68B92004A1646 /* 171111FileSystem.cpp in Sources */,
 				9550F78D1F4831CA00B8ADCE /* 170819RestoreImage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

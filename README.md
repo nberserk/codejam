@@ -6,6 +6,9 @@
 - [Calculator](http://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/), [reference implementation](https://github.com/nberserk/codejam/blob/master/java/src/main/java/crackcode/design/Calculator.java)
     - infix to posfix, stack
 
+- [MinStack](https://leetcode.com/problems/min-stack/description/), [reference implemntation](https://github.com/nberserk/codejam/blob/master/java/src/main/java/crackcode/design/MinStack_155.java)
+
+
 
 
 ## Dynamic Programming
