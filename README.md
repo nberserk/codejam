@@ -5,9 +5,7 @@
 
 - [Calculator](http://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/), [reference implementation](https://github.com/nberserk/codejam/blob/master/java/src/main/java/crackcode/design/Calculator.java)
     - infix to posfix, stack
-
 - [MinStack](https://leetcode.com/problems/min-stack/description/), [reference implemntation](https://github.com/nberserk/codejam/blob/master/java/src/main/java/crackcode/design/MinStack_155.java)
-
 
 
 
@@ -116,6 +114,7 @@
 
 - [Largestest renctangle in histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LargestRectangleHistogram_84.java)
 - [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximalRectangle_85.java)
+- [Decompress String](https://discuss.leetcode.com/topic/80691/google-onsite-interview-questions), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DeCompressString.java))
 
 
 ## Sort
