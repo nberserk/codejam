@@ -87,12 +87,12 @@
 ### Sliding Window
 
 - [Subarray product less than K](https://leetcode.com/problems/subarray-product-less-than-k/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SubArrayProductLessThanK_713.java)
-
+- [Anagram of substring](https://discuss.leetcode.com/topic/106212/sub-array-contains-anagram), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AnagramOfSubstring.java)
 
 
 ### String
 
-- [Next Cloest time](https://leetcode.com/problems/next-closest-time/description/), [solution] (https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NextClosestTime_681.java)
+- [Next Cloest time](https://leetcode.com/problems/next-closest-time/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NextClosestTime_681.java)
 
 
 ### bit operation
@@ -114,7 +114,7 @@
 
 - [Largestest renctangle in histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LargestRectangleHistogram_84.java)
 - [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximalRectangle_85.java)
-- [Decompress String](https://discuss.leetcode.com/topic/80691/google-onsite-interview-questions), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DeCompressString.java))
+- [Decompress String](https://discuss.leetcode.com/topic/80691/google-onsite-interview-questions), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DeCompressString.java)
 
 
 ## Sort
