@@ -68,6 +68,7 @@
 - [Encode and Decode Strings](http://buttercola.blogspot.kr/2015/09/leetcode-encode-and-decode-strings.html), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/EncodeDecodeStrings_271.java)
 - [Split Array into consecutive subsequences ](https://leetcode.com/problems/split-array-into-consecutive-subsequences/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SplitArrayIntoConsecutiveSubsequences_659.java)
 - [My Calendar II](https://leetcode.com/problems/my-calendar-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MyCalendar2_731.java)
+- [Parse Lisp Expression](https://leetcode.com/problems/parse-lisp-expression/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ParseLispExpression_736.java)
 
 ### Array
 
