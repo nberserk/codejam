@@ -82,7 +82,7 @@
 - [Contiguous subarray sum](https://leetcode.com/problems/continuous-subarray-sum/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ContinuousSubArraySum_523.java)
 
 - [Elimination Game](https://leetcode.com/problems/elimination-game/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/EliminationGame_390.java)
-
+- [Elimination Game](https://leetcode.com/problems/multiply-strings/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MultiplyStrings_43.java)
 
 
 ### Sliding Window
@@ -136,9 +136,9 @@
 
 - [K Empty slots](https://leetcode.com/problems/k-empty-slots/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/KEmptySlots_683.java)
 - [Range Module](https://leetcode.com/problems/range-module/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RangeModule_715.java)
-    - very tricky
-    
-
+    - very tricky  
+- [Merkel Hash](https://discuss.leetcode.com/topic/88520/python-straightforward-with-explanation-o-st-and-o-s-t-approaches/1), very genius algorith esecially for large tree
+- 
 
 ### segment tree
 
