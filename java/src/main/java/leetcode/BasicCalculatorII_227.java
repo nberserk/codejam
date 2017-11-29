@@ -2,6 +2,11 @@ package leetcode;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+import static junit.framework.TestCase.assertSame;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -34,49 +39,89 @@ public class BasicCalculatorII_227 {
                 }                
             }                
         }
+        if(start!=-1)
+            r.add(s.substring(start, s.length()));
 
+        return r;
+    }
+
+    List<String> tokenize_regex(String s){
+        s=s.replace(" " , "");
+        List<String> r = new ArrayList<>();
+        String[] words = s.split("(?=[-+*/])");
+        for (String w: words){
+            r.add(w);
+        }
         return r;
     }
 
     int order(char c){        
         switch(c) {
-        case '*':
-        case '/':
-            return 5;
-        default:
-            return 1;
+            case '*':
+            case '/':
+                return 5;
+            case '+':
+            case '-':
+                return 4;
+            default:
+                return -1;
         }
-        return -1;
     }
 
     int calculate(String s){
         List<String> token = tokenize(s);
-        Stack<String> op = new Stack<>();
-        Stack<Integer> n = new Stack<>();
+        Stack<Character> operator = new Stack<>();
+        ArrayList<String> normalized = new ArrayList<>();
         for (int i = 0; i < token.size(); i++){
-            char[] c = token.get(i).toCharArray();
-            boolean operator=false;
-            if (c.length==1 && !Character.isDigit(c[0])){
-                operator=true;
-            }
-
-            if (!op){
-                n.add(String.valueOf(token.get(i)));
-            }else{
-                int or = order(c[0]);
-                while (!op.isEmpty() ||  ){
-                    
+            String cur = token.get(i);
+            int o = order(cur.charAt(0));
+            if(o==-1)
+                normalized.add(cur);
+            else{
+                while (!operator.isEmpty() &&  order(operator.peek())>= o ) {
+                    normalized.add(String.valueOf(operator.pop()));
                 }
+                operator.push(cur.charAt(0));
             }
-            
+        }
+        while(operator.size()>0){
+            normalized.add(String.valueOf(operator.pop()));
         }
 
+        Stack<Integer> stack = new Stack<>();
+        for(String cur: normalized){
+            int o = order(cur.charAt(0));
+            if(o==-1) stack.push(Integer.valueOf(cur));
+            else{
+                int v=stack.pop();
+                int v2 = stack.pop();
+                switch (cur.charAt(0)){
+                    case '+':
+                        v2+=v;
+                        break;
+                    case '-':
+                        v2-=v;
+                        break;
+                    case '*':
+                        v2*=v;
+                        break;
+                    case '/':
+                        v2/=v;
+                        break;
+                }
+                stack.push(v2);
+            }
+        }
+        return stack.peek();
     }
 
     @Test
     public void test(){
-        assertEquals("PAHNAPLSIIGYIR", convert("PAYPALISHIRING", 3));
-        
 
+        assertSame(tokenize(" 3+ 4 * 7 -11"), tokenize_regex(" 3+ 4 * 7 -11"));
+        assertEquals(27, calculate("100000000/1/2/3/4/5/6/7/8/9/10"));
+        assertEquals(1, calculate(" 3/2"));
+        assertEquals(7, calculate(" 3+2*2"));
+        assertEquals(20, calculate(" 3+ 4 * 7 -11"));
     }
 }

@@ -110,13 +110,13 @@
 
 - [Longest valid parentheses](https://leetcode.com/problems/longest-valid-parentheses/?tab=Description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestValidParenthese_32.java)
 - [Tag Validator](https://leetcode.com/contest/leetcode-weekly-contest-35/problems/tag-validator/), [my soluion](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/TagValidator_591.java)
-- [312Pattern](https://leetcode.com/problems/132-pattern/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/Pattern132_456.java)
+- [312Pattern](https://leetcode.com/problems/132-pattern/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/Pattern132_456.java)
 - [Exclusive Time of Functions](https://leetcode.com/contest/leetcode-weekly-contest-41/problems/exclusive-time-of-functions/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ExclusiveTimeOfFunctions_636.java)
 
-- [Largestest renctangle in histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LargestRectangleHistogram_84.java)
-- [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximalRectangle_85.java)
+- [Largestest renctangle in histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LargestRectangleHistogram_84.java)
+- [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximalRectangle_85.java)
 - [Decompress String](https://discuss.leetcode.com/topic/80691/google-onsite-interview-questions), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DeCompressString.java)
-
+- [Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/BasicCalculatorII_227.java)
 
 ## Sort
 
