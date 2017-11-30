@@ -104,7 +104,7 @@
 ## Hash
 
 - [Set Mismatch](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/set-mismatch/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SetMismatch_645.java)
-
+- [subarray sum equals to K](https://leetcode.com/problems/subarray-sum-equals-k/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SubarraySumEqualsK_560.java)
 
 ## Stack
 

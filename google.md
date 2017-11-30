@@ -1,4 +1,10 @@
 # system design
+
+## android
+
+- binder proxy, binder native http://elecs.tistory.com/173
+
+
 https://www.careercup.com/page?pid=google-interview-questions&topic=system-design-interview-questions
 https://github.com/jwasham/google-interview-university/blob/master/README.md#implement-system-routines
 
