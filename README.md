@@ -35,7 +35,7 @@
 - [Output contest matches](https://leetcode.com/contest/leetcode-weekly-contest-24/problems/output-contest-matches/), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/OutputContestMachines_544.java)
 - [Shopping Offers](https://leetcode.com/problems/shopping-offers/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ShoppingOffers_638.java)
 - [Partition to K Equal Sum Subsets](https://leetcode.com/problems/partition-to-k-equal-sum-subsets/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/PartitionToKEqualSumSubsets_698.java)
-
+- [Increasing subsequences](https://leetcode.com/problems/increasing-subsequences/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/IncreasingSubsequences_491.java)
 
 ## Array
 
