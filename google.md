@@ -3,6 +3,40 @@
 ## android
 
 - binder proxy, binder native http://elecs.tistory.com/173
+- android ipc, https://www.slideshare.net/jserv/android-ipc-mechanism
+- project treble, https://www.youtube.com/watch?v=Ksegw928gUM&t=1144s
+- class file format
+
+```
+struct Class_File_Format {
+   u4 magic_number;
+
+   u2 minor_version;
+   u2 major_version;
+
+   u2 constant_pool_count;
+
+   cp_info constant_pool[constant_pool_count - 1];
+
+   u2 access_flags;
+
+   u2 this_class;
+   u2 super_class;
+
+   u2 interfaces_count;
+
+   u2 interfaces[interfaces_count];
+
+   u2 fields_count;
+   field_info fields[fields_count];
+
+   u2 methods_count;
+   method_info methods[methods_count];
+
+   u2 attributes_count;
+   attribute_info attributes[attributes_count];
+}
+```
 
 
 https://www.careercup.com/page?pid=google-interview-questions&topic=system-design-interview-questions

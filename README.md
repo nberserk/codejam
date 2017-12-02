@@ -70,6 +70,7 @@
 - [My Calendar II](https://leetcode.com/problems/my-calendar-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MyCalendar2_731.java)
 - [Parse Lisp Expression](https://leetcode.com/problems/parse-lisp-expression/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ParseLispExpression_736.java)
 - [Remove K Digits](https://leetcode.com/problems/remove-k-digits/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RemoveKDigits_402.java)
+- [Next Greater Element II ](https://leetcode.com/problems/next-greater-element-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NextGreaterElementII_503.java)
 
 ### Array
 
