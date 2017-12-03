@@ -25,6 +25,9 @@
 - [Maximum length of pair chain](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/maximum-length-of-pair-chain/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximumLengthOfPairChain_646.java)
 - [Maximum Sum of 3 Non-Overlapping Subarrays](https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaxSumOf3NovOverlappingSubArrays_689.java)
 
+- [Delete and earn](), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DeleteAndEarn_740.java)
+- [House Robber](https://leetcode.com/problems/house-robber/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/HouseRobber_198.java)
+
 ### difficult recurrence equations
 
 - [Remove Boxes](https://leetcode.com/problems/remove-boxes/#/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RemoveBoxes_546.java)
