@@ -27,6 +27,7 @@
 
 - [Delete and earn](), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DeleteAndEarn_740.java)
 - [House Robber](https://leetcode.com/problems/house-robber/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/HouseRobber_198.java)
+- [Student Attendance Records II ](https://leetcode.com/problems/student-attendance-record-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/StudentAttendanceRecordII_552.java)
 
 ### difficult recurrence equations
 
