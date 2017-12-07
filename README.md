@@ -75,6 +75,8 @@
 - [Parse Lisp Expression](https://leetcode.com/problems/parse-lisp-expression/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ParseLispExpression_736.java)
 - [Remove K Digits](https://leetcode.com/problems/remove-k-digits/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RemoveKDigits_402.java)
 - [Next Greater Element II ](https://leetcode.com/problems/next-greater-element-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NextGreaterElementII_503.java)
+- [Construct the Rectangle ](https://leetcode.com/problems/construct-the-rectangle/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ConstructRectangle_492.java)
+
 
 ### Array
 
