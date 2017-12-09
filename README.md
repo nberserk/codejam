@@ -148,7 +148,7 @@
 - [Range Module](https://leetcode.com/problems/range-module/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RangeModule_715.java)
     - very tricky  
 - [Merkel Hash](https://discuss.leetcode.com/topic/88520/python-straightforward-with-explanation-o-st-and-o-s-t-approaches/1), very genius algorith esecially for large tree
-- 
+- [Longest Univalue Path](https://leetcode.com/problems/longest-univalue-path/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/LongestUnivaluePath_687.java)
 
 ### segment tree
 
