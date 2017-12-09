@@ -76,6 +76,7 @@
 - [Remove K Digits](https://leetcode.com/problems/remove-k-digits/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/RemoveKDigits_402.java)
 - [Next Greater Element II ](https://leetcode.com/problems/next-greater-element-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NextGreaterElementII_503.java)
 - [Construct the Rectangle ](https://leetcode.com/problems/construct-the-rectangle/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ConstructRectangle_492.java)
+- [Patch Array ](https://leetcode.com/problems/patching-array/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/PatchArray_330.java)
 
 
 ### Array
