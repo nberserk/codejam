@@ -2,8 +2,10 @@
 
 ## android
 
+- android internal http://newandroidbook.com/
 
 - surface flinger, https://www.slideshare.net/jserv/design-and-concepts-of-android-graphics
+- input flinger, http://newandroidbook.com/Book/Input.html?r
 - binder proxy, binder native http://elecs.tistory.com/173
 - android ipc, https://www.slideshare.net/jserv/android-ipc-mechanism
 - project treble, https://www.youtube.com/watch?v=Ksegw928gUM&t=1144s
