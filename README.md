@@ -28,6 +28,8 @@
 - [Delete and earn](), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DeleteAndEarn_740.java)
 - [House Robber](https://leetcode.com/problems/house-robber/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/HouseRobber_198.java)
 - [Student Attendance Records II ](https://leetcode.com/problems/student-attendance-record-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/StudentAttendanceRecordII_552.java)
+- [4 Keys Keyboard ](https://leetcode.com/problems/4-keys-keyboard/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FourKeysKeyboard_651.java)
+
 
 ### difficult recurrence equations
 
@@ -159,7 +161,7 @@
  
 ### Trie
 
-- [Design Search Autocomplete System](https://leetcode.com/contest/leetcode-weekly-contest-41/problems/design-search-autocomplete-system/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DesignSearchAutocompleteSystem_642.java)
+- Design Search Autocomplete System](https://leetcode.com/contest/leetcode-weekly-contest-41/problems/design-search-autocomplete-system/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DesignSearchAutocompleteSystem_642.java)
 - [Replace Words](https://leetcode.com/contest/leetcode-weekly-contest-42/problems/replace-words/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ReplaceWords_648.java)
 
 derived 
