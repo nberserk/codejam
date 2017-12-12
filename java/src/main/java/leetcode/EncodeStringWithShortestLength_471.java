@@ -40,9 +40,7 @@ public class EncodeStringWithShortestLength_471 {
             map.get(ch).add(i);
         }
 
-        int[] best = new int[4];
-        best[0] = Integer.MIN_VALUE;
-
+        String min = new String(s);
         for (int i = 0; i < N; i++) {
             char ch = s.charAt(i);
             List<Integer> list = map.get(ch);
@@ -55,43 +53,27 @@ public class EncodeStringWithShortestLength_471 {
                 if (pos+len>N) continue;
                 int r = repeat(s, i, pos);
                 if(r==0) continue;
-                if(len*r<=4)
-                    continue;
-
                 int gain = r*len - (String.valueOf(r).length()+2+len);
-
-                if (best[0]<gain){
-                    best[0]=gain;
-                    best[1]= i;
-                    best[2]=pos;
-                    best[3]=r;
+                if(gain>0){
+                    String repeat = s.substring(i, pos);
+                    String before = s.substring(0, i);
+                    String after="";
+                    if(pos+len*(r-1)<N)
+                        after = s.substring(pos+len*(r-1), N);
+                    String encoded = String.format("%s%d[%s]%s",before, r, repeat, after);
+                    String more = encodeInternal(encoded);
+                    if(min.length()>more.length())
+                        min=more;
                 }
+
             }
         }
 
-        if(best[0]!=Integer.MIN_VALUE){
-            String repeat = s.substring(best[1],best[2]);
-            String before = s.substring(0, best[1]);
-            int pos = best[2];
-            int len = best[2]-best[1];
-            int r=best[3];
-            String after="";
-            if(pos+len*(r-1)<N)
-                after = s.substring(pos+len*(r-1), N);
-            return String.format("%s%d[%s]%s",before, r, repeat, after);
-        }
-
-
-
-        return s;
+        return min;
     }
 
     public String encode(String s) {
-        while(true){
-            String after = encodeInternal(s);
-            if(after.equals(s)) return s;
-            s=after;
-        }
+        return encodeInternal(s);
     }
 
     @org.junit.Test

@@ -82,6 +82,7 @@
 - [Game of life ](https://leetcode.com/problems/game-of-life/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/GameOfLine_289.java)
 - [Add Bold Tag in string ](https://leetcode.com/problems/add-bold-tag-in-string/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AddBoldTagInString_616.java)
 - [Sentence Screen fitting ](https://leetcode.com/problems/sentence-screen-fitting/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SentenceScreenFitting_418.java)
+- [Construct Array ](https://leetcode.com/problems/beautiful-arrangement-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/BeautifulArrangementII_667.java)
 
 
 ### Array
