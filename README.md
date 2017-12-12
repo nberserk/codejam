@@ -193,6 +193,7 @@ derived
 - [Minimum Genetic Mutation](https://leetcode.com/problems/minimum-genetic-mutation/description), [my solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MinimumGeneticMutation_433.java)
 - [Accounts Merge](https://leetcode.com/problems/accounts-merge/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AccountsMerge_721.java)
 - [Sentence Similarity II](https://leetcode.com/problems/sentence-similarity-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SentenceSimilarityII_737.java)
+- [Network Delay time](https://leetcode.com/problems/network-delay-time/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/NetworkDelayTime_743.java)
 
 ## Binary Search
 
