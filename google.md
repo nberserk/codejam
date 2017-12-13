@@ -2,6 +2,19 @@
 
 ## android
 
+- convex hull
+    orientation of 3 ordered points : http://www.geeksforgeeks.org/orientation-3-ordered-points/
+
+```
+a x b 
+    = ax*by-ay*bx
+    = |a||b|*sin(theta)
+```
+이므로, 0~180도면 clockwise, -180~0 도면 counterclockwise가 됨. 따라서 세점의 상대위치를 알 수 있음.
+ccw에 대한 설명 : http://jason9319.tistory.com/358
+
+
+
 - android internal http://newandroidbook.com/
 
 - surface flinger, https://www.slideshare.net/jserv/design-and-concepts-of-android-graphics
