@@ -31,7 +31,7 @@ public class EncodeStringWithShortestLength_471 {
         return r;
     }
 
-    String encodeInternal(String s){
+    String encode_1(String s){
         int N = s.length();
         HashMap<Character, List<Integer>> map = new HashMap<>();
         for (int i=0;i<N;i++){
@@ -61,7 +61,7 @@ public class EncodeStringWithShortestLength_471 {
                     if(pos+len*(r-1)<N)
                         after = s.substring(pos+len*(r-1), N);
                     String encoded = String.format("%s%d[%s]%s",before, r, repeat, after);
-                    String more = encodeInternal(encoded);
+                    String more = encode_1(encoded);
                     if(min.length()>more.length())
                         min=more;
                 }
@@ -72,8 +72,46 @@ public class EncodeStringWithShortestLength_471 {
         return min;
     }
 
+    //dp(i,j)=dp(i,k)+dp(k,j)
     public String encode(String s) {
-        return encodeInternal(s);
+        int N = s.length();
+        String[][] dp = new String[N][N];
+        for (int l = 0; l < N; l++) {
+            for (int i = 0; i < N - l; i++) {
+                int to = i+l;
+                String org = s.substring(i, to+1);
+                dp[i][to] = org;
+                if (dp[i][to].length() <=4) continue;
+
+                String best=org;
+                for (int k = i+1; k < to; k++) {
+                    String temp = dp[i][k] + dp[k+1][to];
+                    if(temp.length()<best.length())
+                        best=temp;
+                }
+
+                // encode ?
+                int len = org.length();
+
+                for (int r = 0; r < org.length(); r++) {
+                    //System.out.println(dp[i][to] + r);
+                    String re = org.substring(0,r+1);
+                    int repeat = len/re.length();
+                    if (len%re.length()==0
+//                            && r*repeat>4
+                            && dp[i][to].replaceAll(re,"").length()==0
+                            ){
+                        String temp = String.format("%d[%s]", repeat, dp[i][i+r]);
+                        if(temp.length()<best.length())
+                            best=temp;
+                    }
+                }
+
+                dp[i][to]=best;
+            }
+        }
+
+        return dp[0][N-1];
     }
 
     @org.junit.Test
@@ -81,7 +119,7 @@ public class EncodeStringWithShortestLength_471 {
         assertEquals(6, repeat("aaaaaabfda", 0,1));
         assertEquals(2, repeat("dddabcdeabcdeddd", 3,8));
 
-        assertEquals("5[a]", encode("aaaaa"));
+//        assertEquals("5[a]", encode("aaaaa"));
         assertEquals("8[a]", encode("aaaaaaaa"));
         assertEquals("2[aabc]d", encode("aabcaabcd"));
         assertEquals("2[2[abbb]c]", encode("abbbabbbcabbbabbbc"));
