@@ -6,7 +6,7 @@
     orientation of 3 ordered points : http://www.geeksforgeeks.org/orientation-3-ordered-points/
 
 ```
-a x b 
+a x b
     = ax*by-ay*bx
     = |a||b|*sin(theta)
 ```
@@ -19,10 +19,32 @@ ccw에 대한 설명 : http://jason9319.tistory.com/358
 
 - surface flinger, https://www.slideshare.net/jserv/design-and-concepts-of-android-graphics
 - input flinger, http://newandroidbook.com/Book/Input.html?r
-- binder proxy, binder native http://elecs.tistory.com/173
 - android ipc, https://www.slideshare.net/jserv/android-ipc-mechanism
 - project treble, https://www.youtube.com/watch?v=Ksegw928gUM&t=1144s
-- class file format
+
+### binder
+
+
+```
+ Client - proxy - kernel binder - stub - server
+```
+
+clinet 는 transact()콜 하고, then server receive callback- onTransact(), onTransact() 는 16의의 binder pool 들 중 하나의 쓰레드에서 실행.
+즉 동사에 16개의 binder transaction을 처리할 수 있음.
+
+http://codetheory.in/android-interprocess-communication-ipc-with-aidl/
+
+
+references
+
+- http://codetheory.in/an-overview-of-android-binder-framework/
+- binder proxy, binder native http://elecs.tistory.com/173
+
+
+
+
+
+### class file format
 
 ```
 struct Class_File_Format {
@@ -72,7 +94,7 @@ https://www.careercup.com/question?id=5139174346719232
 
 ## architecture for twitter
 http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html
-- dedicate cache for user time line, user home feed, 
+- dedicate cache for user time line, user home feed,
 ## numbers for twitter
 6000 tweets per second
 317M MAU
@@ -93,35 +115,35 @@ http persistent connection to reduce latency
 ### manual map reduce
 from https://www.careercup.com/question?id=4681660918398976
 
-Given a large network of computers, each keeping log files of visited urls, find the top ten of the most visited urls. 
-(i.e. have many large <string (url) -> int (visits)> maps, calculate implicitly <string (url) -> int (sum of visits among all distributed maps), and get the top ten in the combined map) 
+Given a large network of computers, each keeping log files of visited urls, find the top ten of the most visited urls.
+(i.e. have many large <string (url) -> int (visits)> maps, calculate implicitly <string (url) -> int (sum of visits among all distributed maps), and get the top ten in the combined map)
 The result list must be exact, and the maps are too large to transmit over the network (especially sending all of them to a central server or using MapReduce directly, is not allowed)
 
 
 ```
-Presuming a protocol exists that can ask three questions to each server: 
+Presuming a protocol exists that can ask three questions to each server:
 
-* the score of a single url 
-* the top 10 
-* the top n that satisfy score >= N 
+* the score of a single url
+* the top 10
+* the top n that satisfy score >= N
 
-We program a two pass solution like so: 
+We program a two pass solution like so:
 
-We denote the number of servers as S. 
+We denote the number of servers as S.
 
-[First pass] 
-(1) Ask every server for its own top ten 
+[First pass]
+(1) Ask every server for its own top ten
 
-(2) merge the results. For all URLs in the merged set calculate correct values by asking 
-all servers for their scores for each URL. Calculate a set of top ten from our sample. 
+(2) merge the results. For all URLs in the merged set calculate correct values by asking
+all servers for their scores for each URL. Calculate a set of top ten from our sample.
 
-(3) pick score of the now tenth URL as the threshold that we try to beat 
-in the second round. We denote the threshold as T. 
+(3) pick score of the now tenth URL as the threshold that we try to beat
+in the second round. We denote the threshold as T.
 
-[Second pass] 
-(4) Ask every server for all its top N that satisfy score >= T/S 
+[Second pass]
+(4) Ask every server for all its top N that satisfy score >= T/S
 
-(5) Merge these bigger samples again as in step (2) 
+(5) Merge these bigger samples again as in step (2)
 
 (6) We now have the correct top ten with correct scores.
 ```
@@ -166,4 +188,4 @@ https://techinterviewsolutions.net/2013/03/30/google-interview-questions-compila
 * design a google gmail system
 
 * sync
-http://www.gilgil.net/communities_kr/14456  synchronization 관련 문제 인듯 한데.. 
+http://www.gilgil.net/communities_kr/14456  synchronization 관련 문제 인듯 한데..
