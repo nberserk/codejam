@@ -32,6 +32,7 @@ ccw에 대한 설명 : http://jason9319.tistory.com/358
 clinet 는 transact()콜 하고, then server receive callback- onTransact(), onTransact() 는 16의의 binder pool 들 중 하나의 쓰레드에서 실행.
 즉 동사에 16개의 binder transaction을 처리할 수 있음.
 
+messenger와 halder는 queue를 통해서 처리 되기때문에 느리다. 대신에 thread-safe할 필요는 없다. 반면 aidl은 thread-safe하게 작성해야 한다.
 http://codetheory.in/android-interprocess-communication-ipc-with-aidl/
 
 
