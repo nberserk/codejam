@@ -83,6 +83,7 @@
 - [Add Bold Tag in string ](https://leetcode.com/problems/add-bold-tag-in-string/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/AddBoldTagInString_616.java)
 - [Sentence Screen fitting ](https://leetcode.com/problems/sentence-screen-fitting/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/SentenceScreenFitting_418.java)
 - [Construct Array ](https://leetcode.com/problems/beautiful-arrangement-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/BeautifulArrangementII_667.java)
+- [CandyCrush ](https://leetcode.com/problems/candy-crush/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/CandyCrush_723.java)
 
 
 ### Array

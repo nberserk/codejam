@@ -98,7 +98,7 @@ public class EncodeStringWithShortestLength_471 {
                     String re = org.substring(0,r+1);
                     int repeat = len/re.length();
                     if (len%re.length()==0
-//                            && r*repeat>4
+                            && re.length()*repeat>4
                             && dp[i][to].replaceAll(re,"").length()==0
                             ){
                         String temp = String.format("%d[%s]", repeat, dp[i][i+r]);
