@@ -9,26 +9,29 @@ import static org.junit.Assert.assertEquals;
  */
 public class RepeatedStringMatch_686 {
 
-    boolean check(String p, String t, int ti){
+    boolean check(String p, String t, int offset){
         for (int i = 0; i < p.length(); i++) {
-            if (p.charAt(i) != t.charAt(ti+i)) return false;
+            if (p.charAt(i) != t.charAt(offset+i)) return false;
         }
         return true;
     }
 
     public int repeatedStringMatch(String pattern, String text) {
 
+        String org_pattern=pattern;
         StringBuilder sb = new StringBuilder();
         int r=0;
-        while(sb.length()<=text.length()){
+        int multiple = (text.length()-1)/pattern.length() + 1; // why?
+        for (int i = 0; i <= multiple; i++) {
             sb.append(pattern);
             r++;
         }
+
         pattern = text;
         text=sb.toString();
 
-        int MOD=10001;
-        int d=256;
+        int MOD=100001;
+        int base=30;
         int p=0,t=0;
 
         int P = pattern.length();
@@ -36,21 +39,22 @@ public class RepeatedStringMatch_686 {
         int power=1;
 
         for (int i = 0; i < P; i++) {
-            p = (d*p +pattern.charAt(i))%MOD;
-            t = (d*t + text.charAt(i))%MOD;
-            power=(power*d)%MOD;
+            p = (base*p +pattern.charAt(i))%MOD;
+            t = (base*t + text.charAt(i))%MOD;
+            if(i!=0)
+                power=(power*base)%MOD;
         }
-
-
-
 
         for (int i = 0; i <= T-P; i++){
             if (p==t){
-                if(check(pattern, text, i))
+                if(check(pattern, text, i)){
+                    if(i==0 && org_pattern.length()==T-P && check(org_pattern,text,P) )
+                        r--;
                     return r;
+                }
             }
             if(i<T-P){
-                t=(d*(t-text.charAt(i)*power) + text.charAt(i+P))%MOD;
+                t=(base*(t-text.charAt(i)*power) + text.charAt(i+P))%MOD;
                 if(t<0)
                     t+=MOD;
             }
@@ -62,7 +66,10 @@ public class RepeatedStringMatch_686 {
 
     @Test
     public void test(){
-
         assertEquals(3, repeatedStringMatch("abcd", "cdabcdab"));
+        assertEquals(2, repeatedStringMatch("abcd", "abcdabcd"));
+        assertEquals(2, repeatedStringMatch("abababaaba", "aabaaba"));
+
+
     }
 }
