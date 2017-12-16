@@ -1,7 +1,4 @@
 # system design
-
-## android
-
 - convex hull
     orientation of 3 ordered points : http://www.geeksforgeeks.org/orientation-3-ordered-points/
 
@@ -15,15 +12,27 @@ ccw에 대한 설명 : http://jason9319.tistory.com/358
 
 
 
+## android
+
 - android internal http://newandroidbook.com/
 
 - surface flinger, https://www.slideshare.net/jserv/design-and-concepts-of-android-graphics
 - input flinger, http://newandroidbook.com/Book/Input.html?r
 - android ipc, https://www.slideshare.net/jserv/android-ipc-mechanism
+
+
+### Treble
+
+- Android 8.0 (O)부터 Treble이 들어가기 시작함.
+- binderized HAL, same-process HAL, passthrough HAL 로 나눔.
+- aidl처럼 hidl이 생김
+
+
+references:
 - project treble, https://www.youtube.com/watch?v=Ksegw928gUM&t=1144s
 
-### binder
 
+### binder
 
 ```
  Client - proxy - kernel binder - stub - server

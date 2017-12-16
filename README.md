@@ -206,6 +206,7 @@ derived
 ## Convex hull
 
 - [Erect the Fence](https://leetcode.com/problems/erect-the-fence/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ErectTheFence_587.java)
+- [Convex polygon](https://leetcode.com/problems/convex-polygon/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/ConvexPolygon_469.java)
 
 ## Rolling hash(Rabin Karp algorithm)
 
