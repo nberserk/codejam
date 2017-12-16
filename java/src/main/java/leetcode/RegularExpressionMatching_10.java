@@ -1,4 +1,4 @@
-package main.java.crackcode.recursive;
+package leetcode;
 
 import org.junit.Test;
 
@@ -13,39 +13,44 @@ import static org.junit.Assert.assertEquals;
  * if dp[i][j] is true,  str[i-1] pattern[j-1] matched
  *
  */
-public class RegularExpressionMatching {
+public class RegularExpressionMatching_10 {
 
-    boolean matchRecursive(char[] s, char[] p, int si, int pi){
+    boolean matchRecursive(char[] s, char[] p, int si, int pi, int[][] dp){
         int S = s.length;
-        int P = p.length;
+        int P=p.length;
+        if(pi==P && si==S) return true;
+        if(pi==P) return false;
+        if(si==S){
+            if(pi+1<P&&p[pi+1]=='*')
+                return matchRecursive(s,p,si,pi+2,dp);
+            return false;
+        }
 
-        if(si==S && pi ==P) return true;
-        //if(si>S || pi > P) return false; // required ?
-        if(pi>=P) return false;
+        if(dp[si][pi]!=-1) return dp[si][pi]==1? true:false;
+        boolean ret=false;
+        if(pi+1<P&&p[pi+1]=='*'){
+            ret = matchRecursive(s,p, si, pi+2,dp);
+            if(!ret && (p[pi]==s[si] || p[pi]=='.'))
+                ret = matchRecursive(s,p,si+1,pi,dp);
+        }else{
+            if(p[pi]==s[si] || p[pi]=='.')
+                ret = matchRecursive(s,p,si+1,pi+1,dp);
+            else
+                ret=false;
+        }
 
-
-        boolean ret = false;
-        if(pi<P-1 && p[pi+1]=='*'){
-            char repeat = p[pi];
-
-            ret = matchRecursive(s,p, si, pi+2);
-            if(si<S){
-                if(repeat=='.'){
-                    ret = ret || matchRecursive(s, p, si + 1, pi);
-                }else{
-                    if(repeat == s[si])
-                        ret = ret || matchRecursive(s, p, si+1, pi);
-                }
-            }
-        }else if ( si<S && (s[si]==p[pi] || p[pi]=='.') )
-            ret = ret || matchRecursive(s,p, si+1, pi+1);
-
+        dp[si][pi]=ret?1:0;
         return ret;
     }
 
+
     public boolean isMatch(String s, String p) {
-        //return match((" " + s).toCharArray(), (" " + premoved).toCharArray());
-        return matchRecursive(s.toCharArray(), p.toCharArray(), 0, 0);
+        int plen = p.length();
+        int slen = s.length();
+        int[][] dp =new int[slen][plen];
+        for(int[] d: dp)
+            Arrays.fill(d,-1);
+        return matchRecursive(s.toCharArray(), p.toCharArray(), 0, 0,dp );
     }
 
     boolean matchIterative(String str, String pattern){

@@ -48,7 +48,8 @@ public class RepeatedStringMatch_686 {
         for (int i = 0; i <= T-P; i++){
             if (p==t){
                 if(check(pattern, text, i)){
-                    if(i==0 && org_pattern.length()==T-P && check(org_pattern,text,P) )
+                    int remain = T-(i+P);
+                    if(remain>= org_pattern.length())
                         r--;
                     return r;
                 }
@@ -66,6 +67,7 @@ public class RepeatedStringMatch_686 {
 
     @Test
     public void test(){
+        assertEquals(1, repeatedStringMatch("aa", "a"));
         assertEquals(3, repeatedStringMatch("abcd", "cdabcdab"));
         assertEquals(2, repeatedStringMatch("abcd", "abcdabcd"));
         assertEquals(2, repeatedStringMatch("abababaaba", "aabaaba"));

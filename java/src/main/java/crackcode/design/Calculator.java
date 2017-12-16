@@ -37,6 +37,8 @@ public class Calculator {
     int infixToPostfix(String expression){
         ArrayList<String> normalized = new ArrayList<>();
 
+        // tokenize
+        //String[] words = expression.split("(?<=[-+()*/])|(?=[-+()*/])");
         String[] words = expression.split("(?=[-+()*/])");
         System.out.println(Arrays.toString(words));
         Stack<Character> stack = new Stack<>();
@@ -99,6 +101,7 @@ public class Calculator {
     @Test
     public void test(){
         assertEquals("[4, +9, *10, +7]", Arrays.toString("4+9*10+7".split("(?=[-+()*/])")));
+        assertEquals("[4, +, 9, *, 10, +, 7]", Arrays.toString("4+9*10+7".split("(?<=[-+()*/])|(?=[-+()*/])")));
 //        assertEquals("[4, +9, *10, +7]", Arrays.toString("4+9*(10+7)".split("(?=[-+()*/])")));
 //        assertEquals("[4, +9, *10, +7]", Arrays.toString("(4+9)*10+7".split("(?=[-+()*/])")));
         assertEquals(101, infixToPostfix("4+9*10+7"));
