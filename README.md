@@ -29,6 +29,7 @@
 - [House Robber](https://leetcode.com/problems/house-robber/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/HouseRobber_198.java)
 - [Student Attendance Records II ](https://leetcode.com/problems/student-attendance-record-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/StudentAttendanceRecordII_552.java)
 - [4 Keys Keyboard ](https://leetcode.com/problems/4-keys-keyboard/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FourKeysKeyboard_651.java)
+- [Maximum vacation days ](https://leetcode.com/problems/maximum-vacation-days/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaxVacationDays_568.java)
 
 
 ### difficult recurrence equations
