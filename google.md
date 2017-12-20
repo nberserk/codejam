@@ -14,11 +14,24 @@ ccw에 대한 설명 : http://jason9319.tistory.com/358
 
 ## android
 
-- android internal http://newandroidbook.com/
+http://pierrchen.blogspot.kr/2014/06/android-ui-internal-design-of.html
 
-- surface flinger, https://www.slideshare.net/jserv/design-and-concepts-of-android-graphics
+- android internal http://newandroidbook.com/
 - input flinger, http://newandroidbook.com/Book/Input.html?r
 - android ipc, https://www.slideshare.net/jserv/android-ipc-mechanism
+
+### SurfaceFlinger
+
+SurfaceFlinger(server)  <--> Surface(client)
+
+- [여기에 따르면](https://source.android.com/devices/graphics/arch-sv-glsv) source crop과 실제 프레인 영역의 사이즈가 다른데 surface flinger가 스케일링 까지 담당함.
+- SurfaceView는 UI surface와 별도의 bufffer를 사용하기 때문에 앱의 UI와는 독릭적이다. 
+- surface는 bufferqueue의 producer이고 surfaceflinger는 consumer이다. 
+
+
+references
+- surface flinger, https://www.slideshare.net/jserv/design-and-concepts-of-android-graphics
+- at a glance, https://www.imgtec.com/blog/learning-about-the-android-graphics-subsystem/
 
 
 ### Treble

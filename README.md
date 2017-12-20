@@ -133,6 +133,7 @@
 - [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/description), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/MaximalRectangle_85.java)
 - [Decompress String](https://discuss.leetcode.com/topic/80691/google-onsite-interview-questions), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/DeCompressString.java)
 - [Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/BasicCalculatorII_227.java)
+- [Find permutation](https://leetcode.com/problems/find-permutation/description/), [solution](https://github.com/nberserk/codejam/blob/master/java/src/main/java/leetcode/FindPermutation_484.java)
 
 ## Sort
 
