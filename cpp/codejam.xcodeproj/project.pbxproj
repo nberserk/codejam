@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		954767DA19054D490021B178 /* codejam.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 954767D919054D490021B178 /* codejam.1 */; };
-		9550F78D1F4831CA00B8ADCE /* 170819RestoreImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9550F78C1F4831CA00B8ADCE /* 170819RestoreImage.cpp */; };
-		9579B6881FB68B92004A1646 /* 171111FileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9579B6871FB68B92004A1646 /* 171111FileSystem.cpp */; };
+		95B396B0205D3A5D003290C0 /* 180317TrashBin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B396AF205D3A5D003290C0 /* 180317TrashBin.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,6 +122,7 @@
 		95B06F2E199757FF0087CB42 /* strjoin.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strjoin.in; path = codejam/strjoin.in; sourceTree = "<group>"; };
 		95B0C0AC1A4FC9D7002FF5C0 /* chefbr.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = chefbr.txt; path = codejam/chef/chefbr.txt; sourceTree = "<group>"; };
 		95B235B1198CA52100AE9423 /* tictactoe.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tictactoe.in; path = codejam/tictactoe.in; sourceTree = "<group>"; };
+		95B396AF205D3A5D003290C0 /* 180317TrashBin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = 180317TrashBin.cpp; path = codejam/seen/180317TrashBin.cpp; sourceTree = "<group>"; };
 		95B491211A03A9CD0033F7FA /* newbus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = newbus.cpp; sourceTree = "<group>"; };
 		95B491221A03A9CD0033F7FA /* newbus.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = newbus.in; sourceTree = "<group>"; };
 		95C0E916194B37C1000C2AE7 /* numb3rs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = numb3rs.cpp; path = codejam/numb3rs.cpp; sourceTree = "<group>"; };
@@ -199,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				9550F78C1F4831CA00B8ADCE /* 170819RestoreImage.cpp */,
+				95B396AF205D3A5D003290C0 /* 180317TrashBin.cpp */,
 				9579B6871FB68B92004A1646 /* 171111FileSystem.cpp */,
 				9510CDE61EFE47AE00D56416 /* 170624Multiply32Bit.cpp */,
 				9507975D1E58302000A3493C /* 160806RectSwap.cpp */,
@@ -464,8 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9579B6881FB68B92004A1646 /* 171111FileSystem.cpp in Sources */,
-				9550F78D1F4831CA00B8ADCE /* 170819RestoreImage.cpp in Sources */,
+				95B396B0205D3A5D003290C0 /* 180317TrashBin.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
