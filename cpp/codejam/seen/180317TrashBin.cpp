@@ -5,7 +5,7 @@
 #else
 #include <unistd.h>
 #endif
-#include <stdio.h>
+#include "stdio.h"
 #include <math.h>
 #include <vector>
 #include <map>
@@ -28,6 +28,8 @@
 move_trash(y,x,dir)
 
  my result: 4960 0000
+
+ initial try on note9 : 3851
 */
 
 //using namespace std;
@@ -120,7 +122,7 @@ void move_trash(int y,int x, int d){
         org_trash_map[oy][ox]=0;
     }else{
         int i=org_trash_map[y][x]-1;
-
+		hassert(i < 3);
         if (trash_bin[i]>=3500) {
             hassert(0);
             return;
@@ -144,14 +146,14 @@ struct Cell{
 };
 
 Cell cell[SIZE][SIZE];
-Point queue[1000000];
+Point queue[2000000];
 int qs,qe;
 int totalConsumed;
 
 void addQueue(Point& pt){
     queue[qe] = pt;
     qe++;
-    hassert(qe<1000000);
+    hassert(qe<2000000);
 }
 
 Point popQueue(){
@@ -193,9 +195,10 @@ void bfs(int m[SIZE][SIZE], Point& ptBin){
                 t = t->parent;
             }
 
+			m[pt.y][pt.x] = 0;
             consumed++;
             totalConsumed++;
-            hprint("consumed(%d,%d), %d,%d \n", pt.x, pt.y, consumed, totalConsumed);
+            //hprint("consumed(%d,%d), %d,%d \n", pt.x, pt.y, consumed, totalConsumed);
             if(consumed==3500 || totalConsumed==10000) return;
         }
 
@@ -249,10 +252,10 @@ int main(){
     srand(3);
 
     for (int i = 0; i < 10; i++) {
+        
+		clock_t start = clock(); 
         gen_trash_map(trash_map);
-        test(trash_map);
-        clock_t start = clock();
-
+		test(trash_map);
         result += clock()-start;
 
         for (size_t y = 0; y < SIZE; y++)
@@ -266,8 +269,6 @@ int main(){
     }
 
     printf("result=%d\n", result);
-    printf("oops\n");
-    
 }
 
 
