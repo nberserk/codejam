@@ -183,7 +183,7 @@ void bfs(int m[SIZE][SIZE]){
         pCell->x = bin[i].x;
         pCell->y = bin[i].y;
         pCell->binIdx=i;
-    }    
+    }     
 
     int dir[4][2] = {{0,1}, {0,-1},{1,0},{-1,0} };
     while(qe-qs>0){
@@ -263,6 +263,159 @@ void test(int m[SIZE][SIZE]){
 
 // end of user code
 
+/////////////////////////////////////////////////
+// try 3
+Point trash[10000];
+
+struct Dist{
+    int ti, dist, bi;
+};
+
+int distance(Point& from, Point& to){
+    int dx = from.x-to.x;
+    if(dx<0) dx=-dx;
+    int dy = from.y-to.y;
+    if(dy<0) dy=-dy;
+    return dx+dy;
+}
+
+int partition(Dist d[30000], int s, int e){
+    int pv = d[e].dist;
+    int j=s-1;
+    for(int i=s;i<e;i++){
+        if(d[i].dist<pv){           
+            Dist t = d[i];
+            d[i]=d[j+1];
+            d[j+1]=t;
+            j++;
+        }
+    } 
+    j++;
+    Dist t=d[j];
+    d[j]=d[e];
+    d[e]=t;
+    return j;
+}
+
+void qsort(Dist d[30000], int s, int e){
+    if(s<e){
+        int p = partition(d,s,e);
+        qsort(d, s, p-1);
+        qsort(d, p+1,e);
+    }
+}
+
+bool onWay(int y, int x, int dir){
+    int ox = x;
+    int oy = y;
+    switch (dir) {
+        case 0: y--; break;
+        case 1: y++; break;
+        case 2: x--; break;
+        case 3: x++; break;
+    }
+    for(int i=0;i<3;i++){
+        if(bin[i].x==x && bin[i].y==y){ //conflict
+            return true;          
+        }
+    }
+    return false;
+}
+
+void test_3(int m[SIZE][SIZE]){
+    for (size_t i = 0; i < 3; i++){
+		consumed[i] = 0;
+	}
+
+    int ti=0, bi=0;
+    for (int y=0; y<SIZE; y++) {
+        for (int x=0; x<SIZE; x++) {
+            if (m[y][x]>0) {
+                bin[bi].x = x;
+                bin[bi].y = y;
+				bin[bi].bin = bi;
+                bi++;
+                
+            }else if(m[y][x]==-1){
+                trash[ti].x=x;
+                trash[ti].y=y;
+                ti++;
+            }
+        }        
+    }	
+
+    Dist d[30000];
+	/*
+	for (size_t i = 0; i < 10; i++)
+	{
+		d[i].dist = 10-i;
+		d[i].ti = i;
+	}
+	qsort(d, 0, 9);
+	*/
+
+    int di=0;
+    for(int i=0;i<10000;i++){
+        for(int j=0;j<3;j++){
+            d[di].ti = i;
+            d[di].bi = j;
+            d[di].dist = distance(bin[j], trash[i]);
+            di++;
+        }
+    }
+
+    qsort(d, 0, 29999);
+
+    bool used[10000] = {0,};
+    for(int i=0;i<30000;i++){
+        bi = d[i].bi;
+        ti = d[i].ti;
+        if(used[ti]) continue;
+        if(consumed[bi]>=3500) continue;
+        
+        Point& pt = trash[d[i].ti];
+        int tx = pt.x;
+        int ty = pt.y;
+        Point& dest = bin[d[i].bi];
+        int dy = dest.y-pt.y;
+        int dx = dest.x-pt.x;
+        //
+        while (dy>0){
+
+            move(ty, tx, 1);
+            ty++;
+            dy--;
+        }
+        while (dy<0){
+            move(ty, tx, 0);
+            ty--;
+            dy++;
+        }
+        while(dx>0){
+            move(ty,tx,3);
+            tx++;
+            dx--;
+        }
+        while(dx<0){
+            move(ty,tx,2);
+            tx--;
+            dx++;
+        }
+
+        consumed[bi]++;
+        used[ti]=true;
+    }
+
+
+    		
+
+   
+
+}
+// end of try3
+/////////////////////////////////////////////////
+
+
 int main(){
     srand(3);
 
@@ -270,7 +423,8 @@ int main(){
         
 		clock_t start = clock(); 
         gen_trash_map(trash_map);
-		test(trash_map);
+		//test(trash_map);
+		test_3(trash_map);
         result += clock()-start;
 
         for (size_t y = 0; y < SIZE; y++)

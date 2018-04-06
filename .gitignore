@@ -11,4 +11,7 @@ cpp/codejam/bin
 out
 .idea
 
+#vstudio
+*.vcproj.filter
+*.vcproj.user
 
