@@ -27,7 +27,8 @@
 3 trash bin : 1,2,3
 move_trash(y,x,dir)
 
- my result: 4960 0000
+ my result:        4960 0000
+ test_3 on macbook: 155 0373
 
  initial try on note9 : 3851
   2nd version : 5303
@@ -61,6 +62,7 @@ int trash_map[SIZE][SIZE];
 int org_trash_map[SIZE][SIZE];
 int trash_bin[3];
 int result;
+int gDebugMoveCall;
 
 void gen_trash_map(int m[SIZE][SIZE]){
     for (int y=0; y<SIZE; y++) {
@@ -305,7 +307,17 @@ void qsort(Dist d[30000], int s, int e){
     }
 }
 
-bool onWay(int y, int x, int dir){
+bool onWay(int y, int x, int exclude){    
+    for(int i=0;i<3;i++){
+        if(i==exclude) continue;
+        if(bin[i].x==x && bin[i].y==y){ //conflict
+            return true;          
+        }
+    }
+    return false;
+}
+
+void move(int& y, int& x, int dir, int bi){
     int ox = x;
     int oy = y;
     switch (dir) {
@@ -314,12 +326,88 @@ bool onWay(int y, int x, int dir){
         case 2: x--; break;
         case 3: x++; break;
     }
-    for(int i=0;i<3;i++){
-        if(bin[i].x==x && bin[i].y==y){ //conflict
-            return true;          
+
+    if(onWay(y,x, bi)){
+        x=ox;
+        y=oy;
+        Point& dest = bin[bi];
+        switch (dir) {
+            case 0:
+                if (y-1==dest.y) {
+                    if (x<dest.x) {
+                        move(y, x, 3, bi);
+                        move(y,x,0,bi);
+                    }else{
+                        move(y,x,2,bi);
+                        move(y,x,0,bi);
+                    }
+                }else{
+                    if(x==0){
+                        hassert(0);
+                    }else{
+                        move(y,x,2,bi);
+                        move(y,x,0,bi);
+                        move(y,x,0,bi);
+                        move(y,x,3,bi);
+                    }
+                }
+                break;
+            case 1:
+                if(y+1==dest.y){
+                    if (x<dest.x) {
+                        move(y,x,3,bi);
+                        move(y,x,dir,bi);
+                    }else{
+                        move(y,x,2,bi);
+                        move(y,x,dir,bi);
+                    }
+                }else{
+                    hassert(x!=0);
+                    move(y,x,2,bi);
+                    move(y,x,dir,bi);
+                    move(y,x,dir,bi);
+                    move(y,x,3,bi);
+                }
+                break;
+            case 2:
+                if(x-1==dest.x){
+                    if(y>dest.y){
+                        move(y, x, 0, bi);
+                        move(y,x,dir,bi);
+                    }else{
+                        move(y,x,1,bi);
+                        move(y,x,dir,bi);
+                    }
+                }else{
+                    hassert(y!=0);
+                    move(y, x, 0, bi);
+                    move(y,x,dir,bi);
+                    move(y,x,dir,bi);
+                    move(y,x,1,bi);
+                }
+                break;
+            case 3:
+                if(x+1==dest.x){
+                    if(y>dest.y){
+                        move(y,x,0,bi);
+                        move(y,x,dir,bi);
+                    }else{
+                        move(y,x,1,bi);
+                        move(y,x,dir,bi);
+                    }
+                }else{
+                    hassert(y!=0);
+                    move(y, x, 0, bi);
+                    move(y,x,dir,bi);
+                    move(y,x,dir,bi);
+                    move(y,x,1,bi);
+                }
+                break;
         }
+        return;
     }
-    return false;
+    
+    move_trash(oy,ox,dir);
 }
 
 void test_3(int m[SIZE][SIZE]){
@@ -373,33 +461,23 @@ void test_3(int m[SIZE][SIZE]){
         if(used[ti]) continue;
         if(consumed[bi]>=3500) continue;
         
-        Point& pt = trash[d[i].ti];
+        Point& pt = trash[ti];
         int tx = pt.x;
         int ty = pt.y;
-        Point& dest = bin[d[i].bi];
-        int dy = dest.y-pt.y;
-        int dx = dest.x-pt.x;
-        //
-        while (dy>0){
+        Point& dest = bin[bi];
 
-            move(ty, tx, 1);
-            ty++;
-            dy--;
+        //
+        while (dest.y-ty>0){
+            move(ty, tx, 1,bi);
         }
-        while (dy<0){
-            move(ty, tx, 0);
-            ty--;
-            dy++;
+        while (dest.y-ty<0){
+            move(ty, tx, 0,bi);
         }
-        while(dx>0){
-            move(ty,tx,3);
-            tx++;
-            dx--;
+        while(dest.x-tx>0){
+            move(ty,tx,3,bi);
         }
-        while(dx<0){
-            move(ty,tx,2);
-            tx--;
-            dx++;
+        while(dest.x-tx<0){
+            move(ty,tx,2,bi);
         }
 
         consumed[bi]++;
