@@ -32,6 +32,7 @@ move_trash(y,x,dir)
 
  initial try on note9 : 3851
   2nd version : 5303
+  test_3 on note9 : 1462
 */
 
 //using namespace std;
