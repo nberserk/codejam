@@ -56,7 +56,7 @@ public class SavingTheUniverseAgaing {
         int count=0;
         while(calc(ch)>D){
             boolean swap=false;
-            for (int i = 0; i < N-1; i++) {
+            for (int i = N-2; i >=0; i--) {
                 if(ch[i]=='C'&&ch[i+1]=='S'){
                     ch[i]='S';
                     ch[i+1]='C';
@@ -75,8 +75,10 @@ public class SavingTheUniverseAgaing {
 
     @Test
     public void test(){
+        assertEquals(-1, solve(1, "SS"));
         assertEquals(1, solve(1, "CS"));
         assertEquals(0, solve(2, "CS"));
+        assertEquals(0, solve(2, "CC"));
         assertEquals(2, solve(6, "SCCSSC"));
         assertEquals(5, solve(3, "CSCSS"));
 

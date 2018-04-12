@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -36,8 +37,7 @@ public class TroubleSort {
 
     private static int solve(int[] n) {
         int N = n.length;
-        int start=0;;
-        int count=0;
+        int start=0;
         while(true){
             boolean swap=false;
             //System.out.println("phase:"+count++);
@@ -67,12 +67,44 @@ public class TroubleSort {
         return -1;
     }
 
+    private static int solve_2(int[] n) {
+        int N = n.length;
+        int start=0;
+
+        int en=N/2+N%2;
+        int on=N/2;
+        int[] odd = new int[on];
+        int[] even = new int[en];
+
+        for (int i = 0; i < N; i++) {
+            if(i%2==0)
+                even[i/2]=n[i];
+            else
+                odd[i/2]=n[i];
+        }
+
+        Arrays.sort(even);
+        Arrays.sort(odd);
+
+        for (int i = 0; i < en; i++) {
+            if(i<on && even[i]>odd[i])
+                return i*2;
+            if(i+1<en && odd[i]>even[i+1]){
+                return i*2+1;
+            }
+        }
+
+        return -1;
+    }
+
     @Test(timeout = 20000)
-    @Test
     public void test(){
+        assertEquals(-1, solve_2(new int[]{5, 6, 8, 4, 3}));
+        assertEquals(1, solve_2(new int[]{8, 9, 7}));
+        assertEquals(1, solve_2(new int[]{9,4,3,100,2,33,54,38,99}));
+
         assertEquals(-1, solve(new int[]{5, 6, 8, 4, 3}));
         assertEquals(1, solve(new int[]{8, 9, 7}));
-
         assertEquals(1, solve(new int[]{9,4,3,100,2,33,54,38,99}));
 
         for (int j = 0; j < 100; j++) {
@@ -83,9 +115,11 @@ public class TroubleSort {
                 n[i] = random.nextInt(1000000);
             }
 
-            int r = solve(n);
-            System.out.println(r);
-            //assertEquals(0, solve(n));
+            //int r = solve(n);
+            int r2 = solve_2(n);
+
+            //assertEquals(r,r2);
+            System.out.println(r2);
         }
     }
 
