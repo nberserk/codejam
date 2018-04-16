@@ -27,18 +27,21 @@
 3 trash bin : 1,2,3
 move_trash(y,x,dir)
 
- my result:        4960 0000
- test_3 on macbook: 155 0373
 
- initial try on note9 : 3851
-  2nd version : 5303
-  test_3 on note9 : 1462
+test_3 result:
+#call=3824023
+#call=4283547
+#call=3791827
+#call=5921104
+#call=4192411
+#call=4926693
+#call=5569157
+#call=4476165
+#call=5253270
+#call=4244935
+result=46484589
+
 */
-
-//using namespace std;
-// #define H_MAX 987654321
-// #define H_MIN -987654321
-// #define H_EPSILON 0.000001
 
 #define SWAP(a,b) do{int t=a;a=b;b=t;} while(0)
 
@@ -63,7 +66,7 @@ int trash_map[SIZE][SIZE];
 int org_trash_map[SIZE][SIZE];
 int trash_bin[3];
 int result;
-int gDebugMoveCall;
+int gMoveTrashCount;
 
 void gen_trash_map(int m[SIZE][SIZE]){
     for (int y=0; y<SIZE; y++) {
@@ -132,6 +135,7 @@ void move_trash(int y,int x, int d){
         trash_bin[i]++;
         org_trash_map[oy][ox]=0;
     }
+    gMoveTrashCount++;
 }
 
 // start of user code
@@ -434,15 +438,6 @@ void test_3(int m[SIZE][SIZE]){
     }	
 
     Dist d[30000];
-	/*
-	for (size_t i = 0; i < 10; i++)
-	{
-		d[i].dist = 10-i;
-		d[i].ti = i;
-	}
-	qsort(d, 0, 9);
-	*/
-
     int di=0;
     for(int i=0;i<10000;i++){
         for(int j=0;j<3;j++){
@@ -452,7 +447,6 @@ void test_3(int m[SIZE][SIZE]){
             di++;
         }
     }
-
     qsort(d, 0, 29999);
 
     bool used[10000] = {0,};
@@ -484,35 +478,81 @@ void test_3(int m[SIZE][SIZE]){
         consumed[bi]++;
         used[ti]=true;
     }
-
-
-    		
-
-   
-
 }
 // end of try3
 /////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
+// try 4
+struct Trash{
+    Point p;
+    int d[3];
+    int bi;
+};
+
+Trash gTrash[10000];
+void test_4(int m[SIZE][SIZE]) {
+    for (size_t i = 0; i < 3; i++){
+		consumed[i] = 0;
+	}
+
+    int ti=0, bi=0;
+    for (int y=0; y<SIZE; y++) {
+        for (int x=0; x<SIZE; x++) {
+            if (m[y][x]>0) {
+                bin[bi].x = x;
+                bin[bi].y = y;
+				bin[bi].bin = bi;
+                bi++;
+                
+            }else if(m[y][x]==-1){
+                gTrash[ti].p.x=x;
+                gTrash[ti].p.y=y;
+                ti++;
+            }
+        }        
+    }	
+    
+    int di=0;
+    for(int i=0;i<10000;i++){
+        int min = 1000000;
+        int mini=0;
+        for(int j=0;j<3;j++){
+            gTrash[i].d[j]=distance(bin[j], gTrash[i].p);
+            if(gTrash[i].d[j]<min){
+                min=gTrash[i].d[j];
+                mini=j;
+            }
+        }
+        consumed[mini]++;
+        gTrash[i].bi=mini;
+    }
+
+    
+}
+/////////////////////////////////////////////////
 
 int main(){
     srand(3);
 
     for (int i = 0; i < 10; i++) {
         
+        gMoveTrashCount=0;
 		clock_t start = clock(); 
         gen_trash_map(trash_map);
 		//test(trash_map);
-		test_3(trash_map);
+		test_4(trash_map);
         result += clock()-start;
 
+        result += gMoveTrashCount;
+		printf("#call=%d\n", gMoveTrashCount);
         for (size_t y = 0; y < SIZE; y++)
         {
             for (size_t x = 0; x < SIZE; x++)
             {
                 if(org_trash_map[y][x] == -1)
                     result += 10000;
-            }
+            }	
         }
     }
 
