@@ -383,8 +383,115 @@ struct Bin{
 
 Bin gBin[3];
 Trash gTrash[10000];
+int* gM[SIZE];
+
+bool onWay_4(int y, int x, int exclude){
+    for(int i=0;i<3;i++){
+        if(i==exclude) continue;
+        if(gBin[i].pt.x==x && gBin[i].pt.y==y){ //conflict
+            return true;
+        }
+    }
+    return false;
+}
+
+void move_4(int& y, int& x, int dir, int bi){
+    int ox = x;
+    int oy = y;
+    switch (dir) {
+        case 0: y--; break;
+        case 1: y++; break;
+        case 2: x--; break;
+        case 3: x++; break;
+    }
+    
+    //if(gM[
+    if(onWay_4(y,x, bi)){
+        x=ox;
+        y=oy;
+        Point& dest = gBin[bi].pt;
+        switch (dir) {
+            case 0:
+                if (y-1==dest.y) {
+                    if (x<dest.x) {
+                        move_4(y, x, 3, bi);
+                        move_4(y,x,0,bi);
+                    }else{
+                        move_4(y,x,2,bi);
+                        move_4(y,x,0,bi);
+                    }
+                }else{
+                    if(x==0){
+                        hassert(0);
+                    }else{
+                        move_4(y,x,2,bi);
+                        move_4(y,x,0,bi);
+                        move_4(y,x,0,bi);
+                        move_4(y,x,3,bi);
+                    }
+                }
+                break;
+            case 1:
+                if(y+1==dest.y){
+                    if (x<dest.x) {
+                        move_4(y,x,3,bi);
+                        move_4(y,x,dir,bi);
+                    }else{
+                        move_4(y,x,2,bi);
+                        move_4(y,x,dir,bi);
+                    }
+                }else{
+                    hassert(x!=0);
+                    move_4(y,x,2,bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y,x,3,bi);
+                }
+                break;
+            case 2:
+                if(x-1==dest.x){
+                    if(y>dest.y){
+                        move_4(y, x, 0, bi);
+                        move_4(y,x,dir,bi);
+                    }else{
+                        move_4(y,x,1,bi);
+                        move_4(y,x,dir,bi);
+                    }
+                }else{
+                    hassert(y!=0);
+                    move_4(y, x, 0, bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y,x,1,bi);
+                }
+                break;
+            case 3:
+                if(x+1==dest.x){
+                    if(y>dest.y){
+                        move_4(y,x,0,bi);
+                        move_4(y,x,dir,bi);
+                    }else{
+                        move_4(y,x,1,bi);
+                        move_4(y,x,dir,bi);
+                    }
+                }else{
+                    hassert(y!=0);
+                    move_4(y, x, 0, bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y,x,1,bi);
+                }
+                break;
+        }
+        return;
+    }
+    
+    move_trash(oy,ox,dir);
+}
+
 
 void test_4(int m[SIZE][SIZE]) {
+    //gM=m;
     for (size_t i = 0; i < 3; i++){
 		gBin[i].tc = 0;
 	}
@@ -513,8 +620,37 @@ void test_4(int m[SIZE][SIZE]) {
 
 
     // move
-    for(int i=0;i<3;i++){
-        Bin* pbin = gBin+i;
+    for(int k=0;k<3;k++){
+        Bin* pbin = gBin+k;
+        for (int i=0; i<pbin->tc; i++) {
+            int ti =pbin->trash[i];
+            dist[i].ti = ti;
+            dist[i].dist= gTrash[ti].d[k];
+        }
+        qsort(dist, 0, pbin->tc-1);
+        for (int i=0; i<pbin->tc; i++) {
+            ti = dist[i].ti;
+
+            Point& pt = gTrash[ti].p;
+            Point& dest = pbin->pt;
+            int tx = pt.x;
+            int ty = pt.y;
+
+            //
+            while (dest.y-ty>0){
+                move_4(ty, tx, 1,k);
+            }
+            while (dest.y-ty<0){
+                move_4(ty, tx, 0,bi);
+            }
+            while(dest.x-tx>0){
+                move_4(ty,tx,3,bi);
+            }
+            while(dest.x-tx<0){
+                move_4(ty,tx,2,bi);
+            }
+            
+        }
 
     }
 
@@ -523,7 +659,7 @@ void test_4(int m[SIZE][SIZE]) {
 
 int main(){
     srand(3);
-
+    
     for (int i = 0; i < 10; i++) {
 
         gMoveTrashCount=0;
