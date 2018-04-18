@@ -44,6 +44,7 @@ result=46484589
 */
 
 #define SWAP(a,b) do{int t=a;a=b;b=t;} while(0)
+#define MIN(a,b) ((a)>(b)?(a):(b))
 
 #define HDEBUG
 #ifdef HDEBUG
@@ -61,6 +62,7 @@ void hassert(bool a){
 }
 
 #define SIZE 1000
+#define MAX_TRASH 10000
 
 int trash_map[SIZE][SIZE];
 int org_trash_map[SIZE][SIZE];
@@ -131,7 +133,7 @@ void move_trash(int y,int x, int d){
         int i=org_trash_map[y][x]-1;
 		hassert(i < 3);
 		hassert(trash_bin[i] < 3500);
-        
+
         trash_bin[i]++;
         org_trash_map[oy][ox]=0;
     }
@@ -144,138 +146,14 @@ struct Point{
 	int bin;
 };
 
-struct Cell{
-    int x,y;
-    int depth;
-    int dir;
-    int binIdx;
-    Cell* parent;
-    bool visited;
-};
-
-Cell cell[SIZE][SIZE][3];
-Point queue[6000000];
-int qs,qe;
-int totalConsumed;
-Point bin[3];
-int consumed[3];
-
-void addQueue(Point& pt){
-    queue[qe] = pt;
-    qe++;
-    hassert(qe<6000000);
-}
-
-Point popQueue(){
-    Point& r = queue[qs++];
-    return r;
-}
-
-
-void bfs(int m[SIZE][SIZE]){
-    
-    for (int y=0; y<SIZE; y++) {
-        for (int x=0; x<SIZE; x++) {
-            cell[y][x][0].visited=false;
-			cell[y][x][1].visited = false;
-			cell[y][x][2].visited = false;
-        }
-    }
-
-    qs = qe=0;
-    for(int i=0;i<3;i++){
-        addQueue(bin[i]);
-        Cell* pCell = &cell[bin[i].y][bin[i].x][i];
-        pCell->parent=0;
-        pCell->x = bin[i].x;
-        pCell->y = bin[i].y;
-        pCell->binIdx=i;
-    }     
-
-    int dir[4][2] = {{0,1}, {0,-1},{1,0},{-1,0} };
-    while(qe-qs>0){
-        Point pt = popQueue();
-
-        Cell& c = cell[pt.y][pt.x][pt.bin];
-        if(c.visited)continue;
-        c.visited=true;
-		if (consumed[pt.bin] >= 3500)
-			continue;
-        if (m[pt.y][pt.x]==-1) {
-			
-            // move to bin
-            Cell* t = &c;
-            while (t->parent!=0) {
-                move_trash(t->y, t->x, t->dir);
-                t = t->parent;
-            }
-
-			m[pt.y][pt.x] = 0;
-			consumed[pt.bin]++;
-			hassert(consumed[pt.bin] <= 3500);
-            totalConsumed++;
-            //hprint("consumed(%d,%d), %d,%d \n", pt.x, pt.y, consumed, totalConsumed);
-            if(totalConsumed==10000) return;
-        }
-
-        Point np;
-        for (int j=0; j<4; j++) {
-            int nx = pt.x + dir[j][0];
-            int ny = pt.y + dir[j][1];
-            if(nx<0||ny<0||nx>=SIZE||ny>=SIZE) continue;
-            Cell* nc = &cell[ny][nx][pt.bin];
-            if(nc->visited || m[ny][nx]>0) continue;
-			
-            nc->parent = &c;
-            nc->depth = c.depth+1;
-            nc->x = nx;
-            nc->y = ny;
-            nc->dir = j;
-			nc->binIdx = pt.bin;
-
-            np.x = nx;
-            np.y = ny;
-			np.bin = pt.bin;
-            addQueue(np);
-        }
-    }
-}
-
-void test(int m[SIZE][SIZE]){
-
-    int bi=0;
-    totalConsumed=0;
-
-	for (size_t i = 0; i < 3; i++){
-		consumed[i] = 0;
-	}
-
-    // find bin
-    for (int y=0; y<SIZE; y++) {
-        for (int x=0; x<SIZE; x++) {
-            if (m[y][x]>0) {
-                bin[bi].x = x;
-                bin[bi].y = y;
-				bin[bi].bin = bi;
-                bi++;
-                if(bi==3)break;
-            }
-        }
-        if(bi==3)break;
-    }			
-
-    // bfs
-    bfs(m);    
-}
-
-// end of user code
-
 /////////////////////////////////////////////////
 // try 3
+Point bin[3];
 Point trash[10000];
-
+int consumed[3];
 struct Dist{
     int ti, dist, bi;
+    int bti, idxMid;
 };
 
 int distance(Point& from, Point& to){
@@ -290,13 +168,13 @@ int partition(Dist d[30000], int s, int e){
     int pv = d[e].dist;
     int j=s-1;
     for(int i=s;i<e;i++){
-        if(d[i].dist<pv){           
+        if(d[i].dist<pv){
             Dist t = d[i];
             d[i]=d[j+1];
             d[j+1]=t;
             j++;
         }
-    } 
+    }
     j++;
     Dist t=d[j];
     d[j]=d[e];
@@ -312,11 +190,11 @@ void qsort(Dist d[30000], int s, int e){
     }
 }
 
-bool onWay(int y, int x, int exclude){    
+bool onWay(int y, int x, int exclude){
     for(int i=0;i<3;i++){
         if(i==exclude) continue;
         if(bin[i].x==x && bin[i].y==y){ //conflict
-            return true;          
+            return true;
         }
     }
     return false;
@@ -411,7 +289,7 @@ void move(int& y, int& x, int dir, int bi){
         }
         return;
     }
-    
+
     move_trash(oy,ox,dir);
 }
 
@@ -428,14 +306,14 @@ void test_3(int m[SIZE][SIZE]){
                 bin[bi].y = y;
 				bin[bi].bin = bi;
                 bi++;
-                
+
             }else if(m[y][x]==-1){
                 trash[ti].x=x;
                 trash[ti].y=y;
                 ti++;
             }
-        }        
-    }	
+        }
+    }
 
     Dist d[30000];
     int di=0;
@@ -455,7 +333,7 @@ void test_3(int m[SIZE][SIZE]){
         ti = d[i].ti;
         if(used[ti]) continue;
         if(consumed[bi]>=3500) continue;
-        
+
         Point& pt = trash[ti];
         int tx = pt.x;
         int ty = pt.y;
@@ -483,52 +361,163 @@ void test_3(int m[SIZE][SIZE]){
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
-// try 4
+// try4
 struct Trash{
     Point p;
     int d[3];
     int bi;
 };
+struct Bin{
+    Point pt;
+    int trash[MAX_TRASH];
+    int tc;
 
+    void add(int ti){
+        trash[tc++]=ti;
+    }
+    void remove(int bti){
+        trash[bti]=trash[tc-1];
+        tc--;
+    }
+};
+
+Bin gBin[3];
 Trash gTrash[10000];
+
 void test_4(int m[SIZE][SIZE]) {
     for (size_t i = 0; i < 3; i++){
-		consumed[i] = 0;
+		gBin[i].tc = 0;
 	}
 
     int ti=0, bi=0;
     for (int y=0; y<SIZE; y++) {
         for (int x=0; x<SIZE; x++) {
             if (m[y][x]>0) {
-                bin[bi].x = x;
-                bin[bi].y = y;
-				bin[bi].bin = bi;
+                gBin[bi].pt.x = x;
+                gBin[bi].pt.y = y;
                 bi++;
-                
             }else if(m[y][x]==-1){
                 gTrash[ti].p.x=x;
                 gTrash[ti].p.y=y;
                 ti++;
             }
-        }        
-    }	
-    
-    int di=0;
+        }
+    }
+
     for(int i=0;i<10000;i++){
         int min = 1000000;
         int mini=0;
         for(int j=0;j<3;j++){
-            gTrash[i].d[j]=distance(bin[j], gTrash[i].p);
+            gTrash[i].d[j]=distance(gBin[j].pt, gTrash[i].p);
             if(gTrash[i].d[j]<min){
                 min=gTrash[i].d[j];
                 mini=j;
             }
         }
-        consumed[mini]++;
+        gBin[mini].add(i);
         gTrash[i].bi=mini;
     }
 
-    
+    int min=0;
+    int max=0;
+    int mid=0;
+    for(int i=0;i<3;i++){
+        if(gBin[i].tc<gBin[min].tc){
+            min=i;
+        }
+        if(gBin[i].tc>gBin[max].tc){
+            max=i;
+        }
+    }
+    for(int i=0;i<3;i++){
+        if(i==min || i == max) continue;
+        mid=i;
+    }
+
+    // move mid to low
+    Dist dist[MAX_TRASH];
+    if(gBin[mid].tc > 3500){
+        Bin* pbin = gBin+mid;
+        hassert(pbin->tc<MAX_TRASH);
+        for(int i=0;i<pbin->tc;i++){
+            int ti = pbin->trash[i];
+            dist[i].bti = i;
+            dist[i].dist = gTrash[ti].d[mid]-gTrash[ti].d[min];
+        }
+
+        qsort(dist, 0, pbin->tc-1);
+
+        Bin* destBin = gBin+min;
+        int count = gBin[mid].tc-3500;
+        for(int i=0;i<count;i++){
+            int ti = pbin->trash[dist[i].bti];
+            pbin->remove(dist[i].bti);
+            destBin->add(ti);
+        }
+    }else{
+        //move max to mid
+        Bin* pbin = gBin+max;
+        hassert(pbin->tc<MAX_TRASH);
+        for(int i=0;i<pbin->tc;i++){
+            int ti = pbin->trash[i];
+            dist[i].bti = i;
+            dist[i].dist = gTrash[ti].d[max]-gTrash[ti].d[mid];
+        }
+        qsort(dist, 0, pbin->tc-1);
+
+        Bin* destBin = gBin+mid;
+        int count = 3500-gBin[mid].tc;
+        for(int i=0;i<count;i++){
+            int ti = pbin->trash[dist[i].bti];
+            pbin->remove(dist[i].bti);
+            destBin->add(ti);
+        }
+    }
+
+    // move max to min
+    Bin* src = gBin+max;
+    Bin* middle =gBin+mid;
+    Bin* dest = gBin+min;
+    for(int i=0;i<src->tc;i++){
+        int ti = src->trash[i];
+        dist[i].bti=i;
+        dist[i].idxMid=-1;
+        dist[i].dist = gTrash[ti].d[max]-gTrash[ti].d[min];
+        hassert(gBin[mid].tc==3500);
+        for(int j=0;j<3500;j++){
+            int can = gBin[mid].trash[j];
+            int t = gTrash[ti].d[max]+gTrash[can].d[mid]-gTrash[ti].d[mid]-gTrash[can].d[min];
+            if(t<dist[i].dist){
+                dist[i].idxMid=j;
+                dist[i].dist=t;
+            }
+        }
+    }
+    qsort(dist,0, src->tc-1);
+    int count = src->tc-3500;
+    for(int i=0;i<count;i++){
+        int ti = src->trash[dist[i].bti];
+        if(dist[i].idxMid==-1){
+            src->remove(dist[i].bti);
+            dest->add(ti);
+        }else{
+            src->remove(dist[i].bti);
+            middle->add(ti);
+            ti = middle->trash[dist[i].idxMid];
+            middle->remove(dist[i].idxMid);
+            dest->add(ti);
+            hassert(middle->tc==3500);
+        }
+    }
+    hassert(gBin[max].tc==3500);
+
+
+    // move
+    for(int i=0;i<3;i++){
+        Bin* pbin = gBin+i;
+
+    }
+
 }
 /////////////////////////////////////////////////
 
@@ -536,9 +525,9 @@ int main(){
     srand(3);
 
     for (int i = 0; i < 10; i++) {
-        
+
         gMoveTrashCount=0;
-		clock_t start = clock(); 
+		clock_t start = clock();
         gen_trash_map(trash_map);
 		//test(trash_map);
 		test_4(trash_map);
@@ -552,7 +541,7 @@ int main(){
             {
                 if(org_trash_map[y][x] == -1)
                     result += 10000;
-            }	
+            }
         }
     }
 
