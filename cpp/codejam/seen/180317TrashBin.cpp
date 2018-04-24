@@ -380,118 +380,90 @@ struct Bin{
         tc--;
     }
 };
+struct Cell{
+    Point pt;
+    int depth;
+    int ti;
+    int dir;
+    Cell* parent;
+    bool visited;
+};
+Cell cell[SIZE][SIZE];
+Point queue[2000000];
+int qs, qe;
+void addQueue(Point& pt){
+    queue[qe] = pt;
+    qe++;
+    hassert(qe<2000000);
+}
+
+ Point popQueue(){
+     Point& r = queue[qs++];
+     return r;
+ }
+
+ void bfs(int m[SIZE][SIZE], Bin* pStart){
+
+    for (int y=0; y<SIZE; y++) {
+        for (int x=0; x<SIZE; x++) {
+            cell[y][x].visited=false;
+        }
+    }
+
+    qs = qe=0;
+    addQueue(pStart->pt);
+    Cell* pCell = &cell[pStart->pt.y][pStart->pt.x];
+    pCell->parent=0;
+    pCell->pt = pStart->pt;
+
+    int remaining=pStart->tc;
+    int dir[4][2] = {{0,1}, {0,-1},{1,0},{-1,0} };
+    while(remaining>0){
+        hassert(qe>qs);
+        Point pt = popQueue();
+
+        Cell& c = cell[pt.y][pt.x];
+        if(c.visited)continue;
+        c.visited=true;
+
+        if (m[pt.y][pt.x]==-1) {
+            // move to bin
+            Cell* t = &c;
+            while (t->parent!=0) {
+                move_trash(t->pt.y, t->pt.x, t->dir);
+                t = t->parent;
+            }
+
+			m[pt.y][pt.x] = 0;
+            remaining--;
+            //hprint("consumed(%d,%d), %d,%d \n", pt.x, pt.y, consumed, totalConsumed);
+        }
+
+        Point np;
+        for (int j=0; j<4; j++) {
+            int nx = pt.x + dir[j][0];
+            int ny = pt.y + dir[j][1];
+            if(nx<0||ny<0||nx>=SIZE||ny>=SIZE) continue;
+            Cell* nc = &cell[ny][nx];
+            if(nc->visited || m[ny][nx]>0) continue;
+            nc->parent = &c;
+            nc->depth = c.depth+1;
+            nc->pt.x = nx;
+            nc->pt.y = ny;
+            nc->dir = j;
+
+            np.x = nx;
+            np.y = ny;
+            addQueue(np);
+        }
+    }
+}
+
 
 Bin gBin[3];
 Trash gTrash[10000];
-int* gM[SIZE];
-
-bool onWay_4(int y, int x, int exclude){
-    for(int i=0;i<3;i++){
-        if(i==exclude) continue;
-        if(gBin[i].pt.x==x && gBin[i].pt.y==y){ //conflict
-            return true;
-        }
-    }
-    return false;
-}
-
-void move_4(int& y, int& x, int dir, int bi){
-    int ox = x;
-    int oy = y;
-    switch (dir) {
-        case 0: y--; break;
-        case 1: y++; break;
-        case 2: x--; break;
-        case 3: x++; break;
-    }
-    
-    //if(gM[
-    if(onWay_4(y,x, bi)){
-        x=ox;
-        y=oy;
-        Point& dest = gBin[bi].pt;
-        switch (dir) {
-            case 0:
-                if (y-1==dest.y) {
-                    if (x<dest.x) {
-                        move_4(y, x, 3, bi);
-                        move_4(y,x,0,bi);
-                    }else{
-                        move_4(y,x,2,bi);
-                        move_4(y,x,0,bi);
-                    }
-                }else{
-                    if(x==0){
-                        hassert(0);
-                    }else{
-                        move_4(y,x,2,bi);
-                        move_4(y,x,0,bi);
-                        move_4(y,x,0,bi);
-                        move_4(y,x,3,bi);
-                    }
-                }
-                break;
-            case 1:
-                if(y+1==dest.y){
-                    if (x<dest.x) {
-                        move_4(y,x,3,bi);
-                        move_4(y,x,dir,bi);
-                    }else{
-                        move_4(y,x,2,bi);
-                        move_4(y,x,dir,bi);
-                    }
-                }else{
-                    hassert(x!=0);
-                    move_4(y,x,2,bi);
-                    move_4(y,x,dir,bi);
-                    move_4(y,x,dir,bi);
-                    move_4(y,x,3,bi);
-                }
-                break;
-            case 2:
-                if(x-1==dest.x){
-                    if(y>dest.y){
-                        move_4(y, x, 0, bi);
-                        move_4(y,x,dir,bi);
-                    }else{
-                        move_4(y,x,1,bi);
-                        move_4(y,x,dir,bi);
-                    }
-                }else{
-                    hassert(y!=0);
-                    move_4(y, x, 0, bi);
-                    move_4(y,x,dir,bi);
-                    move_4(y,x,dir,bi);
-                    move_4(y,x,1,bi);
-                }
-                break;
-            case 3:
-                if(x+1==dest.x){
-                    if(y>dest.y){
-                        move_4(y,x,0,bi);
-                        move_4(y,x,dir,bi);
-                    }else{
-                        move_4(y,x,1,bi);
-                        move_4(y,x,dir,bi);
-                    }
-                }else{
-                    hassert(y!=0);
-                    move_4(y, x, 0, bi);
-                    move_4(y,x,dir,bi);
-                    move_4(y,x,dir,bi);
-                    move_4(y,x,1,bi);
-                }
-                break;
-        }
-        return;
-    }
-    
-    move_trash(oy,ox,dir);
-}
-
 
 void test_4(int m[SIZE][SIZE]) {
-    //gM=m;
     for (size_t i = 0; i < 3; i++){
 		gBin[i].tc = 0;
 	}
@@ -506,6 +478,7 @@ void test_4(int m[SIZE][SIZE]) {
             }else if(m[y][x]==-1){
                 gTrash[ti].p.x=x;
                 gTrash[ti].p.y=y;
+                cell[y][x].ti=ti;
                 ti++;
             }
         }
@@ -620,38 +593,9 @@ void test_4(int m[SIZE][SIZE]) {
 
 
     // move
-    for(int k=0;k<3;k++){
-        Bin* pbin = gBin+k;
-        for (int i=0; i<pbin->tc; i++) {
-            int ti =pbin->trash[i];
-            dist[i].ti = ti;
-            dist[i].dist= gTrash[ti].d[k];
-        }
-        qsort(dist, 0, pbin->tc-1);
-        for (int i=0; i<pbin->tc; i++) {
-            ti = dist[i].ti;
-
-            Point& pt = gTrash[ti].p;
-            Point& dest = pbin->pt;
-            int tx = pt.x;
-            int ty = pt.y;
-
-            //
-            while (dest.y-ty>0){
-                move_4(ty, tx, 1,k);
-            }
-            while (dest.y-ty<0){
-                move_4(ty, tx, 0,bi);
-            }
-            while(dest.x-tx>0){
-                move_4(ty,tx,3,bi);
-            }
-            while(dest.x-tx<0){
-                move_4(ty,tx,2,bi);
-            }
-            
-        }
-
+    for(int i=0;i<3;i++){
+        Bin* pbin = gBin+i;
+        bfs(m, pbin);
     }
 
 }
@@ -659,7 +603,7 @@ void test_4(int m[SIZE][SIZE]) {
 
 int main(){
     srand(3);
-    
+
     for (int i = 0; i < 10; i++) {
 
         gMoveTrashCount=0;
