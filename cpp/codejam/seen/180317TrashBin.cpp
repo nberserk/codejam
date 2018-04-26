@@ -69,6 +69,7 @@ int org_trash_map[SIZE][SIZE];
 int trash_bin[3];
 int result;
 int gMoveTrashCount;
+int approximateMove;
 
 void gen_trash_map(int m[SIZE][SIZE]){
     for (int y=0; y<SIZE; y++) {
@@ -339,6 +340,8 @@ void test_3(int m[SIZE][SIZE]){
         int ty = pt.y;
         Point& dest = bin[bi];
 
+        approximateMove += distance(pt,dest);
+
         //
         while (dest.y-ty>0){
             move(ty, tx, 1,bi);
@@ -356,6 +359,8 @@ void test_3(int m[SIZE][SIZE]){
         consumed[bi]++;
         used[ti]=true;
     }
+
+    printf("#appMove=%d ", approximateMove);
 }
 // end of try3
 /////////////////////////////////////////////////
@@ -391,6 +396,7 @@ struct Cell{
 Cell cell[SIZE][SIZE];
 Point queue[2000000];
 int qs, qe;
+
 void addQueue(Point& pt){
     queue[qe] = pt;
     qe++;
@@ -459,11 +465,88 @@ void addQueue(Point& pt){
     }
 }
 
-
 Bin gBin[3];
 Trash gTrash[10000];
+int (*gM)[SIZE];
+
+void move_4(int& y, int& x, int dir, int bi){
+    int ox = x;
+    int oy = y;
+    switch (dir) {
+        case 0: y--; break;
+        case 1: y++; break;
+        case 2: x--; break;
+        case 3: x++; break;
+    }
+
+    if(gM[y][x]==0 || gM[y][x]==bi+1){
+        move_trash(oy,ox,dir);
+        return;
+    }
+
+    //if( gM[y][x]==-1 || (gM[y][x]>0 && gM[y][x]!=bi+1) )
+    {
+        x=ox;
+        y=oy;
+        Point& dest = gBin[bi].pt;
+        switch (dir) {
+            case 0:
+                if (x<dest.x) {
+                    move_4(y, x, 3, bi);
+                    move_4(y,x,0,bi);
+                }else if(x>dest.x){
+                    move_4(y,x,2,bi);
+                    move_4(y,x,0,bi);
+                }else{
+                    hassert(0);
+                }
+                break;
+            case 1:
+                if (x<dest.x) {
+                    move_4(y,x,3,bi);
+                    move_4(y,x,dir,bi);
+                }else if(x>dest.x){
+                    move_4(y,x,2,bi);
+                    move_4(y,x,dir,bi);
+                }else{
+                    hassert(0);
+                }
+                break;
+            case 2:
+               if(y>dest.y){
+                    move_4(y, x, 0, bi);
+                    move_4(y,x,dir,bi);
+                }else if(y<dest.y){
+                    move_4(y,x,1,bi);
+                    move_4(y,x,dir,bi);
+                }else{
+                    move_4(y, x, 0, bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y, x, 1, bi);
+                }
+                break;
+            case 3:
+               if(y>dest.y){
+                    move_4(y,x,0,bi);
+                    move_4(y,x,dir,bi);
+                }else if(y<dest.y){
+                    move_4(y,x,1,bi);
+                    move_4(y,x,dir,bi);
+                }else{
+                    move_4(y, x, 0, bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y,x,dir,bi);
+                    move_4(y, x, 1, bi);
+                }
+                break;
+        }
+    }
+}
+
 
 void test_4(int m[SIZE][SIZE]) {
+    gM=m;
     for (size_t i = 0; i < 3; i++){
 		gBin[i].tc = 0;
 	}
@@ -472,9 +555,10 @@ void test_4(int m[SIZE][SIZE]) {
     for (int y=0; y<SIZE; y++) {
         for (int x=0; x<SIZE; x++) {
             if (m[y][x]>0) {
+                hassert(m[y][x]>0&&m[y][x]<=3);
+                bi = m[y][x]-1;
                 gBin[bi].pt.x = x;
                 gBin[bi].pt.y = y;
-                bi++;
             }else if(m[y][x]==-1){
                 gTrash[ti].p.x=x;
                 gTrash[ti].p.y=y;
@@ -513,91 +597,163 @@ void test_4(int m[SIZE][SIZE]) {
         if(i==min || i == max) continue;
         mid=i;
     }
+    printf("min=%d,max=%d,mid=%d\n",min,max, mid);
 
-    // move mid to low
     Dist dist[MAX_TRASH];
-    if(gBin[mid].tc > 3500){
-        Bin* pbin = gBin+mid;
-        hassert(pbin->tc<MAX_TRASH);
-        for(int i=0;i<pbin->tc;i++){
-            int ti = pbin->trash[i];
-            dist[i].bti = i;
-            dist[i].dist = gTrash[ti].d[mid]-gTrash[ti].d[min];
-        }
+    if (gBin[0].tc > 3500 || gBin[1].tc > 3500 || gBin[2].tc > 3500) {
+        // TODO: overflow to low
 
-        qsort(dist, 0, pbin->tc-1);
+        // move mid to min
+        if(gBin[mid].tc > 3500){
+            Bin* pbin = gBin+mid;
+            hassert(pbin->tc<MAX_TRASH);
+            for(int i=0;i<pbin->tc;i++){
+                int ti = pbin->trash[i];
+                dist[i].bti = i;
+                dist[i].dist = -gTrash[ti].d[mid]+gTrash[ti].d[min];
+            }
 
-        Bin* destBin = gBin+min;
-        int count = gBin[mid].tc-3500;
-        for(int i=0;i<count;i++){
-            int ti = pbin->trash[dist[i].bti];
-            pbin->remove(dist[i].bti);
-            destBin->add(ti);
-        }
-    }else{
-        //move max to mid
-        Bin* pbin = gBin+max;
-        hassert(pbin->tc<MAX_TRASH);
-        for(int i=0;i<pbin->tc;i++){
-            int ti = pbin->trash[i];
-            dist[i].bti = i;
-            dist[i].dist = gTrash[ti].d[max]-gTrash[ti].d[mid];
-        }
-        qsort(dist, 0, pbin->tc-1);
+            qsort(dist, 0, pbin->tc-1);
 
-        Bin* destBin = gBin+mid;
-        int count = 3500-gBin[mid].tc;
-        for(int i=0;i<count;i++){
-            int ti = pbin->trash[dist[i].bti];
-            pbin->remove(dist[i].bti);
-            destBin->add(ti);
-        }
-    }
+            Bin* destBin = gBin+min;
+            int count = gBin[mid].tc-3500;
+            for(int i=0;i<count;i++){
+                int ti = pbin->trash[dist[i].bti];
+                pbin->remove(dist[i].bti);
+                destBin->add(ti);
+            }
+        }else{
+            //move max to mid
+            Bin* pbin = gBin+max;
+            hassert(pbin->tc<MAX_TRASH);
+            for(int i=0;i<pbin->tc;i++){
+                int ti = pbin->trash[i];
+                dist[i].bti = i;
+                dist[i].dist = -gTrash[ti].d[max]+gTrash[ti].d[mid];
+            }
+            qsort(dist, 0, pbin->tc-1);
 
-    // move max to min
-    Bin* src = gBin+max;
-    Bin* middle =gBin+mid;
-    Bin* dest = gBin+min;
-    for(int i=0;i<src->tc;i++){
-        int ti = src->trash[i];
-        dist[i].bti=i;
-        dist[i].idxMid=-1;
-        dist[i].dist = gTrash[ti].d[max]-gTrash[ti].d[min];
-        hassert(gBin[mid].tc==3500);
-        for(int j=0;j<3500;j++){
-            int can = gBin[mid].trash[j];
-            int t = gTrash[ti].d[max]+gTrash[can].d[mid]-gTrash[ti].d[mid]-gTrash[can].d[min];
-            if(t<dist[i].dist){
-                dist[i].idxMid=j;
-                dist[i].dist=t;
+            Bin* destBin = gBin+mid;
+            int count = 3500-gBin[mid].tc;
+            for(int i=0;i<count;i++){
+                int ti = pbin->trash[dist[i].bti];
+                pbin->remove(dist[i].bti);
+                destBin->add(ti);
             }
         }
-    }
-    qsort(dist,0, src->tc-1);
-    int count = src->tc-3500;
-    for(int i=0;i<count;i++){
-        int ti = src->trash[dist[i].bti];
-        if(dist[i].idxMid==-1){
-            src->remove(dist[i].bti);
-            dest->add(ti);
-        }else{
-            src->remove(dist[i].bti);
-            middle->add(ti);
-            ti = middle->trash[dist[i].idxMid];
-            middle->remove(dist[i].idxMid);
-            dest->add(ti);
-            hassert(middle->tc==3500);
+
+        // move max to min
+        Bin* src = gBin+max;
+        Bin* middle =gBin+mid;
+        Bin* dest = gBin+min;
+        Dist distMaxToMin[MAX_TRASH];
+        Dist distMaxToMid[3500];
+        Dist distMidToMin[3500];
+        hassert(middle->tc<=3500 && dest->tc<=3500);
+
+        for(int i=0;i<src->tc;i++){
+            int ti = src->trash[i];
+            distMaxToMin[i].bti=i;
+            distMaxToMin[i].dist = -gTrash[ti].d[max]+gTrash[ti].d[min];
+
+            distMaxToMid[i].bti=i;
+            distMaxToMid[i].dist = -gTrash[ti].d[max]+gTrash[ti].d[mid];
         }
+        qsort(distMaxToMin,0, src->tc-1);
+        qsort(distMaxToMid,0, src->tc-1);
+
+        for(int i=0;i<middle->tc;i++){
+            int ti = middle->trash[i];
+            distMidToMin[i].bti=i;
+            distMidToMin[i].idxMid=-1;
+            distMidToMin[i].dist = -gTrash[ti].d[mid]+gTrash[ti].d[min];
+        }
+        qsort(distMidToMin, 0, middle->tc-1);
+
+        bool used[MAX_TRASH] = {0, };
+        int remain=src->tc-3500;
+        int iMaxToMin=0;
+        int iMaxToMid=0;
+        int iMidToMin=0;
+        while(remain>0){
+            while(used[distMaxToMin[iMaxToMin].bti])
+                iMaxToMin++;
+            while(used[distMaxToMid[iMaxToMid].bti])
+                iMaxToMid++;
+            while(used[distMidToMin[iMidToMin].bti])
+                iMidToMin++;
+            hassert(iMaxToMid<3500&&iMaxToMin<3500&&iMidToMin<src->tc);
+
+            if(distMaxToMin[iMaxToMin].dist < distMaxToMid[iMaxToMid].dist + distMidToMin[iMidToMin].dist){
+                int ti = src->trash[distMaxToMin[iMaxToMin].bti];
+                dest->add(ti);
+                src->remove(distMaxToMin[iMaxToMin].bti);
+                used[ti]=true;
+            }else{
+                int ti = src->trash[distMaxToMid[iMaxToMid].bti];
+                middle->add(ti);
+                src->remove(distMaxToMid[iMaxToMid].bti);
+                used[ti]=true;
+                ti = middle->trash[distMidToMin[iMidToMin].bti];
+                dest->add(ti);
+                middle->remove(distMidToMin[iMidToMin].bti);
+                used[ti]=true;
+            }
+            hassert(middle->tc==3500);
+            remain--;
+        }
+    }else{
+        hassert(0);
     }
-    hassert(gBin[max].tc==3500);
 
 
     // move
-    for(int i=0;i<3;i++){
-        Bin* pbin = gBin+i;
-        bfs(m, pbin);
-    }
 
+    for(int k=0;k<3;k++){
+        Bin* pbin = gBin+k;
+        for(int i=0;i<pbin->tc;i++){
+            int ti=pbin->trash[i];
+            approximateMove+=gTrash[ti].d[k];
+        }
+        bfs(m, pbin);
+        /*
+        for(int i=0;i<pbin->tc;i++){
+            int ti = pbin->trash[i];
+            dist[i].ti = ti;
+            dist[i].dist = gTrash[ti].d[k];
+        }
+        qsort(dist, 0, pbin->tc-1);
+        for(int i=0;i<pbin->tc;i++){
+            int ti = dist[i].ti;
+            int bi = k;
+
+            Point& pt = gTrash[ti].p;
+            int tx = pt.x;
+            int ty = pt.y;
+            Point& dest = gBin[bi].pt;
+
+            while(tx!= dest.x || ty!=dest.y){
+                if (dest.y-ty>0){
+                    move_4(ty, tx, 1,bi);
+                    continue;
+                }
+                if (dest.y-ty<0){
+                    move_4(ty, tx, 0,bi);
+                    continue;
+                }
+                if(dest.x-tx>0){
+                    move_4(ty,tx,3,bi);
+                    continue;
+                }
+                if(dest.x-tx<0){
+                    move_4(ty,tx,2,bi);
+                    continue;
+                }
+            }
+            m[pt.y][pt.x]=0;
+        }*/
+    }
+    printf("#appMove=%d ", approximateMove);
 }
 /////////////////////////////////////////////////
 
@@ -605,16 +761,15 @@ int main(){
     srand(3);
 
     for (int i = 0; i < 10; i++) {
-
-        gMoveTrashCount=0;
-		clock_t start = clock();
         gen_trash_map(trash_map);
-		//test(trash_map);
-		test_4(trash_map);
+
+        clock_t start = clock();
+		test_3(trash_map);
+//		test_4(trash_map);
         result += clock()-start;
 
-        result += gMoveTrashCount;
-		printf("#call=%d\n", gMoveTrashCount);
+        //result += gMoveTrashCount;
+		printf(" #call=%d\n", gMoveTrashCount);
         for (size_t y = 0; y < SIZE; y++)
         {
             for (size_t x = 0; x < SIZE; x++)
@@ -625,7 +780,8 @@ int main(){
         }
     }
 
-    printf("result=%d\n", result);
+    result += gMoveTrashCount;
+    printf("result=%d, #move=%d\n", result, gMoveTrashCount);
 }
 
 
