@@ -2,56 +2,12 @@ package codejam2018;//package codejam2018;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class WaffleChoppers {
-    int[][] m;
-    int[][] tree;
-    int row, col, size;
 
-    public void init(int[][] matrix) {
-        row = matrix.length;
-        if (row > 0)
-            col = matrix[0].length;
-        size = col + 1;
-        m = new int[row][col];
-        tree = new int[row + 1][col + 1];
-        for (int y = 0; y < row; y++) {
-            for (int x = 0; x < col; x++) {
-                update(y, x, matrix[y][x]);
-            }
-        }
-    }
-
-    public void update(int row, int col, int val) {
-        int delta = val - m[row][col];
-        int i = col+1;
-        while(i<size){
-            tree[row][i] += delta;
-            i+= i& (-i);
-        }
-        m[row][col] = val;
-    }
-
-    public int sum (int row, int col){
-        int sum=0;
-        int i= col+1;
-        while(i>0){
-            sum += tree[row][i];
-            i-=(i&(-i));
-        }
-        return sum;
-    }
-
-    public int sumRegion(int row1, int col1, int row2, int col2) {
-        int s = 0;
-        for (int y = row1; y <= row2; y++) {
-            s+= sum(y, col2);
-            s-= sum(y,col1-1);
-        }
-        return s;
-    }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
@@ -80,68 +36,67 @@ public class WaffleChoppers {
         }
     }
 
+    static int getSum(int[] s, int start, int end){
+        int ret = s[end];
+        if(start>0){
+            ret-=s[start-1];
+        }
+        return ret;
+    }
+
     private static int solve(int R, int C, int H, int V, int[][] m) {
         int chocolate =0;
+
+        int[][] sum = new int[R][C];
         for (int i = 0; i < R; i++) {
             for (int j = 0; j < C; j++) {
                 if(m[i][j]==1) chocolate++;
+                if(j>0)
+                    sum[i][j]=sum[i][j-1] + m[i][j];
             }
         }
         if(chocolate==0) return 0;
-
         if(chocolate%( (H+1)*(V+1)) !=0) return -1;
 
-        WaffleChoppers waffleChoppers = new WaffleChoppers();
-        waffleChoppers.init(m);
         int target = chocolate/(H+1);
-        int[] h = new int[H+1];
-        int hi=0;
-        int startRow=0;
+
+        ArrayList<Integer> hsplit = new ArrayList<>();
+        int count=0;
         for (int i = 0; i < R; i++) {
-            int count = waffleChoppers.sumRegion(startRow,0,i,C-1);
+            count += getSum(sum[i],0, C-1);
+            if(count>target) return -1;
+            if(count ==target) {
+                hsplit.add(i);
+                count=0;
+            }
+        }
+
+        if(hsplit.size()!=H) return -1;
+
+        // first row
+        target/=(V+1);
+        count=0;
+        ArrayList<Integer> vsplit = new ArrayList<>();
+        for (int i = 0; i < C; i++) {
+            for (int j = 0; j < hsplit.get(0); j++) {
+                count+=getSum(sum[j],j-1,j);
+            }
+            if(count > target) return -1;
             if(count==target){
-                h[hi++]=i;
-                startRow=i+1;
-            }else if(count > target)
-                return -1;
-        }
-        if(hi!=H+1) return -1;
-
-        target /=(V+1);
-
-        startRow=0;
-        int[] v = new int[V+1];
-        for (int i = 0; i < 1; i++) {
-            int vi=0;
-            int startCol=0;
-
-            for (int j = 0; j < C; j++) {
-                int count = waffleChoppers.sumRegion(startRow, startCol, h[i], j);
-                if(count==target){
-                    startCol=j+1;
-                    v[vi++]=j;
-                }else if(count > target)
-                    return -1;
+                count==0;
+                vsplit.add(i);
             }
-
-            if(vi!=V+1)
-                return -1;
-            startRow=h[i]+1;
         }
 
-        for (int i = 1; i < H+1; i++) {
+        if(vsplit.size()!=V) return -1;
 
-            int startCol=0;
+        for (int i = 1; i < hsplit.size(); i++) {
+            int sr = hsplit.get(i-1);
+            int er = hsplit.get(i);
 
-            for (int j = 0; j < V+1; j++) {
-                int count = waffleChoppers.sumRegion(startRow, startCol, h[i], v[j]);
-                if(count==target){
-                    startCol=v[j]+1;
-                }else
-                    return -1;
-            }
-            startRow=h[i]+1;
         }
+
+
 
         return 0;
     }
