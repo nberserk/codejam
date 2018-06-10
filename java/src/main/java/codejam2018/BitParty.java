@@ -1,9 +1,13 @@
 package codejam2018;
 
+import org.junit.Test;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.PriorityQueue;
+import java.util.Arrays;
 import java.util.Scanner;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by darren on 5/17/17.
@@ -11,14 +15,7 @@ import java.util.Scanner;
 
 public class BitParty {
 
-    static class Cashier{
-        Cashier(){
-            next =took=0;
-        }
-        int M,S,P;
-        int next;
-        int took;
-    }
+
 
     public static void main(String[] args) {
         Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
@@ -27,51 +24,70 @@ public class BitParty {
             int R = in.nextInt();
             int B = in.nextInt();
             int C = in.nextInt();
-            Cashier[] cashier = new Cashier[C];
+            int[][] m = new int[C][3];
             for (int j = 0; j < C; j++) {
-                cashier[j] = new Cashier();
-                cashier[j].M = in.nextInt();
-                cashier[j].S = in.nextInt();
-                cashier[j].P = in.nextInt();
+                m[j][0] = in.nextInt();
+                m[j][1] = in.nextInt();
+                m[j][2] = in.nextInt();
             }
 
-            int r = solve(R,B, cashier);
+            long r = solve(R,B, m);
             System.out.println("Case #" + i + ": " + r);
         }
     }
 
-    private static int solve(int R, int B, Cashier[] cashier) {
-        PriorityQueue<Cashier> pq = new PriorityQueue<>(cashier.length, (a,b)-> a.next ==b.next ? a.S-b.S:a.next -b.next);
-        for (Cashier c: cashier){
-            c.next = c.S+c.P;
-            pq.add(c);
+    static boolean can(int R, int B, int[][] cm, long T){
+        int C = cm.length;
+        long[] capacity = new long[C];
+        for (int i = 0; i < C; i++) {
+            capacity[i] = Math.max(0, Math.min(cm[i][0], (T-cm[i][2])/cm[i][1]));
         }
 
-        while(B>0 && pq.size()>0){
-            Cashier c = pq.poll();
-            if(c.took==0 && R==0){
-                continue;
-            }
-            if(c.took==0)  R--;
-            c.took=c.next;
-            c.next +=c.S;
-            c.M--;
-            if(c.M>0)
-                pq.add(c);
-            B--;
+        Arrays.sort(capacity);
+        long b=0;
+        for (int i = 0; i <R; i++) {
+            b+=capacity[C-1-i];
+            if(b>=B) return true;
         }
-
-        int max=-Integer.MIN_VALUE;
-        for (Cashier c: cashier){
-            max=Math.max(max, c.took);
-        }
-        return max;
+        return false;
     }
 
+    private static long solve(int R, int B, int[][] cm) {
+        long lo=1;
+        long hi=Long.MAX_VALUE-3;
 
-//    @Test
-//    public void test(){
-//    }
+        while(lo<hi){
+//            if(lo+1==hi){
+//                if (can(R,B,cm,lo))
+//                    return (int)lo;
+//                else return (int)hi;
+//            }
+            long time = (lo+hi)/2;
+            if (can(R,B,cm, time)){
+                hi=time;
+            }else
+                lo=time+1;
+        }
+        return lo;
+    }
+
+    @Test
+    public void test(){
+        int[][] m = new int[][]{
+                {2,3,3},
+                {2,1,5},
+                {2,4,2},
+                {2,2,4},
+                {2,5,1}
+        };
+        assertEquals(7, solve(3,4,m));
+
+        int[][] m2 = new int[][]{
+                {1,2,3},
+                {2,1,2},
+        };
+        assertEquals(4, solve(2,2,m2));
+    }
 
 
 }
