@@ -5,7 +5,7 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
-public class Test1 {
+public class CarFleet_853 {
 
     static class Fleet{
         int time;
