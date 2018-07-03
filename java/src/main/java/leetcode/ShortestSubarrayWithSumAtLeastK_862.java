@@ -1,35 +1,45 @@
 package leetcode;
 
-import java.util.TreeMap;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 
 public class ShortestSubarrayWithSumAtLeastK_862 {
+    static class Node implements Comparable<Node>{
+        int v,pos;
+        Node(int v,int p){
+            this.v=v;
+            this.pos=p;
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            return this.v-o.v;
+        }
+    }
 
     public int shortestSubarray(int[] A, int K) {
-        TreeMap<Integer, Integer> tree = new TreeMap<>();
-        int ret = Integer.MAX_VALUE;
-
+        long[] sum = new long[A.length+1];
         for (int i = 0; i < A.length; i++) {
-            if(A[i]>=K) return 1;
-            int target = K-A[i];
-            Integer val = tree.get(target);
-            if(val!=null){
-                ret = Math.min(ret, i-val+1);
-            }
-            Integer key = tree.higherKey(target);
-            while (key!=null){
-                ret = Math.min(ret,i-tree.get(key)+1);
-                key = tree.higherKey(key);
+            sum[i+1]=sum[i]+(long)A[i];
+        }
+
+        int ret = Integer.MAX_VALUE;
+        Deque<Integer> queue = new LinkedList<>();// maintain sorted state
+
+        for (int i = 0; i < sum.length; i++) {
+
+            while(queue.isEmpty()==false && sum[i]<=sum[queue.peekLast()]){
+                queue.pollLast(); // can't be min
             }
 
-            // add
-            tree.clear();
-            int v =0;
-            for (int j = i; j >=0 ; j--) {
-                v+=A[j];
-                tree.put(v, j);
+            while(queue.isEmpty()==false && sum[i]-sum[queue.peekFirst()]>=K){
+                ret = Math.min(ret, i-queue.peekFirst());
+                queue.pollFirst(); // poll because this is min len
             }
+            queue.addLast(i);
         }
 
         if (ret==Integer.MAX_VALUE) ret =-1;
@@ -39,7 +49,6 @@ public class ShortestSubarrayWithSumAtLeastK_862 {
 
     @org.junit.Test
     public void test(){
-
         assertEquals(9, shortestSubarray(new int[]{31,63,-38,43,65,74,90,-23,45,22}, 341));
         assertEquals(1, shortestSubarray(new int[]{45,95,97,-34,-42}, 21));
 
