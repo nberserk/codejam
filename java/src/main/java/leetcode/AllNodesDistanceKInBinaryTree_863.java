@@ -1,62 +1,62 @@
 package leetcode;
 
-import static org.junit.Assert.assertEquals;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class AllNodesDistanceKInBinaryTree_863 {
 
-    public int matrixScore(int[][] A) {
-        int R = A.length;
-        int C = A[0].length;
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
+        // fill parent
+        HashMap<TreeNode,TreeNode> parent = new HashMap<>();
+        fillParent(root, parent, null);
 
-        for (int c = 0; c < C; c++) {
-            int count=0;
-            for (int r = 0; r < R; r++) {
-                if (A[r][c]==1)count++;
-            }
-            if(count<R-count){
-                for (int r = 0; r < R; r++) {
-                    A[r][c]= A[r][c]==1?0:1;
-                }
-            }
-            //
-            if(c==0){
-                for (int r = 0; r < R; r++) {
-                    if(A[r][c]==0){
-                        for (int j = 0; j < C; j++) {
-                            A[r][j] = A[r][j]==0? 1:0;
-                        }
-                    }
-                }
-            }
-        }
 
-        int ret = 0;
-        for (int r = 0; r < R; r++) {
-            int mul=1;
-            for (int c = C-1; c >=0; c--) {
-                if(A[r][c]==1)
-                    ret+=mul;
-                mul*=2;
+        // child
+        List<Integer> ret = new ArrayList<>();
+        find(target, K, ret);
+
+        // upper
+        TreeNode cur = target;
+        while(true){
+            TreeNode p = parent.get(cur);
+            if(p==null) break;
+            K--;
+            if(K==0){
+                ret.add(p.val);
+                break;
             }
+            if(p.left==cur)
+                find(p.right,K-1, ret);
+            else
+                find(p.left, K-1, ret);
+            cur=p;
         }
         return ret;
     }
 
+    private void find(TreeNode target, int k, List<Integer> ret) {
+        if(target==null) return;
+        if(k==0) {
+            ret.add(target.val);
+            return;
+        }
+        find(target.left,k-1, ret);
+        find(target.right,k-1, ret);
+    }
+
+    private void fillParent(TreeNode root, HashMap<TreeNode, TreeNode> map, TreeNode parent) {
+        if(root==null) return;
+
+        if(parent!=null) map.put(root, parent);
+        fillParent(root.left,map, root);
+        fillParent(root.right,map, root);
+    }
 
     @org.junit.Test
     public void test(){
-        int[][] m2 = new int[][]{
-                {0,1},
-                {1,1}
-        };
-        assertEquals(5, matrixScore(m2));
 
-        int[][] m = new int[][]{
-                {0,0,1,1},
-                {1,0,1,0},
-                {1,1,0,0}
-        };
-        assertEquals(39, matrixScore(m));
+//        assertEquals(true, isOneBitCharacter(new int[]{1,0,0}));
 //        assertEquals(false, isOneBitCharacter(new int[]{1,1,1,0}));
     }
 }

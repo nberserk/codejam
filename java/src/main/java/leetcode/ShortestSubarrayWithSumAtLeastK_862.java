@@ -2,23 +2,10 @@ package leetcode;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 
 public class ShortestSubarrayWithSumAtLeastK_862 {
-    static class Node implements Comparable<Node>{
-        int v,pos;
-        Node(int v,int p){
-            this.v=v;
-            this.pos=p;
-        }
-
-        @Override
-        public int compareTo(Node o) {
-            return this.v-o.v;
-        }
-    }
 
     public int shortestSubarray(int[] A, int K) {
         long[] sum = new long[A.length+1];
@@ -45,7 +32,6 @@ public class ShortestSubarrayWithSumAtLeastK_862 {
         if (ret==Integer.MAX_VALUE) ret =-1;
         return ret;
     }
-
 
     @org.junit.Test
     public void test(){
