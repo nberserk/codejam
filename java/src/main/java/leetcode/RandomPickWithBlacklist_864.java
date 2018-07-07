@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 public class RandomPickWithBlacklist_864 {
 
+
     int N;
     int[] b;
 
@@ -15,37 +16,43 @@ public class RandomPickWithBlacklist_864 {
         Arrays.sort(blacklist);
         b = new int[blacklist.length+1];
         int prev=0;
+        b[0]=0;
         for (int i = 0; i < blacklist.length; i++) {
             if(i==0)
-                b[i] = blacklist[i]-prev;
+                b[i+1] = blacklist[i]-prev;
             else
-                b[i] = b[i-1]+blacklist[i]-prev-1;
+                b[i+1] = b[i]+blacklist[i]-prev-1;
             prev=blacklist[i];
         }
-        b[blacklist.length]=b[blacklist.length-1]+1;
     }
 
     public int pick() {
-        int target = (int)(Math.random()*(N-b.length));
-        target++;
+        int target = (int)(Math.random()*(N-b.length+1)); //0 or 1
 
         int low = 0;
-        int high = b.length-1;
+        int high = b.length-1; // 1 , target=1
+        int repeat=0;
         while(low<high){
-            int mid = (low+high)/2;
+            int mid = (low+high)/2; //mid=1
+            if(high-low==1){
+                repeat++;
+                if(repeat>5){
+                    if(target>=b[high])
+                        low=high;
+                    break;
+                }
+            }else
+                repeat=0;
             if(target>b[mid]){
-                low=mid+1;
+                low=mid;//low= 0
             }else if(target<b[mid]){
-                high=mid-1;
+                high=mid-1; //high=0
             }else{
-                high=mid;
+                low=mid; // high=1
             }
         }
-        if(b[low]==target){
-            return b[low]+low
-        }
-
-        return b[target]-1;
+        int start = b[low]+low;//0
+        return start + (target-b[low]);//0
     }
 
     public void init_1(int N, int[] blacklist) {
@@ -83,6 +90,18 @@ public class RandomPickWithBlacklist_864 {
         for (int i = 0; i < 5; i++) {
             int p = r.pick();
             Assert.assertTrue(p!= 1);
+            Assert.assertTrue(p!= 2);
+        }
+
+    }
+
+    @Test
+    public void test2() {
+        RandomPickWithBlacklist_864 r = new RandomPickWithBlacklist_864();
+        r.init(4, new int[]{2});
+        for (int i = 0; i < 10; i++) {
+            int p = r.pick();
+            System.out.println(p);
             Assert.assertTrue(p!= 2);
         }
 
