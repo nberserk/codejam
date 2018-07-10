@@ -4,11 +4,15 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SmallestSubtreeWithAllTheDeepestNodes_866 {
 
     ArrayList<TreeNode> leaf = new ArrayList<>();
     HashMap<TreeNode, Integer> depth = new HashMap<>();
+    HashMap<TreeNode, TreeNode> pMap = new HashMap<>();
+    int maxDepth = -1;
 
     void traverse(TreeNode n, HashMap<TreeNode, TreeNode> map, TreeNode parent, int d) {
         if (n == null) return;
@@ -20,46 +24,66 @@ public class SmallestSubtreeWithAllTheDeepestNodes_866 {
     }
 
     public TreeNode subtreeWithAllDeepest(TreeNode root) {
-        HashMap<TreeNode, TreeNode> pMap = new HashMap<>();
+
         traverse(root, pMap, null, 0);
 
         if (pMap.size() == 1) return root;
 
         ArrayList<TreeNode> deep = new ArrayList<>();
-        int max = -1;
+
         for (TreeNode n : leaf) {
-            if (depth.get(n) > max) {
+            if (depth.get(n) > maxDepth) {
                 deep.clear();
-                max = depth.get(n);
+                maxDepth = depth.get(n);
                 deep.add(n);
-            } else if (depth.get(n) == max) {
+            } else if (depth.get(n) == maxDepth) {
                 deep.add(n);
             }
         }
         if (deep.size() == 1) return deep.get(0);
 
-        ArrayList<TreeNode> parents = new ArrayList<>(); //first :deepest, last, root
-        int deepest = 0;
-        for (TreeNode n : deep) {
-            TreeNode p = pMap.get(n);
-            if (parents.size() == 0) {
-                while (p != null) {
-                    parents.add(p);
-                    p = pMap.get(p);
-                }
-            } else {
-                while (p != null) {
-                    if (parents.contains(p)) {
-                        int c = parents.indexOf(p);
-                        deepest = Math.max(c, deepest);
-                        break;
-                    }
-                    p = pMap.get(p);
+
+        return commonAncestor_refined(root);
+    }
+
+    TreeNode commonAncestor_refined(TreeNode node) {
+        if (node == null) return null;
+        if (depth.get(node) == maxDepth) return node;
+
+        TreeNode l = commonAncestor_refined(node.left);
+        TreeNode r = commonAncestor_refined(node.right);
+
+        if (l != null && r != null) return node;
+        if (l != null) return l;
+        if (r != null) return r;
+        return null;
+    }
+
+    TreeNode commonAncestor(List<TreeNode> deep) {
+        LinkedList<TreeNode> upper = new LinkedList<>();
+        int N = deep.size();
+        for (TreeNode tn : deep) {
+            upper.addLast(tn);
+        }
+        while (true) {
+            List<TreeNode> temp = new ArrayList<>();
+            for (TreeNode tn : upper) {
+                temp.add(pMap.get(tn));
+            }
+            upper.addAll(temp);
+            for (int i = 0; i < N; i++) {
+                upper.removeFirst();
+            }
+
+            boolean same = true;
+            for (int i = 0; i < N - 1; i++) {
+                if (upper.get(i) != upper.get(i + 1)) {
+                    same = false;
+                    break;
                 }
             }
+            if (same) return upper.getLast();
         }
-
-        return parents.get(deepest);
     }
 
 
