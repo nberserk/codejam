@@ -2,7 +2,7 @@
 target
 java/bin
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.ear
 .*
