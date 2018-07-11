@@ -1,8 +1,6 @@
 package leetcode;
 
 
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -18,7 +16,7 @@ public class TwoKeysKeyboard_650 {
         if (len > n) return Integer.MAX_VALUE;
 
         int ret = Integer.MAX_VALUE;
-        if(len!=paste)
+        if (len != paste)
             ret = Math.min(ret, find(n, len, len, press + 1));
 
         if (paste > 0)
@@ -32,12 +30,12 @@ public class TwoKeysKeyboard_650 {
     }
 
     public int minSteps(int n) {
-        int step=0;
-        int d=2;
-        while(n>1){
-            while(n%d==0){
-                step+=d;
-                n/=d;
+        int step = 0;
+        int d = 2;
+        while (n > 1) {
+            while (n % d == 0) {
+                step += d;
+                n /= d;
             }
             d++;
         }
@@ -46,7 +44,7 @@ public class TwoKeysKeyboard_650 {
 
 
     @org.junit.Test(timeout = 1000)
-    public void test(){
+    public void test() {
         assertEquals(0, minSteps(1));
         assertEquals(3, minSteps(3));
         assertEquals(7, minSteps(10));
@@ -55,7 +53,7 @@ public class TwoKeysKeyboard_650 {
     }
 
     @org.junit.Test(timeout = 1000)
-    public void test_n2(){
+    public void test_n2() {
         assertEquals(0, minSteps_n2(1));
         assertEquals(3, minSteps_n2(3));
         assertEquals(7, minSteps_n2(10));
