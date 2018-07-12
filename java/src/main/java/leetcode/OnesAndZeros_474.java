@@ -9,19 +9,51 @@ public class OnesAndZeros_474 {
     int MOD = 1000;
     int[][][] dp;
 
-    public int findMaxForm(String[] strs, int m, int n) {
-        int[] a = new int[strs.length];
+    public int findMaxForm_2nd(String[] strs, int m, int n) {
+        int[][][] dp2 = new int[strs.length + 1][m + 1][n + 1];
         for (int i = 0; i < strs.length; i++) {
-            int t = 0;
+            int zero = 0, one = 0;
             for (char c : strs[i].toCharArray()) {
-                if (c == '0') t++;
-                else t += MOD;
+                if (c == '0') zero++;
+                else one++;
             }
-            a[i] = t;
+            for (int j = 0; j < m + 1; j++) {
+                for (int k = 0; k < n + 1; k++) {
+                    dp2[i + 1][j][k] = dp2[i][j][k];
+                    if (zero <= j && one <= k) {
+                        dp2[i + 1][j][k] = Math.max(dp2[i + 1][j][k], 1 + dp2[i][j - zero][k - one]);
+                    }
+                }
+            }
         }
 
-        dp = new int[a.length][m + 1][n + 1];
-        return find(a, 0, m, n);
+        return dp2[strs.length][m][n];
+    }
+
+    // space optimized
+    public int findMaxForm(String[] strs, int m, int n) {
+        int[][][] dp2 = new int[2][m + 1][n + 1]; // we only need previous row. so we can reduce
+        for (int i = 0; i < strs.length; i++) {
+            int zero = 0, one = 0;
+            for (char c : strs[i].toCharArray()) {
+                if (c == '0') zero++;
+                else one++;
+            }
+
+            int cur = i % 2 == 0 ? 1 : 0; // i=0, => cur 1, prev 0
+            int prev = i % 2 == 0 ? 0 : 1;
+
+            for (int j = 0; j < m + 1; j++) {
+                for (int k = 0; k < n + 1; k++) {
+                    dp2[cur][j][k] = dp2[prev][j][k];
+                    if (zero <= j && one <= k) {
+                        dp2[cur][j][k] = Math.max(dp2[cur][j][k], 1 + dp2[prev][j - zero][k - one]);
+                    }
+                }
+            }
+        }
+
+        return dp2[strs.length % 2 == 0 ? 0 : 1][m][n]; // when strs.length==1, dp2[1] should be used
     }
 
     public int findMaxForm_1st(String[] strs, int m, int n) {
