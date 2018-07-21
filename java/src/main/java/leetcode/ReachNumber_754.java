@@ -33,28 +33,20 @@ public class ReachNumber_754 {
         long ret = step - 1 + diff * 2;
 
         // after
-        ret = Math.min(ret, step + (pos - t) * 2);
-        while (step < ret) {
-            diff = pos - t;
-            if (diff > 1) {
-                if (unit >= diff / 2) {
-                    ret = Math.min(ret, step);
-                    break;
-                } else {
-                    ret = Math.min(ret, step + diff * 2);
-                    break;
-                }
-            }
+        while ((pos - t) % 2 != 0) {
+            pos += unit;
             unit++;
             step++;
         }
+        ret = Math.min(ret, step);
 
         return (int) ret;
     }
 
     @Test(timeout = 1000)
     public void test() {
-        assertEquals(2, reachNumber(3));
+        assertEquals(5, reachNumber(5));
+        assertEquals(15, reachNumber(100));
         assertEquals(2, reachNumber(3));
         assertEquals(3, reachNumber(2));
     }
