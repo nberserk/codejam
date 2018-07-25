@@ -42,10 +42,7 @@ public class _489 {
         public boolean move() {
             int nx = x + dirOffset[this.dir][0];
             int ny = y + dirOffset[this.dir][1];
-            if (nx < 0 || ny < 0 || nx >= C || ny >= R) {
-                return false;
-            }
-            if (map[ny][nx] == 0) {
+            if (nx < 0 || ny < 0 || nx >= C || ny >= R || map[ny][nx]==0) {
                 return false;
             }
             x = nx;
@@ -69,10 +66,7 @@ public class _489 {
 
         @Override
         public void clean() {
-            if (map[y][x] != 1) {
-                assert false;
-            }
-
+            assert map[y][x] == 1;
             map[y][x] = -1;
         }
 
@@ -87,10 +81,11 @@ public class _489 {
             return true;
         }
 
-        public void pringMap() {
+        public void printMap() {
             for (int r = 0; r < R; r++) {
                 System.out.println(Arrays.toString(map[r]));
             }
+            System.out.println("");
         }
 
 
@@ -131,6 +126,7 @@ public class _489 {
 
     public boolean moveTo(int tx, int ty, Robot robot) {
         int orgx = x, orgy = y;
+        System.out.println(String.format("try to move, %d,%d->%d,%d",orgx,orgy,tx,ty));
         int dx = tx - x;
         int dy = ty - y;
         int dd = diffToDir(dx, dy);
@@ -148,6 +144,7 @@ public class _489 {
             while (ddir > 0) {
                 gDir++;
                 robot.turnLeft();
+                ddir--;
             }
             if (gDir >= 4) {
                 gDir -= 4;
@@ -161,6 +158,7 @@ public class _489 {
         } else {
             x += dirOffset[gDir][0];
             y += dirOffset[gDir][1];
+            System.out.println(String.format("%d,%d->%d,%d",orgx,orgy,x,y));
         }
         return true;
     }
@@ -182,8 +180,8 @@ public class _489 {
                 // move to cur using
                 Node t = cur;
                 while (true) {
-                    if (Math.abs(x - cur.x) + Math.abs(y - cur.y) == 1) {
-                        moveTo(cur.x, cur.y, robot);
+                    if (Math.abs(x - t.x) + Math.abs(y - t.y) == 1) {
+                        moveTo(t.x, t.y, robot);
                         break;
                     }
                     // move
@@ -193,15 +191,12 @@ public class _489 {
                     }
                     moveTo(t.x, t.y, robot);
                 }
-                if (x != cur.x && y != cur.y) { // met wall
-                    assert false;
+                if (x != cur.x || y != cur.y) { // met wall
                     continue;
                 }
             }
-            ((RobotImpl) robot).pringMap();
-            System.out.println(" ");
             robot.clean();
-            ((RobotImpl) robot).pringMap();
+            ((RobotImpl) robot).printMap();
 
 
             for (int i = 0; i < 4; i++) {
