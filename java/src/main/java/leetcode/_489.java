@@ -1,13 +1,13 @@
 package leetcode;
 
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Stack;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
 public class _489 {
+
+
     private interface Robot {
         // Returns true if the cell in front is open and robot moves into the cell.
         // Returns false if the cell in front is blocked and robot stays in the current cell.
@@ -87,129 +87,48 @@ public class _489 {
             }
             System.out.println("");
         }
-
-
     }
 
-    int mod = 1000;
     int[][] dirOffset = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
-    int x = 0, y = 0;
     int gDir = 0;
+    private Robot robot;
 
-
-    private class Node {
-        int x, y;
-        int pos; //y*mod+x
-        Node parent;
-
-        public Node(int x, int y, Node p) {
-            this.x = x;
-            this.y = y;
-            this.pos = y * mod + x;
-            this.parent = p;
-        }
+    String hash(int x, int y){
+        return x+","+y;
     }
 
-    int diffToDir(int dx, int dy) {
-        assert (Math.abs(dx) + Math.abs(dy)) == 1;
-        if (dx < 0) {
-            return 1;
-        }
-        if (dx > 0) {
-            return 3;
-        }
-        if (dy < 0) {
-            return 2;
-        }
-        return 0;
-    }
+    void clean(Robot robot, Set<String> visited, int x, int y){
+        String hash = hash(x,y);
+        if(visited.contains(hash)) return;
+        visited.add(hash);
+        robot.clean();
+//        ((RobotImpl)robot).printMap();
+//        System.out.println(String.format("entered %d,%d", x,y));
+        for (int i = 0; i < 4; i++) {
+            if (robot.move()){
+                int nx = x+dirOffset[gDir][0];
+                int ny = y+dirOffset[gDir][1];
+                clean(robot, visited, nx,ny);
 
-    public boolean moveTo(int tx, int ty, Robot robot) {
-        int orgx = x, orgy = y;
-        System.out.println(String.format("try to move, %d,%d->%d,%d",orgx,orgy,tx,ty));
-        int dx = tx - x;
-        int dy = ty - y;
-        int dd = diffToDir(dx, dy);
-        int ddir = dd - gDir;
-        if (ddir < 0) {
-            ddir += 4;
-        }
-        if (ddir == 3) {
-            gDir--;
-            if (gDir < 0) {
-                gDir += 4;
-            }
-            robot.turnRight();
-        } else {
-            while (ddir > 0) {
-                gDir++;
                 robot.turnLeft();
-                ddir--;
+                robot.turnLeft();
+                robot.move();
+                robot.turnLeft();
+                robot.turnLeft();
             }
-            if (gDir >= 4) {
-                gDir -= 4;
-            }
+            gDir++;
+            gDir%=4;
+            robot.turnLeft();
         }
-
-        if (!robot.move()) {
-            x = orgx;
-            y = orgy;
-            return false;
-        } else {
-            x += dirOffset[gDir][0];
-            y += dirOffset[gDir][1];
-            System.out.println(String.format("%d,%d->%d,%d",orgx,orgy,x,y));
-        }
-        return true;
     }
-
     public void cleanRoom(Robot robot) {
-
-        Stack<Node> stack = new Stack<>();
-        stack.push(new Node(0, 0, null));
-        HashSet<Integer> visited = new HashSet<>();
-        //HashMap<Integer, Node> tiles = new HashMap<>();
-
-        while (stack.size() > 0) {
-            Node cur = stack.pop();
-            if (visited.contains(cur.pos)) {
-                continue;
-            }
-            visited.add(cur.pos);
-            if (x != cur.x || y != cur.y) {
-                // move to cur using
-                Node t = cur;
-                while (true) {
-                    if (Math.abs(x - t.x) + Math.abs(y - t.y) == 1) {
-                        moveTo(t.x, t.y, robot);
-                        break;
-                    }
-                    // move
-                    t = t.parent;
-                    if (t == null) {
-                        break;
-                    }
-                    moveTo(t.x, t.y, robot);
-                }
-                if (x != cur.x || y != cur.y) { // met wall
-                    continue;
-                }
-            }
-            robot.clean();
-            ((RobotImpl) robot).printMap();
-
-
-            for (int i = 0; i < 4; i++) {
-                int nx = x + dirOffset[i][0];
-                int ny = y + dirOffset[i][1];
-                stack.push(new Node(nx, ny, cur));
-            }
-        }
+        this.robot=robot;
+        HashSet<String> visited = new HashSet<>();
+        clean(robot, visited, 0,0);
     }
 
     @org.junit.Test
     public void test() {
-
         int[][] map = new int[][] {
             {1, 1, 1, 1, 1, 0, 1, 1},
             {1, 1, 1, 1, 1, 0, 1, 1},
@@ -225,7 +144,6 @@ public class _489 {
         test.cleanRoom(ri);
         assertEquals(true, ri.allChecked());
 
+        assertEquals(-1, -1%1000);
     }
-
-
 }
