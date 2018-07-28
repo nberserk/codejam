@@ -108,6 +108,7 @@ public class _489 {
             if (robot.move()){
                 int nx = x+dirOffset[gDir][0];
                 int ny = y+dirOffset[gDir][1];
+                //if(!visited.contains(hash(nx, ny))){ // why this affect the result ?
                 clean(robot, visited, nx,ny);
 
                 robot.turnLeft();

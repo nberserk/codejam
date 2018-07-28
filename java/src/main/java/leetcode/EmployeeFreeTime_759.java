@@ -1,5 +1,6 @@
 package leetcode;
 
+import leetcode.common.Interval;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,25 +10,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class EmployeeFreeTime_759 {
-    class Interval {
-        int start;
-        int end;
 
-        Interval() {
-            start = 0;
-            end = 0;
-        }
-
-        Interval(int s, int e) {
-            start = s;
-            end = e;
-        }
-
-        @Override
-        public String toString() {
-            return "[" + start + "," + end + "]";
-        }
-    }
 
     public List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
         ArrayList<Interval> all = new ArrayList<>();
