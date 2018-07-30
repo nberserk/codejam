@@ -1,5 +1,7 @@
 package main.java.codejam.lib;
 
+import leetcode.common.ListNode;
+
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -10,16 +12,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class PalindromeLinkedList {
 
-    static class ListNode {
 
-        int val;
-
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     static public boolean isPalindrome(ListNode head) { // 1->2->2->1
         if (head==null) return true;
