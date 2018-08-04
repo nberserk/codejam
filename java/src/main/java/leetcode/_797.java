@@ -39,10 +39,8 @@ public class _797 {
                 s.push(new Node(next, c));
             }
         }
-
         return ret;
     }
-
 
     @org.junit.Test
     public void test() {
@@ -53,8 +51,5 @@ public class _797 {
         assertEquals((Integer)1, a.get(0));
 
         assertEquals("[[0, 2, 3], [0, 1, 3]]", allPathsSourceTarget(new int[][]{{1,2},{3},{3},{}}).toString());
-
-
-
     }
 }
