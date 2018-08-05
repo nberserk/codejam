@@ -2,12 +2,12 @@ package leetcode;
 
 import org.junit.Test;
 
-import java.util.*;
-
-import static org.junit.Assert.assertEquals;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 public class FindDuplicateSubtrees_652 {
-
 
     List<TreeNode> result = new ArrayList<>();
     List<TreeNode> findDuplicateSubtrees(TreeNode root) {
