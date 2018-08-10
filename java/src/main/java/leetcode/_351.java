@@ -2,9 +2,6 @@ package leetcode;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -64,8 +61,5 @@ public class _351 {
     @Test
     public void test(){
         assertEquals(56, numberOfPatterns(2,2));
-
-        List<Integer> list = new ArrayList<>();
-        list.iterator()
     }
 }

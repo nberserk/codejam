@@ -2,70 +2,47 @@ package leetcode;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  *
  */
-public class _351 {
-    int m,n;
-    int count(int[][]p, int count, int x, int y){
-        int ret=0;
-        if(count>=m && count<=n) ret++;
-        if(count>n) return 0;
-
-        int[][] dir={{1,0},{1,-1},{0,-1},{-1,-1},{-1,0},{-1,1},{0,1},{1,1},{1,-2},{-1,-2},{-1,2},{1,2},{2,-1},{-2,-1},{-2,1},{2,1} };
-        for(int i=0;i<dir.length;i++){
-            int nx=x+dir[i][0];
-            int ny=y+dir[i][1];
-            if(nx<0||ny<0||nx>=3||ny>=3) continue;
-            if(p[ny][nx]==1){
-                nx+=dir[i][0];
-                ny+=dir[i][1];
-                if(nx<0||ny<0||nx>=3||ny>=3||p[ny][nx]==1){
-                    continue;
-                }else{
-                    p[ny][nx]=1;
-                    ret+=count(p, count+1, nx,ny);
-                    p[ny][nx]=0;
+public class _403 {
+    int[][] dp;
+    boolean cross(int[] s, int i, int jump){
+        if(i==s.length-1) return true; // jump=1
+        if(dp[i][jump]!=-1) return dp[i][jump]==1;
+        int pos = s[i]; //i=2, pos=2
+        int min = pos+jump-1;//
+        min=Math.max(min, pos+1);//3
+        int max = pos+jump+1;//4
+        for(int j=i+1;j<s.length;j++){
+            if(s[j]>max) break;
+            if(s[j]>=min && s[j]<=max){
+                if(cross(s, j, s[j]-pos)){
+                    dp[i][jump]=1;
+                    return true;
                 }
-            }else{
-                p[ny][nx]=1;
-                ret+=count(p, count+1, nx,ny);
-                p[ny][nx]=0;
+
             }
-
         }
-        return ret;
+        dp[i][jump]=0;
+        return false;
     }
-    public int numberOfPatterns(int m, int n) {
-        this.m=m;
-        this.n=n;
-
-        int[][] p = new int[3][3];
-        p[0][0]=1;
-        int ret=0;
-        int v = count(p, 1,0,0);
-        ret+=v*4;
-        p[0][0]=0;
-        p[0][1]=1;
-        v= count(p, 1, 1,0);
-        ret+=v*4;
-        p[0][1]=0;
-        p[1][1]=1;
-        ret += count(p, 1,1,1);
-        return ret;
+    public boolean canCross(int[] stones) {
+        dp= new int[stones.length][2000];
+        for(int[] s:dp)
+            Arrays.fill(s,-1);
+        if(stones[1]!=1) return false;
+        return cross(stones, 1,1);
     }
 
 
     @Test
     public void test(){
-        assertEquals(56, numberOfPatterns(2,2));
-
-        List<Integer> list = new ArrayList<>();
-        list.iterator()
+        assertEquals(false, canCross(new int[]{0,1,2,3,4,8,9,11}));
+        assertEquals(false, canCross(new int[]{0,1,3,5,6,8,12,17}));
     }
 }
