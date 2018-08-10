@@ -5,11 +5,10 @@ import org.junit.Test;
 /**
  *
  */
-public class _753 {
+public class LC753 {
     public String crackSafe(int n, int k) {
         return "";
     }
-
 
     @Test
     public void test(){
