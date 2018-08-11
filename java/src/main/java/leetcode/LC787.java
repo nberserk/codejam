@@ -46,7 +46,5 @@ public class LC787 {
     public void test(){
         assertEquals(200, findCheapestPrice(3, new int[][]{{0,1,100},{1,2,100},{0,2,500}}, 0,2,1));
         assertEquals(6, findCheapestPrice(4, new int[][]{{0,1,1},{0,2,5},{1,2,1},{2,3,1}}, 0,3,1));
-
-
     }
 }
