@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  *
  *
  */
-public class MinimumWindowSubstring_76 {
+public class LC076 {
 
     public String minWindow(String s, String t) {
         int N = s.length();
