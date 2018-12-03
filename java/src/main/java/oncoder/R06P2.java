@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-public class P2 {
+public class R06P2 {
 
     public int solution(String[] board){
         int R =   board.length;

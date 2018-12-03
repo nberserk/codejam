@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class P3 {
+public class R06P3 {
 
     int[] answer;
     int max=Integer.MAX_VALUE;
@@ -40,7 +40,7 @@ public class P3 {
                 made.addLast(prev);
                 System.out.println(made);
                 made.removeLast();
-            }else             if(prev==0 && made.size()==3){
+            }else if(prev==0 && made.size()==3){
                 made.addLast(prev);
                 System.out.println(made);
                 made.removeLast();
