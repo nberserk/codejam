@@ -3,6 +3,7 @@ package leetcode;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -33,5 +34,8 @@ public class LC264 {
     @Test
     public void test(){
         assertEquals(36, nthUglyNumber(20));
+
+        assertEquals(3, Arrays.stream(new int[]{1,2,3,4,5}).filter(a->a>2).count());
+        //new ArrayList<Integer>( new int[]{1,2});
     }
 }

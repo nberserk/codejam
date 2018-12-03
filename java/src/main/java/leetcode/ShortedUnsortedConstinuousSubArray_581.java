@@ -31,6 +31,7 @@ public class ShortedUnsortedConstinuousSubArray_581 {
     @org.junit.Test
     public void test(){
         assertEquals(5, findUnsortedSubarray(new int[]{2, 6, 4, 8, 10, 9, 15}));
+        assertEquals(4, findUnsortedSubarray(new int[]{1,3,2,2,2}));
 
 
 
