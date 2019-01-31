@@ -18,10 +18,8 @@ public class LC973 {
         int i=0;
         while(i<K){
             int idx = pq.poll();
-
-                r[i][0]=points[idx][0];
-                r[i++][1] = points[idx][1];
-
+            r[i][0]=points[idx][0];
+            r[i++][1] = points[idx][1];
         }
         return r;
     }
