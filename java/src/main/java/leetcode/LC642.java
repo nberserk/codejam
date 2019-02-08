@@ -63,94 +63,95 @@ import static org.junit.Assert.assertEquals;
 
 
  */
-public class DesignSearchAutocompleteSystem_642 {
+public class LC642 {
 
     static class Node{
         char ch;
-        String word;
-        int freq;
-        HashMap<Character, Node> child = new HashMap<>();
-
-        public Node(){
+        HashMap<Character,Node> child=new HashMap<>();
+        String sentence;
+        int times;
+        Node(char c){
+            ch=c;
         }
 
-        public Node(char c){
-            ch = c;
-        }
-
-        void add(char c){
-            child.put(c, new Node(c));
-        }
-
-        void insert(String word, int f){
-
-            char[] in = word.toCharArray();
-            Node node = this;
-            for (int i = 0; i < in.length; i++) {
-                if(!node.child.containsKey(in[i]))
-                    node.add(in[i]);
-                node = node.child.get(in[i]);
+        void add(String se, int times){
+            char[] c = se.toCharArray();
+            Node cur = this;
+            for(int i=0;i<c.length;i++){
+                if(!cur.child.containsKey(c[i])){
+                    Node next = new Node(c[i]);
+                    cur.child.put(c[i], next);
+                }
+                cur = cur.child.get(c[i]);
             }
-            node.word = word;
-            node.freq += f;
+            cur.sentence=se;
+            cur.times=times;
+        }
+        void hit(String s){
+            char[] c = s.toCharArray();
+            Node cur = this;
+            for(int i=0;i<c.length;i++){
+                if(!cur.child.containsKey(c[i])){
+                    Node next = new Node(c[i]);
+                    cur.child.put(c[i], next);
+                }
+                cur = cur.child.get(c[i]);
+            }
+            cur.sentence=s;
+            cur.times++;
         }
 
-        public List<String> getCandidate(String input){
-            LinkedList<String> ret = new LinkedList<>();
-            char[] c = input.toCharArray();
-            Node node = this;
-            for (int i = 0; i < c.length; i++) {
-                if(!node.child.containsKey(c[i]))
+        public List<String> top3(String in){
+            char[] c = in.toCharArray();
+            Node cur = this;
+            List<String> ret = new ArrayList<>();
+            for(int i=0;i<c.length;i++){
+                if(!cur.child.containsKey(c[i]))
                     return ret;
-                node = node.child.get(c[i]);
+                cur = cur.child.get(c[i]);
             }
-
-            //
-            PriorityQueue<Node> pq = new PriorityQueue<>( (a,b)-> a.freq==b.freq ? -a.word.compareTo(b.word) : a.freq-b.freq );
-            node.collectCandidate(pq);
-            if(pq.size()>3){
-                pq.poll();
-            }
-            while(pq.size()>0){
-                ret.addFirst(pq.poll().word);
+            PriorityQueue<Node> pq = new PriorityQueue<>(10, (a,b)->a.times==b.times?a.sentence.compareTo(b.sentence):b.times-a.times);
+            cur.collect(pq);
+            for(int i=0;i<3;i++){
+                if(pq.size()==0) break;
+                Node n = pq.poll();
+                ret.add(n.sentence);
             }
             return ret;
         }
 
-        private void collectCandidate(PriorityQueue<Node> pq) {
-            if(word!=null)
-                pq.add(this);
+        private void collect(PriorityQueue<Node> q){
+            if(sentence!=null)
+                q.add(this);
             for(Node n: child.values()){
-                n.collectCandidate(pq);
+                n.collect(q);
             }
         }
     }
 
-    Node root = new Node();
-    String inputChar ="";
-
-    void init(String[] sentences, int[] times) {
-        for (int i = 0; i < sentences.length; i++) {
-            root.insert(sentences[i], times[i]);
+    Node trie=new Node(' ');
+    public void init(String[] sentences, int[] times) {
+        int N =times.length;
+        for(int i=0;i<N;i++){
+            trie.add(sentences[i], times[i]);
         }
     }
 
+    String input="";
     public List<String> input(char c) {
         if(c=='#'){
-            root.insert(inputChar, 1);
-            inputChar ="";
-            return new ArrayList<String>();
-        }else{
-            inputChar = inputChar +c;
-            return root.getCandidate(inputChar);
+            trie.hit(input);
+            input="";
+            return new ArrayList<>();
         }
-
+        input+=c;
+        return trie.top3(input);
     }
 
 
     @org.junit.Test
     public void test(){
-        DesignSearchAutocompleteSystem_642 t = new DesignSearchAutocompleteSystem_642();
+        LC642 t = new LC642();
         t.init(new String[]{"i love you", "island", "ironman", "i love leetcode"}, new int[]{5, 3, 2, 2});
 
         assertEquals("[i love you, island, i love leetcode]", t.input('i').toString());
