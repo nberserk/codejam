@@ -1,4 +1,5 @@
 *.class
+java/build
 target
 java/bin
 # Package Files #

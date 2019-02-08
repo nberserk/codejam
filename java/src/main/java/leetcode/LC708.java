@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class _708 {
+public class LC708 {
     private class Node {
         public int val;
         public Node next;
