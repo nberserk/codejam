@@ -8,32 +8,6 @@ import java.util.*;
  *
  */
 public class LC952 {
-    ArrayList<Integer> reduce(int n){
-        HashSet<Integer> set = new HashSet<>();
-        int d=2;
-        while(n>1){
-            if(n%d==0){
-                set.add(d);
-                n/=d;
-            }else d++;
-        }
-        ArrayList<Integer> list = new ArrayList<>();
-        list.addAll(set);
-        return list;
-    }
-
-    int getParent(int[] p, int i){
-        int org =i;
-        while(p[i]!=i){
-            i=p[i];
-        }
-        p[org]=i;
-        return i;
-    }
-
-    final int N = 100001;
-    int[] parent = new int[N];
-    int[] size=new int[N];
 
     public int largestComponentSize(int[] A) {
         ArrayList<Integer> prime = new ArrayList<>();
