@@ -3,11 +3,6 @@ package leetcode;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-
 /**
  * Created by darren on 2/11/17.
  *
@@ -16,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class LC255 {
     public boolean verifyPreorder(int[] preorder) {
         int c = check(preorder, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        return c<0 false: true;
+        return c<0? false: true;
     }
 
     private int check(int[] a, int start, int min, int max) {
