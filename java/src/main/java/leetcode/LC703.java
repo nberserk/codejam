@@ -18,9 +18,9 @@ public class LC703 {
     }
 
     private void _add(int n){
-        if(pq.peek()>=n && pq.size()>=k)
+        if(pq.size()>=k && pq.peek()>=n)
             return;
-        if(pq.size()>k)
+        if(pq.size()==k)
             pq.poll();
         pq.add(n);
     }
