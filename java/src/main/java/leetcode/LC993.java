@@ -1,77 +1,40 @@
 package leetcode;
 
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
 
 /**
  *
  */
-public class LC994 {
-    int mod=100;
-    public int orangesRotting(int[][] grid) {
-        ArrayList<Integer> q = new ArrayList<>();
-        int R=grid.length;
-        int C=grid[0].length;
+public class LC993 {
 
-        for(int i=0;i<R;i++){
-            for(int c=0;c<C;c++){
-                if(grid[i][c]==1)
-                    q.add(i*mod+c);
-            }
-        }
-
-        int day=0;
-        for (int i = 0; i < q.size(); i++) {
-            int cur = bfs(q.get(i), grid);
-            if(cur==-1) return -1;
-            day=Math.max(day,cur);
-        }
-        return day;
-    }
-
-    class Node{
-        int pos;
+    class Ret{
+        TreeNode parent;
         int depth;
-        Node(int pos, int d){
-            this.pos=pos;
+        Ret(TreeNode p, int d){
+            parent=p;
             depth=d;
         }
     }
-
-    private int bfs(int start, int[][] grid) {
-        LinkedList<Node> q = new LinkedList<>();
-        int R=grid.length;
-        int C=grid[0].length;
-
-        q.add(new Node(start,0));
-        HashSet<Integer> visited = new HashSet<>();
-        while(q.size()>0){
-            Node cur = q.pollFirst();
-            if(visited.contains(cur.pos)) continue;
-            visited.add(cur.pos);
-            int y = cur.pos/mod;
-            int x = cur.pos%mod;
-            if (grid[y][x]==2){
-                return cur.depth;
-            }
-            int[][] d = {{-1,0},{1,0},{0,-1},{0,1}};
-            for(int k=0;k<4;k++){
-                int nx=x+d[k][0];
-                int ny=y+d[k][1];
-                if(nx<0||ny<0||nx>=C||ny>=R||grid[ny][nx]==0) continue;
-                q.add(new Node(ny*mod+nx, cur.depth+1));
-            }
-        }
-        return -1;
+    public boolean isCousins(TreeNode root, int x, int y) {
+        Ret r = traverse(root, null, x, 0);
+        Ret r1 = traverse(root, null, y, 0);
+        if(r==null || r1==null) return false;
+        if(r.depth==r1.depth && r.parent!=r1.parent) return true;
+        else return false;
     }
-
+    Ret traverse(TreeNode node,TreeNode p, int target, int depth){
+        if(node==null) return null;
+        if(node.val==target){
+            return new Ret(p, depth);
+        }
+        Ret r = traverse(node.left, node, target, depth+1);
+        if(r==null)
+            r = traverse(node.right, node, target, depth+1);
+        return r;
+    }
 
     @Test
     public void test(){
-        Assert.assertEquals(1, orangesRotting(new int[][]{{2,2},{1,1},{0,0},{2,0}}));
+
     }
 }
