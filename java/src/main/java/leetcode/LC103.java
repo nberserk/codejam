@@ -1,58 +1,41 @@
 package leetcode;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
  */
-public class LC957 {
-    public int[] prisonAfterNDays(int[] cells, int N) {
-        HashSet<Integer> seen = new HashSet<>();
-        int state = 0;
-        for (int i = 0; i < cells.length; i++) {
-            int cur= cells[i]==1? 1:0;
-            state|=1<<i;
-        }
+public class LC103 {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        ArrayList<TreeNode> queue = new ArrayList<>();
+        if(root!=null)
+            queue.add(root);
 
-        while(N>0){
-            if (seen.contains(state)){
-                N%=seen.size();
-                seen.clear();
+        List<List<Integer>> ret = new ArrayList<>();
+        boolean reverse=false;
+        while(queue.size()>0){
+            ArrayList<TreeNode> next = new ArrayList<>();
+            ArrayList<Integer> row = new ArrayList<>();
+            for(int i=0;i<queue.size();i++){
+                TreeNode n = queue.get(i);
+                if(n.left!=null)
+                    next.add(n.left);
+                if(n.right!=null)
+                    next.add(n.right);
+                row.add(n.val);
             }
-            seen.add(state);
-            if(N>0){
-                N--;
-                state=apply(state);
-            }
-        }
 
-        for (int j = 0; j < cells.length; j++) {
-            cells[j] = ((state>>j)&1)==1 ? 1:0;
+            //
+            if(reverse)
+                Collections.reverse(row);
+            ret.add(row);
+            reverse=!reverse;
+            queue=next;
         }
-        return cells;
-    }
-
-    private int apply(int state) {
-        int ret =0;
-        for (int i = 1; i <= 6; i++) {
-            if( ((state>>(i-1))&1) == (( state>>(i+1) )&1) ){
-                ret|=(1<<i);
-            }
-        }
-
         return ret;
     }
 
 
-    @Test
-    public void test(){
-        Assert.assertArrayEquals(new int[]{0,0,1,0,0,1,1,0}, prisonAfterNDays(new int[]{0, 1, 1, 1, 0, 0, 0, 0}, 99));
-        //Assert.assertArrayEquals(new int[]{0,0,0,0,1,1,1,0}, prisonAfterNDays(new int[]{0,0,1,0,0,1,1,0}, 100));
-
-//[0,0,1,1,1,1,1,0]
-
-    }
 }
