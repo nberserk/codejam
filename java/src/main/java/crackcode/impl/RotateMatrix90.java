@@ -1,4 +1,4 @@
-package main.java.crackcode.impl;
+package crackcode.impl;
 
 import org.junit.Test;
 
