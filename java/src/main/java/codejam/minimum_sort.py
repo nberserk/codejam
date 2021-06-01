@@ -1,4 +1,4 @@
-t, n  = [int(s) for s in input().split(" ")] # read a list of integers, 2 in this case
+t, n = [int(s) for s in input().split(" ")] # read a list of integers, 2 in this case
 
 def sort2(start, end):
     for i in range(start, end):
