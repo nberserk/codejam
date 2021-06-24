@@ -9,11 +9,12 @@ behavioral:
 System Design: Netflix
 
 ## https://leetcode.com/discuss/interview-experience/1293161/Facebook-or-E5-or-US-or-June-2021-Passed
+
 code:
-- 8. String to Integer (atoi). It was a variation of this, just need to return true or false if can be converted.
-- 304. Range Sum Query 2D - Immutable. Here I achieved a working solution, not an optimal one
-- 528. Random Pick with Weight
-- 973. K Closest Points to Origin
+- 8 String to Integer (atoi). It was a variation of this, just need to return true or false if can be converted.
+- 304 Range Sum Query 2D - Immutable. Here I achieved a working solution, not an optimal one
+- 528 Random Pick with Weight
+- 973 K Closest Points to Origin
 
 ## https://leetcode.com/discuss/interview-experience/1122760/Facebook-E5-Offer
 behavioral:
