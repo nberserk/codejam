@@ -17,13 +17,14 @@ code:
 - 973 K Closest Points to Origin
 
 ## https://leetcode.com/discuss/interview-experience/1122760/Facebook-E5-Offer
+
 behavioral:
 Typicall behavioral interview. Question on innovation, conflict, complext probelm I have solved it
+
 code:
 - finding project dependency
 - union find??
 
-
-Syste design:
+System design:
 type ahead search system.
   
