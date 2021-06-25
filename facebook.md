@@ -22,7 +22,7 @@ behavioral:
 Typicall behavioral interview. Question on innovation, conflict, complext probelm I have solved it
 
 code:
-- finding project dependency
+- finding project dependency, [paraller-course](https://leetcode.com/problems/parallel-courses/)
 - union find??
 
 System design:
