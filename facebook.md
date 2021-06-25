@@ -42,5 +42,5 @@ Feedback: Need to discuss more about scalability of the system
 
 Round2:
 Designing a system to handle live comments for videos
-Feedback: Need to discuss more about low level details of the system
+- https://engineering.fb.com/2011/02/07/core-data/live-commenting-behind-the-scenes/
   
