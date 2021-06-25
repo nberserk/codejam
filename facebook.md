@@ -27,4 +27,20 @@ code:
 
 System design:
 type ahead search system.
+
+## https://leetcode.com/discuss/interview-experience/1184167/Facebook-or-E6-or-London-Reject
+
+coding:
+https://leetcode.com/problems/accounts-merge/
+
+
+system design:
+Round1:
+Designing an API related to newsfeed (like instagram or facebook newsfeed)
+Need to consider multiple clients while designing the API
+Feedback: Need to discuss more about scalability of the system
+
+Round2:
+Designing a system to handle live comments for videos
+Feedback: Need to discuss more about low level details of the system
   
