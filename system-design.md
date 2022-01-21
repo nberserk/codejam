@@ -1,3 +1,28 @@
+## Template
+### Phase 1 - 10 min
+- spec identificaiton functional vs non functional
+- capacity estimation
+  - QPS per api
+  - storage
+  - any characteristic?
+- API Design
+### Phase2 - 10min
+- High Level Design
+- Database schema
+  - RDB prefered if 
+    - join required?
+    - frequent data update
+  - NoSQL preferred if 
+    - append only
+    - easy scalability required?
+
+### Phase3 - 15min
+- Component Design
+- Scalability
+- Falut Tolerance
+
+
+
 ## CAP Theorem
 consistency vs availability vs partition tolerance
 network partitioning is a must. so generally consistency vs availability.
