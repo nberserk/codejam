@@ -8,6 +8,8 @@
 - API Design
 ### Phase2 - 10min
 - High Level Design
+  - for CRUD api, latency is important
+  - for blob api, throughput is important
 - Database schema
   - RDB prefered if 
     - join required?
