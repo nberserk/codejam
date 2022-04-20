@@ -48,4 +48,7 @@ Round2:
 Designing a system to handle live comments for videos
 - https://engineering.fb.com/2011/02/07/core-data/live-commenting-behind-the-scenes/
 - https://leetcode.com/discuss/interview-question/583184/fbinstagram-live-comments-system-design
--   
+
+## https://leetcode.com/problems/intersection-of-two-arrays/
+if the array is sorted, what is optimal time complexity? check first comment in solution tab.
+
