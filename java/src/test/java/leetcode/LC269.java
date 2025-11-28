@@ -1,15 +1,8 @@
 package leetcode;
 
-import javafx.util.Pair;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,13 +14,13 @@ import static org.junit.Assert.assertEquals;
  */
 public class LC269 {
 
-    Pair<Character,Character> order(String first, String second){
+    AbstractMap.SimpleEntry<Character,Character> order(String first, String second){
         int len = Math.min(first.length(), second.length());
         for(int i=0;i<len;i++){
             char charFirst = first.charAt(i);
             char charSecond = second.charAt(i);
             if(charFirst==charSecond) continue;
-            return new Pair<>(charFirst, charSecond);
+            return new AbstractMap.SimpleEntry<>(charFirst, charSecond);
         }
         return null;
     }
@@ -43,7 +36,7 @@ public class LC269 {
         }
 
         for(int i=0;i<words.length-1;i++){
-            Pair<Character,Character> singleOrder = order(words[i], words[i+1]);
+            AbstractMap.SimpleEntry<Character,Character> singleOrder = order(words[i], words[i+1]);
             if(singleOrder==null) continue;
             Character from = singleOrder.getKey();
             Character to = singleOrder.getValue();
